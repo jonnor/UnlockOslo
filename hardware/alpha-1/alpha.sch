@@ -1,0 +1,898 @@
+EESchema Schematic File Version 2
+LIBS:conn
+LIBS:power
+LIBS:device
+LIBS:mechanical
+LIBS:tps54202
+LIBS:alpha-misc
+LIBS:alpha-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date "15 nov 2012"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L +5V #PWR01
+U 1 1 580C1B61
+P 3100 950
+F 0 "#PWR01" H 3100 800 50  0001 C CNN
+F 1 "+5V" H 3100 1090 50  0000 C CNN
+F 2 "" H 3100 950 50  0000 C CNN
+F 3 "" H 3100 950 50  0000 C CNN
+	1    3100 950 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3100 950  3100 1100
+Wire Wire Line
+	3100 1100 3100 1200
+Wire Wire Line
+	3100 1100 2900 1100
+Wire Wire Line
+	3100 1200 2900 1200
+Connection ~ 3100 1100
+$Comp
+L GND #PWR02
+U 1 1 580C1D11
+P 3000 3150
+F 0 "#PWR02" H 3000 2900 50  0001 C CNN
+F 1 "GND" H 3000 3000 50  0000 C CNN
+F 2 "" H 3000 3150 50  0000 C CNN
+F 3 "" H 3000 3150 50  0000 C CNN
+	1    3000 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3000 1300 3000 1700
+Wire Wire Line
+	3000 1700 3000 2000
+Wire Wire Line
+	3000 2000 3000 2500
+Wire Wire Line
+	3000 2500 3000 2700
+Wire Wire Line
+	3000 2700 3000 3150
+Wire Wire Line
+	3000 2700 2900 2700
+Wire Wire Line
+	3000 2500 2900 2500
+Connection ~ 3000 2700
+Wire Wire Line
+	3000 2000 2900 2000
+Connection ~ 3000 2500
+Wire Wire Line
+	3000 1700 2900 1700
+Connection ~ 3000 2000
+$Comp
+L GND #PWR03
+U 1 1 580C1E01
+P 2300 3150
+F 0 "#PWR03" H 2300 2900 50  0001 C CNN
+F 1 "GND" H 2300 3000 50  0000 C CNN
+F 2 "" H 2300 3150 50  0000 C CNN
+F 3 "" H 2300 3150 50  0000 C CNN
+	1    2300 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2300 3000 2400 3000
+Wire Wire Line
+	2300 1500 2300 2300
+Wire Wire Line
+	2300 2300 2300 3000
+Wire Wire Line
+	2300 3000 2300 3150
+Wire Wire Line
+	2300 2300 2400 2300
+Connection ~ 2300 3000
+Connection ~ 2200 1100
+Wire Wire Line
+	2200 1900 2400 1900
+Wire Wire Line
+	2200 1100 2400 1100
+Wire Wire Line
+	2200 950  2200 1100
+Wire Wire Line
+	2200 1100 2200 1900
+$Comp
+L +3.3V #PWR04
+U 1 1 580C1BC1
+P 2200 950
+F 0 "#PWR04" H 2200 800 50  0001 C CNN
+F 1 "+3.3V" H 2200 1090 50  0000 C CNN
+F 2 "" H 2200 950 50  0000 C CNN
+F 3 "" H 2200 950 50  0000 C CNN
+	1    2200 950 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2300 1500 2400 1500
+Connection ~ 2300 2300
+Wire Wire Line
+	2400 1200 1250 1200
+Wire Wire Line
+	1250 1300 2400 1300
+Wire Wire Line
+	1250 1400 2400 1400
+Wire Wire Line
+	2400 1600 1250 1600
+Wire Wire Line
+	1250 1700 2400 1700
+Wire Wire Line
+	1250 1800 2400 1800
+Wire Wire Line
+	2400 2000 1250 2000
+Wire Wire Line
+	1250 2100 2400 2100
+Wire Wire Line
+	1250 2200 2400 2200
+Wire Wire Line
+	2400 2400 1250 2400
+Wire Wire Line
+	1250 2500 2400 2500
+Wire Wire Line
+	1250 2600 2400 2600
+Wire Wire Line
+	2400 2700 1250 2700
+Wire Wire Line
+	1250 2800 2400 2800
+Wire Wire Line
+	1250 2900 2400 2900
+Wire Wire Line
+	2900 2800 3950 2800
+Wire Wire Line
+	2900 2900 3950 2900
+Wire Wire Line
+	2900 2300 3950 2300
+Wire Wire Line
+	2900 2400 3950 2400
+Wire Wire Line
+	2900 2100 3950 2100
+Wire Wire Line
+	2900 2200 3950 2200
+Wire Wire Line
+	2900 1800 3950 1800
+Wire Wire Line
+	2900 1900 3950 1900
+Wire Wire Line
+	2900 1500 3950 1500
+Wire Wire Line
+	2900 1600 3950 1600
+Wire Wire Line
+	2900 1400 3950 1400
+Wire Wire Line
+	2900 2600 3950 2600
+Text Label 1250 1200 0    50   ~ 0
+GPIO2(SDA1)
+Text Label 1250 1300 0    50   ~ 0
+GPIO3(SCL1)
+Text Label 1250 1400 0    50   ~ 0
+GPIO4(GCLK)
+Text Label 1250 1600 0    50   ~ 0
+GPIO17(GEN0)
+Text Label 1250 1700 0    50   ~ 0
+GPIO27(GEN2)
+Text Label 1250 1800 0    50   ~ 0
+GPIO22(GEN3)
+Text Label 1250 2000 0    50   ~ 0
+GPIO10(SPI0_MOSI)
+Text Label 1250 2100 0    50   ~ 0
+GPIO9(SPI0_MISO)
+Text Label 1250 2200 0    50   ~ 0
+GPIO11(SPI0_SCK)
+Text Label 1250 2400 0    50   ~ 0
+ID_SD
+Text Label 1250 2500 0    50   ~ 0
+GPIO5
+Text Label 1250 2600 0    50   ~ 0
+GPIO6
+Text Label 1250 2700 0    50   ~ 0
+GPIO13(PWM1)
+Text Label 1250 2800 0    50   ~ 0
+GPIO19(SPI1_MISO)
+Text Label 1250 2900 0    50   ~ 0
+GPIO26
+Text Label 3950 2900 2    50   ~ 0
+GPIO20(SPI1_MOSI)
+Text Label 3950 2800 2    50   ~ 0
+GPIO16
+Text Label 3950 2600 2    50   ~ 0
+GPIO12(PWM0)
+Text Label 3950 2400 2    50   ~ 0
+ID_SC
+Text Label 3950 2300 2    50   ~ 0
+GPIO7(SPI1_CE_N)
+Text Label 3950 2200 2    50   ~ 0
+GPIO8(SPI0_CE_N)
+Text Label 3950 2100 2    50   ~ 0
+GPIO25(GEN6)
+Text Label 3950 1900 2    50   ~ 0
+GPIO24(GEN5)
+Text Label 3950 1800 2    50   ~ 0
+GPIO23(GEN4)
+Text Label 3950 1600 2    50   ~ 0
+GPIO18(GEN1)(PWM0)
+Text Label 3950 1500 2    50   ~ 0
+GPIO15(RXD0)
+Text Label 3950 1400 2    50   ~ 0
+GPIO14(TXD0)
+Wire Wire Line
+	3000 1300 2900 1300
+Connection ~ 3000 1700
+Text Notes 650  7600 0    50   ~ 0
+ID_SD and ID_SC PINS:\nThese pins are reserved for HAT ID EEPROM.\n\nAt boot time this I2C interface will be\ninterrogated to look for an EEPROM\nthat identifes the attached board and\nallows automagic setup of the GPIOs\n(and optionally, Linux drivers).\n\nDO NOT USE these pins for anything other\nthan attaching an I2C ID EEPROM. Leave\nunconnected if ID EEPROM not required.
+$Comp
+L Mounting_Hole MK1
+U 1 1 5834FB2E
+P 3000 7200
+F 0 "MK1" H 3100 7246 50  0000 L CNN
+F 1 "M2.5" H 3100 7155 50  0000 L CNN
+F 2 "Mounting_Holes:MountingHole_2.5mm" H 3000 7200 60  0001 C CNN
+F 3 "" H 3000 7200 60  0001 C CNN
+	1    3000 7200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mounting_Hole MK3
+U 1 1 5834FBEF
+P 3450 7200
+F 0 "MK3" H 3550 7246 50  0000 L CNN
+F 1 "M2.5" H 3550 7155 50  0000 L CNN
+F 2 "Mounting_Holes:MountingHole_2.5mm" H 3450 7200 60  0001 C CNN
+F 3 "" H 3450 7200 60  0001 C CNN
+	1    3450 7200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mounting_Hole MK2
+U 1 1 5834FC19
+P 3000 7400
+F 0 "MK2" H 3100 7446 50  0000 L CNN
+F 1 "M2.5" H 3100 7355 50  0000 L CNN
+F 2 "Mounting_Holes:MountingHole_2.5mm" H 3000 7400 60  0001 C CNN
+F 3 "" H 3000 7400 60  0001 C CNN
+	1    3000 7400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mounting_Hole MK4
+U 1 1 5834FC4F
+P 3450 7400
+F 0 "MK4" H 3550 7446 50  0000 L CNN
+F 1 "M2.5" H 3550 7355 50  0000 L CNN
+F 2 "Mounting_Holes:MountingHole_2.5mm" H 3450 7400 60  0001 C CNN
+F 3 "" H 3450 7400 60  0001 C CNN
+	1    3450 7400
+	1    0    0    -1  
+$EndComp
+Text Notes 3000 7050 0    50   ~ 0
+Mounting Holes
+$Comp
+L Conn_02x20_Odd_Even P1
+U 1 1 59AD464A
+P 2600 2000
+F 0 "P1" H 2650 3117 50  0000 C CNN
+F 1 "Conn_02x20_Odd_Even" H 2650 3026 50  0001 C CNN
+F 2 "" H -2250 1050 50  0001 C CNN
+F 3 "" H -2250 1050 50  0001 C CNN
+	1    2600 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2900 3000 3950 3000
+Text Label 3950 3000 2    50   ~ 0
+GPIO21(SPI1_SCK)
+$Comp
+L +5V #PWR?
+U 1 1 5A00C8C6
+P 10650 1400
+F 0 "#PWR?" H 10650 1250 50  0001 C CNN
+F 1 "+5V" H 10650 1540 50  0000 C CNN
+F 2 "" H 10650 1400 50  0000 C CNN
+F 3 "" H 10650 1400 50  0000 C CNN
+	1    10650 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5A00C8CD
+P 6750 1750
+F 0 "C?" H 6775 1850 50  0000 L CNN
+F 1 "0.1u" H 6775 1650 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 6788 1600 50  0001 C CNN
+F 3 "" H 6750 1750 50  0000 C CNN
+F 4 "0.1u" H 6750 1750 60  0001 C CNN "ta_ref"
+	1    6750 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5A00C8D5
+P 10150 1750
+F 0 "C?" H 10175 1850 50  0000 L CNN
+F 1 "22u" H 10175 1650 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 10188 1600 50  0001 C CNN
+F 3 "" H 10150 1750 50  0000 C CNN
+F 4 "C4" H 10150 1750 60  0001 C CNN "ta_ref"
+	1    10150 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5A00C8DD
+P 6450 1750
+F 0 "C?" H 6475 1850 50  0000 L CNN
+F 1 "10u" H 6475 1650 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 6488 1600 50  0001 C CNN
+F 3 "" H 6450 1750 50  0000 C CNN
+F 4 "C1" H 6450 1750 60  0001 C CNN "ta_ref"
+	1    6450 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5A00C8E5
+P 10450 1750
+F 0 "C?" H 10475 1850 50  0000 L CNN
+F 1 "22u" H 10475 1650 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 10488 1600 50  0001 C CNN
+F 3 "" H 10450 1750 50  0000 C CNN
+F 4 "C5" H 10450 1750 60  0001 C CNN "ta_ref"
+	1    10450 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x02 P?
+U 1 1 5A00C8EC
+P 5850 1500
+F 0 "P?" H 5850 1600 50  0000 C CNN
+F 1 "12V" H 5850 1300 50  0000 C CNN
+F 2 "Bitraf:PhoenixContact_PTSM0,5_2-2,5-H_SMD" H 5850 1500 50  0001 C CNN
+F 3 "" H 5850 1500 50  0001 C CNN
+	1    5850 1500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L PWR_FLAG #FLG?
+U 1 1 5A00C8F9
+P 6150 1400
+F 0 "#FLG?" H 6150 1475 50  0001 C CNN
+F 1 "PWR_FLAG" H 6150 1550 50  0001 C CNN
+F 2 "" H 6150 1400 50  0001 C CNN
+F 3 "" H 6150 1400 50  0001 C CNN
+	1    6150 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L TPS54202 U?
+U 1 1 5A00C903
+P 7750 1500
+F 0 "U?" H 7750 1500 60  0000 C CNN
+F 1 "TPS54202" H 7750 1700 60  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23-6_Handsoldering" H 7750 1500 60  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/tps54202.pdf" H 7750 1500 60  0001 C CNN
+F 4 "Figure 16. 5-V, 2-A Reference Design" H 7750 1500 60  0001 C CNN "ta"
+F 5 "TPS54202DDCT" H 7750 1500 60  0001 C CNN "mpn"
+F 6 "2A" H 7450 2200 60  0000 C CNN "Iout"
+F 7 "5V" H 7650 2200 60  0000 C CNN "Vout"
+	1    7750 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 5A00C90B
+P 9650 1750
+F 0 "R?" V 9730 1750 50  0000 C CNN
+F 1 "100k" V 9650 1750 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805" V 9580 1750 50  0001 C CNN
+F 3 "" H 9650 1750 50  0000 C CNN
+F 4 "R2" V 9650 1750 60  0001 C CNN "ta_ref"
+	1    9650 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A00C912
+P 9650 2500
+F 0 "#PWR?" H 9650 2250 50  0001 C CNN
+F 1 "GND" H 9650 2350 50  0000 C CNN
+F 2 "" H 9650 2500 50  0001 C CNN
+F 3 "" H 9650 2500 50  0001 C CNN
+	1    9650 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A00C918
+P 7750 2400
+F 0 "#PWR?" H 7750 2150 50  0001 C CNN
+F 1 "GND" H 7750 2250 50  0000 C CNN
+F 2 "" H 7750 2400 50  0001 C CNN
+F 3 "" H 7750 2400 50  0001 C CNN
+	1    7750 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A00C91E
+P 6750 2000
+F 0 "#PWR?" H 6750 1750 50  0001 C CNN
+F 1 "GND" H 6750 1850 50  0000 C CNN
+F 2 "" H 6750 2000 50  0001 C CNN
+F 3 "" H 6750 2000 50  0001 C CNN
+	1    6750 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A00C924
+P 6450 2000
+F 0 "#PWR?" H 6450 1750 50  0001 C CNN
+F 1 "GND" H 6450 1850 50  0000 C CNN
+F 2 "" H 6450 2000 50  0001 C CNN
+F 3 "" H 6450 2000 50  0001 C CNN
+	1    6450 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A00C92A
+P 6150 1700
+F 0 "#PWR?" H 6150 1450 50  0001 C CNN
+F 1 "GND" H 6150 1550 50  0000 C CNN
+F 2 "" H 6150 1700 50  0001 C CNN
+F 3 "" H 6150 1700 50  0001 C CNN
+	1    6150 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5A00C931
+P 8650 1250
+F 0 "C?" H 8675 1350 50  0000 L CNN
+F 1 "0.1u" H 8675 1150 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 8688 1100 50  0001 C CNN
+F 3 "" H 8650 1250 50  0000 C CNN
+F 4 "C3" H 8650 1250 60  0001 C CNN "ta_ref"
+	1    8650 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L L_Core_Ferrite L?
+U 1 1 5A00C93A
+P 9000 1500
+F 0 "L?" V 8950 1500 50  0000 C CNN
+F 1 "15u" V 9110 1500 50  0000 C CNN
+F 2 "Inductors_SMD:L_Taiyo-Yuden_NR-80xx" H 9000 1500 50  0001 C CNN
+F 3 "" H 9000 1500 50  0001 C CNN
+F 4 "L1" V 9000 1500 60  0001 C CNN "ta_ref"
+F 5 "NRS8040T150MJGJ" V 9000 1500 60  0001 C CNN "mpn"
+	1    9000 1500
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A00C941
+P 10450 2300
+F 0 "#PWR?" H 10450 2050 50  0001 C CNN
+F 1 "GND" H 10450 2150 50  0000 C CNN
+F 2 "" H 10450 2300 50  0001 C CNN
+F 3 "" H 10450 2300 50  0001 C CNN
+	1    10450 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A00C947
+P 10150 2300
+F 0 "#PWR?" H 10150 2050 50  0001 C CNN
+F 1 "GND" H 10150 2150 50  0000 C CNN
+F 2 "" H 10150 2300 50  0001 C CNN
+F 3 "" H 10150 2300 50  0001 C CNN
+	1    10150 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6050 1500 6150 1500
+Wire Wire Line
+	6150 1500 6250 1500
+Wire Wire Line
+	6250 1500 6450 1500
+Wire Wire Line
+	6450 1500 6750 1500
+Wire Wire Line
+	6750 1500 7050 1500
+Wire Wire Line
+	6250 1500 6250 1400
+Wire Wire Line
+	8450 1500 8650 1500
+Wire Wire Line
+	8650 1500 8850 1500
+Wire Wire Line
+	9150 1500 9350 1500
+Wire Wire Line
+	9350 1500 9650 1500
+Wire Wire Line
+	9650 1500 10150 1500
+Wire Wire Line
+	10150 1500 10450 1500
+Wire Wire Line
+	10450 1500 10650 1500
+Wire Wire Line
+	9650 2400 9650 2500
+Wire Wire Line
+	7750 2400 7750 2300
+Wire Wire Line
+	6450 1600 6450 1500
+Connection ~ 6450 1500
+Wire Wire Line
+	6750 1600 6750 1500
+Connection ~ 6750 1500
+Wire Wire Line
+	6450 1900 6450 2000
+Wire Wire Line
+	6750 1900 6750 2000
+Connection ~ 6250 1500
+Wire Wire Line
+	6050 1600 6150 1600
+Wire Wire Line
+	6150 1600 6150 1700
+Wire Wire Line
+	6150 1400 6150 1500
+Connection ~ 6150 1500
+Wire Wire Line
+	8450 1000 8650 1000
+Wire Wire Line
+	8650 1000 8650 1100
+Wire Wire Line
+	8650 1500 8650 1400
+Connection ~ 8650 1500
+Wire Wire Line
+	10150 1600 10150 1500
+Connection ~ 10150 1500
+Wire Wire Line
+	10450 1600 10450 1500
+Connection ~ 10450 1500
+Wire Wire Line
+	10450 2300 10450 1900
+Wire Wire Line
+	10150 2300 10150 1900
+Wire Wire Line
+	10650 1500 10650 1400
+Text Notes 5250 3100 0    60   ~ 0
+Design is based on "8.2 Typical Application" from the data sheet.\nInput power is 12 V nominal, but the design supports 8-28 V inputs.\nOutput is 5V, 2A.\nEN has internal pull up.
+NoConn ~ 7050 1700
+$Comp
+L R R?
+U 1 1 5A00C96C
+P 9650 2250
+F 0 "R?" V 9730 2250 50  0000 C CNN
+F 1 "13.3k" V 9650 2250 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805" V 9580 2250 50  0001 C CNN
+F 3 "" H 9650 2250 50  0000 C CNN
+F 4 "R3" V 9650 2250 60  0001 C CNN "ta_ref"
+	1    9650 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5A00C974
+P 9350 1750
+F 0 "C?" H 9375 1850 50  0000 L CNN
+F 1 "75p" H 9375 1650 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805" H 9388 1600 50  0001 C CNN
+F 3 "" H 9350 1750 50  0000 C CNN
+F 4 "C6" H 9350 1750 60  0001 C CNN "ta_ref"
+	1    9350 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9650 1900 9650 2000
+Wire Wire Line
+	9650 2000 9650 2100
+Wire Wire Line
+	8450 2000 9350 2000
+Wire Wire Line
+	9350 2000 9650 2000
+Wire Wire Line
+	9350 2000 9350 1900
+Connection ~ 9650 2000
+Connection ~ 9350 2000
+Wire Wire Line
+	9350 1500 9350 1600
+Wire Wire Line
+	9650 1500 9650 1600
+Connection ~ 9350 1500
+Text Notes 5150 750  0    60   ~ 12
+8V - 24 V to 5 V switched mode DC/DC regulator
+Connection ~ 9650 1500
+$Comp
+L Q_NMOS_GDS Q?
+U 1 1 5A01616C
+P 10400 5700
+F 0 "Q?" H 10600 5750 50  0000 L CNN
+F 1 "DMN2041L-7" H 10600 5650 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23" H 10600 5800 50  0001 C CNN
+F 3 "" H 10400 5700 50  0000 C CNN
+	1    10400 5700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x02 P?
+U 1 1 5A016173
+P 10800 5100
+F 0 "P?" H 10800 5200 50  0000 C CNN
+F 1 "SWITCH_3" H 10800 4900 50  0000 C CNN
+F 2 "Bitraf:PhoenixContact_PTSM0,5_2-2,5-H_SMD" H 10800 5100 50  0001 C CNN
+F 3 "" H 10800 5100 50  0001 C CNN
+	1    10800 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Vin #PWR?
+U 1 1 5A01617A
+P 10500 4800
+F 0 "#PWR?" H 10500 4650 50  0001 C CNN
+F 1 "Vin" H 10500 4940 50  0000 C CNN
+F 2 "" H 10500 4800 50  0000 C CNN
+F 3 "" H 10500 4800 50  0000 C CNN
+	1    10500 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A016180
+P 10500 6300
+F 0 "#PWR?" H 10500 6050 50  0001 C CNN
+F 1 "GND" H 10500 6150 50  0000 C CNN
+F 2 "" H 10500 6300 50  0000 C CNN
+F 3 "" H 10500 6300 50  0000 C CNN
+	1    10500 6300
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 5A016186
+P 10100 5950
+F 0 "R?" V 10180 5950 50  0000 C CNN
+F 1 "10k" V 10100 5950 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805" V 10030 5950 50  0001 C CNN
+F 3 "" H 10100 5950 50  0000 C CNN
+	1    10100 5950
+	1    0    0    -1  
+$EndComp
+Text Label 9700 5700 0    60   ~ 0
+SWITCH_2
+Wire Wire Line
+	10600 5200 10500 5200
+Wire Wire Line
+	10500 5200 10500 5400
+Wire Wire Line
+	10500 5400 10500 5500
+Wire Wire Line
+	10500 5100 10600 5100
+Wire Wire Line
+	10500 4800 10500 4900
+Wire Wire Line
+	10500 4900 10500 5100
+Wire Wire Line
+	10300 5300 10300 5400
+Wire Wire Line
+	10300 5000 10300 4900
+Wire Wire Line
+	10500 5900 10500 6200
+Wire Wire Line
+	10500 6200 10500 6300
+Wire Wire Line
+	9700 5700 10100 5700
+Wire Wire Line
+	10100 5700 10200 5700
+Wire Wire Line
+	10100 5800 10100 5700
+Connection ~ 10100 5700
+Wire Wire Line
+	10100 6100 10100 6200
+Wire Wire Line
+	10100 6200 10500 6200
+Connection ~ 10500 6200
+Connection ~ 10500 5400
+Connection ~ 10500 4900
+Wire Wire Line
+	10300 4900 10500 4900
+Wire Wire Line
+	10300 5400 10500 5400
+$Comp
+L D D?
+U 1 1 5A01619F
+P 10300 5150
+F 0 "D?" H 10300 5250 50  0000 C CNN
+F 1 "S1MTR" H 10300 5050 50  0000 C CNN
+F 2 "Diodes_SMD:D_SMA_Handsoldering" H 10300 5150 50  0001 C CNN
+F 3 "http://www.smc-diodes.com/propdf/S1A-S1M%20N0560%20REV.B.pdf" H 10300 5150 50  0001 C CNN
+	1    10300 5150
+	0    1    1    0   
+$EndComp
+$Comp
+L Q_NMOS_GDS Q?
+U 1 1 5A016DFA
+P 8800 5700
+F 0 "Q?" H 9000 5750 50  0000 L CNN
+F 1 "DMN2041L-7" H 9000 5650 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23" H 9000 5800 50  0001 C CNN
+F 3 "" H 8800 5700 50  0000 C CNN
+	1    8800 5700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x02 P?
+U 1 1 5A016E00
+P 9200 5100
+F 0 "P?" H 9200 5200 50  0000 C CNN
+F 1 "SWITCH_3" H 9200 4900 50  0000 C CNN
+F 2 "Bitraf:PhoenixContact_PTSM0,5_2-2,5-H_SMD" H 9200 5100 50  0001 C CNN
+F 3 "" H 9200 5100 50  0001 C CNN
+	1    9200 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Vin #PWR?
+U 1 1 5A016E06
+P 8900 4800
+F 0 "#PWR?" H 8900 4650 50  0001 C CNN
+F 1 "Vin" H 8900 4940 50  0000 C CNN
+F 2 "" H 8900 4800 50  0000 C CNN
+F 3 "" H 8900 4800 50  0000 C CNN
+	1    8900 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A016E0C
+P 8900 6300
+F 0 "#PWR?" H 8900 6050 50  0001 C CNN
+F 1 "GND" H 8900 6150 50  0000 C CNN
+F 2 "" H 8900 6300 50  0000 C CNN
+F 3 "" H 8900 6300 50  0000 C CNN
+	1    8900 6300
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 5A016E12
+P 8500 5950
+F 0 "R?" V 8580 5950 50  0000 C CNN
+F 1 "10k" V 8500 5950 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805" V 8430 5950 50  0001 C CNN
+F 3 "" H 8500 5950 50  0000 C CNN
+	1    8500 5950
+	1    0    0    -1  
+$EndComp
+Text Label 8100 5700 0    60   ~ 0
+SWITCH_2
+Wire Wire Line
+	9000 5200 8900 5200
+Wire Wire Line
+	8900 5200 8900 5400
+Wire Wire Line
+	8900 5400 8900 5500
+Wire Wire Line
+	8900 5100 9000 5100
+Wire Wire Line
+	8900 4800 8900 4900
+Wire Wire Line
+	8900 4900 8900 5100
+Wire Wire Line
+	8700 5300 8700 5400
+Wire Wire Line
+	8700 5000 8700 4900
+Wire Wire Line
+	8900 5900 8900 6200
+Wire Wire Line
+	8900 6200 8900 6300
+Wire Wire Line
+	8100 5700 8500 5700
+Wire Wire Line
+	8500 5700 8600 5700
+Wire Wire Line
+	8500 5800 8500 5700
+Connection ~ 8500 5700
+Wire Wire Line
+	8500 6100 8500 6200
+Wire Wire Line
+	8500 6200 8900 6200
+Connection ~ 8900 6200
+Connection ~ 8900 5400
+Connection ~ 8900 4900
+Wire Wire Line
+	8700 4900 8900 4900
+Wire Wire Line
+	8700 5400 8900 5400
+$Comp
+L D D?
+U 1 1 5A016E2A
+P 8700 5150
+F 0 "D?" H 8700 5250 50  0000 C CNN
+F 1 "S1MTR" H 8700 5050 50  0000 C CNN
+F 2 "Diodes_SMD:D_SMA_Handsoldering" H 8700 5150 50  0001 C CNN
+F 3 "http://www.smc-diodes.com/propdf/S1A-S1M%20N0560%20REV.B.pdf" H 8700 5150 50  0001 C CNN
+	1    8700 5150
+	0    1    1    0   
+$EndComp
+$Comp
+L Vin #PWR?
+U 1 1 5A017348
+P 6250 1400
+F 0 "#PWR?" H 6250 1250 50  0001 C CNN
+F 1 "Vin" H 6250 1540 50  0000 C CNN
+F 2 "" H 6250 1400 50  0001 C CNN
+F 3 "" H 6250 1400 50  0001 C CNN
+	1    6250 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L D_Zener D?
+U 1 1 5A01D063
+P 5000 5350
+F 0 "D?" H 5000 5450 50  0000 C CNN
+F 1 "D_Zener" H 5000 5250 50  0000 C CNN
+F 2 "" H 5000 5350 50  0001 C CNN
+F 3 "" H 5000 5350 50  0001 C CNN
+	1    5000 5350
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 5A01D14E
+P 4750 5100
+F 0 "R?" V 4830 5100 50  0000 C CNN
+F 1 "10k" V 4750 5100 50  0000 C CNN
+F 2 "" V 4680 5100 50  0001 C CNN
+F 3 "" H 4750 5100 50  0001 C CNN
+	1    4750 5100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4900 5100 5000 5100
+Wire Wire Line
+	5000 5100 5200 5100
+Wire Wire Line
+	5000 5100 5000 5200
+Connection ~ 5000 5100
+Wire Wire Line
+	5000 5600 5000 5500
+$Comp
+L GND #PWR?
+U 1 1 5A01D50F
+P 5000 5600
+F 0 "#PWR?" H 5000 5350 50  0001 C CNN
+F 1 "GND" H 5000 5450 50  0000 C CNN
+F 2 "" H 5000 5600 50  0001 C CNN
+F 3 "" H 5000 5600 50  0001 C CNN
+	1    5000 5600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 5100 4000 5100
+$Comp
+L Conn_01x02 P?
+U 1 1 5A01D793
+P 3800 5100
+F 0 "P?" H 3800 5200 50  0000 C CNN
+F 1 "SWITCH_3" H 3800 4900 50  0000 C CNN
+F 2 "Bitraf:PhoenixContact_PTSM0,5_2-2,5-H_SMD" H 3800 5100 50  0001 C CNN
+F 3 "" H 3800 5100 50  0001 C CNN
+	1    3800 5100
+	-1   0    0    -1  
+$EndComp
+Text Label 4150 5100 0    50   ~ 0
+INPUT_1
+$EndSCHEMATC
