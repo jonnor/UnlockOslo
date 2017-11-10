@@ -1,0 +1,410 @@
+#!env/bin/python
+
+import ee
+from ee.kicad import read_schematics, to_pandas
+import ee.digikey as dk
+import argparse
+from enum import Enum
+from itertools import groupby
+from functools import total_ordering
+import numpy as np
+import re
+import pandas as pd
+import os.path
+
+
+class CheckResult(object):
+    def __init__(self):
+        pass
+
+
+@total_ordering
+class Severity(Enum):
+    ERROR = 1
+    WARNING = 2
+    INFO = 3
+
+    def __eq__(self, other):
+        return self.value == other.value
+
+    def __lt__(self, other):
+        return self.value < other.value
+
+
+@total_ordering
+class Note(object):
+    def __init__(self, severity, kind, ref, message):
+        self.severity = severity
+        self.kind = kind
+        self.ref = ref
+        self.message = message
+
+    def __eq__(self, other):
+        return (self.kind, self.ref, self.message) ==\
+               (other.kind, other.ref, other.message)
+
+    def __lt__(self, other):
+        return (self.kind, self.ref, self.message) <\
+               (other.kind, other.ref, other.message)
+
+
+class Check(object):
+    def __init__(self, kind):
+        self.kind = kind
+
+    def error(self, ref=None, message=None):
+        return Note(Severity.ERROR, self.kind, ref, message)
+
+    def warning(self, ref=None, message=None):
+        return Note(Severity.WARNING, self.kind, ref, message)
+
+    def info(self, ref=None, message=None):
+        return Note(Severity.INFO, self.kind, ref, message)
+
+
+class CheckMissingFootprint(Check):
+    def __init__(self):
+        super().__init__("missing-footprint")
+
+    def run(self, df):
+        notes = []
+        for (ref, row) in df[df.footprint.isnull()].iterrows():
+            notes.append(self.error(ref=ref))
+        return notes
+
+
+class CheckMismatchedFootprint(Check):
+    def __init__(self, repo):
+        super().__init__("mismatched-footprint")
+        self.repo = repo
+
+        p = os.path.join(os.path.dirname(__file__), "kicad-footprints.csv")
+        self.kicad_footprints = pd.read_csv(p, index_col="kicad", dtype={"common": "str"})
+        self.kicad_footprints = self.kicad_footprints[["common"]]
+
+        p = os.path.join(os.path.dirname(__file__), "digikey-footprints.csv")
+        self.digikey_footprints = pd.read_csv(p, index_col="digikey", dtype={"common": "str"})
+        self.digikey_footprints = self.digikey_footprints[["common"]]
+
+    def run(self, df):
+        notes = []
+
+        if not hasattr(df, 'mpn'):
+            notes.append(self.info(message="Skipping, missing mpn field."))
+            return notes
+
+        for (ref, row) in df[~df.footprint.isnull() & ~df.mpn.isnull()].iterrows():
+            mpn = row.mpn
+
+            try:
+                part = self.repo.find_by_mpn(mpn)
+            except AttributeError:
+                part = None
+
+            if not part:
+                notes.append(self.warning(ref=ref, message="Missing Digi-Key facts for {}".format(mpn)))
+                continue
+
+            attr = part.attribute_by_id(16)
+
+            if not attr:
+                notes.append(self.warning(ref=ref, message="No info about footprint from Digi-Key for {}".format(mpn)))
+                continue
+
+            sch_value = row.footprint
+            part_value = attr.value
+
+            if sch_value and sch_value == part_value:
+                continue
+
+            sch_value_common = None
+            part_value_common = None
+
+            if sch_value:
+                try:
+                    sch_value_common = self.kicad_footprints.loc[sch_value]["common"]
+                except KeyError:
+                    pass
+
+            try:
+                part_value_common = self.digikey_footprints.loc[part_value]["common"]
+            except KeyError:
+                pass
+
+            if sch_value_common and part_value_common and sch_value_common == part_value_common:
+                continue
+
+            if sch_value:
+                msg = "From schema: '{}'".format(sch_value)
+
+                if sch_value_common:
+                    msg += " (normalized to '{}')".format(sch_value_common)
+
+                msg += ", from part database: '{}'".format(part_value)
+            else:
+                msg = "From part database: '{}'".format(part_value)
+
+            if part_value_common:
+                msg += " (normalized to '{}')".format(part_value_common)
+
+            notes.append(self.warning(ref=ref, message=msg))
+        return notes
+
+
+class CheckMissingPartNumber(Check):
+    def __init__(self):
+        super().__init__("missing-part-number")
+
+    def run(self, df):
+        notes = []
+
+        if not hasattr(df, 'mpn'):
+            notes.append(self.info(message="Skipping, missing mpn field."))
+            return notes
+
+        # TODO: separate 'missing' and 'bad' part numbers
+
+        f = (df.mpn.isnull() | (df.mpn == "-")) & (df.value != "NA")
+
+        # Ignore components that has assembly="footprint only"
+        if hasattr(df, 'assembly'):
+            f = f & (df.assembly != "footprint only")
+
+        for (ref, row) in df[f].iterrows():
+            notes.append(self.error(ref=ref))
+        return notes
+
+
+# This should be a fact about the entire schematic
+class CheckHighestComponent(Check):
+    def __init__(self, repo):
+        super().__init__("highest-component")
+        self.repo = repo
+
+    def run(self, df):
+        heights = []
+
+        if not hasattr(df, 'mpn'):
+            return [self.info(message="Skipping, missing mpn field.")]
+
+        for (ref, row) in df[~df.mpn.isnull()].iterrows():
+            mpn = row.mpn
+
+            try:
+                part = self.repo.find_by_mpn(mpn)
+            except AttributeError:
+                part = None
+
+            if not part:
+                continue
+
+            attr = part.attribute_by_id(1501)
+            if not attr:
+                continue
+
+            try:
+                height = re.sub(r".*\(([0-9.]+)mm\)", r"\1", attr.value)
+                height = float(height)
+                heights.append((height, ref))
+            except ValueError as e:
+                notes.append(self.warning(ref=ref, message="Could not parse height value for mpn {}: {}".format(ref, attr.value)))
+                pass
+
+        notes = []
+        if len(heights):
+            (height, ref) = sorted(heights, reverse=True)[0]
+            notes.append(self.info(message="Highest component {} is {} mm".format(ref, height)))
+        return notes
+
+class CheckComponentValue(Check):
+    def __init__(self, repo):
+        super().__init__("component-value")
+        self.repo = repo
+
+    def run(self, df):
+        notes = []
+
+        if not hasattr(df, 'mpn'):
+            notes.append(self.info(message="Skipping, missing mpn field."))
+            return notes
+
+        f = (df.mpn.isnull() | (df.mpn == "-")) & (df.value != "NA")
+
+        for (ref, row) in df[~f].iterrows():
+            mpn = row.mpn
+
+            part = self.repo.find_by_mpn(mpn)
+
+            if not part:
+                # Ignored, other checks should warn about missing parts from database
+                continue
+
+            # Resistance, Capacitance, Inductance
+            for at_id in [2085, 2049, 2087]:
+                part_value = part.attribute_by_id(at_id)
+                if part_value:
+                    part_value = ee.EeVal(part_value.value)
+                    schema_value = ee.EeVal(row.value)
+                    if part_value.value != schema_value.value:
+                        notes.append(self.error(ref=ref, message="Inconsistent values: from part={}, from schema={}".format(part_value, schema_value)))
+
+        return notes
+
+
+def ee_val(s):
+    try:
+        return ee.EeVal(s)
+    except ee.EeException:
+        return None
+
+def grp(iterable):
+    """Returns a sorted, comma separated set of the input iterable."""
+    if iterable is None:
+        return ""
+    xs = [x for x in iterable if x]
+    return ", ".join(list(sorted(set(xs))))
+
+def cnt(iterable):
+    """Returns the count of the input iterable"""
+    return len(iterable) if iterable is not None else 0
+
+def cmd_run_checks(**kwargs):
+    (digikey_repo, sch_df) = (kwargs["digikey_repo"], kwargs["sch_df"])
+    notes = []
+    notes.extend(CheckMissingFootprint().run(sch_df.copy()))
+    notes.extend(CheckMismatchedFootprint(digikey_repo).run(sch_df.copy()))
+    notes.extend(CheckMissingPartNumber().run(sch_df.copy()))
+    notes.extend(CheckHighestComponent(digikey_repo).run(sch_df.copy()))
+    notes.extend(CheckComponentValue(digikey_repo).run(sch_df.copy()))
+
+    errors = [r for r in notes if r.severity == Severity.ERROR]
+    warnings = [r for r in notes if r.severity == Severity.WARNING]
+    infos = [r for r in notes if r.severity == Severity.INFO]
+    print("Found probems: errors: {}, warnings: {}, notes: {}".format(len(errors), len(warnings), len(infos)))
+    print("")
+
+    general_notes = sorted((n for n in notes if not n.ref))
+    if len(general_notes):
+        print("General notes:")
+        for n in general_notes:
+            print("  {}{}".format(n.kind, ": {}".format(n.message) if n.message else ""))
+        print("")
+
+    notes_sorted_by_ref = sorted((n for n in notes if n.ref), key=lambda n: n.ref)
+    for ref, notes in groupby(notes_sorted_by_ref, lambda n: n.ref):
+        notes = list(notes)
+        mpn = sch_df.loc[ref].mpn if hasattr(sch_df, "mpn") else None
+        mpn = mpn if isinstance(mpn, str) else None
+
+        if mpn:
+            print("Ref: {}, MPN: {}".format(ref, mpn))
+        else:
+            print("Ref: {}".format(ref))
+
+        for n in sorted(notes, key=lambda n: (n.severity, n.message)):
+            print("  {}{}".format(n.kind, ": {}".format(n.message) if n.message else ""))
+
+def cmd_eurocircuits_bom(**kwargs):
+    (digikey_repo, sch_df) = (kwargs["digikey_repo"], kwargs["sch_df"])
+    products = digikey_repo.to_pandas()
+
+    if not hasattr(sch_df, "mpn"):
+        return
+
+    q = sch_df.value != "NA"
+    if hasattr(sch_df, "assembly"):
+        q = q & (sch_df.assembly != "footprint only")
+    ec_bom = sch_df[q]
+    ec_bom = pd.merge(ec_bom, products, how='left', left_on='mpn', right_index=True)
+
+    ec_bom = ec_bom[["value", "mpn", "footprint", "Digi-Key"]].\
+        rename(columns={"value": "Value", "mpn": "MPN", "ref": "Reference Designator", "Digi-Key": "SPN"})
+
+    ec_bom["Supplier Name"] = ["Digi-Key" for _ in range(len(ec_bom))]
+    print(ec_bom.reset_index().to_csv(index=False))
+
+def cmd_digikey_bom(**kwargs):
+    (digikey_repo, sch_df, args) = (kwargs["digikey_repo"], kwargs["sch_df"], kwargs["args"])
+
+    if not hasattr(sch_df, "mpn"):
+        return
+
+    q = sch_df.value != "NA"
+    if hasattr(sch_df, "assembly"):
+        q = q & (sch_df.assembly != "footprint only")
+
+    products = digikey_repo.to_pandas()
+    print("PRODUCTS")
+    print(products[["Digi-Key"]].to_string())
+    bom = sch_df[q]
+#    bom = pd.merge(bom, products, how='left', left_on='mpn', right_index=True)
+
+    bom = pd.merge(
+        sch_df[["mpn", "value"]],
+        products[["URL", "Digi-Key"]],
+        how='left', left_on='mpn', right_index=True)
+    print("merged len bom={}".format(len(bom)))
+    print("BOM")
+    print(bom.to_string())
+    digikey = bom.\
+        reset_index().\
+        groupby(['Digi-Key']).agg({'ref': [grp, cnt], 'mpn': [grp]})
+
+    print("DIGIKEY")
+    print(digikey)
+
+    digikey.columns = ["_".join(col).strip() for col in sorted(digikey.columns.values)]
+    digikey = digikey[["ref_grp", "ref_cnt", "mpn_grp"]].reset_index().\
+        rename(columns={
+                "Digi-Key": "Digi-Key Part Number",
+                "ref_cnt": "Customer Reference",
+                "ref_grp": "Quantity",
+                "mpn_grp": "MPN"})
+
+    if args.quantity:
+        q = int(args.quantity)
+        digikey.Quantity = digikey.Quantity * q
+
+    print(digikey.to_csv(index=False))
+
+def cmd_digikey_list_repo(**kwargs):
+    (digikey_repo, args) = (kwargs["digikey_repo"], kwargs["args"])
+
+    digikey_repo.load_all()
+    for p in digikey_repo.products:
+        print("p={}".format(p.part_number))
+        print("MPN={}".format(p.mpn))
+
+commands = {
+    "run-checks": cmd_run_checks,
+    "eurocircuits-bom": cmd_eurocircuits_bom,
+    "digikey-bom": cmd_digikey_bom,
+    "digikey-list-repo": cmd_digikey_list_repo,
+}
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--sch',
+                        required=True,
+                        action='store')
+
+    parser.add_argument('--cmd',
+                        required=True,
+                        choices=list(commands),
+                        action='store')
+
+    parser.add_argument('--digikey-repo',
+                        dest='digikey_repo',
+                        required=True,
+                        action='store')
+
+    parser.add_argument('--quantity',
+                        action='store')
+
+    args = parser.parse_args()
+    sch = read_schematics(args.sch)
+    sch_df = to_pandas(sch)
+
+    digikey_repo = dk.DigikeyRepository(dk.Digikey(), args.digikey_repo)
+    digikey_repo.load_all()
+    commands[args.cmd](digikey_repo=digikey_repo, sch_df=sch_df, args=args)

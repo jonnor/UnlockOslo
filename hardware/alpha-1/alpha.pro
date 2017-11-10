@@ -1,4 +1,4 @@
-update=ti. 07. nov. 2017 kl. 08.57 +0100
+update=fr. 10. nov. 2017 kl. 15.44 +0100
 version=1
 last_client=kicad
 [cvpcb]
@@ -90,3 +90,4 @@ LibName3=device
 LibName4=mechanical
 LibName5=symbols/tps54202
 LibName6=symbols/alpha-misc
+LibName7=symbols/tmp102

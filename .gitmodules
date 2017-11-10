@@ -1,0 +1,6 @@
+[submodule "hardware/thirdparty/kicad-pcblib"]
+	path = hardware/thirdparty/kicad-pcblib
+	url = https://github.com/cpavlina/kicad-pcblib
+[submodule "hardware/thirdparty/kicad-utils"]
+	path = hardware/thirdparty/kicad-utils
+	url = https://trygvis.io/git/2016/07/kicad-utils.git

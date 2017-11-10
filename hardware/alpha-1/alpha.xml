@@ -1,0 +1,157 @@
+<?xml version="1.0" ?>
+<export version="D">
+  <design/>
+  <components>
+    <comp ref="C101">
+      <value>10u</value>
+      <footprint>Capacitors_SMD:C_0805</footprint>
+      <fields>
+        <field name="ta_ref">C1</field>
+      </fields>
+    </comp>
+    <comp ref="C102">
+      <value>0.1u</value>
+      <footprint>Capacitors_SMD:C_0805</footprint>
+      <fields>
+        <field name="ta_ref">0.1u</field>
+      </fields>
+    </comp>
+    <comp ref="C103">
+      <value>0.1u</value>
+      <footprint>Capacitors_SMD:C_0805</footprint>
+      <fields>
+        <field name="ta_ref">C3</field>
+      </fields>
+    </comp>
+    <comp ref="C104">
+      <value>75p</value>
+      <footprint>Capacitors_SMD:C_0805</footprint>
+      <fields>
+        <field name="ta_ref">C6</field>
+      </fields>
+    </comp>
+    <comp ref="C105">
+      <value>22u</value>
+      <footprint>Capacitors_SMD:C_0805</footprint>
+      <fields>
+        <field name="ta_ref">C4</field>
+      </fields>
+    </comp>
+    <comp ref="C106">
+      <value>22u</value>
+      <footprint>Capacitors_SMD:C_0805</footprint>
+      <fields>
+        <field name="ta_ref">C5</field>
+      </fields>
+    </comp>
+    <comp ref="D101">
+      <value>D_Zener</value>
+    </comp>
+    <comp ref="D103">
+      <value>S1MTR</value>
+      <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+    </comp>
+    <comp ref="D104">
+      <value>LED</value>
+      <fields>
+        <field name="color">Green</field>
+        <field name="mpn">LTST-C150KGKT</field>
+        <field name="req_I">5 mA</field>
+      </fields>
+    </comp>
+    <comp ref="D?">
+      <value>LED</value>
+      <fields>
+        <field name="color">Red</field>
+        <field name="mpn">LTST-C150KGKT</field>
+        <field name="req_I">5 mA</field>
+      </fields>
+    </comp>
+    <comp ref="J101">
+      <value>POWER</value>
+    </comp>
+    <comp ref="J102">
+      <value>SERIAL</value>
+    </comp>
+    <comp ref="L101">
+      <value>15u</value>
+      <footprint>Inductors_SMD:L_Taiyo-Yuden_NR-80xx</footprint>
+      <fields>
+        <field name="ta_ref">L1</field>
+        <field name="mpn">NRS8040T150MJGJ</field>
+      </fields>
+    </comp>
+    <comp ref="MK1">
+      <value>M2.5</value>
+      <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
+    </comp>
+    <comp ref="MK2">
+      <value>M2.5</value>
+      <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
+    </comp>
+    <comp ref="MK3">
+      <value>M2.5</value>
+      <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
+    </comp>
+    <comp ref="MK4">
+      <value>M2.5</value>
+      <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
+    </comp>
+    <comp ref="P1">
+      <value>RASPBERRY_PI</value>
+    </comp>
+    <comp ref="P101">
+      <value>SWITCH_3</value>
+      <footprint>Bitraf:PhoenixContact_PTSM0,5_2-2,5-H_SMD</footprint>
+    </comp>
+    <comp ref="P102">
+      <value>12V</value>
+      <footprint>Bitraf:PhoenixContact_PTSM0,5_2-2,5-H_SMD</footprint>
+    </comp>
+    <comp ref="P104">
+      <value>SWITCH_3</value>
+      <footprint>Bitraf:PhoenixContact_PTSM0,5_2-2,5-H_SMD</footprint>
+    </comp>
+    <comp ref="Q102">
+      <value>DMN2041L-7</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+    </comp>
+    <comp ref="R101">
+      <value>10k</value>
+    </comp>
+    <comp ref="R103">
+      <value>100k</value>
+      <footprint>Resistors_SMD:R_0805</footprint>
+      <fields>
+        <field name="ta_ref">R2</field>
+      </fields>
+    </comp>
+    <comp ref="R104">
+      <value>13.3k</value>
+      <footprint>Resistors_SMD:R_0805</footprint>
+      <fields>
+        <field name="ta_ref">R3</field>
+      </fields>
+    </comp>
+    <comp ref="R105">
+      <value>10k</value>
+      <footprint>Resistors_SMD:R_0805</footprint>
+    </comp>
+    <comp ref="R106">
+      <value>R</value>
+    </comp>
+    <comp ref="R?">
+      <value>R</value>
+    </comp>
+    <comp ref="U101">
+      <value>TPS54202</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23-6_Handsoldering</footprint>
+      <fields>
+        <field name="ta">Figure 16. 5-V, 2-A Reference Design</field>
+        <field name="mpn">TPS54202DDCT</field>
+        <field name="Iout">2A</field>
+        <field name="Vout">5V</field>
+      </fields>
+    </comp>
+  </components>
+</export>
