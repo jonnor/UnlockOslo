@@ -43,15 +43,17 @@ def next_state(current: States, inputs: Inputs) -> States:
     # Doorlock
     lock = current.lock
     if i.mqtt_request is not None:
-        # number of seconds
-        if isinstance(i.mqtt_request, numbers.Number):
-            until = i.current_time+i.mqtt_request
-            lock = TemporarilyUnlocked(since=i.current_time, until=until)
-        # hard on/off
-        elif i.mqtt_request == True:
+        data = i.mqtt_request
+        if isinstance(data, bool) and data == True:
             lock = Unlocked(since=i.current_time)
-        elif i.mqtt_request == False:
+        elif isinstance(data, bool) and data == False:
             lock = Locked(since=i.current_time)
+        # number of seconds
+        elif isinstance(data, numbers.Number):
+            until = i.current_time + data
+            lock = TemporarilyUnlocked(since=i.current_time, until=until)
+        else:
+            raise ValueError('Invalid MQTT request data: {}'.format(data))
     
     if isinstance(lock, TemporarilyUnlocked) and i.current_time >= lock.until:
         lock = Locked(since=i.current_time)
@@ -78,31 +80,5 @@ def next_state(current: States, inputs: Inputs) -> States:
     )
 
     return state 
-
-
-if __name__ == '__main__':
-    i = Inputs(
-        openbutton_outside=True,
-        openbutton_inside=False,
-        mqtt_connected=True,
-        mqtt_request=True,
-        holdopen_button=False,
-        current_time=100,
-    )
-    s = States()
-    print(s)
-    s = next_state(s, i)
-    print(s)
-    m = i._asdict()
-    m['current_time'] = 130
-    m['openbutton_outside'] = False
-    m['mqtt_request'] = 30 
-    i = Inputs(**m)
-    s = next_state(s, i)
-    print(s)
-    m['current_time'] = 200
-    m['mqtt_request'] = None
-    s = next_state(s, Inputs(**m))
-    print(s)
 
 

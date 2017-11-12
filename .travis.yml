@@ -3,5 +3,6 @@ python:
 - '3.6'
 install:
 - pip install -r gateway/requirements.txt
+- pip install -r firmware/requirements.txt
 script:
 - pytest -v
