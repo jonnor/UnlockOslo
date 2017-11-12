@@ -4,4 +4,4 @@ python:
 install:
 - pip install -r gateway/requirements.txt
 script:
-- pytest
+- pytest -v
