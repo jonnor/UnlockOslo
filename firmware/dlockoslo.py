@@ -6,41 +6,73 @@ import gevent
 import os
 import time
 import os.path
+import json
 
-class Inputs(typing.NamedTuple):
-    openbutton_outside: bool  # True if pressed
-    openbutton_inside: bool
-    holdopen_button: bool
-    mqtt_connected: bool
-    mqtt_request: typing.Any
-    current_time: int = 0
-    #door_present: bool
+class Inputs():
+    def __init__(self,
+        openbutton_outside : bool = False,
+        openbutton_inside : bool = False,
+        holdopen_button : bool = False,
+        mqtt_connected : bool = False,
+        mqtt_request : typing.Any = None,
+        current_time : float = 0) -> None:
+
+        self.openbutton_outside = openbutton_outside
+        self.openbutton_inside = openbutton_inside
+        self.holdopen_button = holdopen_button
+        self.mqtt_connected = mqtt_connected
+        self.mqtt_request = mqtt_request
+        self.current_time = current_time
+
 
 # States
-class Locked(typing.NamedTuple):
-    since: int
-class Unlocked(typing.NamedTuple):
-    since: int
-class TemporarilyUnlocked(typing.NamedTuple):
-    since: int
-    until: int
+class TemporaryBoolean():
+    def __init__(self,
+        state : str,
+        since : float,
+        until : float = None) -> None:
+        
+        self.state = state
+        self.since = since
+        self.until = until
 
-class Inactive(typing.NamedTuple):
-    since: int
-class Active(typing.NamedTuple):
-    since: int
-class TemporarilyActive(typing.NamedTuple):
-    since: int
-    until: int    
-   
-LockState = typing.Union[Unlocked,Locked,TemporarilyUnlocked]
-OpenerState = typing.Union[Inactive,Active,TemporarilyActive]
+    def __repr__(self):
+        return json.dumps(self.__dict__)
 
-class States(typing.NamedTuple):
-    lock: LockState
-    opener: OpenerState 
-    connected_light: bool
-    #unlocked_light: bool
+## XXX: nasty
+class Inactive(TemporaryBoolean):
+    def __init__(self, *args, **kwargs):
+        super().__init__('Inactive', *args, **kwargs)
+class Active(TemporaryBoolean):
+    def __init__(self, *args, **kwargs):
+        super().__init__('Active', *args, **kwargs)
+class TemporarilyActive(TemporaryBoolean):
+    def __init__(self, *args, **kwargs):
+        super().__init__('TemporarilyActive', *args, **kwargs)
+
+class Unlocked(TemporaryBoolean):
+    def __init__(self, *args, **kwargs):
+        super().__init__('Unlocked', *args, **kwargs)
+class Locked(TemporaryBoolean):
+    def __init__(self, *args, **kwargs):
+        super().__init__('Locked', *args, **kwargs)
+class TemporarilyUnlocked(TemporaryBoolean):
+    def __init__(self, *args, **kwargs):
+        super().__init__('TemporarilyUnlocked', *args, **kwargs)
+
+Opener = typing.Union[Inactive,Active,TemporarilyActive]
+Lock = typing.Union[Unlocked,Locked,TemporarilyUnlocked]
+
+class States:
+    def __init__(self,
+        lock : Lock = Locked(0),
+        opener : Opener = Inactive(0),
+        connected_light : bool = False) -> None:
+
+        self.lock = lock
+        self.opener = opener
+        self.connected_light = connected_light
+
 
 def next_state(current: States, inputs: Inputs) -> States:
     i = inputs
@@ -60,7 +92,7 @@ def next_state(current: States, inputs: Inputs) -> States:
         else:
             raise ValueError('Invalid MQTT request data: {}'.format(data))
     
-    if isinstance(lock, TemporarilyUnlocked) and i.current_time >= lock.until:
+    if lock.state == 'TemporarilyUnlocked' and i.current_time >= lock.until:
         lock = Locked(since=i.current_time)
 
     # Opener
@@ -68,14 +100,14 @@ def next_state(current: States, inputs: Inputs) -> States:
     open_pressed = i.openbutton_outside or i.openbutton_inside
 
     # hard on/off
-    if isinstance(opener, (Inactive,TemporarilyActive)) and i.holdopen_button == True:
+    if opener.state in ('Inactive','TemporarilyActive') and i.holdopen_button == True:
         opener = Active(since=i.current_time)
-    elif isinstance(opener, Active) and i.holdopen_button == False:
+    elif opener.state == 'Active' and i.holdopen_button == False:
         opener = Inactive(since=i.current_time)
     # timed opening
-    elif isinstance(opener, (Inactive,TemporarilyActive)) and open_pressed == True:
+    elif opener.state in ('Inactive','TemporarilyActive') and open_pressed == True:
         opener = TemporarilyActive(since=i.current_time, until=i.current_time+20)     
-    elif isinstance(opener, TemporarilyActive) and i.current_time >= opener.until:
+    elif opener.state == 'TemporarilyActive' and i.current_time >= opener.until:
         opener = Inactive(since=i.current_time)
 
     state = States(
@@ -170,8 +202,8 @@ def main():
     )
     while True:
         i = get_inputs(input_files)
-        state = next_state(state, i)        
-        print(i, state)
+        state = next_state(state, i)
+        print(i.__dict__, state.__dict__)
         time.sleep(0.2)
 
 if __name__ == '__main__':

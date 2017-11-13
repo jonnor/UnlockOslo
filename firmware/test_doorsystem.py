@@ -20,22 +20,22 @@ def test_simple():
     inputs['mqtt_request'] = True
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs)) 
     assert states.connected_light == True
-    assert isinstance(states.lock, dlockoslo.Unlocked)
-    assert isinstance(states.opener, dlockoslo.TemporarilyActive)
+    assert states.lock.state == 'Unlocked'
+    assert states.opener.state == 'TemporarilyActive'
 
     # forward until dooropened deactived, trigger time-based door unlocking
     inputs['current_time'] = 130
     inputs['openbutton_outside'] = False
     inputs['mqtt_request'] = 30 
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
-    assert isinstance(states.opener, dlockoslo.Inactive)
-    assert isinstance(states.lock, dlockoslo.TemporarilyUnlocked)
+    assert states.opener.state == 'Inactive'
+    assert states.lock.state == 'TemporarilyUnlocked'
 
     # clear MQTT message, forward time
     inputs['current_time'] = 200
     inputs['mqtt_request'] = None
 
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
-    assert isinstance(states.opener, dlockoslo.Inactive)
-    assert isinstance(states.lock, dlockoslo.Locked)
+    assert states.opener.state == 'Inactive'
+    assert states.lock.state == 'Locked'
 
