@@ -1,4 +1,4 @@
-Found probems: errors: 35, warnings: 9, notes: 1
+Found probems: errors: 38, warnings: 1, notes: 1
 
 General notes:
   highest-component: Highest component C2 is 1.45 mm
@@ -17,25 +17,15 @@ Ref: MK3
   missing-part-number
 Ref: MK4
   missing-part-number
-Ref: P1, MPN: 1702473
-  mismatched-footprint: No info about footprint from Digi-Key for 1702473
-Ref: P2, MPN: 1702473
-  mismatched-footprint: No info about footprint from Digi-Key for 1702473
-Ref: P3, MPN: 1702473
-  mismatched-footprint: No info about footprint from Digi-Key for 1702473
-Ref: P4, MPN: 1702473
-  mismatched-footprint: No info about footprint from Digi-Key for 1702473
-Ref: P5, MPN: 1702473
-  mismatched-footprint: No info about footprint from Digi-Key for 1702473
-Ref: P6, MPN: 1702473
-  mismatched-footprint: No info about footprint from Digi-Key for 1702473
-Ref: P7, MPN: 1771088
-  mismatched-footprint: Missing Digi-Key facts for 1771088
+Ref: P1
+  missing-part-number
+Ref: P7
+  missing-part-number
 Ref: P8
   missing-footprint
   missing-part-number
-Ref: P9, MPN: 1702473
-  mismatched-footprint: No info about footprint from Digi-Key for 1702473
+Ref: P9
+  missing-part-number
 Ref: R1
   missing-part-number
 Ref: R10

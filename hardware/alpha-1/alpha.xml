@@ -142,7 +142,7 @@
     </comp>
     <comp ref="D9">
       <value>S1MTR</value>
-      <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+      <footprint>Diodes_SMD:D_SMA</footprint>
       <fields>
         <field name="mpn">S1MTR</field>
         <field name="digikey">1655-1506-2-ND</field>
@@ -310,63 +310,19 @@
       <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
     </comp>
     <comp ref="P1">
-      <value>SWITCH_1</value>
-      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
-      <fields>
-        <field name="mpn">1702473</field>
-      </fields>
-    </comp>
-    <comp ref="P2">
-      <value>SWITCH_2</value>
-      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
-      <fields>
-        <field name="mpn">1702473</field>
-      </fields>
-    </comp>
-    <comp ref="P3">
-      <value>SWITCH_3</value>
-      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
-      <fields>
-        <field name="mpn">1702473</field>
-      </fields>
-    </comp>
-    <comp ref="P4">
-      <value>SWITCH_4</value>
-      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
-      <fields>
-        <field name="mpn">1702473</field>
-      </fields>
-    </comp>
-    <comp ref="P5">
-      <value>SWITCH_5</value>
-      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
-      <fields>
-        <field name="mpn">1702473</field>
-      </fields>
-    </comp>
-    <comp ref="P6">
-      <value>SWITCH_6</value>
-      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
-      <fields>
-        <field name="mpn">1702473</field>
-      </fields>
+      <value>OUTPUTS</value>
+      <footprint>Bitraf:har-flexicon_2,54_TSPH-12_T56_BK</footprint>
     </comp>
     <comp ref="P7">
       <value>INPUTS</value>
-      <footprint>Bitraf:PhoenixContact_PTSM_0,5_8-2,5-H_SMD</footprint>
-      <fields>
-        <field name="mpn">1771088</field>
-      </fields>
+      <footprint>Bitraf:har-flexicon_2,54_TSPH-08_T56_BK</footprint>
     </comp>
     <comp ref="P8">
       <value>RASPBERRY_PI</value>
     </comp>
     <comp ref="P9">
       <value>12V</value>
-      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
-      <fields>
-        <field name="mpn">1702473</field>
-      </fields>
+      <footprint>Bitraf:har-flexicon_2,54_TSPH-02_T56_BK</footprint>
     </comp>
     <comp ref="Q1">
       <value>DMN2041L-7</value>
