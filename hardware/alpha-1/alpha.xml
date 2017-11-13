@@ -66,6 +66,7 @@
     </comp>
     <comp ref="D2">
       <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
       <fields>
         <field name="color">Red</field>
         <field name="mpn">CMD15-21VRD/TR8</field>
@@ -86,6 +87,7 @@
     </comp>
     <comp ref="D4">
       <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
       <fields>
         <field name="color">Red</field>
         <field name="mpn">CMD15-21VRD/TR8</field>
@@ -106,6 +108,7 @@
     </comp>
     <comp ref="D6">
       <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
       <fields>
         <field name="color">Red</field>
         <field name="mpn">CMD15-21VRD/TR8</field>
@@ -126,6 +129,7 @@
     </comp>
     <comp ref="D8">
       <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
       <fields>
         <field name="color">Red</field>
         <field name="mpn">CMD15-21VRD/TR8</field>
@@ -146,6 +150,7 @@
     </comp>
     <comp ref="D10">
       <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
       <fields>
         <field name="color">Red</field>
         <field name="mpn">CMD15-21VRD/TR8</field>
@@ -166,6 +171,7 @@
     </comp>
     <comp ref="D12">
       <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
       <fields>
         <field name="color">Red</field>
         <field name="mpn">CMD15-21VRD/TR8</field>

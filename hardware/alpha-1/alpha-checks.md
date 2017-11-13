@@ -1,12 +1,8 @@
-Found probems: errors: 72, warnings: 3, notes: 1
+Found probems: errors: 66, warnings: 3, notes: 1
 
 General notes:
   highest-component: Highest component C2 is 1.45 mm
 
-Ref: D10, MPN: CMD15-21VRD/TR8
-  missing-footprint
-Ref: D12, MPN: CMD15-21VRD/TR8
-  missing-footprint
 Ref: D13
   missing-footprint
   missing-part-number
@@ -28,17 +24,9 @@ Ref: D18
 Ref: D19
   missing-footprint
   missing-part-number
-Ref: D2, MPN: CMD15-21VRD/TR8
-  missing-footprint
 Ref: D20
   missing-footprint
   missing-part-number
-Ref: D4, MPN: CMD15-21VRD/TR8
-  missing-footprint
-Ref: D6, MPN: CMD15-21VRD/TR8
-  missing-footprint
-Ref: D8, MPN: CMD15-21VRD/TR8
-  missing-footprint
 Ref: J1
   missing-part-number
 Ref: J2
