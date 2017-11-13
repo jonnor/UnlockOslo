@@ -13,7 +13,7 @@
     </comp>
     <comp ref="C2">
       <value>10u</value>
-      <footprint>IPC7351-Nominal:CAPC3216X70</footprint>
+      <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
       <fields>
         <field name="ta_ref">C1</field>
         <field name="req_voltage">35V</field>
@@ -59,6 +59,10 @@
     <comp ref="D1">
       <value>S1MTR</value>
       <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+      <fields>
+        <field name="mpn">S1MTR</field>
+        <field name="digikey">1655-1506-2-ND</field>
+      </fields>
     </comp>
     <comp ref="D2">
       <value>LED</value>
@@ -75,6 +79,10 @@
     <comp ref="D3">
       <value>S1MTR</value>
       <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+      <fields>
+        <field name="mpn">S1MTR</field>
+        <field name="digikey">1655-1506-2-ND</field>
+      </fields>
     </comp>
     <comp ref="D4">
       <value>LED</value>
@@ -91,6 +99,10 @@
     <comp ref="D5">
       <value>S1MTR</value>
       <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+      <fields>
+        <field name="mpn">S1MTR</field>
+        <field name="digikey">1655-1506-2-ND</field>
+      </fields>
     </comp>
     <comp ref="D6">
       <value>LED</value>
@@ -107,6 +119,10 @@
     <comp ref="D7">
       <value>S1MTR</value>
       <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+      <fields>
+        <field name="mpn">S1MTR</field>
+        <field name="digikey">1655-1506-2-ND</field>
+      </fields>
     </comp>
     <comp ref="D8">
       <value>LED</value>
@@ -123,6 +139,10 @@
     <comp ref="D9">
       <value>S1MTR</value>
       <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+      <fields>
+        <field name="mpn">S1MTR</field>
+        <field name="digikey">1655-1506-2-ND</field>
+      </fields>
     </comp>
     <comp ref="D10">
       <value>LED</value>
@@ -139,6 +159,10 @@
     <comp ref="D11">
       <value>S1MTR</value>
       <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+      <fields>
+        <field name="mpn">S1MTR</field>
+        <field name="digikey">1655-1506-2-ND</field>
+      </fields>
     </comp>
     <comp ref="D12">
       <value>LED</value>
@@ -314,69 +338,83 @@
     </comp>
     <comp ref="R1">
       <value>10k</value>
-      <footprint>IPC7351-Most:CAPC3216X70</footprint>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R2">
       <value>270</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R3">
       <value>10k</value>
-      <footprint>Resistors_SMD:R_0805</footprint>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R4">
       <value>270</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R5">
       <value>10k</value>
-      <footprint>Resistors_SMD:R_0805</footprint>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R6">
       <value>270</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R7">
       <value>10k</value>
-      <footprint>Resistors_SMD:R_0805</footprint>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R8">
       <value>270</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R9">
       <value>10k</value>
-      <footprint>Resistors_SMD:R_0805</footprint>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R10">
       <value>270</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R11">
       <value>10k</value>
-      <footprint>Resistors_SMD:R_0805</footprint>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R12">
       <value>270</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R13">
       <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R14">
       <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R15">
       <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R16">
       <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R17">
       <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R18">
       <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R19">
       <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R20">
       <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R21">
       <value>100k</value>
@@ -398,19 +436,24 @@
       <value>560</value>
     </comp>
     <comp ref="R24">
-      <value>R</value>
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R25">
-      <value>R</value>
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R26">
-      <value>R</value>
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R27">
       <value>560</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R28">
       <value>560</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="TP1">
       <value>+5V</value>
