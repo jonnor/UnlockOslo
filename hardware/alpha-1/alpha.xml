@@ -58,7 +58,7 @@
     </comp>
     <comp ref="D1">
       <value>S1MTR</value>
-      <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+      <footprint>Diodes_SMD:D_SMA</footprint>
       <fields>
         <field name="mpn">S1MTR</field>
         <field name="digikey">1655-1506-2-ND</field>
@@ -79,7 +79,7 @@
     </comp>
     <comp ref="D3">
       <value>S1MTR</value>
-      <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+      <footprint>Diodes_SMD:D_SMA</footprint>
       <fields>
         <field name="mpn">S1MTR</field>
         <field name="digikey">1655-1506-2-ND</field>
@@ -100,7 +100,7 @@
     </comp>
     <comp ref="D5">
       <value>S1MTR</value>
-      <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+      <footprint>Diodes_SMD:D_SMA</footprint>
       <fields>
         <field name="mpn">S1MTR</field>
         <field name="digikey">1655-1506-2-ND</field>
@@ -121,7 +121,7 @@
     </comp>
     <comp ref="D7">
       <value>S1MTR</value>
-      <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+      <footprint>Diodes_SMD:D_SMA</footprint>
       <fields>
         <field name="mpn">S1MTR</field>
         <field name="digikey">1655-1506-2-ND</field>
@@ -163,7 +163,7 @@
     </comp>
     <comp ref="D11">
       <value>S1MTR</value>
-      <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+      <footprint>Diodes_SMD:D_SMA</footprint>
       <fields>
         <field name="mpn">S1MTR</field>
         <field name="digikey">1655-1506-2-ND</field>

@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/trygvis/dev/com.github/jonnor/dlock-oslo/hardware/alpha-1/alpha.sch)
-    (date "ma. 13. nov. 2017 kl. 14.47 +0100")
+    (date "ma. 13. nov. 2017 kl. 15.22 +0100")
     (tool "Eeschema 4.0.7+dfsg1-1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -68,7 +68,7 @@
       (tstamp 5A016186))
     (comp (ref D3)
       (value S1MTR)
-      (footprint Diodes_SMD:D_SMA_Handsoldering)
+      (footprint Diodes_SMD:D_SMA)
       (datasheet http://www.smc-diodes.com/propdf/S1A-S1M%20N0560%20REV.B.pdf)
       (fields
         (field (name mpn) S1MTR)
@@ -174,7 +174,7 @@
       (tstamp 5A061965))
     (comp (ref D1)
       (value S1MTR)
-      (footprint Diodes_SMD:D_SMA_Handsoldering)
+      (footprint Diodes_SMD:D_SMA)
       (datasheet http://www.smc-diodes.com/propdf/S1A-S1M%20N0560%20REV.B.pdf)
       (fields
         (field (name mpn) S1MTR)
@@ -322,7 +322,7 @@
       (tstamp 5A06B6A9))
     (comp (ref D5)
       (value S1MTR)
-      (footprint Diodes_SMD:D_SMA_Handsoldering)
+      (footprint Diodes_SMD:D_SMA)
       (datasheet http://www.smc-diodes.com/propdf/S1A-S1M%20N0560%20REV.B.pdf)
       (fields
         (field (name mpn) S1MTR)
@@ -374,7 +374,7 @@
       (tstamp 5A06B8F7))
     (comp (ref D7)
       (value S1MTR)
-      (footprint Diodes_SMD:D_SMA_Handsoldering)
+      (footprint Diodes_SMD:D_SMA)
       (datasheet http://www.smc-diodes.com/propdf/S1A-S1M%20N0560%20REV.B.pdf)
       (fields
         (field (name mpn) S1MTR)
@@ -404,7 +404,7 @@
       (tstamp 5A06B922))
     (comp (ref U2)
       (value TMP102)
-      (footprint smd-semi:SOT-563)
+      (footprint Bitraf:SOT-563)
       (fields
         (field (name ds_Vin) "1.4 - 3.6 V")
         (field (name mpn) TMP102AIDRLT))
@@ -547,7 +547,7 @@
       (tstamp 5A07A519))
     (comp (ref D11)
       (value S1MTR)
-      (footprint Diodes_SMD:D_SMA_Handsoldering)
+      (footprint Diodes_SMD:D_SMA)
       (datasheet http://www.smc-diodes.com/propdf/S1A-S1M%20N0560%20REV.B.pdf)
       (fields
         (field (name mpn) S1MTR)
