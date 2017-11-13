@@ -2,4 +2,4 @@
 An IoT doorlock
 
 ## Status
-Just words
+Hardware, firmware, HTTP gateway in progress
