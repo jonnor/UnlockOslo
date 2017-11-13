@@ -71,7 +71,7 @@ def next_state(current: States, inputs: Inputs) -> States:
     if isinstance(opener, (Inactive,TemporarilyActive)) and i.holdopen_button == True:
         opener = Active(since=i.current_time)
     elif isinstance(opener, Active) and i.holdopen_button == False:
-        opener = Active(since=i.current_time)
+        opener = Inactive(since=i.current_time)
     # timed opening
     elif isinstance(opener, (Inactive,TemporarilyActive)) and open_pressed == True:
         opener = TemporarilyActive(since=i.current_time, until=i.current_time+20)     
@@ -142,7 +142,7 @@ def setup_gpio(pinmap):
             path = gpio
 
         files = input_files if direction == 'input' else output_files
-        files[path] = path
+        files[name] = path
 
     return input_files, output_files
 
