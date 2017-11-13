@@ -5,6 +5,7 @@ import numbers
 import gevent
 import os
 import time
+import os.path
 
 class Inputs(typing.NamedTuple):
     openbutton_outside: bool = False  # True if pressed
@@ -53,7 +54,7 @@ def next_state(current: States, inputs: Inputs) -> States:
         elif isinstance(data, bool) and data == False:
             lock = Locked(since=i.current_time)
         # number of seconds
-        elif isinstance(data, numbers.Number):
+        elif isinstance(data, int):
             until = i.current_time + data
             lock = TemporarilyUnlocked(since=i.current_time, until=until)
         else:
@@ -94,7 +95,7 @@ def setup_gpio_pin(number : int, direction):
     direction_path = '/sys/class/gpio{}/direction'.format(number)
 
     # Export GPIO
-    if not path.exists(direction_path):
+    if not os.path.exists(direction_path):
         with open(export_path, 'r') as exportfile:
             exportfile.write(str(number))
         # wait for export done, otherwise direction change fails EACCESS
@@ -121,7 +122,7 @@ def get_inputs(input_files) -> Inputs:
     i.update(gpio_inputs)
     i.update(b) 
 
-    return Inputs(i)
+    return Inputs(**i)
 
 
 def setup_gpio(pinmap):
