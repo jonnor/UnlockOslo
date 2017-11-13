@@ -1,32 +1,8 @@
-Found probems: errors: 66, warnings: 3, notes: 1
+Found probems: errors: 35, warnings: 9, notes: 1
 
 General notes:
   highest-component: Highest component C2 is 1.45 mm
 
-Ref: D13
-  missing-footprint
-  missing-part-number
-Ref: D14
-  missing-footprint
-  missing-part-number
-Ref: D15
-  missing-footprint
-  missing-part-number
-Ref: D16
-  missing-footprint
-  missing-part-number
-Ref: D17
-  missing-footprint
-  missing-part-number
-Ref: D18
-  missing-footprint
-  missing-part-number
-Ref: D19
-  missing-footprint
-  missing-part-number
-Ref: D20
-  missing-footprint
-  missing-part-number
 Ref: J1
   missing-part-number
 Ref: J2
@@ -41,18 +17,18 @@ Ref: MK3
   missing-part-number
 Ref: MK4
   missing-part-number
-Ref: P1
-  missing-part-number
-Ref: P2
-  missing-part-number
-Ref: P3
-  missing-part-number
-Ref: P4
-  missing-part-number
-Ref: P5
-  missing-part-number
-Ref: P6
-  missing-part-number
+Ref: P1, MPN: 1702473
+  mismatched-footprint: No info about footprint from Digi-Key for 1702473
+Ref: P2, MPN: 1702473
+  mismatched-footprint: No info about footprint from Digi-Key for 1702473
+Ref: P3, MPN: 1702473
+  mismatched-footprint: No info about footprint from Digi-Key for 1702473
+Ref: P4, MPN: 1702473
+  mismatched-footprint: No info about footprint from Digi-Key for 1702473
+Ref: P5, MPN: 1702473
+  mismatched-footprint: No info about footprint from Digi-Key for 1702473
+Ref: P6, MPN: 1702473
+  mismatched-footprint: No info about footprint from Digi-Key for 1702473
 Ref: P7, MPN: 1771088
   mismatched-footprint: Missing Digi-Key facts for 1771088
 Ref: P8
@@ -60,18 +36,6 @@ Ref: P8
   missing-part-number
 Ref: P9, MPN: 1702473
   mismatched-footprint: No info about footprint from Digi-Key for 1702473
-Ref: Q1
-  missing-part-number
-Ref: Q2
-  missing-part-number
-Ref: Q3
-  missing-part-number
-Ref: Q4
-  missing-part-number
-Ref: Q5
-  missing-part-number
-Ref: Q6
-  missing-part-number
 Ref: R1
   missing-part-number
 Ref: R10
@@ -99,7 +63,6 @@ Ref: R2
 Ref: R20
   missing-part-number
 Ref: R23
-  missing-footprint
   missing-part-number
 Ref: R24
   missing-part-number
@@ -126,7 +89,4 @@ Ref: R8
 Ref: R9
   missing-part-number
 Ref: TP1
-  missing-part-number
-Ref: U2
-  missing-footprint
   missing-part-number

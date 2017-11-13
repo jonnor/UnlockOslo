@@ -183,28 +183,60 @@
       </fields>
     </comp>
     <comp ref="D13">
-      <value>D_Zener</value>
+      <value>BZX384C4V7</value>
+      <footprint>smd-semi:SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C4V7-E3-08</field>
+      </fields>
     </comp>
     <comp ref="D14">
-      <value>D_Zener</value>
+      <value>BZX384C4V7</value>
+      <footprint>smd-semi:SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C4V7-E3-08</field>
+      </fields>
     </comp>
     <comp ref="D15">
-      <value>D_Zener</value>
+      <value>BZX384C4V7</value>
+      <footprint>smd-semi:SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C4V7-E3-08</field>
+      </fields>
     </comp>
     <comp ref="D16">
-      <value>D_Zener</value>
+      <value>BZX384C4V7</value>
+      <footprint>smd-semi:SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C4V7-E3-08</field>
+      </fields>
     </comp>
     <comp ref="D17">
-      <value>D_Zener</value>
+      <value>BZX384C4V7</value>
+      <footprint>smd-semi:SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C4V7-E3-08</field>
+      </fields>
     </comp>
     <comp ref="D18">
-      <value>D_Zener</value>
+      <value>BZX384C4V7</value>
+      <footprint>smd-semi:SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C4V7-E3-08</field>
+      </fields>
     </comp>
     <comp ref="D19">
-      <value>D_Zener</value>
+      <value>BZX384C4V7</value>
+      <footprint>smd-semi:SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C4V7-E3-08</field>
+      </fields>
     </comp>
     <comp ref="D20">
-      <value>D_Zener</value>
+      <value>BZX384C4V7</value>
+      <footprint>smd-semi:SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C4V7-E3-08</field>
+      </fields>
     </comp>
     <comp ref="D21">
       <value>LED</value>
@@ -280,26 +312,44 @@
     <comp ref="P1">
       <value>SWITCH_1</value>
       <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+      <fields>
+        <field name="mpn">1702473</field>
+      </fields>
     </comp>
     <comp ref="P2">
       <value>SWITCH_2</value>
       <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+      <fields>
+        <field name="mpn">1702473</field>
+      </fields>
     </comp>
     <comp ref="P3">
       <value>SWITCH_3</value>
       <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+      <fields>
+        <field name="mpn">1702473</field>
+      </fields>
     </comp>
     <comp ref="P4">
       <value>SWITCH_4</value>
       <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+      <fields>
+        <field name="mpn">1702473</field>
+      </fields>
     </comp>
     <comp ref="P5">
       <value>SWITCH_5</value>
       <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+      <fields>
+        <field name="mpn">1702473</field>
+      </fields>
     </comp>
     <comp ref="P6">
       <value>SWITCH_6</value>
       <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+      <fields>
+        <field name="mpn">1702473</field>
+      </fields>
     </comp>
     <comp ref="P7">
       <value>INPUTS</value>
@@ -321,26 +371,44 @@
     <comp ref="Q1">
       <value>DMN2041L-7</value>
       <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMN2041L-7</field>
+      </fields>
     </comp>
     <comp ref="Q2">
       <value>DMN2041L-7</value>
       <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMN2041L-7</field>
+      </fields>
     </comp>
     <comp ref="Q3">
       <value>DMN2041L-7</value>
       <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMN2041L-7</field>
+      </fields>
     </comp>
     <comp ref="Q4">
       <value>DMN2041L-7</value>
       <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMN2041L-7</field>
+      </fields>
     </comp>
     <comp ref="Q5">
       <value>DMN2041L-7</value>
       <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMN2041L-7</field>
+      </fields>
     </comp>
     <comp ref="Q6">
       <value>DMN2041L-7</value>
       <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMN2041L-7</field>
+      </fields>
     </comp>
     <comp ref="R1">
       <value>10k</value>
@@ -440,6 +508,7 @@
     </comp>
     <comp ref="R23">
       <value>560</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
     </comp>
     <comp ref="R24">
       <value>10k</value>
@@ -477,8 +546,10 @@
     </comp>
     <comp ref="U2">
       <value>TMP102</value>
+      <footprint>Bitraf:SOT-563</footprint>
       <fields>
         <field name="ds_Vin">1.4 - 3.6 V</field>
+        <field name="mpn">TMP102AIDRLT</field>
       </fields>
     </comp>
   </components>
