@@ -1,2 +1,2 @@
 gevent>=1.2
-msgflo>0.1
+msgflo>=0.2

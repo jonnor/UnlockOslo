@@ -1,8 +1,13 @@
 
-import typing
-import numbers
+
+import gevent.monkey
+gevent.monkey.patch_all()
 
 import gevent
+import msgflo
+
+import typing
+import numbers
 import os
 import time
 import os.path
@@ -144,21 +149,6 @@ def read_boolean(file_path):
         s = f.read().strip() 
         return s == '1'
 
-def get_inputs(input_files) -> Inputs:
-    gpio_inputs = { i: read_boolean(p) for i, p in input_files.items() }
-
-    b = dict(
-        current_time=time.monotonic(),
-        mqtt_request=None,
-        mqtt_connected=False,
-    )
-    i = dict()
-    i.update(gpio_inputs)
-    i.update(b) 
-
-    return Inputs(**i)
-
-
 def setup_gpio(pinmap):
     input_files = {}
     output_files = {}
@@ -178,7 +168,23 @@ def setup_gpio(pinmap):
 
     return input_files, output_files
 
-def main():
+class LockParticipant(msgflo.Participant):
+  def __init__(self, role):
+    d = {
+      'component': 'dlock-oslo/DoorLock',
+      'label': '',
+      'icon': 'clock-o',
+      'inports': [
+        { 'id': 'unlock', 'type': 'number' },
+        { 'id': 'lock', 'type': 'number' },
+      ],
+      'outports': [
+        { 'id': 'state', 'type': 'string' },
+      ],
+    }
+
+    msgflo.Participant.__init__(self, d, role)
+
     pin_mapping = {
         # in
         'holdopen_button': ('in', 10),
@@ -195,18 +201,49 @@ def main():
     if fake_gpio:
         pin_mapping = { p: (cfg[0], 'gpio{}'.format(cfg[1])) for p, cfg in pin_mapping.items() }
 
-    input_files, output_files = setup_gpio(pin_mapping)
+    i, o = setup_gpio(pin_mapping)
+    self.input_files = i
+    self.output_files = o
 
-    state = States(
+    self.state = States(
         lock = Locked(0),
         opener = Inactive(0),
         connected_light = False,
     )
+
+    self.connected = False
+    gevent.Greenlet.spawn(self.loop)
+
+  def process(self, inport, msg):
+    if inport == 'unlock':
+        self.recalculate_state(msg.data)
+    elif inport == 'lock':
+        pass
+    else:
+        pass
+    self.ack(msg)
+
+  def loop(self):
     while True:
-        i = get_inputs(input_files)
-        state = next_state(state, i)
-        print(i.__dict__, state.__dict__)
-        time.sleep(0.2)
+        self.recalculate_state()
+        gevent.sleep(0.2)
+
+  def recalculate_state(self, mqtt_request=None):
+    # Retrieve current inputs
+    inputs = dict(
+        current_time=time.monotonic(),
+        mqtt_request=mqtt_request,
+        mqtt_connected=self.connected,
+    )
+    gpio_inputs = { i: read_boolean(p) for i, p in self.input_files.items() }
+    inputs.update(gpio_inputs)
+    next = next_state(self.state, Inputs(**inputs))
+    print(inputs)
+    print(next.__dict__)
+    self.state = next
+
+def main():
+    p = msgflo.main(LockParticipant)
 
 if __name__ == '__main__':
     main()
