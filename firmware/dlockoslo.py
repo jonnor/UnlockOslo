@@ -8,11 +8,11 @@ import time
 import os.path
 
 class Inputs(typing.NamedTuple):
-    openbutton_outside: bool = False  # True if pressed
-    openbutton_inside: bool  = False
-    holdopen_button: bool = False
-    mqtt_connected: bool  = False
-    mqtt_request: typing.Any = None
+    openbutton_outside: bool  # True if pressed
+    openbutton_inside: bool
+    holdopen_button: bool
+    mqtt_connected: bool
+    mqtt_request: typing.Any
     current_time: int = 0
     #door_present: bool
 
@@ -37,9 +37,9 @@ LockState = typing.Union[Unlocked,Locked,TemporarilyUnlocked]
 OpenerState = typing.Union[Inactive,Active,TemporarilyActive]
 
 class States(typing.NamedTuple):
-    lock: LockState = Locked(0)
-    opener: OpenerState = Inactive(0)
-    connected_light: bool = False
+    lock: LockState
+    opener: OpenerState 
+    connected_light: bool
     #unlocked_light: bool
 
 def next_state(current: States, inputs: Inputs) -> States:
@@ -109,14 +109,16 @@ def setup_gpio_pin(number : int, direction):
 
 def read_boolean(file_path):
     with open(file_path) as f:
-        s = f.read()
+        s = f.read().strip() 
         return s == '1'
 
 def get_inputs(input_files) -> Inputs:
     gpio_inputs = { i: read_boolean(p) for i, p in input_files.items() }
 
     b = dict(
-        current_time=time.monotonic()
+        current_time=time.monotonic(),
+        mqtt_request=None,
+        mqtt_connected=False,
     )
     i = dict()
     i.update(gpio_inputs)
@@ -130,7 +132,6 @@ def setup_gpio(pinmap):
     output_files = {}
 
     for name, pinconfig in pinmap.items():
-        print(pinconfig)
 
         direction, gpio = pinconfig
         if isinstance(gpio, int):
@@ -162,7 +163,11 @@ def main():
 
     input_files, output_files = setup_gpio(pin_mapping)
 
-    state = States()
+    state = States(
+        lock = Locked(0),
+        opener = Inactive(0),
+        connected_light = False,
+    )
     while True:
         i = get_inputs(input_files)
         state = next_state(state, i)        
