@@ -60,7 +60,8 @@ add_custom_command(OUTPUT "${CMAKE_CURRENT_LIST_DIR}/${PRJ}-checks.md"
         > "${CMAKE_CURRENT_LIST_DIR}/${PRJ}-checks.md"
     MAIN_DEPENDENCY "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
     DEPENDS "${PIP_COOKIE}" "${PY}" "${TOOLS}"
-      "digikey-download-facts.cookie" ${CSVS})
+      "digikey-download-facts.cookie"
+      "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch" ${CSVS})
 
 add_custom_command(OUTPUT "digikey-download-facts.cookie"
     COMMENT "Downloading facts from Digi-Key"

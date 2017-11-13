@@ -2,78 +2,228 @@
 <export version="D">
   <design/>
   <components>
-    <comp ref="C101">
-      <value>10u</value>
-      <footprint>Capacitors_SMD:C_0805</footprint>
-      <fields>
-        <field name="ta_ref">C1</field>
-      </fields>
-    </comp>
-    <comp ref="C102">
-      <value>0.1u</value>
-      <footprint>Capacitors_SMD:C_0805</footprint>
-      <fields>
-        <field name="ta_ref">0.1u</field>
-      </fields>
-    </comp>
-    <comp ref="C103">
+    <comp ref="C1">
       <value>0.1u</value>
       <footprint>Capacitors_SMD:C_0805</footprint>
       <fields>
         <field name="ta_ref">C3</field>
+        <field name="voltage">10V</field>
+        <field name="mpn">CL21B104MBCNNNC</field>
       </fields>
     </comp>
-    <comp ref="C104">
+    <comp ref="C2">
+      <value>10u</value>
+      <footprint>IPC7351-Nominal:CAPC3216X70</footprint>
+      <fields>
+        <field name="ta_ref">C1</field>
+        <field name="req_voltage">35V</field>
+        <field name="mpn">GMK212BBJ106KG-T</field>
+      </fields>
+    </comp>
+    <comp ref="C3">
+      <value>0.1u</value>
+      <footprint>Capacitors_SMD:C_0805</footprint>
+      <fields>
+        <field name="ta_value">0.1u</field>
+        <field name="req_voltage">35V</field>
+        <field name="mpn">GMK212BJ104KGHT</field>
+      </fields>
+    </comp>
+    <comp ref="C4">
       <value>75p</value>
       <footprint>Capacitors_SMD:C_0805</footprint>
       <fields>
         <field name="ta_ref">C6</field>
+        <field name="voltage">10V</field>
+        <field name="mpn">08051A750JAT2A</field>
       </fields>
     </comp>
-    <comp ref="C105">
+    <comp ref="C5">
       <value>22u</value>
       <footprint>Capacitors_SMD:C_0805</footprint>
       <fields>
         <field name="ta_ref">C4</field>
+        <field name="voltage">10V</field>
+        <field name="mpn">CL21A226MQCLQNC</field>
       </fields>
     </comp>
-    <comp ref="C106">
+    <comp ref="C6">
       <value>22u</value>
       <footprint>Capacitors_SMD:C_0805</footprint>
       <fields>
         <field name="ta_ref">C5</field>
+        <field name="voltage">10V</field>
+        <field name="mpn">CL21A226MQCLQNC</field>
       </fields>
     </comp>
-    <comp ref="D101">
-      <value>D_Zener</value>
-    </comp>
-    <comp ref="D103">
+    <comp ref="D1">
       <value>S1MTR</value>
       <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
     </comp>
-    <comp ref="D104">
-      <value>LED</value>
-      <fields>
-        <field name="color">Green</field>
-        <field name="mpn">LTST-C150KGKT</field>
-        <field name="req_I">5 mA</field>
-      </fields>
-    </comp>
-    <comp ref="D?">
+    <comp ref="D2">
       <value>LED</value>
       <fields>
         <field name="color">Red</field>
-        <field name="mpn">LTST-C150KGKT</field>
+        <field name="mpn">CMD15-21VRD/TR8</field>
+        <field name="role">LED</field>
         <field name="req_I">5 mA</field>
+        <field name="req_Vf">1.9V</field>
+        <field name="req_Vin">3.3 V</field>
+        <field name="ds_Vf">2.0 V</field>
       </fields>
     </comp>
-    <comp ref="J101">
+    <comp ref="D3">
+      <value>S1MTR</value>
+      <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+    </comp>
+    <comp ref="D4">
+      <value>LED</value>
+      <fields>
+        <field name="color">Red</field>
+        <field name="mpn">CMD15-21VRD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">1.9V</field>
+        <field name="req_Vin">3.3 V</field>
+        <field name="ds_Vf">2.0 V</field>
+      </fields>
+    </comp>
+    <comp ref="D5">
+      <value>S1MTR</value>
+      <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+    </comp>
+    <comp ref="D6">
+      <value>LED</value>
+      <fields>
+        <field name="color">Red</field>
+        <field name="mpn">CMD15-21VRD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">1.9V</field>
+        <field name="req_Vin">3.3 V</field>
+        <field name="ds_Vf">2.0 V</field>
+      </fields>
+    </comp>
+    <comp ref="D7">
+      <value>S1MTR</value>
+      <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+    </comp>
+    <comp ref="D8">
+      <value>LED</value>
+      <fields>
+        <field name="color">Red</field>
+        <field name="mpn">CMD15-21VRD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">1.9V</field>
+        <field name="req_Vin">3.3 V</field>
+        <field name="ds_Vf">2.0 V</field>
+      </fields>
+    </comp>
+    <comp ref="D9">
+      <value>S1MTR</value>
+      <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+    </comp>
+    <comp ref="D10">
+      <value>LED</value>
+      <fields>
+        <field name="color">Red</field>
+        <field name="mpn">CMD15-21VRD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">1.9V</field>
+        <field name="req_Vin">3.3 V</field>
+        <field name="ds_Vf">2.0 V</field>
+      </fields>
+    </comp>
+    <comp ref="D11">
+      <value>S1MTR</value>
+      <footprint>Diodes_SMD:D_SMA_Handsoldering</footprint>
+    </comp>
+    <comp ref="D12">
+      <value>LED</value>
+      <fields>
+        <field name="color">Red</field>
+        <field name="mpn">CMD15-21VRD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">1.9V</field>
+        <field name="req_Vin">3.3 V</field>
+        <field name="ds_Vf">2.0 V</field>
+      </fields>
+    </comp>
+    <comp ref="D13">
+      <value>D_Zener</value>
+    </comp>
+    <comp ref="D14">
+      <value>D_Zener</value>
+    </comp>
+    <comp ref="D15">
+      <value>D_Zener</value>
+    </comp>
+    <comp ref="D16">
+      <value>D_Zener</value>
+    </comp>
+    <comp ref="D17">
+      <value>D_Zener</value>
+    </comp>
+    <comp ref="D18">
+      <value>D_Zener</value>
+    </comp>
+    <comp ref="D19">
+      <value>D_Zener</value>
+    </comp>
+    <comp ref="D20">
+      <value>D_Zener</value>
+    </comp>
+    <comp ref="D21">
+      <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
+      <fields>
+        <field name="color">Green</field>
+        <field name="mpn">CMD15-21VGD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">2.0 V</field>
+        <field name="req_Vin">5V</field>
+        <field name="ds_Vf">2.1 V</field>
+      </fields>
+    </comp>
+    <comp ref="D22">
+      <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
+      <fields>
+        <field name="color">Green</field>
+        <field name="mpn">CMD15-21VGD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">2.0 V</field>
+        <field name="req_Vin">5V</field>
+        <field name="ds_Vf">2.1 V</field>
+      </fields>
+    </comp>
+    <comp ref="D23">
+      <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
+      <fields>
+        <field name="color">Green</field>
+        <field name="mpn">CMD15-21VGD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">2.0 V</field>
+        <field name="req_Vin">5V</field>
+        <field name="ds_Vf">2.1 V</field>
+      </fields>
+    </comp>
+    <comp ref="J1">
       <value>POWER</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_2x02_Pitch2.54mm</footprint>
     </comp>
-    <comp ref="J102">
+    <comp ref="J2">
       <value>SERIAL</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_1x05_Pitch2.54mm</footprint>
     </comp>
-    <comp ref="L101">
+    <comp ref="L1">
       <value>15u</value>
       <footprint>Inductors_SMD:L_Taiyo-Yuden_NR-80xx</footprint>
       <fields>
@@ -98,52 +248,175 @@
       <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
     </comp>
     <comp ref="P1">
+      <value>SWITCH_1</value>
+      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+    </comp>
+    <comp ref="P2">
+      <value>SWITCH_2</value>
+      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+    </comp>
+    <comp ref="P3">
+      <value>SWITCH_3</value>
+      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+    </comp>
+    <comp ref="P4">
+      <value>SWITCH_4</value>
+      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+    </comp>
+    <comp ref="P5">
+      <value>SWITCH_5</value>
+      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+    </comp>
+    <comp ref="P6">
+      <value>SWITCH_6</value>
+      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+    </comp>
+    <comp ref="P7">
+      <value>INPUTS</value>
+      <footprint>Bitraf:PhoenixContact_PTSM_0,5_8-2,5-H_SMD</footprint>
+      <fields>
+        <field name="mpn">1771088</field>
+      </fields>
+    </comp>
+    <comp ref="P8">
       <value>RASPBERRY_PI</value>
     </comp>
-    <comp ref="P101">
-      <value>SWITCH_3</value>
-      <footprint>Bitraf:PhoenixContact_PTSM0,5_2-2,5-H_SMD</footprint>
-    </comp>
-    <comp ref="P102">
+    <comp ref="P9">
       <value>12V</value>
-      <footprint>Bitraf:PhoenixContact_PTSM0,5_2-2,5-H_SMD</footprint>
+      <footprint>Bitraf:PhoenixContact_PTSM_0,5_2-2,5-H_SMD</footprint>
+      <fields>
+        <field name="mpn">1702473</field>
+      </fields>
     </comp>
-    <comp ref="P104">
-      <value>SWITCH_3</value>
-      <footprint>Bitraf:PhoenixContact_PTSM0,5_2-2,5-H_SMD</footprint>
-    </comp>
-    <comp ref="Q102">
+    <comp ref="Q1">
       <value>DMN2041L-7</value>
       <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
     </comp>
-    <comp ref="R101">
+    <comp ref="Q2">
+      <value>DMN2041L-7</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+    </comp>
+    <comp ref="Q3">
+      <value>DMN2041L-7</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+    </comp>
+    <comp ref="Q4">
+      <value>DMN2041L-7</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+    </comp>
+    <comp ref="Q5">
+      <value>DMN2041L-7</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+    </comp>
+    <comp ref="Q6">
+      <value>DMN2041L-7</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+    </comp>
+    <comp ref="R1">
+      <value>10k</value>
+      <footprint>IPC7351-Most:CAPC3216X70</footprint>
+    </comp>
+    <comp ref="R2">
+      <value>270</value>
+    </comp>
+    <comp ref="R3">
+      <value>10k</value>
+      <footprint>Resistors_SMD:R_0805</footprint>
+    </comp>
+    <comp ref="R4">
+      <value>270</value>
+    </comp>
+    <comp ref="R5">
+      <value>10k</value>
+      <footprint>Resistors_SMD:R_0805</footprint>
+    </comp>
+    <comp ref="R6">
+      <value>270</value>
+    </comp>
+    <comp ref="R7">
+      <value>10k</value>
+      <footprint>Resistors_SMD:R_0805</footprint>
+    </comp>
+    <comp ref="R8">
+      <value>270</value>
+    </comp>
+    <comp ref="R9">
+      <value>10k</value>
+      <footprint>Resistors_SMD:R_0805</footprint>
+    </comp>
+    <comp ref="R10">
+      <value>270</value>
+    </comp>
+    <comp ref="R11">
+      <value>10k</value>
+      <footprint>Resistors_SMD:R_0805</footprint>
+    </comp>
+    <comp ref="R12">
+      <value>270</value>
+    </comp>
+    <comp ref="R13">
       <value>10k</value>
     </comp>
-    <comp ref="R103">
+    <comp ref="R14">
+      <value>10k</value>
+    </comp>
+    <comp ref="R15">
+      <value>10k</value>
+    </comp>
+    <comp ref="R16">
+      <value>10k</value>
+    </comp>
+    <comp ref="R17">
+      <value>10k</value>
+    </comp>
+    <comp ref="R18">
+      <value>10k</value>
+    </comp>
+    <comp ref="R19">
+      <value>10k</value>
+    </comp>
+    <comp ref="R20">
+      <value>10k</value>
+    </comp>
+    <comp ref="R21">
       <value>100k</value>
       <footprint>Resistors_SMD:R_0805</footprint>
       <fields>
         <field name="ta_ref">R2</field>
+        <field name="mpn">RC0805FR-07100KL</field>
       </fields>
     </comp>
-    <comp ref="R104">
+    <comp ref="R22">
       <value>13.3k</value>
       <footprint>Resistors_SMD:R_0805</footprint>
       <fields>
         <field name="ta_ref">R3</field>
+        <field name="mpn">RC0805FR-0713K3L</field>
       </fields>
     </comp>
-    <comp ref="R105">
-      <value>10k</value>
-      <footprint>Resistors_SMD:R_0805</footprint>
+    <comp ref="R23">
+      <value>560</value>
     </comp>
-    <comp ref="R106">
+    <comp ref="R24">
       <value>R</value>
     </comp>
-    <comp ref="R?">
+    <comp ref="R25">
       <value>R</value>
     </comp>
-    <comp ref="U101">
+    <comp ref="R26">
+      <value>R</value>
+    </comp>
+    <comp ref="R27">
+      <value>560</value>
+    </comp>
+    <comp ref="R28">
+      <value>560</value>
+    </comp>
+    <comp ref="TP1">
+      <value>+5V</value>
+      <footprint>Connectors_TestPoints:Test_Point_Pad_d1.0mm</footprint>
+    </comp>
+    <comp ref="U1">
       <value>TPS54202</value>
       <footprint>TO_SOT_Packages_SMD:SOT-23-6_Handsoldering</footprint>
       <fields>
@@ -151,6 +424,12 @@
         <field name="mpn">TPS54202DDCT</field>
         <field name="Iout">2A</field>
         <field name="Vout">5V</field>
+      </fields>
+    </comp>
+    <comp ref="U2">
+      <value>TMP102</value>
+      <fields>
+        <field name="ds_Vin">1.4 - 3.6 V</field>
       </fields>
     </comp>
   </components>
