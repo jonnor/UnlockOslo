@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/trygvis/dev/com.github/jonnor/dlock-oslo/hardware/alpha-1/alpha.sch)
-    (date "ma. 13. nov. 2017 kl. 15.22 +0100")
+    (date "ma. 13. nov. 2017 kl. 15.51 +0100")
     (tool "Eeschema 4.0.7+dfsg1-1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -453,7 +453,7 @@
       (tstamp 5A075112))
     (comp (ref D9)
       (value S1MTR)
-      (footprint Diodes_SMD:D_SMA_Handsoldering)
+      (footprint Diodes_SMD:D_SMA)
       (datasheet http://www.smc-diodes.com/propdf/S1A-S1M%20N0560%20REV.B.pdf)
       (fields
         (field (name mpn) S1MTR)
@@ -946,14 +946,14 @@
   (libraries
     (library (logical conn)
       (uri /usr/share/kicad/library/conn.lib))
-    (library (logical device)
-      (uri /usr/share/kicad/library/device.lib))
-    (library (logical tmp102)
-      (uri /home/trygvis/dev/com.github/jonnor/dlock-oslo/hardware/alpha-1/symbols/tmp102.lib))
     (library (logical tps54202)
       (uri /home/trygvis/dev/com.github/jonnor/dlock-oslo/hardware/alpha-1/symbols/tps54202.lib))
+    (library (logical device)
+      (uri /usr/share/kicad/library/device.lib))
     (library (logical mechanical)
-      (uri /usr/share/kicad/library/mechanical.lib)))
+      (uri /usr/share/kicad/library/mechanical.lib))
+    (library (logical tmp102)
+      (uri /home/trygvis/dev/com.github/jonnor/dlock-oslo/hardware/alpha-1/symbols/tmp102.lib)))
   (nets
     (net (code 1) (name GND)
       (node (ref D18) (pin 2))
