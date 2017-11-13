@@ -190,8 +190,10 @@ def main():
         'connected_light': ('out', 15),
     }
 
-    # TEMP: testing using plain-files
-    pin_mapping = { p: (cfg[0], 'gpio{}'.format(cfg[1])) for p, cfg in pin_mapping.items() } 
+    # Take input from plain files, mostly useful for testing on non-Raspberry deives
+    fake_gpio = os.environ.get('DLOCK_FAKE_GPIO')
+    if fake_gpio:
+        pin_mapping = { p: (cfg[0], 'gpio{}'.format(cfg[1])) for p, cfg in pin_mapping.items() }
 
     input_files, output_files = setup_gpio(pin_mapping)
 
