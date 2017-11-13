@@ -124,14 +124,14 @@ def gpio_file_path(number: int):
 # idempotent
 def setup_gpio_pin(number : int, direction):
     export_path = '/sys/class/gpio/export'
-    direction_path = '/sys/class/gpio{}/direction'.format(number)
+    direction_path = '/sys/class/gpio/gpio{}/direction'.format(number)
 
     # Export GPIO
     if not os.path.exists(direction_path):
-        with open(export_path, 'r') as exportfile:
+        with open(export_path, 'w') as exportfile:
             exportfile.write(str(number))
         # wait for export done, otherwise direction change fails EACCESS
-        time.sleep(10)
+        time.sleep(0.1)
     
     # Set direction
     with open(direction_path, 'w') as directionfile:
@@ -173,7 +173,7 @@ def setup_gpio(pinmap):
             # assumed to be a regular file that can be read/written to
             path = gpio
 
-        files = input_files if direction == 'input' else output_files
+        files = input_files if direction == 'in' else output_files
         files[name] = path
 
     return input_files, output_files
@@ -181,13 +181,13 @@ def setup_gpio(pinmap):
 def main():
     pin_mapping = {
         # in
-        'holdopen_button': ('input', 10),
-        'openbutton_outside': ('input', 11),
-        'openbutton_inside': ('input', 12),
+        'holdopen_button': ('in', 10),
+        'openbutton_outside': ('in', 11),
+        'openbutton_inside': ('in', 12),
         # out
-        'lock': ('output', 13),
-        'opener': ('output', 14),
-        'connected_light': ('output', 15),
+        'lock': ('out', 13),
+        'opener': ('out', 14),
+        'connected_light': ('out', 15),
     }
 
     # TEMP: testing using plain-files
