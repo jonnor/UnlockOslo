@@ -1,4 +1,4 @@
-Found probems: errors: 38, warnings: 1, notes: 1
+Found probems: errors: 37, warnings: 1, notes: 1
 
 General notes:
   highest-component: Highest component C2 is 1.45 mm
@@ -20,9 +20,6 @@ Ref: MK4
 Ref: P1
   missing-part-number
 Ref: P7
-  missing-part-number
-Ref: P8
-  missing-footprint
   missing-part-number
 Ref: P9
   missing-part-number
@@ -79,4 +76,6 @@ Ref: R8
 Ref: R9
   missing-part-number
 Ref: TP1
+  missing-part-number
+Ref: U3
   missing-part-number

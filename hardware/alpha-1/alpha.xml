@@ -4,7 +4,7 @@
   <components>
     <comp ref="C1">
       <value>0.1u</value>
-      <footprint>Capacitors_SMD:C_0805</footprint>
+      <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
       <fields>
         <field name="ta_ref">C3</field>
         <field name="voltage">10V</field>
@@ -22,7 +22,7 @@
     </comp>
     <comp ref="C3">
       <value>0.1u</value>
-      <footprint>Capacitors_SMD:C_0805</footprint>
+      <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
       <fields>
         <field name="ta_value">0.1u</field>
         <field name="req_voltage">35V</field>
@@ -31,16 +31,16 @@
     </comp>
     <comp ref="C4">
       <value>75p</value>
-      <footprint>Capacitors_SMD:C_0805</footprint>
+      <footprint>IPC7351-Nominal:CAPC1005X55</footprint>
       <fields>
         <field name="ta_ref">C6</field>
         <field name="voltage">10V</field>
-        <field name="mpn">08051A750JAT2A</field>
+        <field name="mpn">GRM1555C1H750JA01D</field>
       </fields>
     </comp>
     <comp ref="C5">
       <value>22u</value>
-      <footprint>Capacitors_SMD:C_0805</footprint>
+      <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
       <fields>
         <field name="ta_ref">C4</field>
         <field name="voltage">10V</field>
@@ -49,7 +49,7 @@
     </comp>
     <comp ref="C6">
       <value>22u</value>
-      <footprint>Capacitors_SMD:C_0805</footprint>
+      <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
       <fields>
         <field name="ta_ref">C5</field>
         <field name="voltage">10V</field>
@@ -239,7 +239,7 @@
       </fields>
     </comp>
     <comp ref="D21">
-      <value>LED</value>
+      <value>POWER</value>
       <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
       <fields>
         <field name="color">Green</field>
@@ -252,7 +252,7 @@
       </fields>
     </comp>
     <comp ref="D22">
-      <value>LED</value>
+      <value>STATUS_1</value>
       <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
       <fields>
         <field name="color">Green</field>
@@ -265,7 +265,7 @@
       </fields>
     </comp>
     <comp ref="D23">
-      <value>LED</value>
+      <value>STATUS_2</value>
       <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
       <fields>
         <field name="color">Green</field>
@@ -316,9 +316,6 @@
     <comp ref="P7">
       <value>INPUTS</value>
       <footprint>Bitraf:har-flexicon_2,54_TSPH-08_T56_BK</footprint>
-    </comp>
-    <comp ref="P8">
-      <value>RASPBERRY_PI</value>
     </comp>
     <comp ref="P9">
       <value>12V</value>
@@ -448,18 +445,18 @@
     </comp>
     <comp ref="R21">
       <value>100k</value>
-      <footprint>Resistors_SMD:R_0805</footprint>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
       <fields>
         <field name="ta_ref">R2</field>
-        <field name="mpn">RC0805FR-07100KL</field>
+        <field name="mpn">RC0402FR-07100KL</field>
       </fields>
     </comp>
     <comp ref="R22">
       <value>13.3k</value>
-      <footprint>Resistors_SMD:R_0805</footprint>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
       <fields>
         <field name="ta_ref">R3</field>
-        <field name="mpn">RC0805FR-0713K3L</field>
+        <field name="mpn">RC0402FR-0713K3L</field>
       </fields>
     </comp>
     <comp ref="R23">
@@ -507,6 +504,10 @@
         <field name="ds_Vin">1.4 - 3.6 V</field>
         <field name="mpn">TMP102AIDRLT</field>
       </fields>
+    </comp>
+    <comp ref="U3">
+      <value>RASPBERRY_PI</value>
+      <footprint>Socket_Strips:Socket_Strip_Straight_2x20_Pitch2.54mm</footprint>
     </comp>
   </components>
 </export>
