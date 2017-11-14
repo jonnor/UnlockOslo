@@ -1686,7 +1686,7 @@ Wire Wire Line
 Wire Wire Line
 	8600 9700 9800 9700
 Wire Wire Line
-	8600 9900 9100 9900
+	8600 9900 9800 9900
 Wire Wire Line
 	8700 9500 8700 9700
 Connection ~ 8700 9700
@@ -2241,4 +2241,7 @@ Text Label 3900 8900 0    60   ~ 0
 BOOT
 Text Label 3900 9900 0    60   ~ 0
 FB
+Text Label 9800 9900 2    60   ~ 0
+~TMP102_ALERT
+Connection ~ 9100 9900
 $EndSCHEMATC
