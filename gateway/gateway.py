@@ -10,24 +10,27 @@ gevent.monkey.patch_all() # make sure all syncronous calls in stdlib yields to g
 
 import gevent.wsgi
 import flask
-
-import os
-
 import paho.mqtt.client as mqtt
 
-def send_mqtt():
-    # TODO: keep client connected
-    client = mqtt.Client()
-    #client.username_pw_set(broker_info.username, broker_info.password)
+from urllib.parse import urlparse
+import os
 
-    host = 'localhost'
-    port = 1883
+
+def send_mqtt(topic, payload):
+    broker_url = os.environ.get('MSGFLO_BROKER', 'mqtt://localhost')
+    broker_info = urlparse(broker_url)
+
+   # TODO: keep client connected
+    client = mqtt.Client()
+    if broker_info.username:
+        client.username_pw_set(broker_info.username, broker_info.password)
+
+    host = broker_info.hostname
+    port = broker_info.port or 1883
     client.connect(host, port, 60)
 
-    # FIXME: unhardcode
-    topic = "firmware/dlockoslo.py.UNLOCK"
-    payload = '10'
     client.publish(topic, payload)
+    print('mqtt sent', topic, payload)
 
 app = flask.Flask(__name__)
 ## System functionality
@@ -40,11 +43,22 @@ def system_status():
     raise NotImplementedError("Unknown system status")
 
 
+doors = {
+    'virtual-1': ('vitual-1',),
+    'sorenga-1': ('sorenga-1',),
+}
+
 ## Door functionality
 @app.route('/doors/<doorid>/unlock', methods=['POST'])
 def door_unlock(doorid):
+    door = doors[doorid]
+
+    mqtt_prefix = door[0]
+
+    topic = mqtt_prefix + ".UNLOCK"
+    payload = '10'
+    send_mqtt(topic, payload)
     # FIXME: wait for and verify state change message
-    send_mqtt()
     return 'Door is now open'
 
 @app.route('/doors/<doorid>/lock', methods=['POST'])
