@@ -13,6 +13,7 @@ import sys
 import time
 import os.path
 import json
+import math
 
 class Inputs():
     def __init__(self,
@@ -169,6 +170,21 @@ def setup_gpio(pinmap):
 
     return input_files, output_files
 
+def set_gpio(file_path : str, on : bool):
+    s = "1" if on else "0"
+    with open(file_path, 'w') as f:
+        f.write(s)
+
+def set_outputs(states : States, file_paths):
+    s = {
+        'opener': states.opener.state != 'Inactive',
+        'lock': states.lock.state != 'Locked',
+        'connected_light': states.connected_light,
+    }
+    print('s', s, states.lock.state)
+    for name, on in s.items():
+        set_gpio(file_paths[name], on)
+
 class LockParticipant(msgflo.Participant):
   def __init__(self, role):
     d = {
@@ -211,6 +227,7 @@ class LockParticipant(msgflo.Participant):
         opener = Inactive(0),
         connected_light = False,
     )
+    self.inputs = Inputs()
 
     self.connected = False
     gevent.Greenlet.spawn(self.loop)
@@ -232,16 +249,21 @@ class LockParticipant(msgflo.Participant):
   def recalculate_state(self, mqtt_request=None):
     # Retrieve current inputs
     inputs = dict(
-        current_time=time.monotonic(),
+        current_time=math.ceil(time.monotonic()),
         mqtt_request=mqtt_request,
         mqtt_connected=self.connected,
     )
     gpio_inputs = { i: read_boolean(p) for i, p in self.input_files.items() }
     inputs.update(gpio_inputs)
     next = next_state(self.state, Inputs(**inputs))
-    print(inputs)
-    print(next.__dict__)
+    set_outputs(self.state, self.output_files)
+
+    if inputs != self.inputs or next != self.state:
+        log = { 'inputs': inputs, 'state': next.__dict__ }
+        print(log)
+
     self.state = next
+    self.inputs = inputs
 
 def main():
     role = sys.argv[1]
