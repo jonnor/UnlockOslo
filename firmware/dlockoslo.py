@@ -9,6 +9,7 @@ import msgflo
 import typing
 import numbers
 import os
+import sys
 import time
 import os.path
 import json
@@ -243,7 +244,8 @@ class LockParticipant(msgflo.Participant):
     self.state = next
 
 def main():
-    p = msgflo.main(LockParticipant)
+    role = sys.argv[1]
+    p = msgflo.main(LockParticipant, role=role)
 
 if __name__ == '__main__':
     main()
