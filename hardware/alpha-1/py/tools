@@ -47,6 +47,9 @@ class Note(object):
         return (self.kind, self.ref, self.message) <\
                (other.kind, other.ref, other.message)
 
+def parts_with_expected_footprint_filter(df: pd.DataFrame):
+    # Ignore components that has assembly="footprint only"
+    return df.assembly != "footprint only" if hasattr(df, 'assembly') else True
 
 class Check(object):
     def __init__(self, kind):
@@ -79,12 +82,13 @@ class CheckMismatchedFootprint(Check):
         self.repo = repo
 
         p = os.path.join(os.path.dirname(__file__), "kicad-footprints.csv")
-        self.kicad_footprints = pd.read_csv(p, index_col="kicad", dtype={"common": "str"})
-        self.kicad_footprints = self.kicad_footprints[["common"]]
+        self.kicad_footprints = pd.read_csv(p, index_col="kicad", dtype={"common": "str"})[["common"]]
 
         p = os.path.join(os.path.dirname(__file__), "digikey-footprints.csv")
-        self.digikey_footprints = pd.read_csv(p, index_col="digikey", dtype={"common": "str"})
-        self.digikey_footprints = self.digikey_footprints[["common"]]
+        self.digikey_footprints = pd.read_csv(p, index_col="digikey", dtype={"common": "str"})[["common"]]
+
+        p = os.path.join(os.path.dirname(__file__), "mpn-to-footprint.csv")
+        self.mpn_to_footprints = pd.read_csv(p, index_col="mpn", dtype={"footprint": "str"})[["footprint"]]
 
     def run(self, df):
         notes = []
@@ -93,59 +97,74 @@ class CheckMismatchedFootprint(Check):
             notes.append(self.info(message="Skipping, missing mpn field."))
             return notes
 
-        for (ref, row) in df[~df.footprint.isnull() & ~df.mpn.isnull()].iterrows():
+        f = ~df.footprint.isnull() & ~df.mpn.isnull()
+        f = f & parts_with_expected_footprint_filter(df)
+        for (ref, row) in df[f].iterrows():
             mpn = row.mpn
 
-            try:
-                part = self.repo.find_by_mpn(mpn)
-            except AttributeError:
-                part = None
+            sch_value = sch_value_common = None
+            part_value = part_value_common = None
 
-            if not part:
-                notes.append(self.warning(ref=ref, message="Missing Digi-Key facts for {}".format(mpn)))
-                continue
-
-            attr = part.attribute_by_id(16)
-
-            if not attr:
-                notes.append(self.warning(ref=ref, message="No info about footprint from Digi-Key for {}".format(mpn)))
-                continue
-
-            sch_value = row.footprint
-            part_value = attr.value
-
-            if sch_value and sch_value == part_value:
-                continue
-
-            sch_value_common = None
-            part_value_common = None
-
-            if sch_value:
+            # Load and normalize the footprint from the schema.
+            sch_value_common = sch_value = row.footprint
+            if sch_value_common:
                 try:
-                    sch_value_common = self.kicad_footprints.loc[sch_value]["common"]
+                    sch_value_common = self.kicad_footprints.loc[sch_value_common]["common"]
                 except KeyError:
                     pass
 
+            # See if there is a footprint based on the MPN
             try:
-                part_value_common = self.digikey_footprints.loc[part_value]["common"]
+                part_value_common = self.mpn_to_footprints.loc[mpn]["footprint"]
             except KeyError:
                 pass
+
+            # If not found, load the footprint from the Digikey database
+            if not part_value_common:
+                try:
+                    part = self.repo.find_by_mpn(mpn)
+                except AttributeError:
+                    part = None
+
+                if not part:
+                    notes.append(self.warning(ref=ref, message="Missing Digi-Key facts for {}".format(mpn)))
+                    continue
+
+                attr = part.attribute_by_id(16)
+
+                if not attr:
+                    notes.append(self.warning(ref=ref, message="No info about footprint from Digi-Key for {}".format(mpn)))
+                    continue
+
+                part_value = attr.value
+
+            if sch_value_common and sch_value_common == part_value:
+                continue
+
+            if not part_value_common:
+                try:
+                    part_value_common = self.digikey_footprints.loc[part_value]["common"]
+                except KeyError:
+                    pass
 
             if sch_value_common and part_value_common and sch_value_common == part_value_common:
                 continue
 
+            msg = ""
             if sch_value:
                 msg = "From schema: '{}'".format(sch_value)
 
                 if sch_value_common:
                     msg += " (normalized to '{}')".format(sch_value_common)
 
-                msg += ", from part database: '{}'".format(part_value)
-            else:
-                msg = "From part database: '{}'".format(part_value)
+            if part_value:
+                msg += "{} part database: '{}'".format("From" if len(msg) == 0 else ", from", part_value)
 
-            if part_value_common:
-                msg += " (normalized to '{}')".format(part_value_common)
+                if part_value_common:
+                    msg += " (normalized to '{}')".format(part_value_common)
+            elif part_value_common:
+                msg += "Not in part database, but got footprint from MPN: {}".format(part_value_common)
+
 
             notes.append(self.warning(ref=ref, message=msg))
         return notes
@@ -163,12 +182,8 @@ class CheckMissingPartNumber(Check):
             return notes
 
         # TODO: separate 'missing' and 'bad' part numbers
-
         f = (df.mpn.isnull() | (df.mpn == "-")) & (df.value != "NA")
-
-        # Ignore components that has assembly="footprint only"
-        if hasattr(df, 'assembly'):
-            f = f & (df.assembly != "footprint only")
+        f = f & parts_with_expected_footprint_filter(df)
 
         for (ref, row) in df[f].iterrows():
             notes.append(self.error(ref=ref))
@@ -264,6 +279,31 @@ def grp(iterable):
     xs = [x for x in iterable if x]
     return ", ".join(list(sorted(set(xs))))
 
+def ref_grp(iterable):
+    if iterable is None:
+        return ""
+
+    import re
+    r = re.compile("([^0-9]+)(.*)")
+
+    refs = list(iterable)
+#    print("input={}".format(refs))
+    refs = [r.split(ref) for ref in refs]
+    refs = [(ref[1], int(ref[2])) for ref in refs]
+    refs = sorted(refs, key=lambda r: r[0])
+#    for r in refs:
+#      print("r={}".format(r))
+    groups = groupby(refs, lambda r: r[0])
+    strs = []
+    for k, refs in groups:
+      refs = list(refs)
+      refs = [str(ref[1]) for ref in refs]
+#      print("k={}, v={}".format(k, refs))
+      strs.append(k + ",".join(refs))
+    return ", ".join(strs)
+#    xs = [x for x in iterable if x]
+#    return ", ".join(list(sorted(set(xs))))
+
 def cnt(iterable):
     """Returns the count of the input iterable"""
     return len(iterable) if iterable is not None else 0
@@ -334,8 +374,8 @@ def cmd_digikey_bom(**kwargs):
         q = q & (sch_df.assembly != "footprint only")
 
     products = digikey_repo.to_pandas()
-    print("PRODUCTS")
-    print(products[["Digi-Key"]].to_string())
+#    print("PRODUCTS")
+#    print(products[["Digi-Key"]].to_string())
     bom = sch_df[q]
 #    bom = pd.merge(bom, products, how='left', left_on='mpn', right_index=True)
 
@@ -343,29 +383,33 @@ def cmd_digikey_bom(**kwargs):
         sch_df[["mpn", "value"]],
         products[["URL", "Digi-Key"]],
         how='left', left_on='mpn', right_index=True)
-    print("merged len bom={}".format(len(bom)))
-    print("BOM")
-    print(bom.to_string())
+#    print("merged len bom={}".format(len(bom)))
+#    print("BOM")
+#    print(bom.to_string())
     digikey = bom.\
         reset_index().\
-        groupby(['Digi-Key']).agg({'ref': [grp, cnt], 'mpn': [grp]})
+        groupby(['Digi-Key']).agg({'ref': [ref_grp, cnt], 'mpn': [grp]})
 
-    print("DIGIKEY")
-    print(digikey)
+#    print("DIGIKEY")
+#    print(digikey.to_string())
 
-    digikey.columns = ["_".join(col).strip() for col in sorted(digikey.columns.values)]
-    digikey = digikey[["ref_grp", "ref_cnt", "mpn_grp"]].reset_index().\
+    digikey.columns = ["_".join(col).strip() for col in digikey.columns.values]
+#    print("DIGIKEY")
+#    print(digikey.to_string())
+    digikey = digikey[["ref_ref_grp", "ref_cnt", "mpn_grp"]].reset_index().\
+        sort_values(["ref_ref_grp"]).\
         rename(columns={
                 "Digi-Key": "Digi-Key Part Number",
-                "ref_cnt": "Customer Reference",
-                "ref_grp": "Quantity",
+                "ref_cnt": "Quantity",
+                "ref_ref_grp": "Customer Reference",
                 "mpn_grp": "MPN"})
 
     if args.quantity:
         q = int(args.quantity)
         digikey.Quantity = digikey.Quantity * q
 
-    print(digikey.to_csv(index=False))
+    import sys
+    digikey.to_csv(sys.stdout, index=False)
 
 def cmd_digikey_list_repo(**kwargs):
     (digikey_repo, args) = (kwargs["digikey_repo"], kwargs["args"])

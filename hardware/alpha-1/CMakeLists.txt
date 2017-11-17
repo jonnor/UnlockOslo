@@ -13,6 +13,8 @@ foreach(X ${KICAD_UTILS_CMAKES})
   include(${X})
 endforeach()
 
+set(ENABLE_DIGIKEY TRUE)
+
 # Python and virtualenv setup
 set(PY "${CMAKE_CURRENT_LIST_DIR}/env/bin/python")
 set(PIP "${CMAKE_CURRENT_LIST_DIR}/env/bin/pip")
@@ -123,30 +125,33 @@ add_custom_command(OUTPUT production/${PRJ}-digikey-bom.csv
     MAIN_DEPENDENCY "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
     DEPENDS "${PIP_COOKIE}" "${PY}" "${TOOLS}" "digikey-download-facts.cookie")
 
-add_custom_command(OUTPUT production/${PRJ}-digikey-bom-10.csv
+add_custom_command(OUTPUT production/${PRJ}-digikey-bom-5.csv
     COMMAND ${CMAKE_COMMAND} -E make_directory production
     COMMAND "${PY}" "${TOOLS}" --cmd digikey-bom
       --sch "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
       --digikey-repo "${CMAKE_CURRENT_LIST_DIR}/digikey"
-      --quantity 10
-      > production/${PRJ}-digikey-bom-10.csv
+      --quantity 5
+      > production/${PRJ}-digikey-bom-5.csv
     MAIN_DEPENDENCY "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
     DEPENDS "${PIP_COOKIE}" "${PY}" "${TOOLS}" "digikey-download-facts.cookie")
 
-if (ENABLE_PNP)
-  set(extra_deps production/${PRJ}-eurocircuits.pos)
+if (ENABLE_EUROCIRCUITS)
+  list(APPEND extra_deps production/${PRJ}-eurocircuits-bom.csv)
+  if (ENABLE_PNP)
+    list(APPEND extra_deps production/${PRJ}-eurocircuits.pos)
+  endif ()
+endif ()
+
+if (ENABLE_DIGIKEY)
+  list(APPEND extra_deps production/${PRJ}-digikey-bom.csv production/${PRJ}-digikey-bom-5.csv)
 endif ()
 
 add_custom_target(${PRJ}-production ALL DEPENDS
 		${PRJ}-gerber
-    production/${PRJ}-eurocircuits-bom.csv
-    production/${PRJ}-digikey-bom.csv
-    production/${PRJ}-digikey-bom-10.csv
     ${extra_deps}
 )
 add_custom_target(${PRJ}-bom ALL DEPENDS "${PRJ}.xml")
 add_custom_target(${PRJ}-checks ALL DEPENDS "${PRJ}-checks.md")
 add_custom_target(${PRJ} ALL DEPENDS
 		${PRJ}-checks
-		${PRJ}-bom
-    )
+		${PRJ}-bom)
