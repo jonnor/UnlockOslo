@@ -20,6 +20,7 @@ class Inputs():
         openbutton_outside : bool = False,
         openbutton_inside : bool = False,
         holdopen_button : bool = False,
+        door_present : bool = False,
         mqtt_connected : bool = False,
         mqtt_request : typing.Any = None,
         current_time : float = 0) -> None:
@@ -178,10 +179,10 @@ def set_gpio(file_path : str, on : bool):
 def set_outputs(states : States, file_paths):
     s = {
         'opener': states.opener.state != 'Inactive',
-        'lock': states.lock.state != 'Locked',
+        'lock': states.lock.state == 'Locked', # solenoid is locked when active
         'connected_light': states.connected_light,
+        'door_unlocked_light': states.lock.state != 'Locked',
     }
-    print('s', s, states.lock.state)
     for name, on in s.items():
         set_gpio(file_paths[name], on)
 
@@ -207,10 +208,12 @@ class LockParticipant(msgflo.Participant):
         'holdopen_button': ('in', 10),
         'openbutton_outside': ('in', 11),
         'openbutton_inside': ('in', 12),
+        'door_present': ('in', 17),
         # out
         'lock': ('out', 13),
         'opener': ('out', 14),
         'connected_light': ('out', 15),
+        'door_unlocked_light': ('out', 16),
     }
 
     # Take input from plain files, mostly useful for testing on non-Raspberry deives
