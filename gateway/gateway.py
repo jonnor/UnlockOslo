@@ -86,11 +86,16 @@ def create_client():
                 pass
     gevent.Greenlet.spawn(_mqtt_loop)
 
+    return client
 
 def mqtt_send(topic, payload):
+    global mqtt_client
+    if mqtt_client is None:
+        mqtt_client = create_client()
+
     client = mqtt_client
     client.publish(topic, payload)
-    log_mqtt('sent', topic, payload)
+    log_mqtt.debug('sent', topic, payload)
 
 def seen_since(messages, time : float):
     devices = {}
@@ -143,7 +148,7 @@ def door_unlock(doorid):
 
     topic = mqtt_prefix + "/unlock"
     payload = '10'
-    send_mqtt(topic, payload)
+    mqtt_send(topic, payload)
     # FIXME: wait for and verify state change message
     return 'Door is now open'
 
