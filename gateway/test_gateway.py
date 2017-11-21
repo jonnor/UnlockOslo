@@ -8,9 +8,15 @@ import json
 
 app = gateway.app
 
-def test_unknown_door_404():
-    with app.test_client() as c:
-        r = c.post("doors/{}/unlock".format("unknown-door-id-666"))
+@pytest.mark.parametrize("verb,action", [
+    ("GET", "/state"),
+    ("POST", "/unlock"),
+    ("POST", "/lock"),
+])
+def test_unknown_door_404(verb, action):
+    doorid = "unknown-door-id-666"
+    with app.test_client() as client:
+        r = getattr(client, verb.lower())("doors/{}{}".format(doorid, action))
         body = r.data.decode('utf8')
         assert r.status_code == 404
         assert 'Unknown' in body

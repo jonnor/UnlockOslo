@@ -154,12 +154,22 @@ def door_unlock(doorid):
 
 @app.route('/doors/<doorid>/lock', methods=['POST'])
 def door_lock(doorid):
+    try:
+        door = doors[doorid]
+    except KeyError:
+        return ("Unknown door ID {}".format(doorid), 404)
+
     # FIXME: send lock message
     # FIXME: wait for and verify state change message
     return 'Door is now locked'
 
 @app.route('/doors/<doorid>/state')
 def door_state(doorid):
+    try:
+        door = doors[doorid]
+    except KeyError:
+        return ("Unknown door ID {}".format(doorid), 404)
+
     # TODO: return current state of door, as reported on MQTT
     raise NotImplementedError("Unknown system status")
 
