@@ -238,17 +238,36 @@ class LockParticipant(msgflo.Participant):
 
     msgflo.Participant.__init__(self, d, role)
 
+    ins = {
+        1: 25,
+        2: 10,
+        3: 24,
+        4: 22,
+        5: 23,
+        6: 27,
+        7: 18,
+        8: 17,
+    }
+    outs = {
+        1: 6,
+        2: 19,
+        3: 16,
+        4: 26,
+        5: 20,
+        6: 21,
+    }
+
     pin_mapping = {
         # in
-        'holdopen_button': ('in', 10),
-        'openbutton_outside': ('in', 11),
-        'openbutton_inside': ('in', 12),
-        'door_present': ('in', 17),
+        'holdopen_button': ('in', ins[1]),
+        'openbutton_outside': ('in', ins[2]),
+        'openbutton_inside': ('in', ins[3]),
+        'door_present': ('in', ins[4]),
         # out
-        'lock': ('out', 13),
-        'opener': ('out', 14),
-        'connected_light': ('out', 15),
-        'door_unlocked_light': ('out', 16),
+        'lock': ('out', outs[1]),
+        'opener': ('out', outs[2]),
+        'connected_light': ('out', outs[3]),
+        'door_unlocked_light': ('out', outs[4]),
     }
 
     # Take input from plain files, mostly useful for testing on non-Raspberry deives
