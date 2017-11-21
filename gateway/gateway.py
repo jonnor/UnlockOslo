@@ -138,7 +138,7 @@ def door_unlock(doorid):
 
     mqtt_prefix = door[0]
 
-    topic = mqtt_prefix + ".UNLOCK"
+    topic = mqtt_prefix + "/unlock"
     payload = '10'
     send_mqtt(topic, payload)
     # FIXME: wait for and verify state change message
