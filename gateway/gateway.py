@@ -134,7 +134,10 @@ def system_status():
 ## Door functionality
 @app.route('/doors/<doorid>/unlock', methods=['POST'])
 def door_unlock(doorid):
-    door = doors[doorid]
+    try:
+        door = doors[doorid]
+    except KeyError:
+        return ("Unknown door ID {}".format(doorid), 404)
 
     mqtt_prefix = door[0]
 

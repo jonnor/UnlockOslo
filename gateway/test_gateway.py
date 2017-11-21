@@ -3,18 +3,18 @@ import gateway
 
 import flask
 import pytest
+import requests
+import json
 
-@pytest.mark.skip()
-def test_door_state_unknown():
-    app = gateway.app
+app = gateway.app
 
-    with app.test_request_context():
-        u = flask.url_for('door_state', doorid='dør1')
-        assert u == 'fail'
-
-@pytest.mark.skip()
 def test_unknown_door_404():
-    pass
+    with app.test_client() as c:
+        r = c.post("doors/{}/unlock".format("unknown-door-id-666"))
+        assert r.status_code == 404
+        body = r.data.decode('utf8')
+        assert 'Unknown' in body
+        assert 'unknown-door-id-666' in body
 
 @pytest.mark.skip()
 def test_missing_credentials_403():
