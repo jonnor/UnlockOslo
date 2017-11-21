@@ -165,6 +165,8 @@ def setup_gpio(pinmap):
         else:
             # assumed to be a regular file that can be read/written to
             path = gpio
+            with open(path, 'w') as f:
+                f.write('0')
 
         files = input_files if direction == 'in' else output_files
         files[name] = path
@@ -185,6 +187,32 @@ def set_outputs(states : States, file_paths):
     }
     for name, on in s.items():
         set_gpio(file_paths[name], on)
+
+class AlwaysErroringParticipant(msgflo.Participant):
+  def __init__(self, role):
+    d = {
+      'component': 'dlock-oslo/DoorLock',
+      'label': '',
+      'icon': 'clock-o',
+      'inports': [
+        { 'id': 'unlock', 'type': 'number' },
+        { 'id': 'lock', 'type': 'number' },
+      ],
+      'outports': [
+        { 'id': 'state', 'type': 'string' },
+      ],
+    }
+    msgflo.Participant.__init__(self, d, role)
+
+  def process(self, inport, msg):
+    if inport == 'lock':
+        self.send('error', { 'message': "Lock request fails always" })
+    elif inport == 'unlock':
+        self.send('error', { 'message': "Unlock request fails always" })
+    else:
+        self.send('error', { 'message': 'Unknown port {}'.format(inport) })
+    self.ack(msg)
+
 
 class LockParticipant(msgflo.Participant):
   def __init__(self, role):
@@ -219,7 +247,7 @@ class LockParticipant(msgflo.Participant):
     # Take input from plain files, mostly useful for testing on non-Raspberry deives
     fake_gpio = os.environ.get('DLOCK_FAKE_GPIO')
     if fake_gpio:
-        pin_mapping = { p: (cfg[0], 'gpio{}'.format(cfg[1])) for p, cfg in pin_mapping.items() }
+        pin_mapping = { p: (cfg[0], '{}/gpio{}'.format(fake_gpio, cfg[1])) for p, cfg in pin_mapping.items() }
 
     i, o = setup_gpio(pin_mapping)
     self.input_files = i
