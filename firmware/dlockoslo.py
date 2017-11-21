@@ -254,6 +254,8 @@ class LockParticipant(msgflo.Participant):
     # Take input from plain files, mostly useful for testing on non-Raspberry deives
     fake_gpio = os.environ.get('DLOCK_FAKE_GPIO')
     if fake_gpio:
+        if not os.path.exists(fake_gpio):
+            os.mkdir(fake_gpio)
         pin_mapping = { p: (cfg[0], '{}/gpio{}'.format(fake_gpio, cfg[1])) for p, cfg in pin_mapping.items() }
 
     i, o = setup_gpio(pin_mapping)
