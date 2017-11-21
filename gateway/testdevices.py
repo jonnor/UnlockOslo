@@ -27,6 +27,11 @@ def get_participants():
     # for emulating timeout/device missing, send on MQTT topic which nothing uses
     return participants
 
+def run(done_cb=None):
+    participants = get_participants()
+    engine = msgflo.run(participants, done_cb=done_cb)
+    return participants, engine
+
 def main():
     participants = get_participants()
     waiter = gevent.event.AsyncResult()

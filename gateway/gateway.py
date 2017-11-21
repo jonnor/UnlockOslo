@@ -31,24 +31,52 @@ log.setLevel(level)
 
 discovery_messages = []
 mqtt_client = None
+mqtt_message_waiters = [] # queue instances
+
+class MessageWaiter():
+    def __init__(self, matcher, _queue=None):
+        if _queue is None:
+            _queue = queue.Queue()
+        self.queue = _queue
+        self.matcher = matcher
+
+    def check_match(self, topic, data):
+        try:
+            match = self.matcher(topic, data)
+            if match:
+                self.queue.put((topic, data))
+            return match
+        except Exception as e:
+            log_mqtt.warning('MesssageWaiter: Exception match check: {}'.format(e))
 
 def mqtt_message_received(client, u, message):
-    if message.topic != 'fbp':
-        log_mqtt.warning('Unknown MQTT topic {}'.format(message.topic))
+    log_mqtt.debug('received {}: {}'.format(message.topic, message.payload))
 
-    d = message.payload.decode('utf8')
-    m = json.loads(d)
+    if message.topic == 'fbp':
+        # Heartbeat messages
+        d = message.payload.decode('utf8')
+        m = json.loads(d)
 
-    device = m['payload']['role']
-    t = time.monotonic()
-    log_mqtt.debug('saw device {} at {}'.format(device, t))
-    m['time_received'] = t
+        device = m['payload']['role']
+        t = time.monotonic()
+        log_mqtt.debug('saw device {} at {}'.format(device, t))
+        m['time_received'] = t
 
-    # Persist so we can query for device status
-    if len(discovery_messages) == 100:
-        # Remove the oldest to make space
-        _oldest = discovery_messages.pop(0)
-    discovery_messages.append(m)
+        # Persist so we can query for device status
+        if len(discovery_messages) == 100:
+            # Remove the oldest to make space
+            _oldest = discovery_messages.pop(0)
+        discovery_messages.append(m)
+    else:
+        # Check responses
+        matches = []
+        for waiter in mqtt_message_waiters: 
+            m = waiter.check_match(message.topic, message.payload.decode('utf8'))
+            if m:
+                matches.append(m)
+        if len(matches) == 0:
+            log_mqtt.debug('No matches for message on: {}. {} waiters'.format(message.topic, len(mqtt_message_waiters)))
+
 
 def mqtt_subscribed(client, u, mid, granted_qos):
     log_mqtt.info('subscribed')
@@ -58,6 +86,16 @@ def mqtt_connected(client, u, f, rc):
     subscriptions = [
         ('fbp', 0),
     ]
+   
+    out_topics = ('islocked', 'isopen', 'error')
+    for doorid, door in doors.items():
+        basetopic = door[0]
+        for t in out_topics:
+            topic = "{}/{}".format(basetopic, t)
+            subscriptions.append((topic, 0))
+
+    print('s', subscriptions)
+
     client.subscribe(subscriptions)
     log_mqtt.info('subscribe()')
 
@@ -70,6 +108,7 @@ def create_client():
         client.username_pw_set(broker_info.username, broker_info.password)
     client.on_connect = mqtt_connected
     client.on_message = mqtt_message_received
+    client.on_subscribe = mqtt_subscribed
     host = broker_info.hostname
     port = broker_info.port or 1883
     client.connect(host, port, 60)
@@ -95,7 +134,7 @@ def mqtt_send(topic, payload):
 
     client = mqtt_client
     client.publish(topic, payload)
-    log_mqtt.debug('sent', topic, payload)
+    log_mqtt.debug('sent {}: {}'.format(topic, payload))
 
 def seen_since(messages, time : float):
     devices = {}
@@ -108,7 +147,10 @@ def seen_since(messages, time : float):
 
 app = flask.Flask(__name__)
 doors = {
-    'virtual-1': ('vitual-1',),
+    'virtual-1': ('virtual-1',),
+    'virtual-2': ('virtual-2',),
+    'erroring-1': ('erroring-1',),
+    'notresponding-1': ('notresponding-1',),
     'sorenga-1': ('sorenga-1',),
 }
 
@@ -146,11 +188,36 @@ def door_unlock(doorid):
 
     mqtt_prefix = door[0]
 
-    topic = mqtt_prefix + "/unlock"
+    # Subscribe
+    def unlock_or_error(topic, data):
+        iserror = topic == mqtt_prefix+'/error'
+        isunlocked = topic == mqtt_prefix+'/islocked' and data == 'false'
+        return iserror or isunlocked
+    wait_response = MessageWaiter(unlock_or_error)
+    mqtt_message_waiters.append(wait_response)
+
+    # Send message to request unlocking
     payload = '10'
-    mqtt_send(topic, payload)
-    # FIXME: wait for and verify state change message
-    return 'Door is now open'
+    mqtt_send(mqtt_prefix + "/unlock", payload)
+
+    # Wait for response
+    topic, data, timeout = None, None, None
+    try:
+        topic, data = wait_response.queue.get(timeout=5.0, block=True)
+    except queue.Empty:
+        timeout = ('Lock did not respond in time', 504)
+
+    # Handle response
+    mqtt_message_waiters.remove(wait_response)
+    if timeout:
+      return timeout
+
+    is_error = topic.endswith('/error') 
+    if is_error:
+      return ("Lock error: {}".format(data), 502)
+
+    return ('Lock is now open', 200)
+
 
 @app.route('/doors/<doorid>/lock', methods=['POST'])
 def door_lock(doorid):

@@ -207,6 +207,7 @@ class AlwaysErroringParticipant(msgflo.Participant):
       ],
       'outports': [
         { 'id': 'state', 'type': 'string' },
+        { 'id': 'error', 'type': 'string' },
       ],
     }
     msgflo.Participant.__init__(self, d, role)

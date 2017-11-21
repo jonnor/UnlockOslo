@@ -1,5 +1,6 @@
 
 import gateway
+import testdevices
 
 import flask
 import pytest
@@ -32,18 +33,25 @@ def test_wrong_credentials_403():
     pass
 
 
-def test_unlock_successful():
+@pytest.fixture(scope="module")
+def devices():
+    testdevices.run()
+
+def test_unlock_successful(devices):
     with app.test_client() as c:
-        doorid = "virtual-1"
-        r = c.post("doors/{}/unlock".format(doorid))
+        r = c.post("doors/virtual-1/unlock")
         body = r.data.decode('utf8')
         assert r.status_code == 200
 
-@pytest.mark.skip()
-def test_unlock_errored():
-    pass
+def test_unlock_errors(devices):
+    with app.test_client() as c:
+        r = c.post("doors/erroring-1/unlock")
+        body = r.data.decode('utf8')
+        assert r.status_code == 502
 
-@pytest.mark.skip()
-def test_unlock_timeout():
-    pass
+def test_unlock_timeout(devices):
+    with app.test_client() as c:
+        r = c.post("doors/notresponding-1/unlock")
+        body = r.data.decode('utf8')
+        assert r.status_code == 504
 
