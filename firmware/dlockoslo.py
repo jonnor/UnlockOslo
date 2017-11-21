@@ -15,6 +15,13 @@ import os.path
 import json
 import math
 
+import logging
+logging.basicConfig()
+log_level = os.environ.get('LOGLEVEL', 'info')
+level = getattr(logging, log_level.upper())
+log = logging.getLogger('firmware')
+log.setLevel(level)
+
 class Inputs():
     def __init__(self,
         openbutton_outside : bool = False,
@@ -289,9 +296,10 @@ class LockParticipant(msgflo.Participant):
     next = next_state(self.state, Inputs(**inputs))
     set_outputs(self.state, self.output_files)
 
+    # TODO: only log every minute if only time changes
     if inputs != self.inputs or next != self.state:
-        log = { 'inputs': inputs, 'state': next.__dict__ }
-        print(log)
+        entry = { 'inputs': inputs, 'state': next.__dict__ }
+        log.info(entry)
 
     self.state = next
     self.inputs = inputs
