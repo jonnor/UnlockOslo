@@ -173,7 +173,7 @@ doors = {
 # No auth
 @app.route('/')
 def index():
-  return 'unlock-oslo HTTP gateway'
+  return 'UnlockOslo device gateway'
 
 # No auth for easy integration with monitoring tools/services
 @app.route('/status')
@@ -291,7 +291,7 @@ def main():
     read_auth_db()
 
     port = os.environ.get('PORT', 5000)
-    ip = '127.0.0.1'  
+    ip = os.environ.get('INTERFACE', '127.0.0.1')
     server = gevent.wsgi.WSGIServer((ip, port), app)
     log.info('Gateway running on {}:{}'.format(ip, port))
     server.serve_forever()
