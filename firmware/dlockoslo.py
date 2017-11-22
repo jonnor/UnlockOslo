@@ -207,6 +207,7 @@ class AlwaysErroringParticipant(msgflo.Participant):
       ],
       'outports': [
         { 'id': 'state', 'type': 'string' },
+        { 'id': 'error', 'type': 'string' },
       ],
     }
     msgflo.Participant.__init__(self, d, role)
@@ -229,10 +230,12 @@ class LockParticipant(msgflo.Participant):
       'icon': 'clock-o',
       'inports': [
         { 'id': 'unlock', 'type': 'number' },
-        { 'id': 'lock', 'type': 'number' },
+        { 'id': 'lock', 'type': 'bool' },
       ],
       'outports': [
-        { 'id': 'state', 'type': 'string' },
+        { 'id': 'islocked', 'type': 'bool' },
+        { 'id': 'openeractive', 'type': 'bool' },
+        { 'id': 'doorpresent', 'type': 'bool' },
       ],
     }
 
@@ -288,7 +291,6 @@ class LockParticipant(msgflo.Participant):
     )
     self.inputs = Inputs()
 
-    self.connected = False
     gevent.Greenlet.spawn(self.loop)
 
   def process(self, inport, msg):
@@ -307,20 +309,26 @@ class LockParticipant(msgflo.Participant):
 
   def recalculate_state(self, mqtt_request=None):
     # Retrieve current inputs
+    connected = getattr(self, '_engine', None) and self._engine.connected
     inputs = dict(
         current_time=math.ceil(time.monotonic()),
         mqtt_request=mqtt_request,
-        mqtt_connected=self.connected,
+        mqtt_connected=connected,
     )
     gpio_inputs = { i: read_boolean(p) for i, p in self.input_files.items() }
     inputs.update(gpio_inputs)
     next = next_state(self.state, Inputs(**inputs))
     set_outputs(self.state, self.output_files)
 
-    # TODO: only log every minute if only time changes
-    if inputs != self.inputs or next != self.state:
+    state_changed = next.__dict__ != self.state.__dict__
+    if state_changed:
         entry = { 'inputs': inputs, 'state': next.__dict__ }
         log.info(entry)
+
+        if connected:
+            self.send('islocked', next.lock.state == 'Locked')
+            self.send('openeractive', next.opener.state != 'Inactive')
+            self.send('doorpresent', inputs['door_present'])
 
     self.state = next
     self.inputs = inputs
