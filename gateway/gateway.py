@@ -17,6 +17,7 @@ import os
 import json
 import time
 import queue
+import functools
 
 import logging
 logging.basicConfig()
@@ -94,8 +95,6 @@ def mqtt_connected(client, u, f, rc):
             topic = "{}/{}".format(basetopic, t)
             subscriptions.append((topic, 0))
 
-    print('s', subscriptions)
-
     client.subscribe(subscriptions)
     log_mqtt.info('subscribe()')
 
@@ -145,7 +144,23 @@ def seen_since(messages, time : float):
             devices[d] = time
     return devices
 
+def require_basic_auth(f):
+    def check_auth(username, password):
+        actual_password = api_users.get(username, '')
+        return actual_password == password
+
+    @functools.wraps(f)
+    def decorated(*args, **kwargs):
+        auth = flask.request.authorization
+        if not auth:
+            return ("Missing Authorization", 401)
+        if not check_auth(auth.username, auth.password):
+            return ("Wrong Authorization", 403)
+        return f(*args, **kwargs)
+    return decorated
+
 app = flask.Flask(__name__)
+api_users = {}
 doors = {
     'virtual-1': ('virtual-1',),
     'virtual-2': ('virtual-2',),
@@ -155,10 +170,12 @@ doors = {
 }
 
 ## System functionality
+# No auth
 @app.route('/')
 def index():
   return 'unlock-oslo HTTP gateway'
 
+# No auth for easy integration with monitoring tools/services
 @app.route('/status')
 def system_status():
     # TODO: allow specifying devices to ignore
@@ -185,6 +202,7 @@ def assert_not_outside(value, lower, upper):
 
 ## Door functionality
 @app.route('/doors/<doorid>/unlock', methods=['POST'])
+@require_basic_auth
 def door_unlock(doorid):
     try:
         door = doors[doorid]
@@ -238,6 +256,7 @@ def door_unlock(doorid):
 
 
 @app.route('/doors/<doorid>/lock', methods=['POST'])
+@require_basic_auth
 def door_lock(doorid):
     try:
         door = doors[doorid]
@@ -249,6 +268,7 @@ def door_lock(doorid):
     return 'Door is now locked'
 
 @app.route('/doors/<doorid>/state')
+@require_basic_auth
 def door_state(doorid):
     try:
         door = doors[doorid]
@@ -258,10 +278,17 @@ def door_state(doorid):
     # TODO: return current state of door, as reported on MQTT
     raise NotImplementedError("Unknown system status")
 
+def read_auth_db():
+    e = os.environ.get('DLOCK_API_CREDENTIALS', '')
+    for credentials in e.split(','):
+      if credentials:
+        user, pw = credentials.split(':')
+        api_users[user] = pw
 
 def main():
     # Make sure we are connected to MQTT even though no requests have come in
     mqtt_client = create_client()
+    read_auth_db()
 
     port = os.environ.get('PORT', 5000)
     ip = '127.0.0.1'  
