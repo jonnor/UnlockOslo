@@ -86,3 +86,28 @@ def test_unlock_with_duration(devices):
         body = r.data.decode('utf8')
         assert r.status_code == 200
 
+
+# POST /door/id/lock
+@pytest.mark.skip()
+def test_lock_successful(devices):
+    with app.test_client() as c:
+        r = c.post("doors/notresponding-1/lock?timeout=0.5", **authed())
+        body = r.data.decode('utf8')
+        assert r.status_code == 504
+
+
+# GET /status
+@pytest.mark.skip()
+def test_status_missing_device_503(devices):
+    with app.test_client() as c:
+        r = c.post("status?timeout=0.5", **authed())
+        body = r.data.decode('utf8')
+        assert r.status_code == 503
+
+@pytest.mark.skip()
+def test_status_all_devices_ok(devices):
+    with app.test_client() as c:
+        r = c.post("status?timeout=0.5", **authed())
+        body = r.data.decode('utf8')
+        assert r.status_code == 200
+
