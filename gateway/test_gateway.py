@@ -54,3 +54,9 @@ def test_unlock_timeout(devices):
         body = r.data.decode('utf8')
         assert r.status_code == 504
 
+def test_unlock_with_duration(devices):
+    with app.test_client() as c:
+        r = c.post("doors/virtual-1/unlock?duration=5")
+        body = r.data.decode('utf8')
+        assert r.status_code == 200
+

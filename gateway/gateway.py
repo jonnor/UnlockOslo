@@ -178,8 +178,10 @@ def system_status():
     return "All {} door devices OK".format(len(expected))
 
 
-def constrain(value, lower, upper):
-  return min(max(value, lower), upper)
+def assert_not_outside(value, lower, upper):
+  between = lower <= value <= upper
+  if not between:
+      raise ValueError("{} is outside [{}, {}]".format(value, lower, upper))
 
 ## Door functionality
 @app.route('/doors/<doorid>/unlock', methods=['POST'])
@@ -191,9 +193,17 @@ def door_unlock(doorid):
 
     try:
         timeout = float(flask.request.args.get('timeout', '5.0'))
-        timeout = constrain(timeout, 0.2, 60.0)
+        assert_not_outside(timeout, 0.1, 60.0)
     except ValueError:
         return ("Invalid timeout specified", 422)
+
+    try:
+        duration = flask.request.args.get('duration', None)
+        if duration:
+          duration = int(duration)
+          assert_not_outside(duration, 1, 10*60)
+    except ValueError as e:
+        return ("Invalid duration: {}".format(e), 422)
 
     mqtt_prefix = door[0]
     # Subscribe
@@ -205,7 +215,7 @@ def door_unlock(doorid):
     mqtt_message_waiters.append(wait_response)
 
     # Send message to request unlocking
-    payload = '10'
+    payload = 'true' if duration is None else str(duration)
     mqtt_send(mqtt_prefix + "/unlock", payload)
 
     # Wait for response
