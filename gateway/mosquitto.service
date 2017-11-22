@@ -1,0 +1,12 @@
+[Service]
+ExecStart=/usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
+Restart=always
+RestartSec=5
+User=mosquitto
+Group=mosquitto
+
+[Unit]
+After=network-online.target
+
+[Install]
+WantedBy=multi-user.target
