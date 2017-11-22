@@ -38,7 +38,7 @@ def devices():
 
 def test_unlock_successful(devices):
     with app.test_client() as c:
-        r = c.post("doors/virtual-1/unlock")
+        r = c.post("doors/virtual-1/unlock?timeout=1.0")
         body = r.data.decode('utf8')
         assert r.status_code == 200
 
@@ -50,7 +50,7 @@ def test_unlock_errors(devices):
 
 def test_unlock_timeout(devices):
     with app.test_client() as c:
-        r = c.post("doors/notresponding-1/unlock")
+        r = c.post("doors/notresponding-1/unlock?timeout=0.5")
         body = r.data.decode('utf8')
         assert r.status_code == 504
 

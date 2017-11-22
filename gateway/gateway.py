@@ -178,6 +178,9 @@ def system_status():
     return "All {} door devices OK".format(len(expected))
 
 
+def constrain(value, lower, upper):
+  return min(max(value, lower), upper)
+
 ## Door functionality
 @app.route('/doors/<doorid>/unlock', methods=['POST'])
 def door_unlock(doorid):
@@ -186,8 +189,13 @@ def door_unlock(doorid):
     except KeyError:
         return ("Unknown door ID {}".format(doorid), 404)
 
-    mqtt_prefix = door[0]
+    try:
+        timeout = float(flask.request.args.get('timeout', '5.0'))
+        timeout = constrain(timeout, 0.2, 60.0)
+    except ValueError:
+        return ("Invalid timeout specified", 422)
 
+    mqtt_prefix = door[0]
     # Subscribe
     def unlock_or_error(topic, data):
         iserror = topic == mqtt_prefix+'/error'
@@ -201,16 +209,16 @@ def door_unlock(doorid):
     mqtt_send(mqtt_prefix + "/unlock", payload)
 
     # Wait for response
-    topic, data, timeout = None, None, None
+    topic, data, timedout = None, None, None
     try:
-        topic, data = wait_response.queue.get(timeout=5.0, block=True)
+        topic, data = wait_response.queue.get(block=True, timeout=timeout)
     except queue.Empty:
-        timeout = ('Lock did not respond in time', 504)
+        timedout = ('Lock did not respond in time', 504)
 
     # Handle response
     mqtt_message_waiters.remove(wait_response)
-    if timeout:
-      return timeout
+    if timedout:
+      return timedout
 
     is_error = topic.endswith('/error') 
     if is_error:
