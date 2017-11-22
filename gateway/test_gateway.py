@@ -4,7 +4,6 @@ import testdevices
 
 import flask
 import pytest
-import requests
 import json
 
 app = gateway.app
