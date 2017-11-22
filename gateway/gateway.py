@@ -109,7 +109,11 @@ def create_client():
     client.on_message = mqtt_message_received
     client.on_subscribe = mqtt_subscribed
     host = broker_info.hostname
-    port = broker_info.port or 1883
+    default_port = 1883
+    if broker_info.scheme == 'mqtts':
+        default_port = 8883
+        client.tls_set()
+    port = broker_info.port or default_port
     client.connect(host, port, 60)
     log_mqtt.info('connect() done')
 
