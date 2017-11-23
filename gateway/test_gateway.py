@@ -115,3 +115,9 @@ def test_status_all_devices_ok(devices):
         body = r.data.decode('utf8')
         assert r.status_code == 200, body
 
+def test_status_seen_but_too_long_ago(devices):
+    with app.test_client() as c:
+        r = c.get("status?ignore=sorenga-1&ignore=notresponding-1&timeperiod=1")
+        body = r.data.decode('utf8')
+        assert r.status_code == 503, body
+
