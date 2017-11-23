@@ -222,6 +222,25 @@ class AlwaysErroringParticipant(msgflo.Participant):
         self.send('error', 'Unknown port {}'.format(inport))
     self.ack(msg)
 
+# Board input/output to GPIO pin mapping
+ins = {
+    1: 25,
+    2: 10,
+    3: 24,
+    4: 22,
+    5: 23,
+    6: 27,
+    7: 18,
+    8: 17,
+}
+outs = {
+    1: 6,
+    2: 19,
+    3: 16,
+    4: 26,
+    5: 20,
+    6: 21,
+}
 
 class LockParticipant(msgflo.Participant):
   def __init__(self, role):
@@ -241,25 +260,6 @@ class LockParticipant(msgflo.Participant):
     }
 
     msgflo.Participant.__init__(self, d, role)
-
-    ins = {
-        1: 25,
-        2: 10,
-        3: 24,
-        4: 22,
-        5: 23,
-        6: 27,
-        7: 18,
-        8: 17,
-    }
-    outs = {
-        1: 6,
-        2: 19,
-        3: 16,
-        4: 26,
-        5: 20,
-        6: 21,
-    }
 
     pin_mapping = {
         # in
