@@ -17,7 +17,7 @@ def test_simple():
 
     # unlock, trigger dooropener
     inputs['openbutton_outside'] = True
-    inputs['mqtt_request'] = True
+    inputs['mqtt_request'] = ('unlock', True)
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs)) 
     assert states.connected_light == True
     assert states.lock.state == 'Unlocked'
@@ -26,7 +26,7 @@ def test_simple():
     # forward until dooropened deactived, trigger time-based door unlocking
     inputs['current_time'] = 130
     inputs['openbutton_outside'] = False
-    inputs['mqtt_request'] = 30 
+    inputs['mqtt_request'] = ('unlock', 30) 
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
     assert states.opener.state == 'Inactive'
     assert states.lock.state == 'TemporarilyUnlocked'

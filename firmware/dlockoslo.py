@@ -95,18 +95,20 @@ def next_state(current: States, inputs: Inputs) -> States:
     # Doorlock
     lock = current.lock
     if i.mqtt_request is not None:
-        data = i.mqtt_request
-        if isinstance(data, bool) and data == True:
+        action, data = i.mqtt_request
+        # unlock permanently
+        if action == 'unlock' and isinstance(data, bool) and data == True:
             lock = Unlocked(since=i.current_time)
-        elif isinstance(data, bool) and data == False:
-            lock = Locked(since=i.current_time)
-        # number of seconds
-        elif isinstance(data, int):
+        # unlock for number of seconds
+        elif action == 'unlock' and isinstance(data, int):
             until = i.current_time + data
             lock = TemporarilyUnlocked(since=i.current_time, until=until)
+        # lock permanently
+        elif action == 'lock' and isinstance(data, bool) and data == True:
+            lock = Locked(since=i.current_time)
         else:
             raise ValueError('Invalid MQTT request data: {}'.format(data))
-    
+
     if lock.state == 'TemporarilyUnlocked' and i.current_time >= lock.until:
         lock = Locked(since=i.current_time)
 
@@ -295,9 +297,9 @@ class LockParticipant(msgflo.Participant):
 
   def process(self, inport, msg):
     if inport == 'unlock':
-        self.recalculate_state(msg.data)
+        self.recalculate_state((inport, msg.data))
     elif inport == 'lock':
-        pass
+        self.recalculate_state((inport, msg.data))
     else:
         pass
     self.ack(msg)
