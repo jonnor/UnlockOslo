@@ -70,12 +70,15 @@ def test_unlock_successful(devices):
         r = c.post("doors/virtual-1/unlock?timeout=1.0", **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 200
+        assert 'unlocked' in body
 
 def test_unlock_errors(devices):
     with app.test_client() as c:
         r = c.post("doors/erroring-1/unlock", **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 502
+        assert 'error' in body
+        assert 'fails always' in body
 
 def test_unlock_timeout(devices):
     with app.test_client() as c:
@@ -85,19 +88,33 @@ def test_unlock_timeout(devices):
 
 def test_unlock_with_duration(devices):
     with app.test_client() as c:
-        r = c.post("doors/virtual-1/unlock?duration=5", **authed())
+        r = c.post("doors/virtual-1/unlock?duration=1", **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 200
+        gevent.sleep(2) # ensure is locked again at end of test
 
 
 # POST /door/id/lock
-@pytest.mark.skip()
 def test_lock_successful(devices):
+    with app.test_client() as c:
+        r = c.post("doors/virtual-1/lock", **authed())
+        body = r.data.decode('utf8')
+        assert r.status_code == 200
+        assert ' locked' in body
+
+def test_lock_timeout(devices):
     with app.test_client() as c:
         r = c.post("doors/notresponding-1/lock?timeout=0.5", **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 504
 
+def test_lock_errors(devices):
+    with app.test_client() as c:
+        r = c.post("doors/erroring-1/lock", **authed())
+        body = r.data.decode('utf8')
+        assert r.status_code == 502
+        assert 'error' in body
+        assert 'fails always' in body
 
 # GET /status
 def test_status_missing_device_503(devices):

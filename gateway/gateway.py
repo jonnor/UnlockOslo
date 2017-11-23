@@ -252,7 +252,7 @@ def door_unlock(doorid):
     try:
         topic, data = wait_response.queue.get(block=True, timeout=timeout)
     except queue.Empty:
-        timedout = ('Lock did not respond in time', 504)
+        timedout = ('Door did not respond in time', 504)
 
     # Handle response
     mqtt_message_waiters.remove(wait_response)
@@ -261,9 +261,9 @@ def door_unlock(doorid):
 
     is_error = topic.endswith('/error') 
     if is_error:
-      return ("Lock error: {}".format(data), 502)
+      return ("Door unlock error: {}".format(data), 502)
 
-    return ('Lock is now open', 200)
+    return ('Door is now unlocked', 200)
 
 
 @app.route('/doors/<doorid>/lock', methods=['POST'])
@@ -274,9 +274,41 @@ def door_lock(doorid):
     except KeyError:
         return ("Unknown door ID {}".format(doorid), 404)
 
-    # FIXME: send lock message
-    # FIXME: wait for and verify state change message
-    return 'Door is now locked'
+    try:
+        timeout = float(flask.request.args.get('timeout', '5.0'))
+        assert_not_outside(timeout, 0.1, 60.0)
+    except ValueError:
+        return ("Invalid timeout specified", 422)
+
+    mqtt_prefix = door[0]
+    # Subscribe
+    def locked_or_error(topic, data):
+        iserror = topic == mqtt_prefix+'/error'
+        islocked = topic == mqtt_prefix+'/islocked' and data == 'true'
+        return iserror or islocked
+    wait_response = MessageWaiter(locked_or_error)
+    mqtt_message_waiters.append(wait_response)
+
+    # Send message to request unlocking
+    mqtt_send(mqtt_prefix + "/lock", "true")
+
+    # Wait for response
+    topic, data, timedout = None, None, None
+    try:
+        topic, data = wait_response.queue.get(block=True, timeout=timeout)
+    except queue.Empty:
+        timedout = ('Door did not respond in time', 504)
+
+    # Handle response
+    mqtt_message_waiters.remove(wait_response)
+    if timedout:
+      return timedout
+
+    if topic.endswith('/error') :
+      return ("Door lock error: {}".format(data), 502)
+
+    return ('Door is now locked', 200)
+
 
 @app.route('/doors/<doorid>/state')
 @require_basic_auth
