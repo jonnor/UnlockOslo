@@ -13,6 +13,18 @@ create homedir,
 no login,
 add to `gpio` group
 
-### Install firmware
+### Setup firmware
+
+git clone https://github.com/jonnor/unlockoslo
+
+### Install systemd .service file
+
+```
+dlock-firmware
+```
+
+systemctl enable dlock-firmware
+
+### Install SSH call-home
 
 TODO: document
