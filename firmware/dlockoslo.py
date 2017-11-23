@@ -208,7 +208,6 @@ class AlwaysErroringParticipant(msgflo.Participant):
         { 'id': 'lock', 'type': 'number' },
       ],
       'outports': [
-        { 'id': 'state', 'type': 'string' },
         { 'id': 'error', 'type': 'string' },
       ],
     }
@@ -216,11 +215,11 @@ class AlwaysErroringParticipant(msgflo.Participant):
 
   def process(self, inport, msg):
     if inport == 'lock':
-        self.send('error', { 'message': "Lock request fails always" })
+        self.send('error', "Lock request fails always")
     elif inport == 'unlock':
-        self.send('error', { 'message': "Unlock request fails always" })
+        self.send('error', "Unlock request fails always")
     else:
-        self.send('error', { 'message': 'Unknown port {}'.format(inport) })
+        self.send('error', 'Unknown port {}'.format(inport))
     self.ack(msg)
 
 
