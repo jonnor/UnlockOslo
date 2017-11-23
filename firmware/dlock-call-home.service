@@ -1,0 +1,14 @@
+[Unit]
+Description=Phone Home Reverse SSH Service
+ConditionPathExists=|/usr/bin
+After=network.target
+
+[Service]
+User=dlock
+ExecStart=/opt/dlock/dlock-call-home
+# Restart every >2 seconds to avoid StartLimitInterval failure
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

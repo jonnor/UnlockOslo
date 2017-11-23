@@ -1,0 +1,11 @@
+#!/usr/bin/bash -xe
+
+BASEPORT=2000
+SSH_OPTIONS="-NTC -o ServerAliveInterval=120 -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=no"
+
+host=$(hostname)
+devicenumber=${host##*-}
+port=$((BASEPORT+devicenumber))
+echo "Using port $port"
+
+exec /usr/bin/ssh $SSH_OPTIONS -R $port:localhost:22 hostjumper@dlock.trygvis.io
