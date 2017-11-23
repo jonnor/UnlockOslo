@@ -1,0 +1,11 @@
+- hosts: '{{ hosts }}'
+  remote_user: '{{ user }}'
+  become: True
+  tasks:
+  - name: Packages
+    apt:
+      name: "{{ item }}"
+      install_recommends: no
+    with_items:
+      - git
+      - etckeeper

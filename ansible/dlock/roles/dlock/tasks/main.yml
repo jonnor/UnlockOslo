@@ -1,0 +1,81 @@
+- name: Dlock gateway
+  tags: dlock
+  block:
+  - name: Install packages
+    apt:
+      name: "{{ item }}"
+      install_recommends: no
+    with_items:
+      - python3-pip
+      - git
+  - name: dlock dir
+    file:
+      path: /opt/dlock
+      owner: dlock
+      group: dlock
+      state: directory
+
+  - name: Check out dlock repository
+    git:
+      repo: 'https://github.com/jonnor/dlock-oslo'
+      dest: /opt/dlock/src
+      version: master
+
+- name: Letsencrypt
+  tags: letsencrypt
+  become: yes
+  block:
+  # TODO: generate certificates with letsencrypt
+  - name: Chmod certificates
+    file:
+      path: "/etc/letsencrypt/{{ item }}"
+      owner: mosquitto
+      group: root
+    with_items:
+      - live/dlock.trygvis.io
+      - archive/dlock.trygvis.io
+  - name: Chmod certificates
+    file:
+      path: "/etc/letsencrypt/{{ item }}"
+      mode: 0755
+    with_items:
+      - live
+      - archive
+
+- name: Mosquitto
+  tags: mosquitto
+  become: yes
+  block:
+  - name: Install Mosquitto
+    apt:
+      name: "{{ item }}"
+      install_recommends: no
+    with_items:
+      - mosquitto
+      - mosquitto-clients
+  - name: Mosquitto configuration
+    copy:
+      src: etc/mosquitto/conf.d/dlock.conf
+      dest: /etc/mosquitto/conf.d/dlock.conf
+
+- name: Nginx
+  tags: nginx
+  become: yes
+  block:
+  - name: Install Nginx
+    apt:
+      name: "{{ item }}"
+      install_recommends: no
+    with_items:
+      - nginx
+
+  - name: nginx site dlock.trygvis.io
+    copy:
+      src: etc/nginx/sites-available/dlock.trygvis.io
+      dest: /etc/nginx/sites-available/dlock.trygvis.io
+
+  - name: nginx enable site
+    file:
+      src: ../sites-available/dlock.trygvis.io
+      dest: /etc/nginx/sites-enabled/dlock.trygvis.io
+      state: link

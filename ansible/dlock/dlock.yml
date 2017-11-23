@@ -1,0 +1,15 @@
+---
+- hosts: dlock
+  roles:
+    - network
+    - dlock
+
+  tasks:
+  - name: Install packages
+    apt:
+      name: "{{ item }}"
+      install_recommends: no
+    with_items:
+      - vim-nox
+      - aptitude
+      - ansible

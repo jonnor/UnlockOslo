@@ -1,0 +1,7 @@
+- name: configure name resolution
+  tags: network
+  copy:
+    dest: /etc/resolv.conf
+    content: |
+      nameserver 8.8.8.8
+      nameserver 8.8.4.4

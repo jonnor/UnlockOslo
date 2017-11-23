@@ -27,6 +27,8 @@ pip3 install --user -r gateway/requirements.txt
 ### Add config files
 Files in this folder
 
+Managed by ansible:
+
 ```
 cp dlock-mosquitto.conf /etc/mosquitto/conf.d/
 cp dlock.trygvis.io /etc/nginx/sites-available/
@@ -50,6 +52,8 @@ daemon-reload and systemctl enable ....
 
 ### Allow Mosquitto to read Lets Encrypt certs
 
+
+Managed by Ansible
 ```
 chown -R mosquitto:root /etc/letsencrypt/live/dlock.trygvis.io
 chown -R mosquitto:root /etc/letsencrypt/archive/dlock.trygvis.io
