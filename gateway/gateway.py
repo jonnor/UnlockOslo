@@ -182,15 +182,18 @@ def index():
 # No auth for easy integration with monitoring tools/services
 @app.route('/status')
 def system_status():
-    # TODO: allow specifying time interval
-    since = time.monotonic() - 1*60
-    seen_times = seen_since(discovery_messages, time=since)
+    timeperiod = float(flask.request.args.get('timeperiod', '60'))
+    assert_not_outside(timeperiod, 10, 10*60)
 
     default_ignore = os.environ.get('DLOCK_IGNORE_MISSING', 'notresponding-1').split(',')
     ignored = flask.request.args.getlist('ignore')
     if len(ignored) == 0:
         ignored = default_ignore
     ignored = set(ignored)
+
+    # Check which devices we've seen and not
+    since = time.monotonic() - timeperiod
+    seen_times = seen_since(discovery_messages, time=since)
 
     seen = set(seen_times.keys())
     expected = set(doors.keys())

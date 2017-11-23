@@ -107,6 +107,7 @@ def test_status_missing_device_503(devices):
         assert r.status_code == 503
         assert 'Missing' in body
         assert 'sorenga-1' in body # not in testdevice set
+        assert not 'virtual-1' in body
 
 def test_status_all_devices_ok(devices):
     with app.test_client() as c:
