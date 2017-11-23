@@ -4,6 +4,7 @@ import testdevices
 
 import flask
 import pytest
+import gevent
 import json
 import base64
 
@@ -58,7 +59,9 @@ def test_wrong_password_403():
 
 @pytest.fixture(scope="module")
 def devices():
+    gateway.mqtt_client = gateway.create_client()
     testdevices.run()
+    gevent.sleep(1) # let the devices spin up
 
 
 # POST /door/id/unlock
@@ -97,17 +100,17 @@ def test_lock_successful(devices):
 
 
 # GET /status
-@pytest.mark.skip()
 def test_status_missing_device_503(devices):
     with app.test_client() as c:
-        r = c.post("status?timeout=0.5", **authed())
+        r = c.get("status")
         body = r.data.decode('utf8')
         assert r.status_code == 503
+        assert 'Missing' in body
+        assert 'sorenga-1' in body # not in testdevice set
 
-@pytest.mark.skip()
 def test_status_all_devices_ok(devices):
     with app.test_client() as c:
-        r = c.post("status?timeout=0.5", **authed())
+        r = c.get("status?ignore=sorenga-1&ignore=notresponding-1")
         body = r.data.decode('utf8')
-        assert r.status_code == 200
+        assert r.status_code == 200, body
 
