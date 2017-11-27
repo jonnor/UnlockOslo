@@ -1,4 +1,4 @@
-users:
+superusers:
   - username: trygvis
     state: present
     authorized_keys: |

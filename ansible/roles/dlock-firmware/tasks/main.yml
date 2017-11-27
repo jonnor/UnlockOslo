@@ -9,11 +9,17 @@
       - python3-pip
       - virtualenv
       - git
-  - name: dlock user
+  - name: Ensure no default pi user/pass
+    user:
+      name: pi
+      state: absent
+      remove: yes
+      force: yes # in case some process still uses the user
+  - name: dlock unprivileged user
     user:
       name: dlock
       state: present
-      group: gpio
+      groups: gpio
   - name: dlock-firmware root dir
     file:
       path: /opt/dlock

@@ -1,6 +1,5 @@
 ---
 - hosts: doors
-  remote_user: pi
   roles:
     - network
     - dlock-firmware
