@@ -1,1 +1,1 @@
-broker_url: "mqtt://dlock.trygvis.io"
+broker_url: "mqtts://dlock.trygvis.io"

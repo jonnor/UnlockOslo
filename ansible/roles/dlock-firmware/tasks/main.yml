@@ -1,7 +1,7 @@
 - name: Dlock firmware
   tags: dlock-firmware
   block:
-  - name: Install packages
+  - name: Install system packages
     apt:
       name: "{{ item }}"
       install_recommends: no
@@ -19,6 +19,10 @@
       repo: 'https://github.com/jonnor/dlock-oslo'
       dest: /opt/dlock/src
       version: master
+  - name: Install package dependencies
+    pip:
+      chdir: '/opt/dlock/src'
+      requirements: './firmware/requirements.txt'
   - name: Set permissions on dlock-firmware dir
     file:
       path: /opt/dlock

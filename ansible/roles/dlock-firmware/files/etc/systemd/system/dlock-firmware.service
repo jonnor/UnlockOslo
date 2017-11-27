@@ -1,5 +1,5 @@
 [Service]
-ExecStart="/usr/bin/python3 ./firmware/dlockoslo.py"
+ExecStart=/usr/bin/python3 /opt/dlock/src/firmware/dlockoslo.py
 WorkingDirectory=/opt/dlock/src
 Restart=always
 RestartSec=3
