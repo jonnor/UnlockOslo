@@ -7,6 +7,7 @@
       install_recommends: no
     with_items:
       - python3-pip
+      - virtualenv
       - git
   - name: dlock-firmware root dir
     file:
@@ -23,6 +24,7 @@
     pip:
       chdir: '/opt/dlock/src'
       requirements: './firmware/requirements.txt'
+      virtualenv: /opt/dlock/src/venv
   - name: Set permissions on dlock-firmware dir
     file:
       path: /opt/dlock
