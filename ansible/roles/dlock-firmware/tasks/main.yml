@@ -25,6 +25,7 @@
       chdir: '/opt/dlock/src'
       requirements: './firmware/requirements.txt'
       virtualenv: /opt/dlock/src/venv
+      virtualenv_python: 'python3.5'
   - name: Set permissions on dlock-firmware dir
     file:
       path: /opt/dlock
@@ -48,6 +49,6 @@
   - name: Start dlock service
     systemd:
       name: dlock-firmware
-      state: started
+      state: restarted # TODO, only restart when needed 
       enabled: yes
-      daemon_reload: yes
+      daemon_reload: yes # TODO, only restart on need
