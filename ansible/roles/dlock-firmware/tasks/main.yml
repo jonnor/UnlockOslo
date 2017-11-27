@@ -9,6 +9,11 @@
       - python3-pip
       - virtualenv
       - git
+  - name: dlock user
+    user:
+      name: dlock
+      state: present
+      group: gpio
   - name: dlock-firmware root dir
     file:
       path: /opt/dlock
