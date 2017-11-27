@@ -1,0 +1,22 @@
+- name: Dlock firmware
+  tags: dlock-firmware
+  block:
+  - name: Install packages
+    apt:
+      name: "{{ item }}"
+      install_recommends: no
+    with_items:
+      - python3-pip
+      - git
+  - name: dlock-firmware root dir
+    file:
+      path: /opt/dlock
+      owner: dlock
+      group: dlock
+      state: directory
+
+  - name: Check out dlock repository
+    git:
+      repo: 'https://github.com/jonnor/dlock-oslo'
+      dest: /opt/dlock/src
+      version: master

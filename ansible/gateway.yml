@@ -2,7 +2,7 @@
 - hosts: dlock
   roles:
     - network
-    - dlock
+    - dlock-gateway
 
   tasks:
   - name: Install packages

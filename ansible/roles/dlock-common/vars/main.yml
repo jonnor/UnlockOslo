@@ -1,0 +1,9 @@
+users:
+  - username: trygvis
+    state: present
+    authorized_keys: |
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+I9Xa11yaOzGCBkJQEYExYL7gSWYwdOGgT2KBMnKur trygvis@arius
+  - username: jonnor
+    state: present
+    authorized_keys: |
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCRBQiYf6X7stPARBtfaPdVPkwG5ixmFiWRHhKzKIpbRX3DG2LcJgTWOoqysbs+lAxsMeHXROjkAcyEosxjWb+ng8HuPGP2SSNaECwVI7e/Ey6WEYgU+UrmV0su7f8m1gcmBz4esWfY02k+ojR3MxzrPdSHOnsBmofIgbcqLV/Fozf5FxpKHkneYfbFMcNvXAESnbg8UvMXcxMWbJTiRKntAayB1NJ5WfZADIrCmDhDN52I7AvTOqamdgAGt1pmpuuEacB/rCJqBZyDSpP9cOrnBfA4a6REErHlLK1OuDhBGN1kmhHMRtvmM4xbwgt8U++1zgokHVt4iXZi4jVsowj jon@jon-portable

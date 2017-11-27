@@ -1,0 +1,5 @@
+---
+- hosts: doors
+  roles:
+    - network
+    - dlock-firmware
