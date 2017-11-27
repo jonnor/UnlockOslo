@@ -335,7 +335,9 @@ class LockParticipant(msgflo.Participant):
     self.inputs = inputs
 
 def main():
-    role = sys.argv[1]
+    role = os.environ.get('DLOCK_ROLE')
+    if len(sys.argv) >= 2:
+        role = sys.argv[1]
     p = msgflo.main(LockParticipant, role=role)
 
 if __name__ == '__main__':
