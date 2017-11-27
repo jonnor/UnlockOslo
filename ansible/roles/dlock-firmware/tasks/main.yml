@@ -1,6 +1,12 @@
 - name: Dlock firmware
   tags: dlock-firmware
   block:
+  - name: Ensure no default pi user/pass
+    user:
+      name: pi
+      state: absent
+      remove: yes
+      force: yes # in case some process still uses the user
   - name: Install system packages
     apt:
       name: "{{ item }}"
@@ -9,12 +15,6 @@
       - python3-pip
       - virtualenv
       - git
-  - name: Ensure no default pi user/pass
-    user:
-      name: pi
-      state: absent
-      remove: yes
-      force: yes # in case some process still uses the user
   - name: dlock unprivileged user
     user:
       name: dlock
