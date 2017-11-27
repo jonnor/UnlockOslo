@@ -1,10 +1,12 @@
 dlock ansible_host=dlock.trygvis.io
-door1 ansible_host=door1.dlock.trygvis.io
-door2 ansible_host=door2.dlock.trygvis.io
+dlock-1 ansible_host=door1.dlock.trygvis.io
+dlock-2 ansible_host=door2.dlock.trygvis.io
+dlock-0 ansible_host=dlock-dev.local
 
 [gateways]
 dlock
 
 [doors]
-door1
-door2
+dlock-0
+dlock-1
+dlock-2

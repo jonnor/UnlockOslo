@@ -14,9 +14,34 @@
       owner: dlock
       group: dlock
       state: directory
-
   - name: Check out dlock repository
     git:
       repo: 'https://github.com/jonnor/dlock-oslo'
       dest: /opt/dlock/src
       version: master
+  - name: Set permissions on dlock-firmware dir
+    file:
+      path: /opt/dlock
+      recurse: true
+      owner: dlock
+      group: dlock
+  - name: Copy dlock service file
+    copy:
+      src: etc/systemd/system/dlock-firmware.service
+      dest: /etc/systemd/system/dlock-firmware.service
+  - name: dlock config dir
+    file:
+      path: /etc/dlock
+      state: directory
+  - name: Provide settings as environment vars 
+    copy:
+      content: |
+        MSGFLO_BROKER={{ broker_url }}
+        DLOCK_ROLE={{ ansible_hostname }}
+      dest: /etc/dlock/firmware.env
+  - name: Start dlock service
+    systemd:
+      name: dlock-firmware
+      state: started
+      enabled: yes
+      daemon_reload: yes
