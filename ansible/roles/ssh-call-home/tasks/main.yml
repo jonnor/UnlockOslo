@@ -1,5 +1,5 @@
 - name: SSH call home
-  block: # FIXME: use a dedicated user instead of dlock
+  block:
   - name: Secrets
     include_vars:
       file: 'vault.yml'
