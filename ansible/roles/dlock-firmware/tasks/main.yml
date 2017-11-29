@@ -1,6 +1,10 @@
 - name: Dlock firmware
   tags: dlock-firmware
   block:
+  - name: Secrets
+    include_vars:
+      file: 'vault.yml'
+    no_log: yes
   - name: Ensure no default pi user/pass
     user:
       name: pi
@@ -54,8 +58,8 @@
   - name: Provide settings as environment vars 
     copy:
       content: |
-        MSGFLO_BROKER={{ broker_url }}
-        DLOCK_ROLE={{ doors/ansible_hostname }}
+        MSGFLO_BROKER={{broker_url}}
+        DLOCK_ROLE=doors/{{ansible_hostname}}
       dest: /etc/dlock/firmware.env
   - name: Start dlock service
     systemd:
