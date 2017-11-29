@@ -5,13 +5,7 @@
     include_vars:
       file: 'vault.yml'
     no_log: yes
-  - name: Ensure no default pi user/pass
-    user:
-      name: pi
-      state: absent
-      remove: yes
-      force: yes # in case some process still uses the user
-  - name: Install system packages
+  - name: Install system dependencies
     apt:
       name: "{{ item }}"
       install_recommends: no
