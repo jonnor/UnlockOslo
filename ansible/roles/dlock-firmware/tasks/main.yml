@@ -55,7 +55,7 @@
     copy:
       content: |
         MSGFLO_BROKER={{ broker_url }}
-        DLOCK_ROLE={{ ansible_hostname }}
+        DLOCK_ROLE={{ doors/ansible_hostname }}
       dest: /etc/dlock/firmware.env
   - name: Start dlock service
     systemd:

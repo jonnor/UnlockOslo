@@ -1,1 +1,1 @@
-broker_url: "mqtts://dlock.trygvis.io"
+broker_url: "mqtts://dlock-firmware:{{vault_mqtt_password_firmware}}@dlock.trygvis.io"
