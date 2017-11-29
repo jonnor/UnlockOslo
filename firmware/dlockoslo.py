@@ -14,6 +14,7 @@ import time
 import os.path
 import json
 import math
+import copy
 
 import logging
 logging.basicConfig()
@@ -197,30 +198,6 @@ def set_outputs(states : States, file_paths):
     for name, on in s.items():
         set_gpio(file_paths[name], on)
 
-class AlwaysErroringParticipant(msgflo.Participant):
-  def __init__(self, role):
-    d = {
-      'component': 'dlock-oslo/DoorLock',
-      'label': '',
-      'icon': 'clock-o',
-      'inports': [
-        { 'id': 'unlock', 'type': 'number' },
-        { 'id': 'lock', 'type': 'number' },
-      ],
-      'outports': [
-        { 'id': 'error', 'type': 'string' },
-      ],
-    }
-    msgflo.Participant.__init__(self, d, role)
-
-  def process(self, inport, msg):
-    if inport == 'lock':
-        self.send('error', "Lock request fails always")
-    elif inport == 'unlock':
-        self.send('error', "Unlock request fails always")
-    else:
-        self.send('error', 'Unknown port {}'.format(inport))
-    self.ack(msg)
 
 # Board input/output to GPIO pin mapping
 ins = {
@@ -242,23 +219,40 @@ outs = {
     6: 21,
 }
 
+participant_definition = {
+  'component': 'dlock-oslo/Door',
+  'label': 'A door that can be locked and unlocked',
+  'icon': 'clock-o',
+  'inports': [
+    { 'id': 'unlock', 'type': 'number' },
+    { 'id': 'lock', 'type': 'bool' },
+  ],
+  'outports': [
+    { 'id': 'error', 'type': 'string' },
+    { 'id': 'islocked', 'type': 'bool' },
+    { 'id': 'openeractive', 'type': 'bool' },
+    { 'id': 'doorpresent', 'type': 'bool' },
+  ],
+}
+
+# Used for testing
+class AlwaysErroringParticipant(msgflo.Participant):
+  def __init__(self, role):
+    d = copy.deepcopy(participant_definition)
+    msgflo.Participant.__init__(self, d, role)
+
+  def process(self, inport, msg):
+    if inport == 'lock':
+        self.send('error', "Lock request fails always")
+    elif inport == 'unlock':
+        self.send('error', "Unlock request fails always")
+    else:
+        self.send('error', 'Unknown port {}'.format(inport))
+    self.ack(msg)
+
 class LockParticipant(msgflo.Participant):
   def __init__(self, role):
-    d = {
-      'component': 'dlock-oslo/DoorLock',
-      'label': '',
-      'icon': 'clock-o',
-      'inports': [
-        { 'id': 'unlock', 'type': 'number' },
-        { 'id': 'lock', 'type': 'bool' },
-      ],
-      'outports': [
-        { 'id': 'islocked', 'type': 'bool' },
-        { 'id': 'openeractive', 'type': 'bool' },
-        { 'id': 'doorpresent', 'type': 'bool' },
-      ],
-    }
-
+    d = copy.deepcopy(participant_definition)
     msgflo.Participant.__init__(self, d, role)
 
     pin_mapping = {
