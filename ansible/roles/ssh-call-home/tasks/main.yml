@@ -1,9 +1,26 @@
 - name: SSH call home
-  block:
+  block: # FIXME: use a dedicated user instead of dlock
   - name: Secrets
     include_vars:
       file: 'vault.yml'
-    no_log: yes
+    no_log: no
+  - name: Add unprivileged user
+    user:
+      name: dlock-call-home
+      state: present
+      groups: gpio
+  - name: SSH public key
+    copy:
+      content: "{{ ssh_public_key }}"
+      dest: /home/dlock/.ssh/id_rsa.pub
+      owner: dlock
+      mode: 0644
+  - name: SSH private key
+    copy:
+      content: "{{ ssh_private_key }}"
+      dest: /home/dlock/.ssh/id_rsa
+      owner: dlock
+      mode: 0600
   - name: Copy service file
     copy:
       src: etc/systemd/system/dlock-call-home.service

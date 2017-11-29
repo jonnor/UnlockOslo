@@ -4,7 +4,7 @@ ConditionPathExists=|/usr/bin
 After=network.target
 
 [Service]
-User=dlock
+User=dlock-call-home
 ExecStart=/opt/dlock/src/firmware/dlock-call-home
 # Restart every >2 seconds to avoid StartLimitInterval failure
 RestartSec=10
