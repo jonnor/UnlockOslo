@@ -1,4 +1,4 @@
-#!/usr/bin/bash -xe
+#!/bin/bash -e
 
 BASEPORT=2000
 SSH_OPTIONS="-NTC -o ServerAliveInterval=120 -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=no"

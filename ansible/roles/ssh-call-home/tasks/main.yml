@@ -1,0 +1,16 @@
+- name: SSH call home
+  block:
+  - name: Secrets
+    include_vars:
+      file: 'vault.yml'
+    no_log: yes
+  - name: Copy service file
+    copy:
+      src: etc/systemd/system/dlock-call-home.service
+      dest: /etc/systemd/system/dlock-call-home.service
+  - name: Start service
+    systemd:
+      name: dlock-call-home
+      state: started 
+      enabled: yes
+      daemon_reload: yes # TODO, only restart on need

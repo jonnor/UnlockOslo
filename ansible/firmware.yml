@@ -2,4 +2,5 @@
 - hosts: doors
   roles:
     - network
+    - ssh-call-home
     - dlock-firmware
