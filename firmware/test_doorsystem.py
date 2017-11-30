@@ -79,7 +79,7 @@ def test_openbutton_inside_when_unlocked():
     assert states.lock.state == 'Unlocked'
     assert states.opener.state == 'TemporarilyActive'
 
-@pytest.mark.skip()
+
 def test_openbutton_inside_when_locked():
     states = dlockoslo.States()
     assert states.lock.state == 'Locked'
@@ -91,7 +91,6 @@ def test_openbutton_inside_when_locked():
     assert states.lock.state == 'TemporarilyUnlocked'
     assert states.opener.state == 'TemporarilyActive'
 
-@pytest.mark.skip()
 def test_openbutton_outside_when_locked():
     states = dlockoslo.States()
     assert states.lock.state == 'Locked'

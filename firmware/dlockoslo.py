@@ -115,16 +115,36 @@ def next_state(current: States, inputs: Inputs) -> States:
 
     # Opener
     opener = current.opener
-    open_pressed = i.openbutton_outside or i.openbutton_inside
+    opener_time = 20
 
-    # hard on/off
+    def ensure_unlocked_for_opener():
+        assert opener.state in ('Active', 'TemporarilyActive')
+        temp_unlock_time = 5
+        nonlocal lock
+        if lock.state in ('Locked', 'TemporarilyUnlocked'):
+            lock = TemporarilyUnlocked(since=i.current_time, until=i.current_time+temp_unlock_time)
+
+    # hard on/off using holdopen button
     if opener.state in ('Inactive','TemporarilyActive') and i.holdopen_button == True:
         opener = Active(since=i.current_time)
+        ensure_unlocked_for_opener()
     elif opener.state == 'Active' and i.holdopen_button == False:
         opener = Inactive(since=i.current_time)
-    # timed opening
-    elif opener.state in ('Inactive','TemporarilyActive') and open_pressed == True:
-        opener = TemporarilyActive(since=i.current_time, until=i.current_time+20)     
+
+    # outside button
+    elif opener.state in ('Inactive','TemporarilyActive') and i.openbutton_inside == True:
+        opener = TemporarilyActive(since=i.current_time, until=i.current_time+opener_time)
+        ensure_unlocked_for_opener()
+
+    # outside button
+    elif opener.state in ('Inactive','TemporarilyActive') and i.openbutton_outside == True:
+        if lock.state in ('Unlocked', 'TemporarilyUnlocked'): 
+            opener = TemporarilyActive(since=i.current_time, until=i.current_time+opener_time)
+        else:
+            # DENY. user is outside, door is locked, have to unlock using app first
+            pass
+
+    # shut off again
     elif opener.state == 'TemporarilyActive' and i.current_time >= opener.until:
         opener = Inactive(since=i.current_time)
 
@@ -134,7 +154,7 @@ def next_state(current: States, inputs: Inputs) -> States:
         opener=opener, 
     )
 
-    return state 
+    return state
 
 def gpio_file_path(number: int):
     return '/sys/class/gpio/gpio{}/value'.format(number)
