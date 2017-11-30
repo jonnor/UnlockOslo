@@ -2,7 +2,9 @@
 
 import dlockoslo
 
-def test_simple():
+import pytest
+
+def test_compound():
     states = dlockoslo.States()
     assert isinstance(states.lock, dlockoslo.Locked)
 
@@ -38,4 +40,78 @@ def test_simple():
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
     assert states.opener.state == 'Inactive'
     assert states.lock.state == 'Locked'
+
+def test_mqtt_unlock():
+    states = dlockoslo.States()
+    inputs = dict(
+        mqtt_request=('unlock', True),
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Unlocked'
+
+def test_mqtt_unlock_duration():
+    states = dlockoslo.States()
+    inputs = dict(
+        current_time=103,
+        mqtt_request=('unlock', 11),
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'TemporarilyUnlocked'
+    assert states.lock.until == 103+11
+
+def test_mqtt_lock():
+    states = dlockoslo.States(lock=dlockoslo.Unlocked(since=1))
+    inputs = dict(
+        mqtt_request=('lock', True),
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Locked'
+
+
+def test_openbutton_inside_when_unlocked():
+    states = dlockoslo.States(lock=dlockoslo.Unlocked(since=1))
+    assert states.lock.state == 'Unlocked'
+    inputs = dict(
+        openbutton_inside=True,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    # should just open, leave lock alone
+    assert states.lock.state == 'Unlocked'
+    assert states.opener.state == 'TemporarilyActive'
+
+@pytest.mark.skip()
+def test_openbutton_inside_when_locked():
+    states = dlockoslo.States()
+    assert states.lock.state == 'Locked'
+    inputs = dict(
+        openbutton_inside=True,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    # should unlock and open
+    assert states.lock.state == 'TemporarilyUnlocked'
+    assert states.opener.state == 'TemporarilyActive'
+
+@pytest.mark.skip()
+def test_openbutton_outside_when_locked():
+    states = dlockoslo.States()
+    assert states.lock.state == 'Locked'
+    inputs = dict(
+        openbutton_outside=True,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    # should _not unlock or open_ (user must open door using app first)
+    assert states.lock.state == 'Locked'
+    assert states.opener.state == 'Inactive'
+
+def test_openbutton_outside_when_unlocked():
+    states = dlockoslo.States(lock=dlockoslo.Unlocked(since=1))
+    assert states.lock.state == 'Unlocked'
+    inputs = dict(
+        openbutton_outside=True,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    # should _not unlock or open_ (user must open door using app first)
+    assert states.lock.state == 'Unlocked'
+    assert states.opener.state == 'TemporarilyActive'
+
 
