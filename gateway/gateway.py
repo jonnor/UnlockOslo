@@ -148,6 +148,12 @@ def seen_since(messages, time : float):
             devices[d] = time
     return devices
 
+def find_door_id(role):
+    for doorid, door in doors.items():
+        if door[0] == role:
+            return doorid
+    return None
+
 def require_basic_auth(f):
     def check_auth(username, password):
         actual_password = api_users.get(username, '')
@@ -166,11 +172,11 @@ def require_basic_auth(f):
 app = flask.Flask(__name__)
 api_users = {}
 doors = {
-    'virtual-1': ('virtual-1',),
-    'virtual-2': ('virtual-2',),
-    'erroring-1': ('erroring-1',),
-    'notresponding-1': ('notresponding-1',),
-    'sorenga-1': ('sorenga-1',),
+    'virtual-1': ('doors/virtual-1',),
+    'virtual-2': ('doors/virtual-2',),
+    'erroring-1': ('doors/erroring-1',),
+    'notresponding-1': ('doors/notresponding-1',),
+    'sorenga-1': ('doors/dlock-1',),
 }
 
 ## System functionality
@@ -194,11 +200,15 @@ def system_status():
     # Check which devices we've seen and not
     since = time.monotonic() - timeperiod
     seen_times = seen_since(discovery_messages, time=since)
+    seen_doors = [ find_door_id(r) for r in seen_times.keys() if find_door_id(r) ]
 
-    seen = set(seen_times.keys())
-    expected = set(doors.keys())
+    seen = set(seen_doors)
+    door_mqtt_roles = [ d[0] for d in doors.items() ]
+    expected = set(door_mqtt_roles)
     missing = (expected - ignored) - seen
     unexpected = seen - expected
+
+    print('s', seen, expected)
 
     if len(missing):
         return ("Missing heartbeat from {} devices: {}".format(len(missing), missing), 503)

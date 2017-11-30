@@ -11,8 +11,9 @@ import gevent
 
 def create_virtual_lock(name):
     os.environ['DLOCK_FAKE_GPIO'] = name
-    if not os.path.exists(name):
-        os.mkdir(name)
+    lockdir = os.path.dirname(name)
+    if not os.path.exists(lockdir):
+        os.mkdir(lockdir)
     virtual = dlockoslo.LockParticipant(role=name)
     del os.environ['DLOCK_FAKE_GPIO']
     return virtual
@@ -20,9 +21,9 @@ def create_virtual_lock(name):
 
 def get_participants():
     participants = [
-        create_virtual_lock('virtual-1'),
-        create_virtual_lock('virtual-2'),
-        dlockoslo.AlwaysErroringParticipant(role='erroring-1'),
+        create_virtual_lock('doors/virtual-1'),
+        create_virtual_lock('doors/virtual-2'),
+        dlockoslo.AlwaysErroringParticipant(role='doors/erroring-1'),
     ]
     # for emulating timeout/device missing, send on MQTT topic which nothing uses
     return participants
