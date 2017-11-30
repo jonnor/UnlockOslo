@@ -67,11 +67,11 @@ def main():
         delay = float(args[1])
 
     if 'output' in mode:
-        check_outputs()
+        check_outputs(delay)
     elif 'status' in mode:
-        check_status()
+        check_status(delay)
     elif 'input' in mode:
-        check_inputs()
+        check_inputs(delay)
 
 if __name__ == '__main__':
     main()
