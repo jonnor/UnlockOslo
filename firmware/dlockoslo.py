@@ -238,6 +238,10 @@ outs = {
     5: 20,
     6: 21,
 }
+status = {
+    1: 12,
+    2: 13,
+}
 
 participant_definition = {
   'component': 'dlock-oslo/Door',
