@@ -59,7 +59,7 @@ def mqtt_message_received(client, u, message):
         m = json.loads(d)
 
         device = m['payload']['role']
-        t = time.monotonic()
+        t = time.time()
         log_mqtt.debug('saw device {} at {}'.format(device, t))
         m['time_received'] = t
 
@@ -198,7 +198,7 @@ def system_status():
     ignored = set(ignored)
 
     # Check which devices we've seen and not
-    since = time.monotonic() - timeperiod
+    since = time.time() - timeperiod
     seen_times = seen_since(discovery_messages, time=since)
     seen_doors = [ find_door_id(r) for r in seen_times.keys() if find_door_id(r) ]
 
