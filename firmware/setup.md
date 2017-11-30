@@ -1,30 +1,18 @@
-# Firmware setup
 
-For Raspberry PI (3), using Raspbian Stretch
+### SSH reverse proxy
 
-### Install apt packages
+The RPI firmware units are set up to establish a reverse SSH tunnel to the gateway machine.
+This lets one connect even if the firmware devices are not directly reachable on the internet,
+ie behind NAT on 4G or WiFi/Ethernet. 
 
-python3 git
-
-### Setup dedicated user
-
-`dlock`
-create homedir,
-no login,
-add to `gpio` group
-
-### Setup firmware
-
-git clone https://github.com/jonnor/unlockoslo
-
-### Install systemd .service file
-
+One can connect via the gateway as 'jumphost' by adding a SSH config like:
 ```
-dlock-firmware
+Host dlock-2
+ 	User username
+	ProxyCommand=ssh dlock-gateway nc localhost 2002
 ```
 
-systemctl enable dlock-firmware
-
-### Install SSH call-home
-
-TODO: document
+Then
+```
+ssh -t dlock-2 bash
+```
