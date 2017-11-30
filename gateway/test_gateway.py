@@ -122,19 +122,28 @@ def test_status_missing_device_503(devices):
         r = c.get("status")
         body = r.data.decode('utf8')
         assert r.status_code == 503
-        assert 'Missing' in body
-        assert 'sorenga-1' in body # not in testdevice set
-        assert not 'virtual-1' in body
+        assert r.content_type == 'application/json'
+        details = json.loads(body)
+        assert details['doors']['sorenga-1']['status'] == 503
+        assert details['doors']['virtual-1']['status'] == 200
+        assert details['doors']['virtual-1']['last_seen'] >= 1512050000
 
 def test_status_all_devices_ok(devices):
     with app.test_client() as c:
         r = c.get("status?ignore=sorenga-1&ignore=notresponding-1")
         body = r.data.decode('utf8')
+        assert r.content_type == 'application/json'
         assert r.status_code == 200, body
+        details = json.loads(body)
+        statuses = [ d['status'] for d in details['doors'].values() ]
+        assert statuses == [200] * len(statuses)
+        assert 'sorenga-2' not in details['doors'].keys()
 
 def test_status_seen_but_too_long_ago(devices):
     with app.test_client() as c:
         r = c.get("status?ignore=sorenga-1&ignore=notresponding-1&timeperiod=1")
         body = r.data.decode('utf8')
         assert r.status_code == 503, body
+        details = json.loads(body)
+        assert details['doors']['virtual-1']['status'] == 503
 

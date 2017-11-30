@@ -205,15 +205,22 @@ def system_status():
     seen = set(seen_doors)
     door_mqtt_roles = [ d[0] for d in doors.items() ]
     expected = set(door_mqtt_roles)
-    missing = (expected - ignored) - seen
+    checked = expected - ignored
+    missing = checked - seen
     unexpected = seen - expected
 
-    print('s', seen, expected)
+    def door_data(doorid):
+        status = 200 if doorid in seen else 503
+        last_seen = seen_times.get(doors[doorid][0])
+        return { 'status': status, 'last_seen': last_seen }
 
+    details = {
+        'doors': { doorid: door_data(doorid) for doorid in checked }
+    }
     if len(missing):
-        return ("Missing heartbeat from {} devices: {}".format(len(missing), missing), 503)
+        return flask.jsonify(details), 503
 
-    return "All {} door devices OK".format(len(expected))
+    return flask.jsonify(details), 200
 
 
 def assert_not_outside(value, lower, upper):
