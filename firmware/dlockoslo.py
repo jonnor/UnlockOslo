@@ -335,6 +335,8 @@ class LockParticipant(msgflo.Participant):
         mqtt_connected=connected,
     )
     gpio_inputs = { i: read_boolean(p) for i, p in self.input_files.items() }
+    gpio_inputs['openbutton_outside'] = not gpio_inputs['openbutton_outside']   # active-low
+    gpio_inputs['openbutton_inside'] = not gpio_inputs['openbutton_inside']   # active-low
     inputs.update(gpio_inputs)
     next = next_state(self.state, Inputs(**inputs))
     set_outputs(self.state, self.output_files)
