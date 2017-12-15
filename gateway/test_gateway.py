@@ -44,18 +44,32 @@ def test_unknown_door_404(verb, action):
 
 
 # TODO: parametrize
-def test_missing_credentials_401():
+def test_missing_credentials_401(devices):
     with app.test_client() as c:
         r = c.post("doors/virtual-1/unlock?timeout=1.0")
         body = r.data.decode('utf8')
         assert r.status_code == 401
 
-def test_wrong_password_403():
+def test_wrong_password_403(devices):
     with app.test_client() as c:
         r = c.post("doors/virtual-1/unlock?timeout=1.0", **authed(password='wrong'))
         body = r.data.decode('utf8')
         assert r.status_code == 403
 
+def test_wrong_ip_403(devices):
+    with app.test_client() as c:
+        u = "doors/virtual-1/unlock?timeout=1.0"
+        shouldwork = c.post(u, **authed())
+        assert shouldwork.status_code == 200
+
+        previous_setting = gateway.allowed_ips
+        gateway.allowed_ips = ['6.6.6.6']
+        shouldfail = c.post(u, **authed())
+        gateway.allowed_ips = previous_setting
+
+        body = shouldfail.data.decode('utf8')
+        assert shouldfail.status_code == 403
+        assert 'Access denied' in body
 
 @pytest.fixture(scope="module")
 def devices():
