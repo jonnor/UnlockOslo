@@ -9,6 +9,11 @@ import dlockoslo
 import msgflo
 import gevent
 
+def set_fake_gpio(dev, number, state : bool):
+    p = os.path.join(dev, 'gpio'+str(number))
+    with open(p, 'w') as f:
+        f.write('1' if state else '0')
+
 def create_virtual_lock(name):
     os.environ['DLOCK_FAKE_GPIO'] = name
     lockdir = os.path.dirname(name)
@@ -16,6 +21,10 @@ def create_virtual_lock(name):
         os.mkdir(lockdir)
     virtual = dlockoslo.LockParticipant(role=name)
     del os.environ['DLOCK_FAKE_GPIO']
+    # turn door opener inputs off
+    virtual.recalculate_state() # ensure files exist
+    set_fake_gpio(name, 10, True)
+    set_fake_gpio(name, 24, True)
     return virtual
 
 
