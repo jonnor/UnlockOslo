@@ -168,7 +168,8 @@ def require_allowed_ip(f):
 
     @functools.wraps(f)
     def decorated(*args, **kwargs):
-        ip = flask.request.environ['REMOTE_ADDR']
+        remote = flask.request.environ['REMOTE_ADDR']
+        ip = flask.request.headers.get('X-Real-IP', remote)
         if not check_ip(ip):
             return ("Access denied", 403)
         return f(*args, **kwargs)
