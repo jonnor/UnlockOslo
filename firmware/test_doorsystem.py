@@ -148,3 +148,21 @@ def test_switch_unlocks_door():
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
     assert states.lock.state == 'Locked'
 
+def test_dooropener_after_unlock():
+    states = dlockoslo.States()
+    assert states.lock.state == 'Locked'
+    assert states.opener.state == 'Inactive'
+    inputs = dict(
+        holdopen_button=True,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Unlocked', 'unlocks'
+    assert states.opener.state == 'Inactive', 'leave opener unchanged'
+
+    inputs = dict(
+        holdopen_button=True,
+        openbutton_outside=True,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.opener.state == 'TemporarilyActive'
+

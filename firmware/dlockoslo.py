@@ -127,20 +127,20 @@ def next_state(current: States, inputs: Inputs) -> States:
         if lock.state in ('Locked', 'TemporarilyUnlocked'):
             lock = TemporarilyUnlocked(since=i.current_time, until=i.current_time+temp_unlock_time)
 
-    # unlock button
+    # unlock switch
     if i.holdopen_button == True:
         lock = Unlocked(since=i.current_time, reason='switch')
     elif i.holdopen_button == False and lock.state == 'Unlocked' and lock.reason == 'switch':
         lock = Locked(since=i.current_time, reason='switch') 
 
-    # outside button
-    elif opener.state in ('Inactive','TemporarilyActive') and i.openbutton_inside == True:
+    # inside button
+    if opener.state in ('Inactive','TemporarilyActive') and i.openbutton_inside == True:
         opener = TemporarilyActive(since=i.current_time, until=i.current_time+opener_time)
         ensure_unlocked_for_opener()
 
     # outside button
     elif opener.state in ('Inactive','TemporarilyActive') and i.openbutton_outside == True:
-        if lock.state in ('Unlocked', 'TemporarilyUnlocked'): 
+        if lock.state in ('Unlocked', 'TemporarilyUnlocked'):
             opener = TemporarilyActive(since=i.current_time, until=i.current_time+opener_time)
         else:
             # DENY. user is outside, door is locked, have to unlock using app first
