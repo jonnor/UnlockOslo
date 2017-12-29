@@ -113,4 +113,14 @@ def test_openbutton_outside_when_unlocked():
     assert states.lock.state == 'Unlocked'
     assert states.opener.state == 'TemporarilyActive'
 
+def test_switch_unlocks_door():
+    states = dlockoslo.States()
+    assert states.lock.state == 'Locked'
+    assert states.opener.state == 'Inactive'
+    inputs = dict(
+        holdopen_button=True,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Unlocked', 'unlocks'
+    assert states.opener.state == 'Inactive', 'leave opener unchanged'
 
