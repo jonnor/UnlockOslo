@@ -35,7 +35,7 @@ mqtt_client = None
 mqtt_message_waiters = [] # queue instances
 
 allowed_ips = os.environ.get('DLOCK_ALLOWED_IPS', '127.0.0.1').split(',')
-if allowed_ips == '*':
+if allowed_ips == ['*']:
     # Allowed from everywhere
     allowed_ips = None
 
