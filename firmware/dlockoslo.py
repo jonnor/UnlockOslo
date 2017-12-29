@@ -46,11 +46,14 @@ class TemporaryBoolean():
     def __init__(self,
         state : str,
         since : float,
-        until : float = None) -> None:
+        until : float = None,
+        reason : str = None,
+        ) -> None:
         
         self.state = state
         self.since = since
         self.until = until
+        self.reason = reason
 
     def __repr__(self):
         return json.dumps(self.__dict__)
@@ -124,12 +127,11 @@ def next_state(current: States, inputs: Inputs) -> States:
         if lock.state in ('Locked', 'TemporarilyUnlocked'):
             lock = TemporarilyUnlocked(since=i.current_time, until=i.current_time+temp_unlock_time)
 
-    # hard on/off using holdopen button
-    if opener.state in ('Inactive','TemporarilyActive') and i.holdopen_button == True:
-        opener = Active(since=i.current_time)
-        ensure_unlocked_for_opener()
-    elif opener.state == 'Active' and i.holdopen_button == False:
-        opener = Inactive(since=i.current_time)
+    # unlock button
+    if i.holdopen_button == True:
+        lock = Unlocked(since=i.current_time, reason='switch')
+    elif i.holdopen_button == False and lock.state == 'Unlocked' and lock.reason == 'switch':
+        lock = Locked(since=i.current_time, reason='switch') 
 
     # outside button
     elif opener.state in ('Inactive','TemporarilyActive') and i.openbutton_inside == True:

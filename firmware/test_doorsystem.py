@@ -124,3 +124,9 @@ def test_switch_unlocks_door():
     assert states.lock.state == 'Unlocked', 'unlocks'
     assert states.opener.state == 'Inactive', 'leave opener unchanged'
 
+    inputs = dict(
+        holdopen_button=False,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Locked'
+
