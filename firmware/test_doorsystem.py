@@ -67,6 +67,24 @@ def test_mqtt_lock():
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
     assert states.lock.state == 'Locked'
 
+def test_mqtt_unlock_when_unlocked():
+    states = dlockoslo.States(lock=dlockoslo.Unlocked(since=1))
+    inputs = dict(
+        mqtt_request=('unlock', True),
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    # should not change state
+    assert states.lock.state == 'Unlocked'
+
+def test_mqtt_unlock_duration_when_unlocked():
+    states = dlockoslo.States(lock=dlockoslo.Unlocked(since=1))
+    inputs = dict(
+        mqtt_request=('unlock', True),
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    # should not change state
+    assert states.lock.state == 'Unlocked'
+
 
 def test_openbutton_inside_when_unlocked():
     states = dlockoslo.States(lock=dlockoslo.Unlocked(since=1))
