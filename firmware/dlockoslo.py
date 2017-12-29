@@ -118,7 +118,7 @@ def next_state(current: States, inputs: Inputs) -> States:
 
     # Opener
     opener = current.opener
-    opener_time = 20
+    opener_time = 10
 
     def ensure_unlocked_for_opener():
         assert opener.state in ('Active', 'TemporarilyActive')
