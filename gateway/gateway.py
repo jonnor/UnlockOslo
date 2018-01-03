@@ -198,6 +198,7 @@ doors = {
     'erroring-1': ('doors/erroring-1',),
     'notresponding-1': ('doors/notresponding-1',),
     'sorenga-1': ('doors/dlock-1',),
+    'sorenga-hotspare': ('doors/dlock-2',),
 }
 
 ## System functionality

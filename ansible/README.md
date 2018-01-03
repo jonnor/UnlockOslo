@@ -1,12 +1,12 @@
-# Ansible basics
 
-## Bootstrapping a new host
+# Deploy firmware update
 
-    ansible-playbook ../bootstrap.yml --extra-vars "hosts=dlock user=trygvis"
+    ansible-playbook firmware.yml -l dlock-0
 
-## Executing the playbook
+# Initialize a new firmware device
 
-We have a ansible repository per host for now. To run the playbook
-from your local machine:
+    ansible-playbook bootstrap.yml --extra-vars "hosts=dlock-99.local user=trygvis"
+
+# Deploy firmware update
 
     ansible-playbook dlock.yml
