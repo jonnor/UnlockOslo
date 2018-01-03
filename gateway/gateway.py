@@ -198,7 +198,7 @@ doors = {
     'erroring-1': ('doors/erroring-1',),
     'notresponding-1': ('doors/notresponding-1',),
     'sorenga-1': ('doors/dlock-1',),
-    'sorenga-hotspare': ('doors/dlock-2',),
+    'hotspare-1': ('doors/dlock-2',),
 }
 
 ## System functionality
@@ -213,7 +213,7 @@ def system_status():
     timeperiod = float(flask.request.args.get('timeperiod', '60'))
     assert_not_outside(timeperiod, 1, 10*60)
 
-    default_ignore = os.environ.get('DLOCK_IGNORE_MISSING', 'notresponding-1').split(',')
+    default_ignore = os.environ.get('DLOCK_IGNORE_MISSING', 'notresponding-1,hotspare-1').split(',')
     ignored = flask.request.args.getlist('ignore')
     if len(ignored) == 0:
         ignored = default_ignore
