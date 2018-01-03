@@ -32,6 +32,7 @@ def get_participants():
     participants = [
         create_virtual_lock('doors/virtual-1'),
         create_virtual_lock('doors/virtual-2'),
+        create_virtual_lock('doors/dlock-2'),
         dlockoslo.AlwaysErroringParticipant(role='doors/erroring-1'),
     ]
     # for emulating timeout/device missing, send on MQTT topic which nothing uses
