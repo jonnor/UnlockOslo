@@ -15,6 +15,8 @@ One doorsystem is deployed and in use since December 2017.
 
 # Software
 
+Key features
+
 * HTTP gateway with RESTful API
 * Device healthcheck monitoring, accessible as HTTP GET
 * Works behind NAT, on office/residential networks and 4G.
@@ -25,15 +27,15 @@ Tested on Raspberry PI3 running Raspbian Jessie
 * Remote deployments to devices automated using Ansible
 * Simple Python 3.5+ code for both gateway and firmware
 
-## [Firmware](./firmware)
+### [Firmware](./firmware)
 
-## [Gateway](./gateway)
+### [Gateway](./gateway)
 
-## [Ansible](./ansible)
+### [Ansible](./ansible)
 
-# Hardware
+# [Hardware](./hardware)
 
-Features
+Key features
 
 * Works with standard electronic doorlock hardware. Tested with Dorma
 * Raspberry PI shield formfactor. Probably compatible with most RPI clones
@@ -42,6 +44,5 @@ Features
 * 6 outputs. 24V compatible, 2A sinking.
 * Designed in KiCAD
 
-## [Hardware](./hardware)
 
 

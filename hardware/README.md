@@ -8,6 +8,12 @@
 * Powersupply, 24VDC. `kjell.com  `
 * UnlockOslo shield...
 
+## Enclosure
+
+3d-model. [FreeCAD source](./enclosure.fcstd)
+
+![Enclosure when installed](./enclosure-installed.jpg)
+
 ## UnlockOslo Alpha-1 Shield
 
 [KiCad project](./alpha-1)
@@ -18,10 +24,6 @@ All components available from Digikey.
 
 The PCB has been successfully produced by PCBWay, and assembled at Bitraf.
 
-## Enclosure
-
-3d-model. [FreeCAD source](./enclosure.fcstd)
-
 
 ## Wiring
 
@@ -30,3 +32,4 @@ The PCB has been successfully produced by PCBWay, and assembled at Bitraf.
 ![Wiring schema](./connections-schema.png)
 
 ![Example wiring](./connections-physical.jpg)
+
