@@ -7,17 +7,17 @@ Should be added as `.vault_pass` in project toplevel.
 
 ## SSH config to reach devices
 
-The RPI firmware units are set up to establish a reverse SSH tunnel to the gateway machine.
+The firmware units establish a reverse SSH tunnel to the gateway machine.
 This lets one connect even if the firmware devices are not directly reachable on the internet,
 ie behind NAT on 4G or WiFi/Ethernet. 
 
 One can connect via the gateway as 'jumphost' by adding a SSH config like:
 ```
-Host door2.dlock.trygvis.io
- 	User username
-	ProxyCommand=ssh dlock.trygvis.io nc localhost 2002
+Host door1.dlock.trygvis.io
+ 	User USERNAME
+	ProxyCommand=ssh dlock.trygvis.io nc localhost 2001
 ```
-Where 2002 is 2000+$devicenumber
+Where 2001 is 2000+$devicenumber
 
 Then test it using 
 ```
