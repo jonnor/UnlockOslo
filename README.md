@@ -1,6 +1,7 @@
 
-An IoT doorsystem controller for standard electronic lock modules
-Developed for ease of prototyping changes.
+An IoT doorsystem controller for standard electronic door strikes and door opening actuators.
+Coordinates the physical opener buttons, mode switches, and offers a HTTP/MQTT interface for unlocking using a mobile app.
+Focus on ease of prototyping and adapting to changes.
 
 Developed for [Oslo Kommune](https://www.oslo.kommune.no/english)
 by [Trygvis IO](https://trygvis.io) and [Flowhub.io](https://flowhub.io).
@@ -37,7 +38,7 @@ Tested on Raspberry PI3 running Raspbian Jessie
 
 Key features
 
-* Works with standard electronic doorlock hardware. Tested with Dorma
+* Works with standard electronic door hardware. Tested with DORMA
 * Raspberry PI shield formfactor. Probably compatible with most RPI clones
 * Single power-supply, 9-24V input voltage. Integrated DC/DC stepdown for RPi
 * 8 digital inputs. 5-24V.
