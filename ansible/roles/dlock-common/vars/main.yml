@@ -19,5 +19,7 @@ superusers:
     state: present
     authorized_keys: |
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJzJk96IEsfMmASu3Pu/DOB5553PVtTh7pW1mhl0T7aKN1xsWA5TMoVr+ULMEmpFYdRLAw187AxVBhn8Q74F8T0YmFSsXyRbN3HJosEZlZEz1om7ROp4KlmBOJr2cUWMLY+4YzDc9oVHzXJ8DUoKXtMQUSHjzf1Dkyy5KE4srLNE131SNpHjmul0VyVHmyoEl0DiPObO+kOHjCZEwopdkHccbgv5+5H5Siq5j6T5RvM2aK1uY8u5MivaSfcjPX/3aQJDnIvnAgscdEX7RAyuWrMfc1Gw/BNjBZeBJL8x/5uVdbWqBojGvnibw3QQygkCuUy3HoqjPK0uOZPjWXN4o9 akw@Anne-Katrine-Wikestad-Knowit-2.local
-
-
+  - username: robin
+    state: present
+    authorized_keys: |
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDyDFLlIWCNPWFV12B3FKi/vrmXwXsm0QUrh0lt+xxf5CNeY+6nygZYF6VvRNIzS7PVWaZqffghW2P8C+0H5YTP3cfJD9zhBi1NNPmHeuDcC/U7dVH2jRUaQnIN8eTwuUeW1SWm7RGoQwcSfo5nhTIM25/5kUYejf3hXmF0y9ZasIKUmRsxmcDkXcWkF3TJpqHVQcFn+xATadcNDcesSgxzvlwTkat0r8N3jVsbETsCMQizClLLaReN52WVZZnmE6Rbt3BRNFHZ3f8mXeMIS/DuKv2NX4Q3F2NuO+mn+eHY2vRzHNU4Jd0he72pgBBDRCv0MiooLOY5CNETzuqNzBH7 root@ap-laptop-robin
