@@ -160,7 +160,7 @@ def seen_since(messages, time : float):
         d = m['payload']['role']
         t = m['time_received']
         if t > time:
-            devices[d] = time
+            devices[d] = t
     return devices
 
 def find_door_id(role):
