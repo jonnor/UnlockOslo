@@ -19,6 +19,7 @@
   - name: superuser accounts
     user:
       name: "{{ item.username }}"
+      state: "{{ item.state }}"
       groups: sudo,systemd-journal
       append: yes
     with_items:
@@ -26,7 +27,7 @@
   - name: superuser authorized_keys
     authorized_key:
       user: "{{ item.username }}"
-      state: present
+      state: "{{ item.state }}"
       key: "{{ item.authorized_keys }}"
     with_items:
       - "{{ superusers }}"
