@@ -177,8 +177,10 @@ def require_allowed_ip(f):
 
 def require_basic_auth(f):
     def check_auth(username, password):
-        actual_password = api_users.get(username, '')
-        return actual_password == password
+        found_password = api_users.get(username, None)
+        if found_password is None:
+            return False
+        return found_password == password
 
     @functools.wraps(f)
     def decorated(*args, **kwargs):
