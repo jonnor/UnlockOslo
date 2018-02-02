@@ -19,9 +19,9 @@ def basic_auth(u, p):
 def authed(**kwargs):
     username = kwargs.get('username', 'TEST_USER')
     password = kwargs.get('password', 'XXX_TEST_PASSWORD')
-    if kwargs.get('username'):
+    if kwargs.get('username') is not None:
         del kwargs['username']
-    if kwargs.get('password'):
+    if kwargs.get('password') is not None:
         del kwargs['password']
     headers = kwargs.get('headers', {})
     headers['Authorization'] = basic_auth(username, password)
@@ -53,6 +53,24 @@ def test_missing_credentials_401(devices):
 def test_wrong_password_403(devices):
     with app.test_client() as c:
         r = c.post("doors/virtual-1/unlock?timeout=1.0", **authed(password='wrong'))
+        body = r.data.decode('utf8')
+        assert r.status_code == 403
+
+def test_empty_password_403(devices):
+    with app.test_client() as c:
+        r = c.post("doors/virtual-1/unlock?timeout=1.0", **authed(password=''))
+        body = r.data.decode('utf8')
+        assert r.status_code == 403
+
+def test_invalid_user_403(devices):
+    with app.test_client() as c:
+        r = c.post("doors/virtual-1/unlock?timeout=1.0", **authed(username='invalid'))
+        body = r.data.decode('utf8')
+        assert r.status_code == 403
+
+def test_invalid_user_emptypass_403(devices):
+    with app.test_client() as c:
+        r = c.post("doors/virtual-1/unlock?timeout=1.0", **authed(username='invalid', password=''))
         body = r.data.decode('utf8')
         assert r.status_code == 403
 
