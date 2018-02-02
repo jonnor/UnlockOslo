@@ -103,24 +103,31 @@ def mqtt_connected(client, u, f, rc):
     client.subscribe(subscriptions)
     log_mqtt.info('subscribe()')
 
-def create_client():
+def setup_mqtt_client():
     broker_url = os.environ.get('MSGFLO_BROKER', 'mqtt://localhost')
+    client, host, port = create_mqtt_client(broker_url)
+
+    client.on_connect = mqtt_connected
+    client.on_message = mqtt_message_received
+    client.on_subscribe = mqtt_subscribed
+
+    client.connect(host, port, 60)
+    log_mqtt.info('connect() done')
+    return client
+
+def create_mqtt_client(broker_url):
     broker_info = urlparse(broker_url)
 
     client = mqtt.Client()
     if broker_info.username:
         client.username_pw_set(broker_info.username, broker_info.password)
-    client.on_connect = mqtt_connected
-    client.on_message = mqtt_message_received
-    client.on_subscribe = mqtt_subscribed
+
     host = broker_info.hostname
     default_port = 1883
     if broker_info.scheme == 'mqtts':
         default_port = 8883
         client.tls_set()
     port = broker_info.port or default_port
-    client.connect(host, port, 60)
-    log_mqtt.info('connect() done')
 
     def _mqtt_loop():
         while True:
@@ -133,12 +140,12 @@ def create_client():
                 pass
     gevent.Greenlet.spawn(_mqtt_loop)
 
-    return client
+    return client, host, port
 
 def mqtt_send(topic, payload):
     global mqtt_client
     if mqtt_client is None:
-        mqtt_client = create_client()
+        mqtt_client = setup_mqtt_client()
 
     client = mqtt_client
     client.publish(topic, payload)
@@ -374,7 +381,7 @@ def read_auth_db():
 
 def main():
     # Make sure we are connected to MQTT even though no requests have come in
-    mqtt_client = create_client()
+    mqtt_client = setup_mqtt_client()
     read_auth_db()
 
     port = os.environ.get('PORT', 5000)

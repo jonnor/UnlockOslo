@@ -8,6 +8,8 @@ import gevent
 import json
 import base64
 
+import os
+
 app = gateway.app
 gateway.api_users['TEST_USER'] = 'XXX_TEST_PASSWORD'
 
@@ -91,7 +93,8 @@ def test_wrong_ip_403(devices):
 
 @pytest.fixture(scope="module")
 def devices():
-    gateway.mqtt_client = gateway.create_client()
+    gateway.mqtt_client = gateway.setup_mqtt_client()
+    gevent.sleep(1) # ensure we are connected/subcribed before discovery
     testdevices.run()
     gevent.sleep(1) # let the devices spin up
 
