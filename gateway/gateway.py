@@ -56,6 +56,12 @@ class MessageWaiter():
             log_mqtt.warning('MesssageWaiter: Exception match check: {}'.format(e))
 
 def mqtt_message_received(client, u, message):
+    try:
+        mqtt_handle_message(client, u, message)
+    except Exception as e:
+        log_mqtt.exception('Failed to handle message %: %s '.format(message.topic, message.payload))
+
+def mqtt_handle_message(client, u, message):
     log_mqtt.debug('received {}: {}'.format(message.topic, message.payload))
 
     if message.topic == 'fbp':
@@ -136,6 +142,8 @@ def create_mqtt_client(broker_url):
                 client.loop(timeout=0.2)
                 # Yield to other greenlets so they don't starve
                 gevent.sleep(0.2)
+            except Exception as e:
+                log_mqtt.exception('Loop exception:')
             finally:
                 pass
     gevent.Greenlet.spawn(_mqtt_loop)
