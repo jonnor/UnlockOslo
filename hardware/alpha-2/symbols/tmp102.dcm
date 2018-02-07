@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP TMP102
+D Low-Power Digital Temperature Sensor With SMBus and Two-Wire Serial
+K I2C temperature SMBus
+$ENDCMP
+#
+#End Doc Library

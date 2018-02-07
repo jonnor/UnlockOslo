@@ -1,0 +1,7 @@
+(fp_lib_table
+  (lib (name Bitraf)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/misc-footprints.pretty)(options "")(descr ""))
+  (lib (name IPC7351-Nominal)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/kicad-pcblib/IPC7351-Nominal.pretty)(options "")(descr ""))
+  (lib (name smd-semi)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/kicad-pcblib/smd-semi.pretty)(options "")(descr ""))
+  (lib (name ESP8266)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/kicad-ESP8266/ESP8266.pretty)(options "")(descr ""))
+  (lib (name Connectors_Phoenix)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/IPC-7351-footprints-generator/Connectors_Phoenix.pretty)(options "")(descr ""))
+)
