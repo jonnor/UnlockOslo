@@ -48,8 +48,8 @@ class Note(object):
                (other.kind, other.ref, other.message)
 
 def parts_with_expected_footprint_filter(df: pd.DataFrame):
-    # Ignore components that has assembly="footprint only"
-    return df.assembly != "footprint only" if hasattr(df, 'assembly') else True
+    return (df.value != "NA" if hasattr(df, "value") else True) & \
+            (df.assembly != "footprint only" if hasattr(df, "assembly") else True)
 
 class Check(object):
     def __init__(self, kind):
@@ -97,9 +97,9 @@ class CheckMismatchedFootprint(Check):
             notes.append(self.info(message="Skipping, missing mpn field."))
             return notes
 
-        f = ~df.footprint.isnull() & ~df.mpn.isnull()
-        f = f & parts_with_expected_footprint_filter(df)
-        for (ref, row) in df[f].iterrows():
+        q = ~df.footprint.isnull() & ~df.mpn.isnull()
+        q = q & parts_with_expected_footprint_filter(df)
+        for (ref, row) in df[q].iterrows():
             mpn = row.mpn
 
             sch_value = sch_value_common = None
@@ -182,10 +182,10 @@ class CheckMissingPartNumber(Check):
             return notes
 
         # TODO: separate 'missing' and 'bad' part numbers
-        f = (df.mpn.isnull() | (df.mpn == "-")) & (df.value != "NA")
-        f = f & parts_with_expected_footprint_filter(df)
+        q = (df.mpn.isnull() | (df.mpn == "-")) & (df.value != "NA")
+        q = q & parts_with_expected_footprint_filter(df)
 
-        for (ref, row) in df[f].iterrows():
+        for (ref, row) in df[q].iterrows():
             notes.append(self.error(ref=ref))
         return notes
 
@@ -243,9 +243,9 @@ class CheckComponentValue(Check):
             notes.append(self.info(message="Skipping, missing mpn field."))
             return notes
 
-        f = (df.mpn.isnull() | (df.mpn == "-")) & (df.value != "NA")
+        q = (df.mpn.isnull() | (df.mpn == "-")) & (df.value != "NA")
 
-        for (ref, row) in df[~f].iterrows():
+        for (ref, row) in df[~q].iterrows():
             mpn = row.mpn
 
             part = self.repo.find_by_mpn(mpn)
@@ -352,8 +352,7 @@ def cmd_eurocircuits_bom(**kwargs):
         return
 
     q = sch_df.value != "NA"
-    if hasattr(sch_df, "assembly"):
-        q = q & (sch_df.assembly != "footprint only")
+    q = q & parts_with_expected_footprint_filter(sch_df)
     ec_bom = sch_df[q]
     ec_bom = pd.merge(ec_bom, products, how='left', left_on='mpn', right_index=True)
 
@@ -369,9 +368,7 @@ def cmd_digikey_bom(**kwargs):
     if not hasattr(sch_df, "mpn"):
         return
 
-    q = sch_df.value != "NA"
-    if hasattr(sch_df, "assembly"):
-        q = q & (sch_df.assembly != "footprint only")
+    q = parts_with_expected_footprint_filter(sch_df)
 
     products = digikey_repo.to_pandas()
 #    print("PRODUCTS")
