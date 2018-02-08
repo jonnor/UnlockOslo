@@ -4,4 +4,7 @@
   (lib (name smd-semi)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/kicad-pcblib/smd-semi.pretty)(options "")(descr ""))
   (lib (name ESP8266)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/kicad-ESP8266/ESP8266.pretty)(options "")(descr ""))
   (lib (name Connectors_Phoenix)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/IPC-7351-footprints-generator/Connectors_Phoenix.pretty)(options "")(descr ""))
+  (lib (name IPC-7351-CAPC)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/IPC-7351-footprints-generator/IPC-7351-CAPC.pretty)(options "")(descr ""))
+  (lib (name IPC-7351-LEDSC)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/IPC-7351-footprints-generator/IPC-7351-LEDSC.pretty)(options "")(descr ""))
+  (lib (name IPC-7351-RESC)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/IPC-7351-footprints-generator/IPC-7351-RESC.pretty)(options "")(descr ""))
 )
