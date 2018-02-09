@@ -37,7 +37,7 @@
   - name: Chmod certificates
     file:
       path: "/etc/letsencrypt/{{ item }}"
-      mode: 0755
+      mode: 0770
     with_items:
       - live
       - archive
@@ -57,6 +57,10 @@
     copy:
       src: etc/mosquitto/conf.d/dlock.conf
       dest: /etc/mosquitto/conf.d/dlock.conf
+  - name: Mosquitto config permissions
+    file:
+      path: /etc/mosquitto/conf.d
+      mode: 750
 
 - name: Nginx
   tags: nginx
