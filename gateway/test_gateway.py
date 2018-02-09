@@ -8,6 +8,8 @@ import gevent
 import json
 import base64
 
+import os
+
 app = gateway.app
 gateway.api_users['TEST_USER'] = 'XXX_TEST_PASSWORD'
 
@@ -91,9 +93,18 @@ def test_wrong_ip_403(devices):
 
 @pytest.fixture(scope="module")
 def devices():
-    gateway.mqtt_client = gateway.create_client()
+    gateway.mqtt_client = gateway.setup_mqtt_client()
+    gevent.sleep(1) # ensure we are connected/subcribed before discovery
     testdevices.run()
     gevent.sleep(1) # let the devices spin up
+
+@pytest.fixture(scope="module")
+def mqtt_test_client():
+    broker_url = os.environ.get('MSGFLO_BROKER', 'mqtt://localhost')
+    mqtt_client, host, port = gateway.create_mqtt_client(broker_url)
+    timeout = 5
+    mqtt_client.connect(host, port, timeout)
+    return mqtt_client
 
 
 # POST /door/id/unlock
@@ -178,4 +189,26 @@ def test_status_seen_but_too_long_ago(devices):
         assert r.status_code == 503, body
         details = json.loads(body)
         assert details['doors']['virtual-1']['status'] == 503
+
+def test_invalid_fbp_message(devices, mqtt_test_client):
+    '''should not influence future messages'''
+
+    with app.test_client() as c:
+        status_url = "status?ignore=sorenga-1&ignore=notresponding-1"
+        r = c.get(status_url)
+        body = r.data.decode('utf8')
+        assert r.content_type == 'application/json'
+        assert r.status_code == 200, body
+
+        # Send invalid message
+        mqtt_test_client.publish('fbp', '{}')
+        gevent.sleep(0.5)
+
+        # check still works
+        r = c.post("doors/virtual-1/unlock?duration=1", **authed())
+        body = r.data.decode('utf8')
+        assert r.status_code == 200
+        # ensure is locked again at end of test
+        gevent.sleep(1.1)
+
 
