@@ -114,6 +114,13 @@ def test_unlock_with_duration(devices):
         assert r.status_code == 200
         gevent.sleep(2) # ensure is locked again at end of test
 
+def test_xss_doorid(devices):
+    with app.test_client() as c:
+        r = c.post("doors/%3Cinput%20onfocus%3Dalert%281%29%20autofocus%3E/lock", **authed())
+        body = r.data.decode('utf8')
+        assert r.status_code != 200
+        assert '<input ' not in body
+
 
 # POST /door/id/lock
 def test_lock_successful(devices):
