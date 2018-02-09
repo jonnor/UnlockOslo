@@ -273,10 +273,8 @@ def door_unlock(doorid):
         return ("Invalid timeout specified", 422)
 
     try:
-        duration = flask.request.args.get('duration', None)
-        if duration:
-          duration = int(duration)
-          assert_not_outside(duration, 1, 10*60)
+        duration = int(flask.request.args.get('duration', '2'))
+        assert_not_outside(duration, 1, 10*60)
     except ValueError as e:
         return ("Invalid duration: {}".format(flask.escape(str(e))), 422)
 
@@ -290,7 +288,7 @@ def door_unlock(doorid):
     mqtt_message_waiters.append(wait_response)
 
     # Send message to request unlocking
-    payload = 'true' if duration is None else str(duration)
+    payload = str(duration)
     mqtt_send(mqtt_prefix + "/unlock", payload)
 
     # Wait for response
