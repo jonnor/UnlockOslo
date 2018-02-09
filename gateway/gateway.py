@@ -11,6 +11,7 @@ gevent.monkey.patch_all() # make sure all syncronous calls in stdlib yields to g
 import gevent.wsgi
 import flask
 import paho.mqtt.client as mqtt
+import werkzeug.security as wsecurity
 
 from urllib.parse import urlparse
 import os
@@ -171,10 +172,10 @@ def find_door_id(role):
 
 def require_basic_auth(f):
     def check_auth(username, password):
-        found_password = api_users.get(username, None)
-        if found_password is None:
+        found_hash = api_users.get(username, None)
+        if found_hash is None:
             return False
-        return found_password == password
+        return wsecurity.check_password_hash(found_hash, password)
 
     @functools.wraps(f)
     def decorated(*args, **kwargs):
