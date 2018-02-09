@@ -39,6 +39,7 @@ def test_unknown_door_404(verb, action):
         r = getattr(client, verb.lower())("doors/{}{}".format(doorid, action), **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 404
+        assert 'text/plain' in r.content_type
         assert 'Unknown' in body
         assert 'unknown-door-id-666' in body
 
@@ -48,12 +49,14 @@ def test_missing_credentials_401(devices):
     with app.test_client() as c:
         r = c.post("doors/virtual-1/unlock?timeout=1.0")
         body = r.data.decode('utf8')
+        assert 'text/plain' in r.content_type
         assert r.status_code == 401
 
 def test_wrong_password_403(devices):
     with app.test_client() as c:
         r = c.post("doors/virtual-1/unlock?timeout=1.0", **authed(password='wrong'))
         body = r.data.decode('utf8')
+        assert 'text/plain' in r.content_type
         assert r.status_code == 403
 
 def test_empty_password_403(devices):
@@ -132,12 +135,14 @@ def test_lock_successful(devices):
         r = c.post("doors/virtual-1/lock", **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 200
+        assert 'text/plain' in r.content_type
         assert ' locked' in body
 
 def test_lock_timeout(devices):
     with app.test_client() as c:
         r = c.post("doors/notresponding-1/lock?timeout=0.5", **authed())
         body = r.data.decode('utf8')
+        assert 'text/plain' in r.content_type
         assert r.status_code == 504
 
 def test_lock_errors(devices):
@@ -145,6 +150,7 @@ def test_lock_errors(devices):
         r = c.post("doors/erroring-1/lock", **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 502
+        assert 'text/plain' in r.content_type
         assert 'error' in body
         assert 'fails always' in body
 

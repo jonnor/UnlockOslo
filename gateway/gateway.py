@@ -192,6 +192,15 @@ def require_basic_auth(f):
         return f(*args, **kwargs)
     return decorated
 
+def returns_content_type(mime_type):
+    def decorator(f):
+        @functools.wraps(f)
+        def decorated_function(*args, **kwargs):
+            content, code = f(*args, **kwargs)
+            return flask.Response(content, code, mimetype=mime_type)
+        return decorated_function
+    return decorator
+
 app = flask.Flask(__name__)
 api_users = {}
 doors = {
@@ -254,6 +263,7 @@ def assert_not_outside(value, lower, upper):
 
 ## Door functionality
 @app.route('/doors/<doorid>/unlock', methods=['POST'])
+@returns_content_type('text/plain')
 @require_allowed_ip
 @require_basic_auth
 def door_unlock(doorid):
@@ -309,6 +319,7 @@ def door_unlock(doorid):
 
 
 @app.route('/doors/<doorid>/lock', methods=['POST'])
+@returns_content_type('text/plain')
 @require_allowed_ip
 @require_basic_auth
 def door_lock(doorid):
@@ -354,6 +365,7 @@ def door_lock(doorid):
 
 
 @app.route('/doors/<doorid>/state')
+@returns_content_type('text/plain')
 @require_allowed_ip
 @require_basic_auth
 def door_state(doorid):
