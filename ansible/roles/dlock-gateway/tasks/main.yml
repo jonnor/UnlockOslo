@@ -61,6 +61,9 @@
     file:
       path: /etc/mosquitto/conf.d
       mode: 750
+      owner: mosquitto
+      group: root
+      recurse: yes
 
 - name: Nginx
   tags: nginx
