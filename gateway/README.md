@@ -17,7 +17,7 @@ HTTP Basic Auth with server-side TLS encryption.
 Response status
 
     200: Door is now unlocked.
-        If $duration specified, will automatically lock after  seconds
+        Will automatically lock again after $duration seconds
 
     503: Unlock failed, device or message broker responded with error
     504: Unlock failed, device communication timed out
@@ -25,17 +25,6 @@ Response status
     404: Unknown door ID
     422: Invalid or out-of-range value for `duration` parameter
     403: Wrong or missing auth
-```
-
-## Lock door
-
-```
-    POST /doors/$door_id/lock
-
-Response status
-
-    200: Door is now locked
-
 ```
 
 
