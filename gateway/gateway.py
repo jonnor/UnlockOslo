@@ -34,11 +34,6 @@ discovery_messages = []
 mqtt_client = None
 mqtt_message_waiters = [] # queue instances
 
-allowed_ips = os.environ.get('DLOCK_ALLOWED_IPS', '127.0.0.1').split(',')
-if allowed_ips == ['*']:
-    # Allowed from everywhere
-    allowed_ips = None
-
 class MessageWaiter():
     def __init__(self, matcher, _queue=None):
         if _queue is None:
@@ -159,22 +154,6 @@ def find_door_id(role):
             return doorid
     return None
 
-def require_allowed_ip(f):
-    def check_ip(ip):
-        if allowed_ips is None:
-            # allow all
-            return True
-        return ip in allowed_ips
-
-    @functools.wraps(f)
-    def decorated(*args, **kwargs):
-        remote = flask.request.environ['REMOTE_ADDR']
-        ip = flask.request.headers.get('X-Real-IP', remote)
-        if not check_ip(ip):
-            return ("Access denied", 403)
-        return f(*args, **kwargs)
-    return decorated
-
 def require_basic_auth(f):
     def check_auth(username, password):
         found_password = api_users.get(username, None)
@@ -264,7 +243,6 @@ def assert_not_outside(value, lower, upper):
 ## Door functionality
 @app.route('/doors/<doorid>/unlock', methods=['POST'])
 @returns_content_type('text/plain')
-@require_allowed_ip
 @require_basic_auth
 def door_unlock(doorid):
     try:
@@ -320,7 +298,6 @@ def door_unlock(doorid):
 
 @app.route('/doors/<doorid>/lock', methods=['POST'])
 @returns_content_type('text/plain')
-@require_allowed_ip
 @require_basic_auth
 def door_lock(doorid):
     try:
@@ -366,7 +343,6 @@ def door_lock(doorid):
 
 @app.route('/doors/<doorid>/state')
 @returns_content_type('text/plain')
-@require_allowed_ip
 @require_basic_auth
 def door_state(doorid):
     try:

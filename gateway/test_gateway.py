@@ -77,20 +77,6 @@ def test_invalid_user_emptypass_403(devices):
         body = r.data.decode('utf8')
         assert r.status_code == 403
 
-def test_wrong_ip_403(devices):
-    with app.test_client() as c:
-        u = "doors/virtual-1/unlock?timeout=1.0"
-        shouldwork = c.post(u, **authed())
-        assert shouldwork.status_code == 200
-
-        previous_setting = gateway.allowed_ips
-        gateway.allowed_ips = ['6.6.6.6']
-        shouldfail = c.post(u, **authed())
-        gateway.allowed_ips = previous_setting
-
-        body = shouldfail.data.decode('utf8')
-        assert shouldfail.status_code == 403
-        assert 'Access denied' in body
 
 @pytest.fixture(scope="module")
 def devices():
