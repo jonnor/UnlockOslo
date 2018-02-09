@@ -1,15 +1,15 @@
 # Separate accounts for door devices(firmware) and the controlling entity (gateway)
 # Primarily to limit compromise to single unit if a firmware device is compromised
 user dlock-firmware
-write fbp
-read doors/+/lock
-read doors/+/unlock
-write doors/+/error
-write doors/+/islocked
+topic write fbp
+topic read doors/+/lock
+topic read doors/+/unlock
+topic write doors/+/error
+topic write doors/+/islocked
 
 user dlock-gateway
-read fbp
-readwrite doors/+/lock
-readwrite doors/+/unlock
-read doors/+/error
-read doors/+/islocked
+topic read fbp
+topic write doors/+/lock
+topic write doors/+/unlock
+topic read doors/+/error
+topic read doors/+/islocked
