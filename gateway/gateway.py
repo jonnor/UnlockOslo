@@ -238,7 +238,8 @@ def system_status():
 def assert_not_outside(value, lower, upper):
   between = lower <= value <= upper
   if not between:
-      raise ValueError("{} is outside [{}, {}]".format(value, lower, upper))
+      m = "{} is outside [{}, {}]".format(value, lower, upper)
+      raise ValueError(flask.escape(m))
 
 ## Door functionality
 @app.route('/doors/<doorid>/unlock', methods=['POST'])
@@ -248,7 +249,7 @@ def door_unlock(doorid):
     try:
         door = doors[doorid]
     except KeyError:
-        return ("Unknown door ID {}".format(doorid), 404)
+        return ("Unknown door ID {}".format(flask.escape(doorid)), 404)
 
     try:
         timeout = float(flask.request.args.get('timeout', '5.0'))
@@ -262,7 +263,7 @@ def door_unlock(doorid):
           duration = int(duration)
           assert_not_outside(duration, 1, 10*60)
     except ValueError as e:
-        return ("Invalid duration: {}".format(e), 422)
+        return ("Invalid duration: {}".format(flask.escape(str(e))), 422)
 
     mqtt_prefix = door[0]
     # Subscribe
@@ -303,7 +304,7 @@ def door_lock(doorid):
     try:
         door = doors[doorid]
     except KeyError:
-        return ("Unknown door ID {}".format(doorid), 404)
+        return ("Unknown door ID {}".format(flask.escape(doorid)), 404)
 
     try:
         timeout = float(flask.request.args.get('timeout', '5.0'))
@@ -348,7 +349,7 @@ def door_state(doorid):
     try:
         door = doors[doorid]
     except KeyError:
-        return ("Unknown door ID {}".format(doorid), 404)
+        return ("Unknown door ID {}".format(flask.escape(doorid)), 404)
 
     # TODO: return current state of door, as reported on MQTT
     raise NotImplementedError("Unknown system status")
