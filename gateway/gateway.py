@@ -372,7 +372,7 @@ def read_auth_db():
     e = os.environ.get('DLOCK_API_CREDENTIALS', '')
     for credentials in e.split(','):
       if credentials:
-        user, pw = credentials.split(':')
+        user, pw = credentials.split(';')
         api_users[user] = pw
 
 def main():
