@@ -7,11 +7,12 @@ import pytest
 import gevent
 import json
 import base64
+import werkzeug.security as wsecurity
 
 import os
 
 app = gateway.app
-gateway.api_users['TEST_USER'] = 'XXX_TEST_PASSWORD'
+gateway.api_users['TEST_USER'] = wsecurity.generate_password_hash('XXX_TEST_PASSWORD')
 
 def basic_auth(u, p):
     s = "{}:{}".format(u, p)
