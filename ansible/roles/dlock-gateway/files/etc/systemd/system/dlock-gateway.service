@@ -1,0 +1,15 @@
+[Service]
+ExecStart=/usr/bin/python3 ./gateway/gateway.py
+WorkingDirectory=/home/dlock/dlock-oslo
+Restart=always
+RestartSec=3
+User=dlock
+Group=dlock
+EnvironmentFile=/etc/dlock/gateway.env
+
+[Unit]
+After=network-online.target
+
+[Install]
+WantedBy=multi-user.target
+
