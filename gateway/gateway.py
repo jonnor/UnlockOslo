@@ -34,11 +34,6 @@ discovery_messages = []
 mqtt_client = None
 mqtt_message_waiters = [] # queue instances
 
-allowed_ips = os.environ.get('DLOCK_ALLOWED_IPS', '127.0.0.1').split(',')
-if allowed_ips == ['*']:
-    # Allowed from everywhere
-    allowed_ips = None
-
 class MessageWaiter():
     def __init__(self, matcher, _queue=None):
         if _queue is None:
@@ -174,22 +169,6 @@ def find_door_id(role):
             return doorid
     return None
 
-def require_allowed_ip(f):
-    def check_ip(ip):
-        if allowed_ips is None:
-            # allow all
-            return True
-        return ip in allowed_ips
-
-    @functools.wraps(f)
-    def decorated(*args, **kwargs):
-        remote = flask.request.environ['REMOTE_ADDR']
-        ip = flask.request.headers.get('X-Real-IP', remote)
-        if not check_ip(ip):
-            return ("Access denied", 403)
-        return f(*args, **kwargs)
-    return decorated
-
 def require_basic_auth(f):
     def check_auth(username, password):
         found_password = api_users.get(username, None)
@@ -206,6 +185,15 @@ def require_basic_auth(f):
             return ("Wrong Authorization", 403)
         return f(*args, **kwargs)
     return decorated
+
+def returns_content_type(mime_type):
+    def decorator(f):
+        @functools.wraps(f)
+        def decorated_function(*args, **kwargs):
+            content, code = f(*args, **kwargs)
+            return flask.Response(content, code, mimetype=mime_type)
+        return decorated_function
+    return decorator
 
 app = flask.Flask(__name__)
 api_users = {}
@@ -265,17 +253,18 @@ def system_status():
 def assert_not_outside(value, lower, upper):
   between = lower <= value <= upper
   if not between:
-      raise ValueError("{} is outside [{}, {}]".format(value, lower, upper))
+      m = "{} is outside [{}, {}]".format(value, lower, upper)
+      raise ValueError(flask.escape(m))
 
 ## Door functionality
 @app.route('/doors/<doorid>/unlock', methods=['POST'])
-@require_allowed_ip
+@returns_content_type('text/plain')
 @require_basic_auth
 def door_unlock(doorid):
     try:
         door = doors[doorid]
     except KeyError:
-        return ("Unknown door ID {}".format(doorid), 404)
+        return ("Unknown door ID {}".format(flask.escape(doorid)), 404)
 
     try:
         timeout = float(flask.request.args.get('timeout', '5.0'))
@@ -289,7 +278,7 @@ def door_unlock(doorid):
           duration = int(duration)
           assert_not_outside(duration, 1, 10*60)
     except ValueError as e:
-        return ("Invalid duration: {}".format(e), 422)
+        return ("Invalid duration: {}".format(flask.escape(str(e))), 422)
 
     mqtt_prefix = door[0]
     # Subscribe
@@ -324,13 +313,13 @@ def door_unlock(doorid):
 
 
 @app.route('/doors/<doorid>/lock', methods=['POST'])
-@require_allowed_ip
+@returns_content_type('text/plain')
 @require_basic_auth
 def door_lock(doorid):
     try:
         door = doors[doorid]
     except KeyError:
-        return ("Unknown door ID {}".format(doorid), 404)
+        return ("Unknown door ID {}".format(flask.escape(doorid)), 404)
 
     try:
         timeout = float(flask.request.args.get('timeout', '5.0'))
@@ -369,13 +358,13 @@ def door_lock(doorid):
 
 
 @app.route('/doors/<doorid>/state')
-@require_allowed_ip
+@returns_content_type('text/plain')
 @require_basic_auth
 def door_state(doorid):
     try:
         door = doors[doorid]
     except KeyError:
-        return ("Unknown door ID {}".format(doorid), 404)
+        return ("Unknown door ID {}".format(flask.escape(doorid)), 404)
 
     # TODO: return current state of door, as reported on MQTT
     raise NotImplementedError("Unknown system status")

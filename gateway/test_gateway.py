@@ -41,6 +41,7 @@ def test_unknown_door_404(verb, action):
         r = getattr(client, verb.lower())("doors/{}{}".format(doorid, action), **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 404
+        assert 'text/plain' in r.content_type
         assert 'Unknown' in body
         assert 'unknown-door-id-666' in body
 
@@ -50,12 +51,14 @@ def test_missing_credentials_401(devices):
     with app.test_client() as c:
         r = c.post("doors/virtual-1/unlock?timeout=1.0")
         body = r.data.decode('utf8')
+        assert 'text/plain' in r.content_type
         assert r.status_code == 401
 
 def test_wrong_password_403(devices):
     with app.test_client() as c:
         r = c.post("doors/virtual-1/unlock?timeout=1.0", **authed(password='wrong'))
         body = r.data.decode('utf8')
+        assert 'text/plain' in r.content_type
         assert r.status_code == 403
 
 def test_empty_password_403(devices):
@@ -76,20 +79,6 @@ def test_invalid_user_emptypass_403(devices):
         body = r.data.decode('utf8')
         assert r.status_code == 403
 
-def test_wrong_ip_403(devices):
-    with app.test_client() as c:
-        u = "doors/virtual-1/unlock?timeout=1.0"
-        shouldwork = c.post(u, **authed())
-        assert shouldwork.status_code == 200
-
-        previous_setting = gateway.allowed_ips
-        gateway.allowed_ips = ['6.6.6.6']
-        shouldfail = c.post(u, **authed())
-        gateway.allowed_ips = previous_setting
-
-        body = shouldfail.data.decode('utf8')
-        assert shouldfail.status_code == 403
-        assert 'Access denied' in body
 
 @pytest.fixture(scope="module")
 def devices():
@@ -136,6 +125,13 @@ def test_unlock_with_duration(devices):
         assert r.status_code == 200
         gevent.sleep(2) # ensure is locked again at end of test
 
+def test_xss_doorid(devices):
+    with app.test_client() as c:
+        r = c.post("doors/%3Cinput%20onfocus%3Dalert%281%29%20autofocus%3E/lock", **authed())
+        body = r.data.decode('utf8')
+        assert r.status_code != 200
+        assert '<input ' not in body
+
 
 # POST /door/id/lock
 def test_lock_successful(devices):
@@ -143,12 +139,14 @@ def test_lock_successful(devices):
         r = c.post("doors/virtual-1/lock", **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 200
+        assert 'text/plain' in r.content_type
         assert ' locked' in body
 
 def test_lock_timeout(devices):
     with app.test_client() as c:
         r = c.post("doors/notresponding-1/lock?timeout=0.5", **authed())
         body = r.data.decode('utf8')
+        assert 'text/plain' in r.content_type
         assert r.status_code == 504
 
 def test_lock_errors(devices):
@@ -156,6 +154,7 @@ def test_lock_errors(devices):
         r = c.post("doors/erroring-1/lock", **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 502
+        assert 'text/plain' in r.content_type
         assert 'error' in body
         assert 'fails always' in body
 
