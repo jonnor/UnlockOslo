@@ -1,12 +1,10 @@
 
 ## Bill of materials
 
-* Raspberry PI3. `digikey 1690-1000-ND`
-* Enclosure. `digikey 377-1904-ND`
-* Ethernet connector. `digikey APC1766-ND`
-* Ethernet cable 0.5m, UTP CAT6. `kjell.com  `
-* Powersupply, 24VDC. `kjell.com  `
-* UnlockOslo shield...
+* RPi,enclosure etc. [Digikey BOM](./assembly.csv)
+* UnlockOslo RPi shield. [Digikey BOM](./alpha-1/production/) 
+* + wiring
+* + Ethernet cable
 
 ## Enclosure
 
