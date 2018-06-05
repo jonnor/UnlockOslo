@@ -200,8 +200,10 @@ doors = {
     'virtual-2': ('doors/virtual-2',),
     'erroring-1': ('doors/erroring-1',),
     'notresponding-1': ('doors/notresponding-1',),
+    'dev-0': ('doors/dlock-0',),
     'sorenga-1': ('doors/dlock-1',),
     'hotspare-1': ('doors/dlock-2',),
+    'fubiak-1': ('doors/dlock-3',),
 }
 
 ## System functionality

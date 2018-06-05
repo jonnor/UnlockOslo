@@ -171,9 +171,17 @@ def test_status_missing_device_503(devices):
         assert details['doors']['virtual-1']['status'] == 200
         assert details['doors']['virtual-1']['last_seen'] >= 1512050000
 
+not_running = [
+    'notresponding-1',
+    'sorenga-1',
+    'fubiak-1',
+    'dev-0',
+]
+ignore = '&'.join('ignore={}'.format(d) for d in not_running)
+
 def test_status_all_devices_ok(devices):
     with app.test_client() as c:
-        r = c.get("status?ignore=sorenga-1&ignore=notresponding-1")
+        r = c.get("status?" + ignore)
         body = r.data.decode('utf8')
         assert r.content_type == 'application/json'
         assert r.status_code == 200, body
@@ -184,7 +192,7 @@ def test_status_all_devices_ok(devices):
 
 def test_status_seen_but_too_long_ago(devices):
     with app.test_client() as c:
-        r = c.get("status?ignore=sorenga-1&ignore=notresponding-1&timeperiod=1")
+        r = c.get("status?"+ignore+"&timeperiod=1")
         body = r.data.decode('utf8')
         assert r.status_code == 503, body
         details = json.loads(body)
@@ -194,7 +202,7 @@ def test_invalid_fbp_message(devices, mqtt_test_client):
     '''should not influence future messages'''
 
     with app.test_client() as c:
-        status_url = "status?ignore=sorenga-1&ignore=notresponding-1"
+        status_url = "status?"+ignore
         r = c.get(status_url)
         body = r.data.decode('utf8')
         assert r.content_type == 'application/json'
