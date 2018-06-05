@@ -8,7 +8,7 @@ and presents a syncronous API.
 import gevent.monkey
 gevent.monkey.patch_all() # make sure all syncronous calls in stdlib yields to gevent
 
-import gevent.wsgi
+import gevent.pywsgi
 import flask
 import paho.mqtt.client as mqtt
 import werkzeug.security as wsecurity
@@ -89,6 +89,10 @@ def mqtt_handle_message(client, u, message):
 def mqtt_subscribed(client, u, mid, granted_qos):
     log_mqtt.info('subscribed')
 
+def mqtt_disconnected(client, u, rc):
+    log_mqtt.info('disconnected: {}'.format(rc))
+    # client automatically handles reconnect
+
 def mqtt_connected(client, u, f, rc):
     log_mqtt.info('connected')
     subscriptions = [
@@ -110,6 +114,7 @@ def setup_mqtt_client():
     client, host, port = create_mqtt_client(broker_url)
 
     client.on_connect = mqtt_connected
+    client.on_disconnect = mqtt_disconnected
     client.on_message = mqtt_message_received
     client.on_subscribe = mqtt_subscribed
 
@@ -124,6 +129,8 @@ def create_mqtt_client(broker_url):
     if broker_info.username:
         client.username_pw_set(broker_info.username, broker_info.password)
 
+    client.reconnect_delay_set(min_delay=1, max_delay=2*60)
+
     host = broker_info.hostname
     default_port = 1883
     if broker_info.scheme == 'mqtts':
@@ -131,18 +138,8 @@ def create_mqtt_client(broker_url):
         client.tls_set()
     port = broker_info.port or default_port
 
-    def _mqtt_loop():
-        while True:
-            try:
-                # Pump
-                client.loop(timeout=0.2)
-                # Yield to other greenlets so they don't starve
-                gevent.sleep(0.2)
-            except Exception as e:
-                log_mqtt.exception('Loop exception:')
-            finally:
-                pass
-    gevent.Greenlet.spawn(_mqtt_loop)
+    # XXX loop() does not handle reconnects, have to use loop_start() or loop_forever() 
+    client.loop_start()
 
     return client, host, port
 
@@ -382,7 +379,7 @@ def main():
 
     port = os.environ.get('PORT', 5000)
     ip = os.environ.get('INTERFACE', '127.0.0.1')
-    server = gevent.wsgi.WSGIServer((ip, port), app)
+    server = gevent.pywsgi.WSGIServer((ip, port), app)
     log.info('Gateway running on {}:{}'.format(ip, port))
     server.serve_forever()
 
