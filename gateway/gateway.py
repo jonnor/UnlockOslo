@@ -8,7 +8,7 @@ and presents a syncronous API.
 import gevent.monkey
 gevent.monkey.patch_all() # make sure all syncronous calls in stdlib yields to gevent
 
-import gevent.wsgi
+import gevent.pywsgi
 import flask
 import paho.mqtt.client as mqtt
 import werkzeug.security as wsecurity
@@ -379,7 +379,7 @@ def main():
 
     port = os.environ.get('PORT', 5000)
     ip = os.environ.get('INTERFACE', '127.0.0.1')
-    server = gevent.wsgi.WSGIServer((ip, port), app)
+    server = gevent.pywsgi.WSGIServer((ip, port), app)
     log.info('Gateway running on {}:{}'.format(ip, port))
     server.serve_forever()
 
