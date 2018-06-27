@@ -15,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L mechanical:Mounting_Hole MK1
+L Mechanical:Mounting_Hole MK1
 U 1 1 5834FB2E
 P 10600 10700
 F 0 "MK1" H 10700 10746 50  0000 L CNN
@@ -27,7 +27,7 @@ F 4 "footprint only" H 10600 10700 60  0001 C CNN "assembly"
 	1    0    0    -1  
 $EndComp
 $Comp
-L mechanical:Mounting_Hole MK2
+L Mechanical:Mounting_Hole MK2
 U 1 1 5834FBEF
 P 11050 10700
 F 0 "MK2" H 11150 10746 50  0000 L CNN
@@ -39,7 +39,7 @@ F 4 "footprint only" H 11050 10700 60  0001 C CNN "assembly"
 	1    0    0    -1  
 $EndComp
 $Comp
-L mechanical:Mounting_Hole MK3
+L Mechanical:Mounting_Hole MK3
 U 1 1 5834FC19
 P 10600 10900
 F 0 "MK3" H 10700 10946 50  0000 L CNN
@@ -51,7 +51,7 @@ F 4 "footprint only" H 10600 10900 60  0001 C CNN "assembly"
 	1    0    0    -1  
 $EndComp
 $Comp
-L mechanical:Mounting_Hole MK4
+L Mechanical:Mounting_Hole MK4
 U 1 1 5834FC4F
 P 11050 10900
 F 0 "MK4" H 11150 10946 50  0000 L CNN
@@ -78,7 +78,7 @@ Design is based on "8.2 Typical Application" from the data sheet.\nThe design su
 Text Notes 600  8600 0    60   ~ 12
 8V - 24 V to 5 V switched mode DC/DC regulator
 $Comp
-L device:Q_NMOS_GSD Q2
+L Device:Q_NMOS_GSD Q2
 U 1 1 5A01616C
 P 11200 4500
 F 0 "Q2" H 11400 4550 50  0000 L CNN
@@ -112,7 +112,7 @@ F 3 "" H 11300 5100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R3
+L Device:R R3
 U 1 1 5A016186
 P 10900 4750
 F 0 "R3" V 10980 4750 50  0000 C CNN
@@ -126,7 +126,7 @@ $EndComp
 Text Label 9900 4500 0    60   ~ 0
 SWITCH_2
 $Comp
-L device:D D3
+L Device:D D3
 U 1 1 5A01619F
 P 11300 3950
 F 0 "D3" H 11300 4050 50  0000 C CNN
@@ -139,7 +139,7 @@ F 5 "1655-1506-1-ND" H 11300 3950 60  0001 C CNN "digikey"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:D_Zener D13
+L Device:D_Zener D13
 U 1 1 5A01D063
 P 3100 1250
 F 0 "D13" H 3100 1350 50  0000 C CNN
@@ -151,7 +151,7 @@ F 4 "BZX384C4V7-E3-08" H 3100 1250 60  0001 C CNN "mpn"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R13
+L Device:R R13
 U 1 1 5A01D14E
 P 2750 1000
 F 0 "R13" V 2830 1000 50  0000 C CNN
@@ -174,7 +174,7 @@ F 3 "" H 3100 1500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L conn:Conn_01x08 P2
+L Connector_Generic:Conn_01x08 P2
 U 1 1 5A01D793
 P 1200 1300
 F 0 "P2" H 1200 1700 50  0000 C CNN
@@ -188,7 +188,7 @@ $EndComp
 Text Label 3500 1000 2    60   ~ 0
 INPUT_1
 $Comp
-L conn:Conn_02x02_Odd_Even J1
+L Connector_Generic:Conn_02x02_Odd_Even J1
 U 1 1 5A05952B
 P 15100 9100
 F 0 "J1" H 15150 9200 50  0000 C CNN
@@ -244,7 +244,7 @@ F 3 "" H 14800 9300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L conn:Conn_01x05 J2
+L Connector_Generic:Conn_01x05 J2
 U 1 1 5A05A056
 P 13000 9200
 F 0 "J2" H 13000 9500 50  0000 C CNN
@@ -289,7 +289,7 @@ F 3 "" H 13300 9500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:LED D21
+L Device:LED D21
 U 1 1 5A05B1E4
 P 6300 9750
 F 0 "D21" H 6300 9850 50  0000 C CNN
@@ -307,7 +307,7 @@ F 10 "2.1 V" H 6300 9750 60  0001 C CNN "ds_Vf"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R23
+L Device:R R23
 U 1 1 5A05B9EF
 P 6300 10150
 F 0 "R23" V 6380 10150 50  0000 C CNN
@@ -330,7 +330,7 @@ F 3 "" H 6300 10400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:LED D4
+L Device:LED D4
 U 1 1 5A05D008
 P 10400 4750
 F 0 "D4" H 10400 4850 50  0000 C CNN
@@ -348,7 +348,7 @@ F 10 "2.0 V" H 10400 4750 60  0001 C CNN "ds_Vf"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R4
+L Device:R R4
 U 1 1 5A05D00E
 P 10650 5000
 F 0 "R4" V 10730 5000 50  0000 C CNN
@@ -360,7 +360,7 @@ F 4 "RC1005F271CS" V 10650 5000 60  0001 C CNN "mpn"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:Q_NMOS_GSD Q1
+L Device:Q_NMOS_GSD Q1
 U 1 1 5A06194D
 P 11200 2500
 F 0 "Q1" H 11400 2550 50  0000 L CNN
@@ -394,7 +394,7 @@ F 3 "" H 11300 3100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R1
+L Device:R R1
 U 1 1 5A061965
 P 10900 2750
 F 0 "R1" V 10980 2750 50  0000 C CNN
@@ -408,7 +408,7 @@ $EndComp
 Text Label 9900 2500 0    60   ~ 0
 SWITCH_1
 $Comp
-L device:D D1
+L Device:D D1
 U 1 1 5A061983
 P 11300 1950
 F 0 "D1" H 11300 2050 50  0000 C CNN
@@ -421,7 +421,7 @@ F 5 "1655-1506-1-ND" H 11300 1950 60  0001 C CNN "digikey"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:LED D2
+L Device:LED D2
 U 1 1 5A06198E
 P 10400 2750
 F 0 "D2" H 10400 2850 50  0000 C CNN
@@ -439,7 +439,7 @@ F 10 "2.0 V" H 10400 2750 60  0001 C CNN "ds_Vf"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R2
+L Device:R R2
 U 1 1 5A061994
 P 10650 3000
 F 0 "R2" V 10730 3000 50  0000 C CNN
@@ -451,7 +451,7 @@ F 4 "RC1005F271CS" V 10650 3000 60  0001 C CNN "mpn"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:LED D23
+L Device:LED D23
 U 1 1 5A066DDB
 P 11400 9250
 F 0 "D23" H 11400 9350 50  0000 C CNN
@@ -469,7 +469,7 @@ F 10 "2.1 V" H 11400 9250 60  0001 C CNN "ds_Vf"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R28
+L Device:R R28
 U 1 1 5A066DE1
 P 11400 9650
 F 0 "R28" V 11480 9650 50  0000 C CNN
@@ -492,7 +492,7 @@ F 3 "" H 11400 9900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:LED D22
+L Device:LED D22
 U 1 1 5A067224
 P 10900 9250
 F 0 "D22" H 10900 9350 50  0000 C CNN
@@ -510,7 +510,7 @@ F 10 "2.1 V" H 10900 9250 60  0001 C CNN "ds_Vf"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R27
+L Device:R R27
 U 1 1 5A06722A
 P 10900 9650
 F 0 "R27" V 10980 9650 50  0000 C CNN
@@ -538,7 +538,7 @@ Text Label 10100 9000 0    60   ~ 0
 STATUS_LED_2
 NoConn ~ 16850 3000
 $Comp
-L device:D_Zener D14
+L Device:D_Zener D14
 U 1 1 5A069DE5
 P 3100 2150
 F 0 "D14" H 3100 2250 50  0000 C CNN
@@ -550,7 +550,7 @@ F 4 "BZX384C4V7-E3-08" H 3100 2150 60  0001 C CNN "mpn"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R14
+L Device:R R14
 U 1 1 5A069DEB
 P 2750 1900
 F 0 "R14" V 2830 1900 50  0000 C CNN
@@ -575,7 +575,7 @@ $EndComp
 Text Label 3500 1900 2    60   ~ 0
 INPUT_2
 $Comp
-L device:D_Zener D15
+L Device:D_Zener D15
 U 1 1 5A06A029
 P 3100 3050
 F 0 "D15" H 3100 3150 50  0000 C CNN
@@ -587,7 +587,7 @@ F 4 "BZX384C4V7-E3-08" H 3100 3050 60  0001 C CNN "mpn"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R15
+L Device:R R15
 U 1 1 5A06A02F
 P 2750 2800
 F 0 "R15" V 2830 2800 50  0000 C CNN
@@ -612,7 +612,7 @@ $EndComp
 Text Label 3500 2800 2    60   ~ 0
 INPUT_3
 $Comp
-L device:D_Zener D16
+L Device:D_Zener D16
 U 1 1 5A06A50A
 P 3100 3850
 F 0 "D16" H 3100 3950 50  0000 C CNN
@@ -624,7 +624,7 @@ F 4 "BZX384C4V7-E3-08" H 3100 3850 60  0001 C CNN "mpn"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R16
+L Device:R R16
 U 1 1 5A06A510
 P 2750 3600
 F 0 "R16" V 2830 3600 50  0000 C CNN
@@ -649,7 +649,7 @@ $EndComp
 Text Label 3500 3600 2    60   ~ 0
 INPUT_4
 $Comp
-L device:D_Zener D17
+L Device:D_Zener D17
 U 1 1 5A06A522
 P 3100 4750
 F 0 "D17" H 3100 4850 50  0000 C CNN
@@ -661,7 +661,7 @@ F 4 "BZX384C4V7-E3-08" H 3100 4750 60  0001 C CNN "mpn"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R17
+L Device:R R17
 U 1 1 5A06A528
 P 2750 4500
 F 0 "R17" V 2830 4500 50  0000 C CNN
@@ -686,7 +686,7 @@ $EndComp
 Text Label 3500 4500 2    60   ~ 0
 INPUT_5
 $Comp
-L device:Q_NMOS_GSD Q3
+L Device:Q_NMOS_GSD Q3
 U 1 1 5A06B691
 P 11200 6500
 F 0 "Q3" H 11400 6550 50  0000 L CNN
@@ -709,7 +709,7 @@ F 3 "" H 11300 7100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R5
+L Device:R R5
 U 1 1 5A06B6A9
 P 10900 6750
 F 0 "R5" V 10980 6750 50  0000 C CNN
@@ -723,7 +723,7 @@ $EndComp
 Text Label 9900 6500 0    60   ~ 0
 SWITCH_3
 $Comp
-L device:D D5
+L Device:D D5
 U 1 1 5A06B6C1
 P 11300 5950
 F 0 "D5" H 11300 6050 50  0000 C CNN
@@ -736,7 +736,7 @@ F 5 "1655-1506-1-ND" H 11300 5950 60  0001 C CNN "digikey"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:LED D6
+L Device:LED D6
 U 1 1 5A06B6CE
 P 10400 6750
 F 0 "D6" H 10400 6850 50  0000 C CNN
@@ -754,7 +754,7 @@ F 10 "2.0 V" H 10400 6750 60  0001 C CNN "ds_Vf"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R6
+L Device:R R6
 U 1 1 5A06B6D4
 P 10650 7000
 F 0 "R6" V 10730 7000 50  0000 C CNN
@@ -766,7 +766,7 @@ F 4 "RC1005F271CS" V 10650 7000 60  0001 C CNN "mpn"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:Q_NMOS_GSD Q4
+L Device:Q_NMOS_GSD Q4
 U 1 1 5A06B8DF
 P 13600 2400
 F 0 "Q4" H 13800 2450 50  0000 L CNN
@@ -800,7 +800,7 @@ F 3 "" H 13700 3000 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R7
+L Device:R R7
 U 1 1 5A06B8F7
 P 13300 2650
 F 0 "R7" V 13380 2650 50  0000 C CNN
@@ -814,7 +814,7 @@ $EndComp
 Text Label 12300 2400 0    60   ~ 0
 SWITCH_4
 $Comp
-L device:D D7
+L Device:D D7
 U 1 1 5A06B90F
 P 13700 1850
 F 0 "D7" H 13700 1950 50  0000 C CNN
@@ -827,7 +827,7 @@ F 5 "1655-1506-1-ND" H 13700 1850 60  0001 C CNN "digikey"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:LED D8
+L Device:LED D8
 U 1 1 5A06B91C
 P 12800 2650
 F 0 "D8" H 12800 2750 50  0000 C CNN
@@ -845,7 +845,7 @@ F 10 "2.0 V" H 12800 2650 60  0001 C CNN "ds_Vf"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R8
+L Device:R R8
 U 1 1 5A06B922
 P 13050 2900
 F 0 "R8" V 13130 2900 50  0000 C CNN
@@ -892,7 +892,7 @@ F 3 "" H 7300 9800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R24
+L Device:R R24
 U 1 1 5A0704C8
 P 8700 9350
 F 0 "R24" V 8780 9350 50  0000 C CNN
@@ -904,7 +904,7 @@ F 4 "RMCF0402FT10K0" V 8700 9350 60  0001 C CNN "mpn"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R25
+L Device:R R25
 U 1 1 5A07097D
 P 8900 9350
 F 0 "R25" V 8980 9350 50  0000 C CNN
@@ -916,7 +916,7 @@ F 4 "RMCF0402FT10K0" V 8900 9350 60  0001 C CNN "mpn"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R26
+L Device:R R26
 U 1 1 5A070B7E
 P 9100 9350
 F 0 "R26" V 9180 9350 50  0000 C CNN
@@ -932,7 +932,7 @@ TMP102_PWR
 Text Notes 7100 11000 0    60   ~ 0
 Optionally powered by a GPIO pin to reduce self-heating.\n
 $Comp
-L device:Q_NMOS_GSD Q5
+L Device:Q_NMOS_GSD Q5
 U 1 1 5A0750FA
 P 13600 4400
 F 0 "Q5" H 13800 4450 50  0000 L CNN
@@ -966,7 +966,7 @@ F 3 "" H 13700 5000 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R9
+L Device:R R9
 U 1 1 5A075112
 P 13300 4650
 F 0 "R9" V 13380 4650 50  0000 C CNN
@@ -980,7 +980,7 @@ $EndComp
 Text Label 12300 4400 0    60   ~ 0
 SWITCH_5
 $Comp
-L device:D D9
+L Device:D D9
 U 1 1 5A075130
 P 13700 3850
 F 0 "D9" H 13700 3950 50  0000 C CNN
@@ -993,7 +993,7 @@ F 5 "1655-1506-1-ND" H 13700 3850 60  0001 C CNN "digikey"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:LED D10
+L Device:LED D10
 U 1 1 5A07513D
 P 12800 4650
 F 0 "D10" H 12800 4750 50  0000 C CNN
@@ -1011,7 +1011,7 @@ F 10 "2.0 V" H 12800 4650 60  0001 C CNN "ds_Vf"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R10
+L Device:R R10
 U 1 1 5A075143
 P 13050 4900
 F 0 "R10" V 13130 4900 50  0000 C CNN
@@ -1023,7 +1023,7 @@ F 4 "RC1005F271CS" V 13050 4900 60  0001 C CNN "mpn"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:D_Zener D18
+L Device:D_Zener D18
 U 1 1 5A078559
 P 3100 5650
 F 0 "D18" H 3100 5750 50  0000 C CNN
@@ -1035,7 +1035,7 @@ F 4 "BZX384C4V7-E3-08" H 3100 5650 60  0001 C CNN "mpn"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R18
+L Device:R R18
 U 1 1 5A07855F
 P 2750 5400
 F 0 "R18" V 2830 5400 50  0000 C CNN
@@ -1060,7 +1060,7 @@ $EndComp
 Text Label 3500 5400 2    60   ~ 0
 INPUT_6
 $Comp
-L device:D_Zener D19
+L Device:D_Zener D19
 U 1 1 5A078774
 P 3100 6550
 F 0 "D19" H 3100 6650 50  0000 C CNN
@@ -1072,7 +1072,7 @@ F 4 "BZX384C4V7-E3-08" H 3100 6550 60  0001 C CNN "mpn"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R19
+L Device:R R19
 U 1 1 5A07877A
 P 2750 6300
 F 0 "R19" V 2830 6300 50  0000 C CNN
@@ -1097,7 +1097,7 @@ $EndComp
 Text Label 3500 6300 2    60   ~ 0
 INPUT_7
 $Comp
-L device:D_Zener D20
+L Device:D_Zener D20
 U 1 1 5A0799D3
 P 3100 7450
 F 0 "D20" H 3100 7550 50  0000 C CNN
@@ -1109,7 +1109,7 @@ F 4 "BZX384C4V7-E3-08" H 3100 7450 60  0001 C CNN "mpn"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:R R20
+L Device:R R20
 U 1 1 5A0799D9
 P 2750 7200
 F 0 "R20" V 2830 7200 50  0000 C CNN
@@ -1134,7 +1134,7 @@ $EndComp
 Text Label 3500 7200 2    60   ~ 0
 INPUT_8
 $Comp
-L device:Q_NMOS_GSD Q6
+L Device:Q_NMOS_GSD Q6
 U 1 1 5A07A501
 P 13600 6500
 F 0 "Q6" H 13800 6550 50  0000 L CNN
@@ -1157,7 +1157,7 @@ F 3 "" H 13700 7100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R11
+L Device:R R11
 U 1 1 5A07A519
 P 13300 6750
 F 0 "R11" V 13380 6750 50  0000 C CNN
@@ -1171,7 +1171,7 @@ $EndComp
 Text Label 12300 6500 0    60   ~ 0
 SWITCH_6
 $Comp
-L device:D D11
+L Device:D D11
 U 1 1 5A07A531
 P 13700 5950
 F 0 "D11" H 13700 6050 50  0000 C CNN
@@ -1184,7 +1184,7 @@ F 5 "1655-1506-1-ND" H 13700 5950 60  0001 C CNN "digikey"
 	0    1    1    0   
 $EndComp
 $Comp
-L device:LED D12
+L Device:LED D12
 U 1 1 5A07A53E
 P 12800 6750
 F 0 "D12" H 12800 6850 50  0000 C CNN
@@ -1202,7 +1202,7 @@ F 10 "2.0 V" H 12800 6750 60  0001 C CNN "ds_Vf"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device:R R12
+L Device:R R12
 U 1 1 5A07A544
 P 13050 7000
 F 0 "R12" V 13130 7000 50  0000 C CNN
@@ -1226,7 +1226,7 @@ Serial port #0
 Text Notes 6900 8600 0    60   ~ 12
 Temperature
 $Comp
-L device:C C3
+L Device:C C3
 U 1 1 5A06012E
 P 2200 9650
 F 0 "C3" H 2225 9750 50  0000 L CNN
@@ -1240,7 +1240,7 @@ F 6 "GMK212BJ104KGHT" H 2200 9650 60  0001 C CNN "mpn"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C5
+L Device:C C5
 U 1 1 5A060138
 P 5600 9650
 F 0 "C5" H 5625 9750 50  0000 L CNN
@@ -1254,7 +1254,7 @@ F 6 "CL21A226MQCLQNC" H 5600 9650 60  0001 C CNN "mpn"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C2
+L Device:C C2
 U 1 1 5A060142
 P 1900 9650
 F 0 "C2" H 1925 9750 50  0000 L CNN
@@ -1268,7 +1268,7 @@ F 6 "GMK212BBJ106KG-T" H 1900 9650 60  0001 C CNN "mpn"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C6
+L Device:C C6
 U 1 1 5A06014C
 P 5900 9650
 F 0 "C6" H 5925 9750 50  0000 L CNN
@@ -1282,7 +1282,7 @@ F 6 "CL21A226MQCLQNC" H 5900 9650 60  0001 C CNN "mpn"
 	1    0    0    -1  
 $EndComp
 $Comp
-L conn:Conn_01x02 P4
+L Connector_Generic:Conn_01x02 P4
 U 1 1 5A060154
 P 800 9400
 F 0 "P4" H 800 9500 50  0000 C CNN
@@ -1320,7 +1320,7 @@ F 7 "5V" H 3450 10100 60  0000 C CNN "Vout"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:R R21
+L Device:R R21
 U 1 1 5A060174
 P 5100 9650
 F 0 "R21" V 5180 9650 50  0000 C CNN
@@ -1388,7 +1388,7 @@ F 3 "" H 1700 9600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C1
+L Device:C C1
 U 1 1 5A06019C
 P 4100 9150
 F 0 "C1" H 4125 9250 50  0000 L CNN
@@ -1402,7 +1402,7 @@ F 6 "CL21B104MBCNNNC" H 4100 9150 60  0001 C CNN "mpn"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:L_Core_Ferrite L1
+L Device:L_Core_Ferrite_Small L1
 U 1 1 5A0601A5
 P 4450 9400
 F 0 "L1" V 4400 9400 50  0000 C CNN
@@ -1438,7 +1438,7 @@ F 3 "" H 5600 10200 50  0001 C CNN
 $EndComp
 NoConn ~ 2500 9600
 $Comp
-L device:R R22
+L Device:R R22
 U 1 1 5A0601BB
 P 5100 10150
 F 0 "R22" V 5180 10150 50  0000 C CNN
@@ -1451,7 +1451,7 @@ F 5 "RC0402FR-0713K3L" V 5100 10150 60  0001 C CNN "mpn"
 	1    0    0    -1  
 $EndComp
 $Comp
-L device:C C4
+L Device:C C4
 U 1 1 5A0601C5
 P 4800 9650
 F 0 "C4" H 4825 9750 50  0000 L CNN
@@ -1469,7 +1469,7 @@ Capacitors are\nrated to 35V
 Text Notes 4600 9300 0    40   ~ 0
 Capacitors are\nrated to 10V
 $Comp
-L conn:TEST_1P TP1
+L Connector:Test_Point TP1
 U 1 1 5A0601CE
 P 5600 9300
 F 0 "TP1" H 5600 9570 50  0000 C CNN
@@ -1483,7 +1483,7 @@ $EndComp
 Text Notes 10100 10400 0    60   ~ 12
 Mounting holes
 $Comp
-L conn:Conn_01x12 P1
+L Connector_Generic:Conn_01x12 P1
 U 1 1 5A0A1C14
 P 15700 1400
 F 0 "P1" H 15700 2000 50  0000 C CNN
@@ -1835,7 +1835,7 @@ Wire Wire Line
 Wire Wire Line
 	3900 9400 4100 9400
 Wire Wire Line
-	4600 9400 4800 9400
+	4550 9400 4800 9400
 Wire Wire Line
 	5100 10300 5100 10400
 Wire Wire Line
@@ -2356,7 +2356,7 @@ Wire Wire Line
 Wire Wire Line
 	1700 9400 1900 9400
 Wire Wire Line
-	4100 9400 4300 9400
+	4100 9400 4350 9400
 Wire Wire Line
 	5600 9400 5900 9400
 Wire Wire Line
@@ -2418,7 +2418,7 @@ Wire Wire Line
 Wire Wire Line
 	9100 9900 9800 9900
 $Comp
-L device:D_Schottky D24
+L Device:D_Schottky D24
 U 1 1 5B334077
 P 1200 9400
 F 0 "D24" H 1200 9184 50  0000 C CNN
