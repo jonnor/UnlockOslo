@@ -2734,7 +2734,7 @@
   (gr_text GND (at 206.756 102.616) (layer F.SilkS) (tstamp 5A0B4BB7)
     (effects (font (size 1 1) (thickness 0.2)) (justify right))
   )
-  (gr_text alpha-3 (at 214.249 114.427) (layer F.SilkS) (tstamp 5A0B4B3A)
+  (gr_text alpha-3 (at 218.755429 114.427) (layer F.SilkS) (tstamp 5A0B4B3A)
     (effects (font (size 1.5 1.5) (thickness 0.25)) (justify left))
   )
   (gr_text RX (at 224.79 104.394 90) (layer F.SilkS) (tstamp 5A0B4B28)
