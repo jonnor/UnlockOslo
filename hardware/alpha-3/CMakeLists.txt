@@ -84,7 +84,8 @@ kicad_gerber(
     PCB_FILE ${PRJ}.kicad_pcb
     DIR production/gerber
     NAMING_STYLE PROTEL
-    ZIP_FILE production/gerber.zip)
+    ZIP_FILE production/gerber.zip
+    SHOW_OUTPUTS)
 
 # Pick and place files
 add_custom_command(
