@@ -125,6 +125,16 @@ add_custom_command(OUTPUT production/${PRJ}-digikey-bom.csv
     MAIN_DEPENDENCY "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
     DEPENDS "${PIP_COOKIE}" "${PY}" "${TOOLS}" "digikey-download-facts.cookie")
 
+add_custom_command(OUTPUT production/${PRJ}-digikey-bom-15.csv
+    COMMAND ${CMAKE_COMMAND} -E make_directory production
+    COMMAND "${PY}" "${TOOLS}" --cmd digikey-bom
+      --sch "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
+      --digikey-repo "${CMAKE_CURRENT_LIST_DIR}/digikey"
+      --quantity 5
+      > production/${PRJ}-digikey-bom-15.csv
+    MAIN_DEPENDENCY "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
+    DEPENDS "${PIP_COOKIE}" "${PY}" "${TOOLS}" "digikey-download-facts.cookie")
+
 add_custom_command(OUTPUT production/${PRJ}-digikey-bom-5.csv
     COMMAND ${CMAKE_COMMAND} -E make_directory production
     COMMAND "${PY}" "${TOOLS}" --cmd digikey-bom
@@ -143,7 +153,7 @@ if (ENABLE_EUROCIRCUITS)
 endif ()
 
 if (ENABLE_DIGIKEY)
-  list(APPEND extra_deps production/${PRJ}-digikey-bom.csv production/${PRJ}-digikey-bom-5.csv)
+  list(APPEND extra_deps production/${PRJ}-digikey-bom.csv production/${PRJ}-digikey-bom-5.csv production/${PRJ}-digikey-bom-15.csv)
 endif ()
 
 add_custom_target(${PRJ}-production ALL DEPENDS

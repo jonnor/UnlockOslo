@@ -183,59 +183,59 @@
       </fields>
     </comp>
     <comp ref="D13">
-      <value>BZX384C4V7</value>
-      <footprint>smd-semi:SOD-323</footprint>
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
       <fields>
-        <field name="mpn">BZX384C4V7-E3-08</field>
+        <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
     </comp>
     <comp ref="D14">
-      <value>BZX384C4V7</value>
-      <footprint>smd-semi:SOD-323</footprint>
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
       <fields>
-        <field name="mpn">BZX384C4V7-E3-08</field>
+        <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
     </comp>
     <comp ref="D15">
-      <value>BZX384C4V7</value>
-      <footprint>smd-semi:SOD-323</footprint>
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
       <fields>
-        <field name="mpn">BZX384C4V7-E3-08</field>
+        <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
     </comp>
     <comp ref="D16">
-      <value>BZX384C4V7</value>
-      <footprint>smd-semi:SOD-323</footprint>
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
       <fields>
-        <field name="mpn">BZX384C4V7-E3-08</field>
+        <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
     </comp>
     <comp ref="D17">
-      <value>BZX384C4V7</value>
-      <footprint>smd-semi:SOD-323</footprint>
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
       <fields>
-        <field name="mpn">BZX384C4V7-E3-08</field>
+        <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
     </comp>
     <comp ref="D18">
-      <value>BZX384C4V7</value>
-      <footprint>smd-semi:SOD-323</footprint>
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
       <fields>
-        <field name="mpn">BZX384C4V7-E3-08</field>
+        <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
     </comp>
     <comp ref="D19">
-      <value>BZX384C4V7</value>
-      <footprint>smd-semi:SOD-323</footprint>
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
       <fields>
-        <field name="mpn">BZX384C4V7-E3-08</field>
+        <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
     </comp>
     <comp ref="D20">
-      <value>BZX384C4V7</value>
-      <footprint>smd-semi:SOD-323</footprint>
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
       <fields>
-        <field name="mpn">BZX384C4V7-E3-08</field>
+        <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
     </comp>
     <comp ref="D21">
