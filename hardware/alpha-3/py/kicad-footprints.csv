@@ -13,6 +13,7 @@ Resistors_SMD:R_0805,0805
 TO_SOT_Packages_SMD:SOT-223,TO-261-4
 TO_SOT_Packages_SMD:SOT-23-6_Handsoldering,SOT-23-6
 TO_SOT_Packages_SMD:SOT-23,SOT-23
+Package_TO_SOT_SMD:SOT-23,SOT-23
 Bitraf:SOT-563,SOT-563
 
 smd-semi:SOD-323,SOD-323
