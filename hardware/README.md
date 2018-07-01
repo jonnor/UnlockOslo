@@ -34,7 +34,9 @@ protection. Produced by PCBway, assembled at Bitraf.
 
 [KiCad project](./alpha-1)
 
-[![Schematics](./docs/alpha-1-schematic.png)](./docs/alpha-1-schematic.pdf)
+### Schematic
+
+[![Schematics](./docs/alpha-3-schematic.png)](./docs/alpha-3-schematic.pdf)
 
 ## alpha-2
 
@@ -47,6 +49,8 @@ possible.
 Original version. Deployed at two locations.
 
 [KiCad project](./alpha-1)
+
+### Schematic
 
 [![Schematics](./docs/alpha-1-schematic.png)](./docs/alpha-1-schematic.pdf)
 
