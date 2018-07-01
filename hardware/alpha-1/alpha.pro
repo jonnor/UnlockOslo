@@ -1,4 +1,4 @@
-update=fr. 10. nov. 2017 kl. 15.44 +0100
+update=Mon 25 Jun 2018 11:35:28 PM CEST
 version=1
 last_client=kicad
 [cvpcb]
@@ -82,12 +82,4 @@ LabSize=50
 version=1
 [eeschema]
 version=1
-LibDir=symbols
-[eeschema/libraries]
-LibName1=conn
-LibName2=power
-LibName3=device
-LibName4=mechanical
-LibName5=symbols/tps54202
-LibName6=symbols/alpha-misc
-LibName7=symbols/tmp102
+LibDir=
