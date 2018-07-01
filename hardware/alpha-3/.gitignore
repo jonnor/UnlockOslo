@@ -1,0 +1,12 @@
+# KiCAD
+*.bak
+*.bck
+*.kicad_pcb-bak
+_autosave-*.kicad_pcb
+_saved_*.sch
+
+notebooks/.ipynb_checkpoints
+
+build
+env
+digikey_cache

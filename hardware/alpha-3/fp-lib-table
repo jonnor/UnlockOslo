@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name Bitraf)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/misc-footprints.pretty)(options "")(descr ""))
+  (lib (name IPC7351-Nominal)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/kicad-pcblib/IPC7351-Nominal.pretty)(options "")(descr ""))
+  (lib (name smd-semi)(type KiCad)(uri ${KIPRJMOD}/../thirdparty/kicad-pcblib/smd-semi.pretty)(options "")(descr ""))
+)

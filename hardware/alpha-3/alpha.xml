@@ -1,0 +1,631 @@
+<?xml version="1.0" ?>
+<export version="D">
+  <design/>
+  <components>
+    <comp ref="C1">
+      <value>0.1u</value>
+      <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
+      <fields>
+        <field name="ta_ref">C3</field>
+        <field name="voltage">10V</field>
+        <field name="mpn">CL21B104MBCNNNC</field>
+      </fields>
+    </comp>
+    <comp ref="C2">
+      <value>10u</value>
+      <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
+      <fields>
+        <field name="ta_ref">C1</field>
+        <field name="req_voltage">35V</field>
+        <field name="mpn">GMK212BBJ106KG-T</field>
+      </fields>
+    </comp>
+    <comp ref="C3">
+      <value>0.1u</value>
+      <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
+      <fields>
+        <field name="ta_value">0.1u</field>
+        <field name="req_voltage">35V</field>
+        <field name="mpn">GMK212BJ104KGHT</field>
+      </fields>
+    </comp>
+    <comp ref="C4">
+      <value>75p</value>
+      <footprint>IPC7351-Nominal:CAPC1005X55</footprint>
+      <fields>
+        <field name="ta_ref">C6</field>
+        <field name="voltage">10V</field>
+        <field name="mpn">GRM1555C1H750JA01D</field>
+      </fields>
+    </comp>
+    <comp ref="C5">
+      <value>22u</value>
+      <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
+      <fields>
+        <field name="ta_ref">C4</field>
+        <field name="voltage">10V</field>
+        <field name="mpn">CL21A226MQCLQNC</field>
+      </fields>
+    </comp>
+    <comp ref="C6">
+      <value>22u</value>
+      <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
+      <fields>
+        <field name="ta_ref">C5</field>
+        <field name="voltage">10V</field>
+        <field name="mpn">CL21A226MQCLQNC</field>
+      </fields>
+    </comp>
+    <comp ref="D1">
+      <value>S1MTR</value>
+      <footprint>Diodes_SMD:D_SMA</footprint>
+      <fields>
+        <field name="mpn">S1MTR</field>
+        <field name="digikey">1655-1506-1-ND</field>
+      </fields>
+    </comp>
+    <comp ref="D2">
+      <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
+      <fields>
+        <field name="color">Red</field>
+        <field name="mpn">CMD15-21VRD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">1.9V</field>
+        <field name="req_Vin">3.3 V</field>
+        <field name="ds_Vf">2.0 V</field>
+      </fields>
+    </comp>
+    <comp ref="D3">
+      <value>S1MTR</value>
+      <footprint>Diodes_SMD:D_SMA</footprint>
+      <fields>
+        <field name="mpn">S1MTR</field>
+        <field name="digikey">1655-1506-1-ND</field>
+      </fields>
+    </comp>
+    <comp ref="D4">
+      <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
+      <fields>
+        <field name="color">Red</field>
+        <field name="mpn">CMD15-21VRD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">1.9V</field>
+        <field name="req_Vin">3.3 V</field>
+        <field name="ds_Vf">2.0 V</field>
+      </fields>
+    </comp>
+    <comp ref="D5">
+      <value>S1MTR</value>
+      <footprint>Diodes_SMD:D_SMA</footprint>
+      <fields>
+        <field name="mpn">S1MTR</field>
+        <field name="digikey">1655-1506-1-ND</field>
+      </fields>
+    </comp>
+    <comp ref="D6">
+      <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
+      <fields>
+        <field name="color">Red</field>
+        <field name="mpn">CMD15-21VRD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">1.9V</field>
+        <field name="req_Vin">3.3 V</field>
+        <field name="ds_Vf">2.0 V</field>
+      </fields>
+    </comp>
+    <comp ref="D7">
+      <value>S1MTR</value>
+      <footprint>Diodes_SMD:D_SMA</footprint>
+      <fields>
+        <field name="mpn">S1MTR</field>
+        <field name="digikey">1655-1506-1-ND</field>
+      </fields>
+    </comp>
+    <comp ref="D8">
+      <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
+      <fields>
+        <field name="color">Red</field>
+        <field name="mpn">CMD15-21VRD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">1.9V</field>
+        <field name="req_Vin">3.3 V</field>
+        <field name="ds_Vf">2.0 V</field>
+      </fields>
+    </comp>
+    <comp ref="D9">
+      <value>S1MTR</value>
+      <footprint>Diodes_SMD:D_SMA</footprint>
+      <fields>
+        <field name="mpn">S1MTR</field>
+        <field name="digikey">1655-1506-1-ND</field>
+      </fields>
+    </comp>
+    <comp ref="D10">
+      <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
+      <fields>
+        <field name="color">Red</field>
+        <field name="mpn">CMD15-21VRD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">1.9V</field>
+        <field name="req_Vin">3.3 V</field>
+        <field name="ds_Vf">2.0 V</field>
+      </fields>
+    </comp>
+    <comp ref="D11">
+      <value>S1MTR</value>
+      <footprint>Diodes_SMD:D_SMA</footprint>
+      <fields>
+        <field name="mpn">S1MTR</field>
+        <field name="digikey">1655-1506-1-ND</field>
+      </fields>
+    </comp>
+    <comp ref="D12">
+      <value>LED</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
+      <fields>
+        <field name="color">Red</field>
+        <field name="mpn">CMD15-21VRD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">1.9V</field>
+        <field name="req_Vin">3.3 V</field>
+        <field name="ds_Vf">2.0 V</field>
+      </fields>
+    </comp>
+    <comp ref="D13">
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C3V3-E3-08</field>
+      </fields>
+    </comp>
+    <comp ref="D14">
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C3V3-E3-08</field>
+      </fields>
+    </comp>
+    <comp ref="D15">
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C3V3-E3-08</field>
+      </fields>
+    </comp>
+    <comp ref="D16">
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C3V3-E3-08</field>
+      </fields>
+    </comp>
+    <comp ref="D17">
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C3V3-E3-08</field>
+      </fields>
+    </comp>
+    <comp ref="D18">
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C3V3-E3-08</field>
+      </fields>
+    </comp>
+    <comp ref="D19">
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C3V3-E3-08</field>
+      </fields>
+    </comp>
+    <comp ref="D20">
+      <value>BZX384C3V3</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
+      <fields>
+        <field name="mpn">BZX384C3V3-E3-08</field>
+      </fields>
+    </comp>
+    <comp ref="D21">
+      <value>POWER</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
+      <fields>
+        <field name="color">Green</field>
+        <field name="mpn">CMD15-21VGD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">2.0 V</field>
+        <field name="req_Vin">5V</field>
+        <field name="ds_Vf">2.1 V</field>
+      </fields>
+    </comp>
+    <comp ref="D22">
+      <value>STATUS_1</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
+      <fields>
+        <field name="color">Green</field>
+        <field name="mpn">CMD15-21VGD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">2.0 V</field>
+        <field name="req_Vin">5V</field>
+        <field name="ds_Vf">2.1 V</field>
+      </fields>
+    </comp>
+    <comp ref="D23">
+      <value>STATUS_2</value>
+      <footprint>IPC7351-Nominal:LEDC3216X110</footprint>
+      <fields>
+        <field name="color">Green</field>
+        <field name="mpn">CMD15-21VGD/TR8</field>
+        <field name="role">LED</field>
+        <field name="req_I">5 mA</field>
+        <field name="req_Vf">2.0 V</field>
+        <field name="req_Vin">5V</field>
+        <field name="ds_Vf">2.1 V</field>
+      </fields>
+    </comp>
+    <comp ref="J1">
+      <value>POWER</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_2x02_Pitch2.54mm</footprint>
+      <fields>
+        <field name="assembly">footprint only</field>
+      </fields>
+    </comp>
+    <comp ref="J2">
+      <value>SERIAL</value>
+      <footprint>Pin_Headers:Pin_Header_Straight_1x05_Pitch2.54mm</footprint>
+      <fields>
+        <field name="assembly">footprint only</field>
+      </fields>
+    </comp>
+    <comp ref="L1">
+      <value>15u</value>
+      <footprint>Inductors_SMD:L_Taiyo-Yuden_NR-80xx</footprint>
+      <fields>
+        <field name="ta_ref">L1</field>
+        <field name="mpn">NRS8040T150MJGJ</field>
+      </fields>
+    </comp>
+    <comp ref="MK1">
+      <value>M2.5</value>
+      <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
+      <fields>
+        <field name="assembly">footprint only</field>
+      </fields>
+    </comp>
+    <comp ref="MK2">
+      <value>M2.5</value>
+      <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
+      <fields>
+        <field name="assembly">footprint only</field>
+      </fields>
+    </comp>
+    <comp ref="MK3">
+      <value>M2.5</value>
+      <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
+      <fields>
+        <field name="assembly">footprint only</field>
+      </fields>
+    </comp>
+    <comp ref="MK4">
+      <value>M2.5</value>
+      <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
+      <fields>
+        <field name="assembly">footprint only</field>
+      </fields>
+    </comp>
+    <comp ref="P1">
+      <value>OUTPUTS</value>
+      <footprint>Bitraf:har-flexicon_2,54_TSPH-12_T56_BK</footprint>
+      <fields>
+        <field name="mpn">14011213102000</field>
+      </fields>
+    </comp>
+    <comp ref="P2">
+      <value>INPUTS</value>
+      <footprint>Bitraf:har-flexicon_2,54_TSPH-08_T56_BK</footprint>
+      <fields>
+        <field name="mpn">14010813102000</field>
+      </fields>
+    </comp>
+    <comp ref="P3">
+      <value>RASPBERRY_PI</value>
+      <footprint>Socket_Strips:Socket_Strip_Straight_2x20_Pitch2.54mm</footprint>
+      <fields>
+        <field name="mpn">PPTC202LFBN-RC</field>
+      </fields>
+    </comp>
+    <comp ref="P4">
+      <value>12V</value>
+      <footprint>Bitraf:har-flexicon_2,54_TSPH-02_T56_BK</footprint>
+      <fields>
+        <field name="mpn">14010213102000</field>
+      </fields>
+    </comp>
+    <comp ref="Q1">
+      <value>DMN2041L-7</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMN2041L-7</field>
+      </fields>
+    </comp>
+    <comp ref="Q2">
+      <value>DMN2041L-7</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMN2041L-7</field>
+      </fields>
+    </comp>
+    <comp ref="Q3">
+      <value>DMN2041L-7</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMN2041L-7</field>
+      </fields>
+    </comp>
+    <comp ref="Q4">
+      <value>DMN2041L-7</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMN2041L-7</field>
+      </fields>
+    </comp>
+    <comp ref="Q5">
+      <value>DMN2041L-7</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMN2041L-7</field>
+      </fields>
+    </comp>
+    <comp ref="Q6">
+      <value>DMN2041L-7</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMN2041L-7</field>
+      </fields>
+    </comp>
+    <comp ref="Q7">
+      <value>DMP3056L</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <fields>
+        <field name="mpn">DMP3056L-7</field>
+      </fields>
+    </comp>
+    <comp ref="R1">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R2">
+      <value>270</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RC1005F271CS</field>
+      </fields>
+    </comp>
+    <comp ref="R3">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R4">
+      <value>270</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RC1005F271CS</field>
+      </fields>
+    </comp>
+    <comp ref="R5">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R6">
+      <value>270</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RC1005F271CS</field>
+      </fields>
+    </comp>
+    <comp ref="R7">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R8">
+      <value>270</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RC1005F271CS</field>
+      </fields>
+    </comp>
+    <comp ref="R9">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R10">
+      <value>270</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RC1005F271CS</field>
+      </fields>
+    </comp>
+    <comp ref="R11">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R12">
+      <value>270</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RC1005F271CS</field>
+      </fields>
+    </comp>
+    <comp ref="R13">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R14">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R15">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R16">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R17">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R18">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R19">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R20">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R21">
+      <value>100k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="ta_ref">R2</field>
+        <field name="mpn">RC0402FR-07100KL</field>
+      </fields>
+    </comp>
+    <comp ref="R22">
+      <value>13.3k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="ta_ref">R3</field>
+        <field name="mpn">RC0402FR-0713K3L</field>
+      </fields>
+    </comp>
+    <comp ref="R23">
+      <value>560</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RC1005F561CS</field>
+      </fields>
+    </comp>
+    <comp ref="R24">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R25">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R26">
+      <value>10k</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RMCF0402FT10K0</field>
+      </fields>
+    </comp>
+    <comp ref="R27">
+      <value>560</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RC1005F561CS</field>
+      </fields>
+    </comp>
+    <comp ref="R28">
+      <value>560</value>
+      <footprint>IPC7351-Nominal:RESC1005X38</footprint>
+      <fields>
+        <field name="mpn">RC1005F561CS</field>
+      </fields>
+    </comp>
+    <comp ref="TP1">
+      <value>+5V</value>
+      <footprint>Connectors_TestPoints:Test_Point_Pad_d1.0mm</footprint>
+      <fields>
+        <field name="assembly">footprint only</field>
+      </fields>
+    </comp>
+    <comp ref="U1">
+      <value>TPS54202</value>
+      <footprint>TO_SOT_Packages_SMD:SOT-23-6_Handsoldering</footprint>
+      <fields>
+        <field name="ta">Figure 16. 5-V, 2-A Reference Design</field>
+        <field name="mpn">TPS54202DDCT</field>
+        <field name="Iout">2A</field>
+        <field name="Vout">5V</field>
+      </fields>
+    </comp>
+    <comp ref="U2">
+      <value>TMP102</value>
+      <footprint>Bitraf:SOT-563</footprint>
+      <fields>
+        <field name="ds_Vin">1.4 - 3.6 V</field>
+        <field name="mpn">TMP102AIDRLT</field>
+      </fields>
+    </comp>
+  </components>
+</export>
