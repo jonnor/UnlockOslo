@@ -2,4 +2,5 @@
   (lib (name tps54202)(type Legacy)(uri ${KIPRJMOD}/symbols/tps54202.lib)(options "")(descr ""))
   (lib (name alpha-misc)(type Legacy)(uri ${KIPRJMOD}/symbols/alpha-misc.lib)(options "")(descr ""))
   (lib (name tmp102)(type Legacy)(uri ${KIPRJMOD}/symbols/tmp102.lib)(options "")(descr ""))
+  (lib (name alpha-rescue)(type Legacy)(uri ${KIPRJMOD}/alpha-rescue.lib)(options "")(descr ""))
 )
