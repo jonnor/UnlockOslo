@@ -58,6 +58,33 @@ All components available from Digikey.
 
 The PCB has been successfully produced by PCBWay, and assembled at Bitraf.
 
+### PCB testing procedure
+
+A testing script exists for checking the inputs, outputs and status LEDs.
+This is intended to run on the Rasperry PI setup in the normal way (see [firmware](./firmware) for setup).
+
+First stop the firmware service temporarily
+
+    systemctl stop dlock-firmware
+
+Move to firmware dir and change user
+
+    sudo su dlock
+    cd /opt/dlock/src
+
+Check the inputs
+
+    ./venv/bin/python3 firmware/check_hardware.py input
+
+Check the output
+
+    ./venv/bin/python3 firmware/check_hardware.py output
+
+Check the status
+
+    ./venv/bin/python3 firmware/check_hardware.py status
+
+
 # Wiring
 
 [KiCad project](./connections)
