@@ -40,7 +40,7 @@ def check_outputs(delay):
 
 def check_status(delay):
     print('check status leds')
-    for number, pin in dlockoslo.outs.items():
+    for number, pin in dlockoslo.status.items():
         print('setup', number, pin)
         dlockoslo.setup_gpio_pin(pin, 'out')
 
@@ -60,10 +60,10 @@ def main():
     prog, args = sys.argv[0], sys.argv[1:]
 
     mode = 'input'
-    if len(args) > 1:
+    if len(args) >= 1:
         mode = args[0]
     delay = 0.15
-    if len(args) > 2:
+    if len(args) >= 2:
         delay = float(args[1])
 
     if 'output' in mode:
