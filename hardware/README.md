@@ -65,7 +65,7 @@ This is intended to run on the Rasperry PI setup in the normal way (see [firmwar
 
 First stop the firmware service temporarily
 
-    systemctl stop dlock-firmware
+    sudo systemctl stop dlock-firmware
 
 Move to firmware dir and change user
 
