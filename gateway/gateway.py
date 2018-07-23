@@ -209,6 +209,11 @@ doors = {
     'origo-2': ('doors/dlock-6',),
     'unused-7': ('doors/dlock-7',),
     'unused-8': ('doors/dlock-8',),
+    'unused-9': ('doors/dlock-9',),
+    'unused-10': ('doors/dlock-10',),
+    'unused-11': ('doors/dlock-11',),
+    'unused-12': ('doors/dlock-12',),
+    'unused-13': ('doors/dlock-13',),
 }
 
 ## System functionality

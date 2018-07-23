@@ -181,6 +181,11 @@ not_running = [
     'unused-4',
     'unused-7',
     'unused-8',
+    'unused-9',
+    'unused-10',
+    'unused-11',
+    'unused-12',
+    'unused-13',
 ]
 ignore = '&'.join('ignore={}'.format(d) for d in not_running)
 
