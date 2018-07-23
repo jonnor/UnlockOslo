@@ -204,6 +204,8 @@ doors = {
     'sorenga-1': ('doors/dlock-1',),
     'hotspare-1': ('doors/dlock-2',),
     'fubiak-1': ('doors/dlock-3',),
+    'origo-1': ('doors/dlock-5',),
+    'origo-2': ('doors/dlock-6',),
 }
 
 ## System functionality
