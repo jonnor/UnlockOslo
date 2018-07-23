@@ -176,6 +176,11 @@ not_running = [
     'sorenga-1',
     'fubiak-1',
     'dev-0',
+    'origo-1',
+    'origo-2',
+    'unused-4',
+    'unused-7',
+    'unused-8',
 ]
 ignore = '&'.join('ignore={}'.format(d) for d in not_running)
 
