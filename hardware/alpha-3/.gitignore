@@ -10,3 +10,6 @@ notebooks/.ipynb_checkpoints
 build
 env
 digikey_cache
+
+# doit
+.doit.db
