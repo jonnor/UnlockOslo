@@ -29,6 +29,7 @@
       repo: 'https://github.com/jonnor/dlock-oslo'
       dest: /opt/dlock/src
       version: master
+      force: yes
   - name: Install package dependencies
     pip:
       chdir: '/opt/dlock/src'
