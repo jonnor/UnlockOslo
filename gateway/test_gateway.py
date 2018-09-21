@@ -179,7 +179,7 @@ not_running = [
     'origo-1',
     'origo-2',
     'unused-4',
-    'unused-7',
+    'lindeberg-1',
     'unused-8',
     'unused-9',
     'unused-10',
