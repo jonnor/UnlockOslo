@@ -207,7 +207,7 @@ doors = {
     'unused-4': ('doors/dlock-4',),
     'origo-1': ('doors/dlock-5',),
     'origo-2': ('doors/dlock-6',),
-    'unused-7': ('doors/dlock-7',),
+    'lindeberg-1': ('doors/dlock-7',),
     'unused-8': ('doors/dlock-8',),
     'unused-9': ('doors/dlock-9',),
     'unused-10': ('doors/dlock-10',),
