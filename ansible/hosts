@@ -20,6 +20,9 @@ dlock-13 ansible_host=door13.dlock.trygvis.io
 [gateways]
 dlock
 
+[lindeberg]
+dlock-7
+
 [doors]
 dlock-dev
 dlock-0
@@ -29,7 +32,6 @@ dlock-3
 dlock-4
 dlock-5
 dlock-6
-dlock-7
 dlock-8
 dlock-9
 dlock-10
