@@ -281,6 +281,8 @@ class LockParticipant(msgflo.Participant):
     d = copy.deepcopy(participant_definition)
     msgflo.Participant.__init__(self, d, role)
 
+    self.discovery_period = float(os.environ.get("DLOCK_DISCOVERY_PERIOD", "60"))
+
     pin_mapping = {
         # in
         'holdopen_button': ('in', ins[1]),
@@ -331,6 +333,10 @@ class LockParticipant(msgflo.Participant):
   def recalculate_state(self, mqtt_request=None):
     # Retrieve current inputs
     connected = getattr(self, '_engine', None) and self._engine.connected
+
+    if connected:
+        self._engine.discovery_period = self.discovery_period
+
     inputs = dict(
         current_time=math.ceil(time.monotonic()),
         mqtt_request=mqtt_request,
