@@ -71,7 +71,7 @@ def mqtt_handle_message(client, u, message):
         m['time_received'] = t
 
         # Persist so we can query for device status
-        if len(discovery_messages) == 100:
+        if len(discovery_messages) == 2000:
             # Remove the oldest to make space
             _oldest = discovery_messages.pop(0)
         discovery_messages.append(m)
