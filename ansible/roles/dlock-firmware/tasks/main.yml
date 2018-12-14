@@ -55,6 +55,7 @@
       content: |
         MSGFLO_BROKER={{broker_url}}
         DLOCK_ROLE=doors/{{ansible_hostname}}
+        DLOCK_DISCOVERY_PERIOD=600
       dest: /etc/dlock/firmware.env
   - name: Start dlock service
     systemd:
