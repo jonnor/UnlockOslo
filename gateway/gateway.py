@@ -225,8 +225,8 @@ def index():
 # No auth for easy integration with monitoring tools/services
 @app.route('/status')
 def system_status():
-    timeperiod = float(flask.request.args.get('timeperiod', '60'))
-    assert_not_outside(timeperiod, 1, 10*60)
+    timeperiod = float(flask.request.args.get('timeperiod', '600'))
+    assert_not_outside(timeperiod, 1, 60*60)
 
     default_ignore = os.environ.get('DLOCK_IGNORE_MISSING', 'notresponding-1').split(',')
     ignored = flask.request.args.getlist('ignore')
