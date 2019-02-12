@@ -39,6 +39,7 @@ class Inputs():
         self.mqtt_connected = mqtt_connected
         self.mqtt_request = mqtt_request
         self.current_time = current_time
+        self.door_present = door_present
 
 
 # States
@@ -86,11 +87,15 @@ class States:
     def __init__(self,
         lock : Lock = Locked(0),
         opener : Opener = Inactive(0),
+        door_present :  bool = False,
+        door_present_updated : float = 0.0,
         connected_light : bool = False) -> None:
 
         self.lock = lock
         self.opener = opener
         self.connected_light = connected_light
+        self.door_present = door_present
+        self.door_present_updated = door_present_updated
 
 
 def next_state(current: States, inputs: Inputs) -> States:
@@ -150,8 +155,20 @@ def next_state(current: States, inputs: Inputs) -> States:
     elif opener.state == 'TemporarilyActive' and i.current_time >= opener.until:
         opener = Inactive(since=i.current_time)
 
+
+    # Door presence sensor
+    door_update_interval = 60.0
+    door_present = i.door_present # just reflect input 1-1
+    # calculate whether to update status, even though state has not changed
+    if i.current_time >= current.door_present_updated + door_update_interval:
+        door_updated = i.current_time
+    else:
+        door_updated = current.door_present_updated
+
     state = States(
         connected_light=i.mqtt_connected,
+        door_present=door_present,
+        door_present_updated=door_updated,
         lock=lock,
         opener=opener, 
     )
@@ -357,7 +374,7 @@ class LockParticipant(msgflo.Participant):
         if connected:
             self.send('islocked', next.lock.state == 'Locked')
             self.send('openeractive', next.opener.state != 'Inactive')
-            self.send('doorpresent', inputs['door_present'])
+            self.send('doorpresent', next.door_present)
 
     self.state = next
     self.inputs = inputs
