@@ -2,7 +2,6 @@
 import gateway
 import testdevices
 
-import flask
 import pytest
 import gevent
 import json
@@ -10,6 +9,7 @@ import base64
 import werkzeug.security as wsecurity
 
 import os
+import time
 
 app = gateway.app
 gateway.api_users['TEST_USER'] = wsecurity.generate_password_hash('XXX_TEST_PASSWORD')
@@ -171,6 +171,49 @@ def test_status_missing_device_503(devices):
         assert details['doors']['virtual-1']['status'] == 200
         assert details['doors']['virtual-1']['last_seen'] >= 1512050000
 
+
+def test_status_no_bolt_sensor(devices):
+    door_id = 'virtual-1' # door without bolt sensor
+    assert gateway.doors[door_id]
+
+    with app.test_client() as c:
+        r = c.get("status", **authed())
+        details = json.loads(r.data.decode('utf8'))
+        assert 'bolt' not in details['doors'][door_id], 'bolt information should not be present'
+
+
+def test_status_bolt_sensor_changes(devices):
+    door_id = 'virtual-2'
+    door_present_gpio = 22
+
+    def set_door_present(state : bool):
+        device = 'doors/'+door_id
+        testdevices.set_fake_gpio(device, door_present_gpio, state)
+        gevent.sleep(0.5)
+
+    with app.test_client() as c:
+        test_start = time.time()
+        set_door_present(False)
+
+        set_door_present(True)
+        r = c.get("status", **authed())
+        details = json.loads(r.data.decode('utf8'))
+        assert 'bolt' in details['doors'][door_id]
+        bolt = details['doors'][door_id]['bolt']
+        assert bolt['present']
+        assert bolt['last_updated'] > test_start
+
+        update_time = time.time()
+        set_door_present(False)
+        r = c.get("status", **authed())
+        details = json.loads(r.data.decode('utf8'))
+        assert 'bolt' in details['doors'][door_id]
+        bolt = details['doors'][door_id]['bolt']
+        assert not bolt['present']
+        assert bolt['last_updated'] > update_time
+
+
+# TODO: keep this info in database
 not_running = [
     'notresponding-1',
     'sorenga-1',
