@@ -25,13 +25,13 @@ log.setLevel(level)
 
 class Inputs():
     def __init__(self,
-        openbutton_outside : bool = False,
-        openbutton_inside : bool = False,
-        holdopen_button : bool = False,
-        door_present : bool = False,
-        mqtt_connected : bool = False,
-        mqtt_request : typing.Any = None,
-        current_time : float = 0) -> None:
+                 openbutton_outside : bool = False,
+                 openbutton_inside : bool = False,
+                 holdopen_button : bool = False,
+                 bolt_present : bool = False,
+                 mqtt_connected : bool = False,
+                 mqtt_request : typing.Any = None,
+                 current_time : float = 0) -> None:
 
         self.openbutton_outside = openbutton_outside
         self.openbutton_inside = openbutton_inside
@@ -39,7 +39,7 @@ class Inputs():
         self.mqtt_connected = mqtt_connected
         self.mqtt_request = mqtt_request
         self.current_time = current_time
-        self.door_present = door_present
+        self.bolt_present = bolt_present
 
 
 # States
@@ -85,17 +85,17 @@ Lock = typing.Union[Unlocked,Locked,TemporarilyUnlocked]
 
 class States:
     def __init__(self,
-        lock : Lock = Locked(0),
-        opener : Opener = Inactive(0),
-        door_present :  bool = False,
-        door_present_updated : float = 0.0,
-        connected_light : bool = False) -> None:
+                 lock : Lock = Locked(0),
+                 opener : Opener = Inactive(0),
+                 bolt_present :  bool = False,
+                 bolt_present_updated : float = 0.0,
+                 connected_light : bool = False) -> None:
 
         self.lock = lock
         self.opener = opener
         self.connected_light = connected_light
-        self.door_present = door_present
-        self.door_present_updated = door_present_updated
+        self.bolt_present = bolt_present
+        self.bolt_present_updated = bolt_present_updated
 
 
 def next_state(current: States, inputs: Inputs) -> States:
@@ -158,17 +158,17 @@ def next_state(current: States, inputs: Inputs) -> States:
 
     # Door presence sensor
     door_update_interval = 60.0
-    door_present = i.door_present # just reflect input 1-1
+    bolt_present = i.bolt_present # just reflect input 1-1
     # calculate whether to update status, even though state has not changed
-    if i.current_time >= current.door_present_updated + door_update_interval:
+    if i.current_time >= current.bolt_present_updated + door_update_interval:
         door_updated = i.current_time
     else:
-        door_updated = current.door_present_updated
+        door_updated = current.bolt_present_updated
 
     state = States(
         connected_light=i.mqtt_connected,
-        door_present=door_present,
-        door_present_updated=door_updated,
+        bolt_present=bolt_present,
+        bolt_present_updated=door_updated,
         lock=lock,
         opener=opener, 
     )
@@ -274,7 +274,7 @@ participant_definition = {
     { 'id': 'error', 'type': 'string' },
     { 'id': 'islocked', 'type': 'bool' },
     { 'id': 'openeractive', 'type': 'bool' },
-    { 'id': 'doorpresent', 'type': 'bool' },
+    { 'id': 'boltpresent', 'type': 'bool' },
   ],
 }
 
@@ -305,7 +305,7 @@ class LockParticipant(msgflo.Participant):
         'holdopen_button': ('in', ins[1]),
         'openbutton_outside': ('in', ins[2]),
         'openbutton_inside': ('in', ins[3]),
-        'door_present': ('in', ins[4]),
+        'bolt_present': ('in', ins[4]),
         # out
         'lock': ('out', outs[1]),
         'opener': ('out', outs[2]),
@@ -374,7 +374,7 @@ class LockParticipant(msgflo.Participant):
         if connected:
             self.send('islocked', next.lock.state == 'Locked')
             self.send('openeractive', next.opener.state != 'Inactive')
-            self.send('doorpresent', next.door_present)
+            self.send('boltpresent', next.bolt_present)
 
     self.state = next
     self.inputs = inputs

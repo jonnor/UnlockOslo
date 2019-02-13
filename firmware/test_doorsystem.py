@@ -167,63 +167,63 @@ def test_dooropener_after_unlock():
     assert states.opener.state == 'TemporarilyActive'
 
 
-def test_doorpresent_reflects_input():
+def test_bolt_present_reflects_input():
     states = dlockoslo.States()
     assert states.lock.state == 'Locked'
     assert states.opener.state == 'Inactive'
     inputs = dict(
-        door_present=False,
+        bolt_present=False,
     )
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
     assert states.lock.state == 'Locked'
-    assert not states.door_present
+    assert not states.bolt_present
 
     # False -> True
     inputs = dict(
-        door_present=True,
+        bolt_present=True,
     )
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
     assert states.lock.state == 'Locked'
-    assert states.door_present
+    assert states.bolt_present
 
     # True -> False
     inputs = dict(
-        door_present=False,
+        bolt_present=False,
     )
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
     assert states.lock.state == 'Locked'
-    assert not states.door_present
+    assert not states.bolt_present
 
 
-@pytest.mark.parametrize('door_present', [True, False])
-def test_doorpresent_periodic_update(door_present):
+@pytest.mark.parametrize('bolt_present', [True, False])
+def test_bolt_present_periodic_update(bolt_present):
 
     states = dlockoslo.States()
     inputs = dict(
-        door_present=door_present,
+        bolt_present=bolt_present,
     )
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
     assert states.lock.state == 'Locked'
-    assert states.door_present == door_present
-    last_updated = states.door_present_updated
+    assert states.bolt_present == bolt_present
+    last_updated = states.bolt_present_updated
 
     inputs = dict(
-        door_present=door_present,
+        bolt_present=bolt_present,
         current_time=30.0, # shorter than update setting
     )
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
     assert states.lock.state == 'Locked'
-    assert states.door_present == door_present
-    assert states.door_present_updated == last_updated, 'should not update'
+    assert states.bolt_present == bolt_present
+    assert states.bolt_present_updated == last_updated, 'should not update'
 
     inputs = dict(
-        door_present=door_present,
+        bolt_present=bolt_present,
         current_time=90.0, # longer than update setting
     )
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
     assert states.lock.state == 'Locked'
-    assert states.door_present == door_present
-    assert states.door_present_updated > last_updated, 'should update'
-    assert states.door_present_updated == 90.0
+    assert states.bolt_present == bolt_present
+    assert states.bolt_present_updated > last_updated, 'should update'
+    assert states.bolt_present_updated == 90.0
 
 

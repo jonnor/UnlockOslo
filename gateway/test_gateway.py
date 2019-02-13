@@ -184,18 +184,18 @@ def test_status_no_bolt_sensor(devices):
 
 def test_status_bolt_sensor_changes(devices):
     door_id = 'virtual-2'
-    door_present_gpio = 22
+    gpio_number = 22
 
-    def set_door_present(state : bool):
+    def set_bolt_present(state : bool):
         device = 'doors/'+door_id
-        testdevices.set_fake_gpio(device, door_present_gpio, state)
+        testdevices.set_fake_gpio(device, gpio_number, state)
         gevent.sleep(0.5)
 
     with app.test_client() as c:
         test_start = time.time()
-        set_door_present(False)
+        set_bolt_present(False)
 
-        set_door_present(True)
+        set_bolt_present(True)
         r = c.get("status", **authed())
         details = json.loads(r.data.decode('utf8'))
         assert 'bolt' in details['doors'][door_id]
@@ -204,7 +204,7 @@ def test_status_bolt_sensor_changes(devices):
         assert bolt['last_updated'] > test_start
 
         update_time = time.time()
-        set_door_present(False)
+        set_bolt_present(False)
         r = c.get("status", **authed())
         details = json.loads(r.data.decode('utf8'))
         assert 'bolt' in details['doors'][door_id]

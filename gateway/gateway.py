@@ -92,9 +92,9 @@ def mqtt_handle_message(client, u, message):
             _oldest = discovery_messages.pop(0)
         discovery_messages.append(m)
 
-    elif message.topic.endswith('/doorpresent'):
+    elif message.topic.endswith('/boltpresent'):
         # Updates about door presence status
-        mqtt_prefix = message.topic.rstrip('/doorpresent')
+        mqtt_prefix = message.topic.rstrip('/boltpresent')
         door_id = door_id_from_mqtt(mqtt_prefix)
         payload = message.payload.decode('utf8')
         present = (payload == 'true')
@@ -125,7 +125,7 @@ def mqtt_connected(client, u, f, rc):
         ('fbp', 0),
     ]
    
-    out_topics = ('islocked', 'isopen', 'error', 'doorpresent')
+    out_topics = ('islocked', 'isopen', 'error', 'boltpresent')
     for doorid, door in doors.items():
         basetopic = door.mqtt_prefix
         for t in out_topics:
