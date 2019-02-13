@@ -101,7 +101,7 @@ def mqtt_connected(client, u, f, rc):
    
     out_topics = ('islocked', 'isopen', 'error')
     for doorid, door in doors.items():
-        basetopic = door[0]
+        basetopic = door.mqtt_prefix
         for t in out_topics:
             topic = "{}/{}".format(basetopic, t)
             subscriptions.append((topic, 0))
@@ -163,7 +163,7 @@ def seen_since(messages, time : float):
 
 def find_door_id(role):
     for doorid, door in doors.items():
-        if door[0] == role:
+        if door.mqtt_prefix == role:
             return doorid
     return None
 
@@ -193,28 +193,37 @@ def returns_content_type(mime_type):
         return decorated_function
     return decorator
 
+class DoorInfo():
+    """Information about each door. Rarely changing, not stateful"""
+    def __init__(self, mqtt_prefix, presence_sensor=False):
+
+        self.mqtt_prefix = mqtt_prefix
+        self.presence_sensor = presence_sensor
+
+
 app = flask.Flask(__name__)
-api_users = {}
+# TODO: load from database
 doors = {
-    'virtual-1': ('doors/virtual-1',),
-    'virtual-2': ('doors/virtual-2',),
-    'erroring-1': ('doors/erroring-1',),
-    'notresponding-1': ('doors/notresponding-1',),
-    'dev-0': ('doors/dlock-0',),
-    'sorenga-1': ('doors/dlock-1',),
-    'hotspare-1': ('doors/dlock-2',),
-    'fubiak-1': ('doors/dlock-3',),
-    'unused-4': ('doors/dlock-4',),
-    'origo-1': ('doors/dlock-5',),
-    'origo-2': ('doors/dlock-6',),
-    'lindeberg-1': ('doors/dlock-7',),
-    'unused-8': ('doors/dlock-8',),
-    'unused-9': ('doors/dlock-9',),
-    'unused-10': ('doors/dlock-10',),
-    'unused-11': ('doors/dlock-11',),
-    'unused-12': ('doors/dlock-12',),
-    'unused-13': ('doors/dlock-13',),
+    'virtual-1': DoorInfo('doors/virtual-1'),
+    'virtual-2': DoorInfo('doors/virtual-2'),
+    'erroring-1': DoorInfo('doors/erroring-1'),
+    'notresponding-1': DoorInfo('doors/notresponding-1'),
+    'dev-0': DoorInfo('doors/dlock-0'),
+    'sorenga-1': DoorInfo('doors/dlock-1'),
+    'hotspare-1': DoorInfo('doors/dlock-2'),
+    'fubiak-1': DoorInfo('doors/dlock-3'),
+    'unused-4': DoorInfo('doors/dlock-4'),
+    'origo-1': DoorInfo('doors/dlock-5'),
+    'origo-2': DoorInfo('doors/dlock-6'),
+    'lindeberg-1': DoorInfo('doors/dlock-7'),
+    'unused-8': DoorInfo('doors/dlock-8'),
+    'unused-9': DoorInfo('doors/dlock-9'),
+    'unused-10': DoorInfo('doors/dlock-10'),
+    'unused-11': DoorInfo('doors/dlock-11'),
+    'unused-12': DoorInfo('doors/dlock-12'),
+    'unused-13': DoorInfo('doors/dlock-13'),
 }
+api_users = {}
 
 ## System functionality
 # No auth
@@ -240,7 +249,7 @@ def system_status():
     seen_doors = [ find_door_id(r) for r in seen_times.keys() if find_door_id(r) ]
 
     seen = set(seen_doors)
-    door_mqtt_roles = [ d[0] for d in doors.items() ]
+    door_mqtt_roles = [ d for d in doors.keys() ]
     expected = set(door_mqtt_roles)
     checked = expected - ignored
     missing = checked - seen
@@ -248,8 +257,12 @@ def system_status():
 
     def door_data(doorid):
         status = 200 if doorid in seen else 503
-        last_seen = seen_times.get(doors[doorid][0])
-        return { 'status': status, 'last_seen': last_seen }
+        last_seen = seen_times.get(doors[doorid].mqtt_prefix)
+        info = {
+            'status': status,
+            'last_seen': last_seen,
+        }
+        return info
 
     details = {
         'doors': { doorid: door_data(doorid) for doorid in checked }
@@ -288,7 +301,7 @@ def door_unlock(doorid):
     except ValueError as e:
         return ("Invalid duration: {}".format(flask.escape(str(e))), 422)
 
-    mqtt_prefix = door[0]
+    mqtt_prefix = door.mqtt_prefix
     # Subscribe
     def unlock_or_error(topic, data):
         iserror = topic == mqtt_prefix+'/error'
@@ -335,7 +348,7 @@ def door_lock(doorid):
     except ValueError:
         return ("Invalid timeout specified", 422)
 
-    mqtt_prefix = door[0]
+    mqtt_prefix = door.mqtt_prefix
     # Subscribe
     def locked_or_error(topic, data):
         iserror = topic == mqtt_prefix+'/error'
