@@ -31,6 +31,15 @@ log = logging.getLogger('gateway')
 log.setLevel(level)
 
 
+class DoorBoltStatus:
+    def __init__(self,
+                 present: bool,
+                 last_update: float):
+        self.present = present
+        self.last_update = last_update
+
+
+door_bolt_status = {}
 discovery_messages = []
 mqtt_client = None
 mqtt_message_waiters = [] # queue instances
@@ -57,6 +66,13 @@ def mqtt_message_received(client, u, message):
     except Exception as e:
         log_mqtt.exception('Failed to handle message %: %s '.format(message.topic, message.payload))
 
+def door_id_from_mqtt(prefix):
+    door_id = None
+    for d, info in doors.items():
+        if info.mqtt_prefix == prefix:
+            door_id = d
+    return door_id
+
 def mqtt_handle_message(client, u, message):
     log_mqtt.debug('received {}: {}'.format(message.topic, message.payload))
 
@@ -75,6 +91,16 @@ def mqtt_handle_message(client, u, message):
             # Remove the oldest to make space
             _oldest = discovery_messages.pop(0)
         discovery_messages.append(m)
+
+    elif message.topic.endswith('/doorpresent'):
+        # Updates about door presence status
+        mqtt_prefix = message.topic.rstrip('/doorpresent')
+        door_id = door_id_from_mqtt(mqtt_prefix)
+        payload = message.payload.decode('utf8')
+        present = (payload == 'true')
+        print('door presence change', mqtt_prefix, door_id, payload)
+        door_bolt_status[door_id] = DoorBoltStatus(present, time.time())
+
     else:
         # Check responses
         matches = []
@@ -99,7 +125,7 @@ def mqtt_connected(client, u, f, rc):
         ('fbp', 0),
     ]
    
-    out_topics = ('islocked', 'isopen', 'error')
+    out_topics = ('islocked', 'isopen', 'error', 'doorpresent')
     for doorid, door in doors.items():
         basetopic = door.mqtt_prefix
         for t in out_topics:
@@ -195,17 +221,17 @@ def returns_content_type(mime_type):
 
 class DoorInfo():
     """Information about each door. Rarely changing, not stateful"""
-    def __init__(self, mqtt_prefix, presence_sensor=False):
+    def __init__(self, mqtt_prefix, bolt_sensor=False):
 
         self.mqtt_prefix = mqtt_prefix
-        self.presence_sensor = presence_sensor
+        self.bolt_sensor = bolt_sensor
 
 
 app = flask.Flask(__name__)
 # TODO: load from database
 doors = {
     'virtual-1': DoorInfo('doors/virtual-1'),
-    'virtual-2': DoorInfo('doors/virtual-2'),
+    'virtual-2': DoorInfo('doors/virtual-2', bolt_sensor=True),
     'erroring-1': DoorInfo('doors/erroring-1'),
     'notresponding-1': DoorInfo('doors/notresponding-1'),
     'dev-0': DoorInfo('doors/dlock-0'),
@@ -263,6 +289,14 @@ def system_status():
             'status': status,
             'last_seen': last_seen,
         }
+        has_bolt_sensor = doors[doorid].bolt_sensor
+        bolt_status = door_bolt_status.get(doorid, None)
+        if has_bolt_sensor:
+            info['bolt'] = {
+                'present': bolt_status.present if bolt_status else None,
+                'last_updated': bolt_status.last_update if bolt_status else None,
+            }
+
         return info
 
     details = {
