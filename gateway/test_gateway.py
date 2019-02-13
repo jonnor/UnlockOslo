@@ -162,7 +162,7 @@ def test_lock_errors(devices):
 # GET /status
 def test_status_missing_device_503(devices):
     with app.test_client() as c:
-        r = c.get("status")
+        r = c.get("status", **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 503
         assert r.content_type == 'application/json'
@@ -191,7 +191,7 @@ ignore = '&'.join('ignore={}'.format(d) for d in not_running)
 
 def test_status_all_devices_ok(devices):
     with app.test_client() as c:
-        r = c.get("status?" + ignore)
+        r = c.get("status?" + ignore, **authed())
         body = r.data.decode('utf8')
         assert r.content_type == 'application/json'
         assert r.status_code == 200, body
@@ -202,7 +202,7 @@ def test_status_all_devices_ok(devices):
 
 def test_status_seen_but_too_long_ago(devices):
     with app.test_client() as c:
-        r = c.get("status?"+ignore+"&timeperiod=1")
+        r = c.get("status?"+ignore+"&timeperiod=1", **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 503, body
         details = json.loads(body)
@@ -213,7 +213,7 @@ def test_invalid_fbp_message(devices, mqtt_test_client):
 
     with app.test_client() as c:
         status_url = "status?"+ignore
-        r = c.get(status_url)
+        r = c.get(status_url, **authed())
         body = r.data.decode('utf8')
         assert r.content_type == 'application/json'
         assert r.status_code == 200, body

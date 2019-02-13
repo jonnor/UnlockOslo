@@ -231,8 +231,9 @@ api_users = {}
 def index():
   return 'UnlockOslo device gateway'
 
-# No auth for easy integration with monitoring tools/services
+
 @app.route('/status')
+@require_basic_auth
 def system_status():
     timeperiod = float(flask.request.args.get('timeperiod', '600'))
     assert_not_outside(timeperiod, 1, 60*60)
