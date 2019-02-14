@@ -2,7 +2,6 @@
 import gateway
 import testdevices
 
-import flask
 import pytest
 import gevent
 import json
@@ -10,6 +9,7 @@ import base64
 import werkzeug.security as wsecurity
 
 import os
+import time
 
 app = gateway.app
 gateway.api_users['TEST_USER'] = wsecurity.generate_password_hash('XXX_TEST_PASSWORD')
@@ -162,7 +162,7 @@ def test_lock_errors(devices):
 # GET /status
 def test_status_missing_device_503(devices):
     with app.test_client() as c:
-        r = c.get("status")
+        r = c.get("status", **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 503
         assert r.content_type == 'application/json'
@@ -171,6 +171,49 @@ def test_status_missing_device_503(devices):
         assert details['doors']['virtual-1']['status'] == 200
         assert details['doors']['virtual-1']['last_seen'] >= 1512050000
 
+
+def test_status_no_bolt_sensor(devices):
+    door_id = 'virtual-1' # door without bolt sensor
+    assert gateway.doors[door_id]
+
+    with app.test_client() as c:
+        r = c.get("status", **authed())
+        details = json.loads(r.data.decode('utf8'))
+        assert 'bolt' not in details['doors'][door_id], 'bolt information should not be present'
+
+
+def test_status_bolt_sensor_changes(devices):
+    door_id = 'virtual-2'
+    gpio_number = 22
+
+    def set_bolt_present(state : bool):
+        device = 'doors/'+door_id
+        testdevices.set_fake_gpio(device, gpio_number, state)
+        gevent.sleep(0.5)
+
+    with app.test_client() as c:
+        test_start = time.time()
+        set_bolt_present(False)
+
+        set_bolt_present(True)
+        r = c.get("status", **authed())
+        details = json.loads(r.data.decode('utf8'))
+        assert 'bolt' in details['doors'][door_id]
+        bolt = details['doors'][door_id]['bolt']
+        assert bolt['present']
+        assert bolt['last_updated'] > test_start
+
+        update_time = time.time()
+        set_bolt_present(False)
+        r = c.get("status", **authed())
+        details = json.loads(r.data.decode('utf8'))
+        assert 'bolt' in details['doors'][door_id]
+        bolt = details['doors'][door_id]['bolt']
+        assert not bolt['present']
+        assert bolt['last_updated'] > update_time
+
+
+# TODO: keep this info in database
 not_running = [
     'notresponding-1',
     'sorenga-1',
@@ -191,7 +234,7 @@ ignore = '&'.join('ignore={}'.format(d) for d in not_running)
 
 def test_status_all_devices_ok(devices):
     with app.test_client() as c:
-        r = c.get("status?" + ignore)
+        r = c.get("status?" + ignore, **authed())
         body = r.data.decode('utf8')
         assert r.content_type == 'application/json'
         assert r.status_code == 200, body
@@ -202,7 +245,7 @@ def test_status_all_devices_ok(devices):
 
 def test_status_seen_but_too_long_ago(devices):
     with app.test_client() as c:
-        r = c.get("status?"+ignore+"&timeperiod=1")
+        r = c.get("status?"+ignore+"&timeperiod=1", **authed())
         body = r.data.decode('utf8')
         assert r.status_code == 503, body
         details = json.loads(body)
@@ -213,7 +256,7 @@ def test_invalid_fbp_message(devices, mqtt_test_client):
 
     with app.test_client() as c:
         status_url = "status?"+ignore
-        r = c.get(status_url)
+        r = c.get(status_url, **authed())
         body = r.data.decode('utf8')
         assert r.content_type == 'application/json'
         assert r.status_code == 200, body

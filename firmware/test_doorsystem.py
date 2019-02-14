@@ -166,3 +166,64 @@ def test_dooropener_after_unlock():
     states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
     assert states.opener.state == 'TemporarilyActive'
 
+
+def test_bolt_present_reflects_input():
+    states = dlockoslo.States()
+    assert states.lock.state == 'Locked'
+    assert states.opener.state == 'Inactive'
+    inputs = dict(
+        bolt_present=False,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Locked'
+    assert not states.bolt_present
+
+    # False -> True
+    inputs = dict(
+        bolt_present=True,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Locked'
+    assert states.bolt_present
+
+    # True -> False
+    inputs = dict(
+        bolt_present=False,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Locked'
+    assert not states.bolt_present
+
+
+@pytest.mark.parametrize('bolt_present', [True, False])
+def test_bolt_present_periodic_update(bolt_present):
+
+    states = dlockoslo.States()
+    inputs = dict(
+        bolt_present=bolt_present,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Locked'
+    assert states.bolt_present == bolt_present
+    last_updated = states.bolt_present_updated
+
+    inputs = dict(
+        bolt_present=bolt_present,
+        current_time=30.0, # shorter than update setting
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Locked'
+    assert states.bolt_present == bolt_present
+    assert states.bolt_present_updated == last_updated, 'should not update'
+
+    inputs = dict(
+        bolt_present=bolt_present,
+        current_time=90.0, # longer than update setting
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Locked'
+    assert states.bolt_present == bolt_present
+    assert states.bolt_present_updated > last_updated, 'should update'
+    assert states.bolt_present_updated == 90.0
+
+
