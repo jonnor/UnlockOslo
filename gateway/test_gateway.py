@@ -224,7 +224,7 @@ not_running = [
     'unused-4',
     'lindeberg-1',
     'unused-8',
-    'unused-9',
+    'loren-1',
     'unused-10',
     'unused-11',
     'unused-12',
