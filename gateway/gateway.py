@@ -98,8 +98,10 @@ def mqtt_handle_message(client, u, message):
         door_id = door_id_from_mqtt(mqtt_prefix)
         payload = message.payload.decode('utf8')
         present = (payload == 'true')
-        print('door presence change', mqtt_prefix, door_id, payload)
-        door_bolt_status[door_id] = DoorBoltStatus(present, time.time())
+        # Only set last_updated if state actually changed
+        status = door_bolt_status.get(door_id, None)
+        if status is None or (present != status.present):
+            door_bolt_status[door_id] = DoorBoltStatus(present, time.time())
 
     else:
         # Check responses
