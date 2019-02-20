@@ -245,7 +245,7 @@ doors = {
     'origo-2': DoorInfo('doors/dlock-6'),
     'lindeberg-1': DoorInfo('doors/dlock-7'),
     'unused-8': DoorInfo('doors/dlock-8'),
-    'loren-1': DoorInfo('doors/dlock-9'),
+    'loren-1': DoorInfo('doors/dlock-9', bolt_sensor=True),
     'unused-10': DoorInfo('doors/dlock-10'),
     'unused-11': DoorInfo('doors/dlock-11'),
     'unused-12': DoorInfo('doors/dlock-12'),
