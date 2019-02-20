@@ -6,6 +6,7 @@ topic read doors/+/lock
 topic read doors/+/unlock
 topic write doors/+/error
 topic write doors/+/islocked
+topic write doors/+/boltpresent
 
 user dlock-gateway
 topic read fbp
@@ -13,3 +14,4 @@ topic write doors/+/lock
 topic write doors/+/unlock
 topic read doors/+/error
 topic read doors/+/islocked
+topic read doors/+/boltpresent
