@@ -3,6 +3,8 @@ superusers:
     state: present
     authorized_keys: |
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+I9Xa11yaOzGCBkJQEYExYL7gSWYwdOGgT2KBMnKur trygvis@arius
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3UZyrbXX7WMHqcZCRspkoSIfB6egrbOxXPf1zyZkAw trygvis@arius-v4
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJAzB6JB/hZ87M6ozsd7lgKxgOacEOZZRxa4ucs11lqq trygvis@conflatorio
   - username: jonnor
     state: present
     authorized_keys: |
