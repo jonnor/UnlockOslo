@@ -83,30 +83,29 @@
   tags: nginx
   become: yes
   block:
+  - name: Secrets
+    include_vars:
+      file: 'vault.yml'
+    no_log: no
   - name: Install Nginx
     apt:
-      name: "{{ item }}"
-      install_recommends: no
-    with_items:
+      name:
       - nginx
+      install_recommends: no
 
   - name: nginx site
     template:
       src: dlock.trygvis.io
       dest: /etc/nginx/sites-available/dlock.trygvis.io
-      validate: 'nginx -t -c %s'
+
+# FIXME: validate command complains about server directive not valid here
+#      validate: 'nginx -t -c %s'
 
   - name: nginx enable site
     file:
       src: ../sites-available/dlock.trygvis.io
       dest: /etc/nginx/sites-enabled/dlock.trygvis.io
       state: link
-
-  - name: dlock-gateway settings 
-    copy:
-      content: |
-        allow 127.0.0.1;
-      dest: /etc/nginx/dlock.trygvis.io.allow
 
   - name: Reload nginx
     systemd:
