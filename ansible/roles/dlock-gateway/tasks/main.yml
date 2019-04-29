@@ -3,10 +3,6 @@
     - dlock-gateway
     - app
   block:
-  - name: Secrets
-    include_vars:
-      file: 'vault.yml'
-    no_log: no
   - name: Install packages
     apt:
       name:
@@ -87,10 +83,6 @@
   tags: nginx
   become: yes
   block:
-  - name: Secrets
-    include_vars:
-      file: 'vault.yml'
-    no_log: no
   - name: Install Nginx
     apt:
       name:
