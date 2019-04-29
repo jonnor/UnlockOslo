@@ -1,10 +1,12 @@
----
-- hosts: dlock
+- hosts: 
+    - dlock
+    - dlock-dev
   roles:
     - network
     - lusers
     - superusers
     - dlock-gateway
+    - ssh-call-home-server
   tasks:
   - name: Install packages
     apt:
