@@ -79,29 +79,6 @@
       enabled: yes
       daemon_reload: yes # TODO, only restart on need
 
-- name: Mosquitto
-  tags: mosquitto
-  become: yes
-  block:
-  - name: Install Mosquitto
-    apt:
-      name: "{{ item }}"
-      install_recommends: no
-    with_items:
-      - mosquitto
-      - mosquitto-clients
-  - name: Mosquitto configuration
-    copy:
-      src: etc/mosquitto/conf.d/dlock.conf
-      dest: /etc/mosquitto/conf.d/dlock.conf
-  - name: Mosquitto config permissions
-    file:
-      path: /etc/mosquitto/conf.d
-      mode: 750
-      owner: mosquitto
-      group: root
-      recurse: yes
-
 - name: Nginx
   tags: nginx
   become: yes

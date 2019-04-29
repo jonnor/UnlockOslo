@@ -1,0 +1,12 @@
+[Service]
+ExecStart=/usr/sbin/mosquitto
+Restart=always
+RestartSec=10
+User=mosquitto
+Group=mosquitto
+
+[Unit]
+After=network-online.target
+
+[Install]
+WantedBy=multi-user.target

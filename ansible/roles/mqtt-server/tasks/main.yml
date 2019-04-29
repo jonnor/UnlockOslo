@@ -1,0 +1,27 @@
+- name: Mosquitto
+  tags: mosquitto
+  become: yes
+  block:
+  - name: Install Mosquitto
+    apt:
+      name:
+      - mosquitto
+      - mosquitto-clients
+      install_recommends: no
+
+  - name: Mosquitto configuration
+    copy:
+      src: etc/mosquitto/conf.d/dlock.conf
+      dest: /etc/mosquitto/conf.d/dlock.conf
+  - name: Mosquitto config permissions
+    file:
+      path: /etc/mosquitto/conf.d
+      mode: 750
+      owner: mosquitto
+      group: root
+      recurse: yes
+
+  - name: Copy Mosquitto service file
+    copy:
+      src: etc/systemd/system/mosquitto.service
+      dest: /etc/systemd/system/mosquitto.service
