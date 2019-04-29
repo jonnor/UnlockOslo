@@ -43,3 +43,11 @@ ssh -t door2.dlock.trygvis.io bash
 
     certbot register --agree-tos -m $EMAIL
     certbot certonly -d $DOMAIN --webroot --webroot-path /var/www/html
+
+## Checking mosquitto passwords
+
+    python
+    from passlib.apache import HtpasswdFile
+    ht = HtpasswdFile("/etc/mosquitto/conf.d/dlock.passwords")
+    ht.users()
+    ht.check_password("dlock-gateway", "foo")

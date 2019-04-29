@@ -4,3 +4,9 @@
     state: restarted
     daemon_reload: yes
   become: yes
+
+- name: reload mosquitto
+  service:
+    name: mosquitto
+    state: reloaded
+  become: yes

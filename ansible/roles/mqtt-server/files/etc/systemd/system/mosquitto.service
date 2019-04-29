@@ -1,5 +1,6 @@
 [Service]
 ExecStart=/usr/sbin/mosquitto -c /etc/mosquitto/conf.d/dlock.conf
+ExecReload=/bin/kill -HUP $MAINPID
 Restart=always
 RestartSec=10
 User=mosquitto
