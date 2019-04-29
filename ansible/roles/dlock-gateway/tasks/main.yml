@@ -3,6 +3,10 @@
     - dlock-gateway
     - app
   block:
+  - name: Secrets
+    include_vars:
+      file: 'vault.yml'
+    no_log: no
   - name: Install packages
     apt:
       name:
@@ -54,12 +58,8 @@
       state: directory
 
   - name: dlock-gateway settings 
-    copy:
-      content: |
-        LOGLEVEL=debug
-        DLOCK_IGNORE_MISSING=notresponding-1,dev-0
-        DLOCK_API_CREDENTIALS=TODO
-        MSGFLO_BROKER=TODO
+    template:
+      src: gateway.env.j2
       dest: /etc/dlock/gateway.env
 
   - name: dlock-testdevices settings 
