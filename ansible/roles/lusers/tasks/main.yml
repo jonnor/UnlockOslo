@@ -1,0 +1,44 @@
+---
+- become: yes
+  tags: lusers
+  vars:
+    usernames: "{{ users|dict2items|map(attribute='key')|list }}"
+  block:
+    - name: adduser
+      with_items: "{{ lusers }}"
+      user:
+        name: "{{ item }}"
+        shell: /bin/bash
+
+    - name: getent passwd
+      getent:
+        database: passwd
+
+    - name: disable user
+      with_items: "{{ usernames }}"
+      when: (item not in lusers) and (item in getent_passwd)
+      user:
+        name: "{{ item }}"
+        shell: /usr/sbin/nologin
+
+    - name: mkdir ~/.ssh
+      file:
+        path: "/home/{{ item }}/.ssh"
+        state: "directory"
+        owner: "{{ item }}"
+        group: "{{ item }}"
+      with_items: "{{ lusers }}"
+
+    - name: authorized_keys, exclusively managed by Ansible
+      copy:
+        dest: "/home/{{ item }}/.ssh/authorized_keys"
+        content: "{{ users[item].authorized_keys }}"
+      when: lusers_authorized_keys_exclusive
+      with_items: "{{ lusers }}"
+
+    - name: authorized_keys, shared management with Ansible
+      authorized_key:
+        user: "{{ item }}"
+        key: "{{ users[item].authorized_keys }}"
+      with_items: "{{ lusers }}"
+      when: not lusers_authorized_keys_exclusive

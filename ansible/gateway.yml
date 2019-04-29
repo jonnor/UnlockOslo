@@ -2,8 +2,9 @@
 - hosts: dlock
   roles:
     - network
+    - lusers
+    - superusers
     - dlock-gateway
-
   tasks:
   - name: Install packages
     apt:

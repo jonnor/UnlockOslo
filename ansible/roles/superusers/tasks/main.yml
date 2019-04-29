@@ -1,0 +1,31 @@
+---
+- tags: superusers
+  block:
+    - name: getent passwd
+      getent:
+        database: passwd
+
+    - name: getent group
+      getent:
+        database: group
+
+# NOTE: Accounts are added by the luser module.
+- tags: superusers
+  vars:
+    usernames: "{{ users|dict2items|map(attribute='key')|list }}"
+    unix_groups:
+      - sudo
+      - systemd-journal
+  loop: "{{ unix_groups }}"
+  loop_control:
+    loop_var: group
+  include_tasks: adjust-group.yml
+
+- name: "Allow 'sudo' group to have passwordless sudo"
+  tags: superusers
+  become: yes
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'

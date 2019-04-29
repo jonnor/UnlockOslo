@@ -1,0 +1,21 @@
+- vars:
+    members: "{{ getent_group[group][2].split(',') if group in getent_group else [] }}"
+    to_add: "{{ usernames | intersect(superusers) | difference(members) }}"
+    to_remove: "{{ members | difference(superusers) }}"
+  tags: superusers
+  block:
+    - debug: var=group
+    - debug: var=to_add
+    - debug: var=to_remove
+
+    - name: gpasswd --add
+      when: (item|length) > 0
+      with_items: "{{ to_add }}"
+      become: yes
+      shell: "gpasswd --add {{ item }} {{ group }}"
+
+    - name: gpasswd --delete
+      when: (item|length) > 0
+      with_items: "{{ to_remove }}"
+      become: yes
+      shell: "gpasswd --delete {{ item }} {{ group }}"

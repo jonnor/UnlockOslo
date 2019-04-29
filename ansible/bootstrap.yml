@@ -1,7 +1,5 @@
 - hosts: '{{ hosts }}'
   remote_user: '{{ user }}'
-  vars_files:
-  - roles/dlock-common/vars/main.yml
   become: True
   tasks:
   - name: Packages
@@ -11,28 +9,16 @@
     with_items:
       - git
       - etckeeper
-  - name: superuser nopasswd sudo
-    copy:
-      content: |
-        %sudo ALL=(ALL) NOPASSWD: ALL
-      dest: /etc/sudoers.d/020_sudo-group-nopasswd 
-  - name: superuser accounts
-    user:
-      name: "{{ item.username }}"
-      groups: sudo,systemd-journal
-      append: yes
-    with_items:
-      - "{{ superusers }}"
-  - name: superuser authorized_keys
-    authorized_key:
-      user: "{{ item.username }}"
-      state: present
-      key: "{{ item.authorized_keys }}"
-    with_items:
-      - "{{ superusers }}"
   - name: Remove default pi user/pass
     user:
       name: pi
       state: absent
       remove: yes
       force: yes # in case some process still uses the user
+
+- hosts: '{{ hosts }}'
+  remote_user: '{{ user }}'
+  become: True
+  roles:
+    - lusers
+    - superusers

@@ -1,32 +1,26 @@
-superusers:
-  - username: trygvis
-    state: present
+# DO NOT REMOVE USERS FROM THIS FILE.
+users:
+  trygvis:
     authorized_keys: |
-      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+I9Xa11yaOzGCBkJQEYExYL7gSWYwdOGgT2KBMnKur trygvis@arius
-      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3UZyrbXX7WMHqcZCRspkoSIfB6egrbOxXPf1zyZkAw trygvis@arius-v4
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPX+sVfRvl0+KxsDlbIutyB/Es3exTwNfDVHwi9orwz3 trygvis@birgitte
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJAzB6JB/hZ87M6ozsd7lgKxgOacEOZZRxa4ucs11lqq trygvis@conflatorio
-  - username: jonnor
-    state: present
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFJWlDmgPIwkUgljVKiNr2wfHGfz4VVoPvuDLJfMD9LM trygvis@arius-v2
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPKXVnzqo+JTVNrt3p0LGeH59DPMc9WkVMXO3wpAyTH6 trygvis@akili
+  jonnor:
     authorized_keys: |
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCRBQiYf6X7stPARBtfaPdVPkwG5ixmFiWRHhKzKIpbRX3DG2LcJgTWOoqysbs+lAxsMeHXROjkAcyEosxjWb+ng8HuPGP2SSNaECwVI7e/Ey6WEYgU+UrmV0su7f8m1gcmBz4esWfY02k+ojR3MxzrPdSHOnsBmofIgbcqLV/Fozf5FxpKHkneYfbFMcNvXAESnbg8UvMXcxMWbJTiRKntAayB1NJ5WfZADIrCmDhDN52I7AvTOqamdgAGt1pmpuuEacB/rCJqBZyDSpP9cOrnBfA4a6REErHlLK1OuDhBGN1kmhHMRtvmM4xbwgt8U++1zgokHVt4iXZi4jVsowj jon@jon-portable
-  - username: anne
-    state: present
+  anne:
     authorized_keys: |
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJzJk96IEsfMmASu3Pu/DOB5553PVtTh7pW1mhl0T7aKN1xsWA5TMoVr+ULMEmpFYdRLAw187AxVBhn8Q74F8T0YmFSsXyRbN3HJosEZlZEz1om7ROp4KlmBOJr2cUWMLY+4YzDc9oVHzXJ8DUoKXtMQUSHjzf1Dkyy5KE4srLNE131SNpHjmul0VyVHmyoEl0DiPObO+kOHjCZEwopdkHccbgv5+5H5Siq5j6T5RvM2aK1uY8u5MivaSfcjPX/3aQJDnIvnAgscdEX7RAyuWrMfc1Gw/BNjBZeBJL8x/5uVdbWqBojGvnibw3QQygkCuUy3HoqjPK0uOZPjWXN4o9 akw@Anne-Katrine-Wikestad-Knowit-2.local
-  - username: robin
-    state: present
+  robin:
     authorized_keys: |
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDyDFLlIWCNPWFV12B3FKi/vrmXwXsm0QUrh0lt+xxf5CNeY+6nygZYF6VvRNIzS7PVWaZqffghW2P8C+0H5YTP3cfJD9zhBi1NNPmHeuDcC/U7dVH2jRUaQnIN8eTwuUeW1SWm7RGoQwcSfo5nhTIM25/5kUYejf3hXmF0y9ZasIKUmRsxmcDkXcWkF3TJpqHVQcFn+xATadcNDcesSgxzvlwTkat0r8N3jVsbETsCMQizClLLaReN52WVZZnmE6Rbt3BRNFHZ3f8mXeMIS/DuKv2NX4Q3F2NuO+mn+eHY2vRzHNU4Jd0he72pgBBDRCv0MiooLOY5CNETzuqNzBH7 root@ap-laptop-robin
-  - username: hakongimse
-    state: present
+  hakongimse:
     authorized_keys: |
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCuw/ofpz7c9I7ZN98pvZU7YFsnFv0fBQ6DjDTOLYslYll/89cn1vD+s0n19IQ52eywewb75ikja2DLy9mTgyF6Mmjdljr0ud3j6kfBkZ4/wed1E+AZWwXwIcyEp/DcnxcTzG2i3SzH3CKWLmY/OxLIkC6JsnVxQ7HtPwKQeGydVguCkxUzVK1H4AggfRG0g6KJjEEMElTF7C1zCh+mZz+DFVNvlr59z7n7cTTXTXqeBeuPRzM66btcCJS1rjtN+aQMjTqnokFPM26hWwOADHkuETpfdW1RopptsRfl6J4BiZOYWGoMmxuFS+qxdBuZ57MF+pfp+qZJFq1hBTVxJ4qovqYiyz0KZcoJPpt44FnBGFQhq1/v8kjM4T4XKVTzOgXfJg85k3uuHw7OAi+HTrxfS2YGbjLuqjBqCzLyH74yhxssjv64ANcKtPmsPBNVNOiXUYCdysCV4lmXQtI51cL9irVgAGEVN3Y/LPzxMCzMI3Z2gCAEL+5+ZJ4svtTPnLVeUi7dQSVlkiA7H/znlXFekLgay+J+761dnuiIHFV9K8UJMJs1IZF/VEMkM+h+p8EwvkPD+UB/ElG/7ZoobCjfXBJlLrVdbb6rb2CCjDGSGIztUU0uHhCOepLG8KBZVD0A2JKYJhrMXwb6V+qXv2G4pPiny8v/3wIIW+X8Crb2vw== hakon.gimse@knowit.no
-  - username: farmin
-    state: present
+  farmin:
     authorized_keys: |
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5wXt6iQR/beHjoY2OCcyDwr7hGZuLc1nAG9e+Wr7dVutKQmaychpzD7reOcG9jp7xCjz4HhPRZaSEiFQaADaz9RlXP513SxM/NCP40n9Nw8HkMN9gzha1GeblGeNzrXsaPg9y017BCXeraNYUXRwJMkHIl85v9T5zk2vM9UoN38J5sLAJI8U+XR5XUUWDXOJizxu3YKWwYg1ZhEtizolycDLQkR7jottzOLnimCpdI8qkNb9/XQ+XE1rcNMjeZNdWltYIhnlypMi+nq9LBM48Q1lY3qngA2oILV64ph3zbcCA6tt1P76U4bK/3fy1+ssiEyI3cVlzLlmykJLQ/P10G0dCfK4uPZzSuGUjyEZD+bEmgunIX4xXj6o8s6uZwW+WjxPZCM3bDwUq5B/zkqgbnPGAIWeFStVyv9d4+PDbYmnv4RNt5DkKNbp5gYE9653NQLVMqNmZoL/FQbAzWY7cDH3zp95jML7QB+6B7ObZZQu5WKy+C5EtZM3ExatejDsxafoJ6PJLJpsyI+RnxGHQcJNFJtNLlKzY0T6gpC1xP997rUNTTPp9KOLio8B1BPyCbaN1f4dHhUjLmfYOBOCnkPJfda24CLwpjxyaAmh/0EQDFl+1SS/HleaM7WkaHJh2eBl6U8MNc8Cjjg1151j0DpicVHbD8lqQTPb1wYbp8Q== armin.bardseth@byr.oslo.kommune.no
-  - username: matss
-    state: present
+  matss:
     authorized_keys: |
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsaCwYBK+oKn4Hv8Piqw6ww6Cc/3ter1AtoRGtqq8tN4bqAoO07GEbzgXLlKtzcIhE9VvcKjdOQG33YjMVbDwl/R3RPMjQPfrCYawqEHJaOPxq5rK2NZtF++gffwOK6cdRHY95+8ivi00F5rL34NWjCCgde2T7u3IHHFmIzDN8d9eVHwGtAnvxRxz/PiXxAoBVTBxCFmNkN2TtbZ6RHzg2rp/f60NOkZWUz256oUe51TkkiG5xa+7fvmYZ7K05A42o5OxysUz4S1KnWmihxULv1PYqNnAK8qfX9dBdabES2hJhym2711oK9NgBZ0hfmaMRSlI7o2/YAKfxB13lPypn m@MSI
-
