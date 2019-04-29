@@ -16,6 +16,7 @@
         - python-setuptools
         - git
         - certbot
+        - ack
       install_recommends: no
 
   - name: dlock unprivileged user
