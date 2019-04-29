@@ -5,6 +5,7 @@
   roles:
     - network
     - dlock-gateway
+    - ssh-call-home-server
 
   tasks:
   - name: Install packages
