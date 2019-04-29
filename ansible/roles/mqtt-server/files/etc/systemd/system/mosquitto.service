@@ -1,5 +1,5 @@
 [Service]
-ExecStart=/usr/sbin/mosquitto
+ExecStart=/usr/sbin/mosquitto -c /etc/mosquitto/conf.d/dlock.conf
 Restart=always
 RestartSec=10
 User=mosquitto

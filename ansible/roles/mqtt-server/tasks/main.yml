@@ -2,6 +2,11 @@
   tags: mosquitto
   become: yes
   block:
+  - name: Secrets
+    include_vars:
+      file: 'vault.yml'
+    no_log: no
+
   - name: Install Mosquitto
     apt:
       name:
@@ -13,15 +18,31 @@
     copy:
       src: etc/mosquitto/conf.d/dlock.conf
       dest: /etc/mosquitto/conf.d/dlock.conf
+
+  - name: Mosquitto Access Control List
+    copy:
+      src: etc/mosquitto/conf.d/dlock.acl
+      dest: /etc/mosquitto/conf.d/dlock.acl
+
   - name: Mosquitto config permissions
     file:
       path: /etc/mosquitto/conf.d
-      mode: 750
+      mode: 0750
       owner: mosquitto
       group: root
       recurse: yes
+
+  - name: Password file
+    copy:
+      content: "{{ vault_mqtt_passwd }}"
+      dest: "/etc/mosquitto/conf.d/dlock.passwords"
 
   - name: Copy Mosquitto service file
     copy:
       src: etc/systemd/system/mosquitto.service
       dest: /etc/systemd/system/mosquitto.service
+
+  - name: restart mosquitto
+    service:
+      name: mosquitto
+      state: restarted
