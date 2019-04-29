@@ -1,6 +1,6 @@
 [Service]
-ExecStart=/usr/bin/python3 ./gateway/gateway.py
-WorkingDirectory=/home/dlock/dlock-oslo
+ExecStart=/opt/dlock/src/venv/bin/python /opt/dlock/src/gateway/gateway.py
+WorkingDirectory=/opt/dlock/src
 Restart=always
 RestartSec=3
 User=dlock
