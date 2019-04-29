@@ -5,3 +5,4 @@ __pycache__
 gpio*
 venv/
 .vault_pass
+mitogen-*

@@ -5,8 +5,9 @@
   - name: Install Mosquitto
     apt:
       name:
-      - mosquitto
-      - mosquitto-clients
+        - mosquitto
+        - mosquitto-clients
+        - python-passlib
       install_recommends: no
 
   - name: Mosquitto configuration
@@ -31,6 +32,18 @@
     copy:
       content: "{{ vault_mqtt_passwd }}"
       dest: "/etc/mosquitto/conf.d/dlock.passwords"
+    when: false
+
+  - name: Password file
+    tags: passwd
+    with_dict: "{{ vault_mqtt_credentials }}"
+#    no_log: yes
+    htpasswd:
+      path: /etc/mosquitto/conf.d/dlock.passwords2
+      name: "{{ item.key }}"
+      password: "{{ item.value }}"
+      crypt_scheme: sha512_crypt
+      state: "{{ 'absent' if not item.value or item.value.strip() == '' else 'present' }}"
 
   - name: Copy Mosquitto service file
     copy:
