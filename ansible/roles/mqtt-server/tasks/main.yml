@@ -2,11 +2,6 @@
   tags: mosquitto
   become: yes
   block:
-  - name: Secrets
-    include_vars:
-      file: 'vault.yml'
-    no_log: no
-
   - name: Install Mosquitto
     apt:
       name:

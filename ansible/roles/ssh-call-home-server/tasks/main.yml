@@ -1,10 +1,6 @@
 - name: Server-side of SSH call home
   tags: ssh-call-home
   block:
-  - name: Secrets
-    include_vars:
-      file: 'vault.yml'
-    no_log: no
   - name: Add unprivileged user
     user:
       name: "{{ ssh_user }}"

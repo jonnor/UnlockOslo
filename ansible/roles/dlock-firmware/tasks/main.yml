@@ -1,10 +1,6 @@
 - name: Dlock firmware
   tags: dlock-firmware
   block:
-  - name: Secrets
-    include_vars:
-      file: 'vault.yml'
-    no_log: yes
   - name: Install system dependencies
     apt:
       name: "{{ item }}"
