@@ -6,11 +6,12 @@
   - name: Install packages
     apt:
       name:
-      - python3
-      - python3-pip
-      - virtualenv
-      - python-setuptools
-      - git
+        - python3
+        - python3-pip
+        - virtualenv
+        - python-setuptools
+        - git
+        - certbot
       install_recommends: no
 
   - name: dlock unprivileged user
@@ -100,9 +101,6 @@
       src: dlock.trygvis.io
       dest: /etc/nginx/sites-available/dlock.trygvis.io
 
-# FIXME: validate command complains about server directive not valid here
-#      validate: 'nginx -t -c %s'
-
   - name: nginx enable site
     file:
       src: ../sites-available/dlock.trygvis.io
@@ -114,24 +112,3 @@
       name: nginx
       state: reloaded
       enabled: yes
-
-- name: Letsencrypt
-  tags: letsencrypt
-  become: yes
-  block:
-  # TODO: generate certificates with letsencrypt. https://docs.ansible.com/ansible/latest/modules/letsencrypt_module.html
-  - name: Chmod certificates
-    file:
-      path: "/etc/letsencrypt/{{ item }}"
-      owner: mosquitto
-      group: root
-    with_items:
-      - live/dlock.trygvis.io
-      - archive/dlock.trygvis.io
-  - name: Chmod certificates
-    file:
-      path: "/etc/letsencrypt/{{ item }}"
-      mode: 0770
-    with_items:
-      - live
-      - archive

@@ -2,16 +2,22 @@ server {
     listen 80;
     server_name {{web_hostname}};
 
+    location / {
+        proxy_pass http://localhost:5000;
+    }
+
 # deny everything except for whitelisted IPs
 {% for ip in vault_http_api_allow %}
     allow {{ ip }};
 {% endfor %}
     deny all;
 
-    location / {
-        proxy_pass http://localhost:5000;
+    location /.well-known/ {
+        root /var/www/html;
+        allow all;
     }
 
+{% if dlock_gateway__enable_https|bool %}
     listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/dlock.trygvis.io/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/dlock.trygvis.io/privkey.pem; # managed by Certbot
@@ -26,4 +32,7 @@ server {
     if ($scheme != "https") {
         return 301 https://$host$request_uri;
     } # managed by Certbot
+{% else %}
+# HTTPS disabled by ansible config, set dlock_gateway__enable_https to enable
+{% endif %}
 }

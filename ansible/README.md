@@ -41,5 +41,5 @@ ssh -t door2.dlock.trygvis.io bash
 
 ## Certbot
 
-    certbot register --agree-tos
-    certbot certonly -d $DOMAIN --webroot /var/www/html
+    certbot register --agree-tos -m $EMAIL
+    certbot certonly -d $DOMAIN --webroot --webroot-path /var/www/html

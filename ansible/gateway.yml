@@ -8,7 +8,8 @@
     - role: dlock-gateway
       tags: dlock-gateway
     - ssh-call-home-server
-    - mqtt-server
+    - role: mqtt-server
+      tags: mqtt-server
   tasks:
   - name: Install packages
     apt:
