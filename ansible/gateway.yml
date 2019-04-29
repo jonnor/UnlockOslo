@@ -5,7 +5,8 @@
     - network
     - lusers
     - superusers
-    - dlock-gateway
+    - role: dlock-gateway
+      tags: dlock-gateway
     - ssh-call-home-server
     - mqtt-server
   tasks:

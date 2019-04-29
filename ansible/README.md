@@ -39,3 +39,7 @@ ssh -t door2.dlock.trygvis.io bash
 
     ansible-playbook bootstrap.yml --extra-vars "hosts=dlock-99.local user=trygvis"
 
+## Certbot
+
+    certbot register --agree-tos
+    certbot certonly -d $DOMAIN --webroot /var/www/html

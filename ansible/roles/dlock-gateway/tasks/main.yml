@@ -1,5 +1,7 @@
 - name: Dlock gateway
-  tags: dlock-gateway
+  tags:
+    - dlock-gateway
+    - app
   block:
   - name: Install packages
     apt:
