@@ -1,5 +1,7 @@
 ---
-- hosts: dlock
+- hosts: 
+    - dlock
+    - dlock-dev
   roles:
     - network
     - dlock-gateway

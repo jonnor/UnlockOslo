@@ -8,6 +8,12 @@
     with_items:
       - python3-pip
       - git
+
+  - name: dlock unprivileged user
+    user:
+      name: dlock
+      state: present
+
   - name: dlock dir
     file:
       path: /opt/dlock
@@ -21,26 +27,49 @@
       dest: /opt/dlock/src
       version: master
 
-- name: Letsencrypt
-  tags: letsencrypt
-  become: yes
-  block:
-  # TODO: generate certificates with letsencrypt
-  - name: Chmod certificates
+  - name: Copy dlock-gateway service file
+    copy:
+      src: etc/systemd/system/dlock-gateway.service
+      dest: /etc/systemd/system/dlock-gateway.service
+
+  - name: Copy dlock-testdevices service file
+    copy:
+      src: etc/systemd/system/dlock-testdevices.service
+      dest: /etc/systemd/system/dlock-testdevices.service
+
+  - name: dlock config dir
     file:
-      path: "/etc/letsencrypt/{{ item }}"
-      owner: mosquitto
-      group: root
-    with_items:
-      - live/dlock.trygvis.io
-      - archive/dlock.trygvis.io
-  - name: Chmod certificates
-    file:
-      path: "/etc/letsencrypt/{{ item }}"
-      mode: 0770
-    with_items:
-      - live
-      - archive
+      path: /etc/dlock
+      state: directory
+
+  - name: dlock-gateway settings 
+    copy:
+      content: |
+        LOGLEVEL=debug
+        DLOCK_IGNORE_MISSING=notresponding-1,dev-0
+        DLOCK_API_CREDENTIALS=TODO
+        MSGFLO_BROKER=TODO
+      dest: /etc/dlock/gateway.env
+
+  - name: dlock-testdevices settings 
+    copy:
+      content: |
+        MSGFLO_BROKER=TODO
+      dest: /etc/dlock/testdevices.env
+
+  - name: Start dlock-gateway
+    systemd:
+      name: dlock-gateway
+      state: restarted # TODO, only restart when needed
+      enabled: yes
+      daemon_reload: yes # TODO, only restart on need
+
+  - name: Start dlock-testdevices
+    systemd:
+      name: dlock-testdevices
+      state: restarted # TODO, only restart when needed
+      enabled: yes
+      daemon_reload: yes # TODO, only restart on need
 
 - name: Mosquitto
   tags: mosquitto
@@ -76,13 +105,47 @@
     with_items:
       - nginx
 
-  - name: nginx site dlock.trygvis.io
-    copy:
-      src: etc/nginx/sites-available/dlock.trygvis.io
+  - name: nginx site
+    template:
+      src: dlock.trygvis.io
       dest: /etc/nginx/sites-available/dlock.trygvis.io
+      validate: 'nginx -t -c %s'
 
   - name: nginx enable site
     file:
       src: ../sites-available/dlock.trygvis.io
       dest: /etc/nginx/sites-enabled/dlock.trygvis.io
       state: link
+
+  - name: dlock-gateway settings 
+    copy:
+      content: |
+        allow 127.0.0.1;
+      dest: /etc/nginx/dlock.trygvis.io.allow
+
+  - name: Reload nginx
+    systemd:
+      name: nginx
+      state: reloaded
+      enabled: yes
+
+- name: Letsencrypt
+  tags: letsencrypt
+  become: yes
+  block:
+  # TODO: generate certificates with letsencrypt. https://docs.ansible.com/ansible/latest/modules/letsencrypt_module.html
+  - name: Chmod certificates
+    file:
+      path: "/etc/letsencrypt/{{ item }}"
+      owner: mosquitto
+      group: root
+    with_items:
+      - live/dlock.trygvis.io
+      - archive/dlock.trygvis.io
+  - name: Chmod certificates
+    file:
+      path: "/etc/letsencrypt/{{ item }}"
+      mode: 0770
+    with_items:
+      - live
+      - archive

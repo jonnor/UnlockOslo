@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name dlock.trygvis.io;
+    server_name {{web_hostname}};
 
     location / {
         proxy_pass http://localhost:5000;
