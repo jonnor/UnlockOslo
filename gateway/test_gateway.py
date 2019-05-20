@@ -223,10 +223,10 @@ not_running = [
     'origo-2',
     'unused-4',
     'lindeberg-1',
-    'unused-8',
+    'deichman-majorstuen',
     'loren-1',
-    'unused-10',
-    'unused-11',
+    'deichman-stovner',
+    'deichman-toyen',
     'unused-12',
     'unused-13',
 ]
