@@ -32,7 +32,6 @@ ssh -t door2.dlock.trygvis.io bash
 
 ## Deploy gateway update
 
-    # FIXME: not entirely automated yet
     ansible-playbook gateway.yml
 
 ## Initialize a new firmware device

@@ -10,3 +10,8 @@
       dest: "/home/{{ ssh_user }}/.ssh"
       owner: "{{ ssh_user }}"
       state: directory
+  - name: authorized_keys, exclusively managed by Ansible
+    copy:
+      dest: "/home/{{ ssh_user }}/.ssh/authorized_keys"
+      content: "{{ ssh_public_key }}"
+

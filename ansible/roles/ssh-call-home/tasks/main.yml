@@ -22,6 +22,10 @@
       dest: "/home/{{ ssh_user }}/.ssh/id_rsa"
       owner: "{{ ssh_user }}"
       mode: 0600
+  - name: known_hosts
+    copy:
+      dest: "/home/{{ ssh_user }}/.ssh/known_hosts"
+      content: "{{ ssh_known_hosts }}"
   - name: Copy service file
     copy:
       src: etc/systemd/system/dlock-call-home.service
