@@ -5,14 +5,14 @@ dlock-0 ansible_host=door0.dlock.trygvis.io
 dlock-1 ansible_host=sorenga.dlock.trygvis.io
 dlock-2 ansible_host=door2.dlock.trygvis.io
 dlock-3 ansible_host=fubiak.dlock.trygvis.io
-dlock-4 ansible_host=door4.dlock.trygvis.io
+dlock-4 ansible_host=toyen.dlock.trygvis.io
 dlock-5 ansible_host=origo1.dlock.trygvis.io
 dlock-6 ansible_host=origo2.dlock.trygvis.io
 dlock-7 ansible_host=lindeberg.dlock.trygvis.io
 dlock-8 ansible_host=majorstuen.dlock.trygvis.io
 dlock-9 ansible_host=loren.dlock.trygvis.io
-dlock-10 ansible_host=stovner.dlock.trygvis.io
-dlock-11 ansible_host=toyen.dlock.trygvis.io
+dlock-10 ansible_host=dlock10.dlock.trygvis.io
+dlock-11 ansible_host=stovner.dlock.trygvis.io
 dlock-12 ansible_host=door12.dlock.trygvis.io
 dlock-13 ansible_host=door13.dlock.trygvis.io
 
