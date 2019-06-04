@@ -64,3 +64,12 @@
       dest: /etc/letsencrypt/renewal-hooks/deploy/99-mosquitto
       mode: u=rx
     tags: x
+
+- meta: flush_handlers
+
+- name: Enable mosquitto
+  service:
+    name: mosquitto
+    enabled: yes
+    daemon_reload: yes
+  become: yes
