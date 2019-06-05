@@ -1,0 +1,4 @@
+- name: restart haproxy
+  systemd:
+    unit: haproxy
+    state: restarted

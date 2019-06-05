@@ -1,8 +1,10 @@
 - hosts: 
-    - dlock
-    - dlock-dev
+    - gateways
   roles:
     - network
+    - role: dlock-base
+      tags: dlock-base
+      become: yes
     - lusers
     - superusers
     - role: dlock-gateway
@@ -10,12 +12,15 @@
     - ssh-call-home-server
     - role: mqtt-server
       tags: mqtt-server
-  tasks:
-  - name: Install packages
-    apt:
-      name: "{{ item }}"
-      install_recommends: no
-    with_items:
-      - vim-nox
-      - aptitude
-      - ansible
+
+#- hosts:
+#    - dlock-proxy
+#  roles:
+#    - lusers
+#    - superusers
+#    - role: dlock-base
+#      tags: dlock-base
+#      become: yes
+#    - role: dlock-proxy
+#      tags: dlock-proxy
+#      become: yes

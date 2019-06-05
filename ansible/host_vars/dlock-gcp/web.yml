@@ -1,0 +1,2 @@
+web_hostname: dlock-gcp.trygvis.io
+mqtt_hostname: 127.0.0.1

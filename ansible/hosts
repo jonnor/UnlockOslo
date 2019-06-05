@@ -1,5 +1,8 @@
-dlock ansible_host=dlock.trygvis.io
+# dlock.trygvis.io
+dlock-gcp ansible_host=35.205.192.14
+dlock-prod ansible_host=0a39a3e8-a559-4df7-9fa1-ea85cca2310f.pub.cloud.scaleway.com
 dlock-dev ansible_host=dlock-dev.trygvis.io
+#dlock-proxy ansible_host=172.105.64.200
 
 dlock-0 ansible_host=door0.dlock.trygvis.io
 dlock-1 ansible_host=sorenga.dlock.trygvis.io
@@ -17,8 +20,9 @@ dlock-12 ansible_host=door12.dlock.trygvis.io
 dlock-13 ansible_host=door13.dlock.trygvis.io
 
 [gateways]
-dlock
+dlock-prod
 dlock-dev
+dlock-gcp
 
 [doors]
 dlock-0

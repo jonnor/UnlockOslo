@@ -6,3 +6,12 @@
     force: yes
   notify: reconfigure tzdata
 
+- name: rm /etc/motd
+  file:
+    path: /etc/motd
+    state: absent
+
+- name: Install packages
+  apt:
+    name: "{{ dlock_base__packages }}"
+    install_recommends: no
