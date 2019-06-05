@@ -1,0 +1,8 @@
+- name: /etc/localtime
+  file:
+    src: /usr/share/zoneinfo/Europe/Oslo
+    dest: /etc/localtime
+    state: link
+    force: yes
+  notify: reconfigure tzdata
+

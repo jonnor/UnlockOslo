@@ -1,0 +1,3 @@
+- name: reconfigure tzdata
+  become: yes
+  shell: dpkg-reconfigure -f noninteractive tzdata
