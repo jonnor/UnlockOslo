@@ -1,0 +1,5 @@
+dlock_base__packages:
+  - etckeeper
+  - vim-nox
+  - aptitude
+  - ansible
