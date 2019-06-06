@@ -4,3 +4,5 @@
     - network
     - ssh-call-home
     - dlock-firmware
+    - lusers
+    - superusers
