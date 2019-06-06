@@ -1,6 +1,3 @@
-- debug: var=certbot_host
-  tags: x
-
 - name: Dlock gateway
   tags:
     - dlock-gateway
@@ -35,6 +32,7 @@
       repo: 'https://github.com/jonnor/dlock-oslo'
       dest: /opt/dlock/src
       version: master
+
   - name: Install package dependencies
     pip:
       chdir: '/opt/dlock/src'
@@ -46,11 +44,13 @@
     copy:
       src: etc/systemd/system/dlock-gateway.service
       dest: /etc/systemd/system/dlock-gateway.service
+    notify: restart dlock-gateway
 
   - name: Copy dlock-testdevices service file
     copy:
       src: etc/systemd/system/dlock-testdevices.service
       dest: /etc/systemd/system/dlock-testdevices.service
+    notify: restart dlock-testdevices
 
   - name: dlock config dir
     file:
@@ -61,26 +61,24 @@
     template:
       src: gateway.env.j2
       dest: /etc/dlock/gateway.env
+    notify: restart dlock-gateway
 
   - name: dlock-testdevices settings 
     copy:
       content: |
         MSGFLO_BROKER=TODO
       dest: /etc/dlock/testdevices.env
+    notify: restart dlock-testdevices
 
-  - name: Start dlock-gateway
+  - name: systemd enable dlock-gateway
     systemd:
       name: dlock-gateway
-      state: restarted # TODO, only restart when needed
       enabled: yes
-      daemon_reload: yes # TODO, only restart on need
 
-  - name: Start dlock-testdevices
+  - name: systemd enable dlock-testdevices
     systemd:
       name: dlock-testdevices
-      state: restarted # TODO, only restart when needed
-      enabled: yes
-      daemon_reload: yes # TODO, only restart on need
+      enabled: "{{ dlock_enable_testdevices }}"
 
 - name: Nginx
   tags: nginx
@@ -96,15 +94,11 @@
     template:
       src: dlock.trygvis.io
       dest: /etc/nginx/sites-available/dlock.trygvis.io
+    notify: reload nginx
 
   - name: nginx enable site
     file:
       src: ../sites-available/dlock.trygvis.io
       dest: /etc/nginx/sites-enabled/dlock.trygvis.io
       state: link
-
-  - name: Reload nginx
-    systemd:
-      name: nginx
-      state: reloaded
-      enabled: yes
+    notify: reload nginx

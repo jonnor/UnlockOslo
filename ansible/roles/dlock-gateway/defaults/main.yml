@@ -1,1 +1,2 @@
 certbot_host: "{{ ansible_host }}"
+dlock_enable_testdevices: yes
