@@ -5,6 +5,10 @@
     daemon_reload: yes
   become: yes
 
+- name: systemd daemon-reload
+  service:
+    daemon_reload: yes
+
 - name: reload mosquitto
   service:
     name: mosquitto

@@ -52,24 +52,19 @@
     copy:
       src: etc/systemd/system/mosquitto.service
       dest: /etc/systemd/system/mosquitto.service
-    notify: restart mosquitto
+    notify: systemd daemon-reload
 
   - file:
       path: /etc/letsencrypt/renewal-hooks/deploy
       state: directory
-    tags: x
 
   - template:
       src: etc/letsencrypt/renewal-hooks/deploy/99-mosquitto
       dest: /etc/letsencrypt/renewal-hooks/deploy/99-mosquitto
       mode: u=rx
-    tags: x
-
-- meta: flush_handlers
 
 - name: Enable mosquitto
   service:
     name: mosquitto
     enabled: yes
     daemon_reload: yes
-  become: yes

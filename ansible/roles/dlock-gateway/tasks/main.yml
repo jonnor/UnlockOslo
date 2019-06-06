@@ -1,3 +1,6 @@
+- debug: var=certbot_host
+  tags: x
+
 - name: Dlock gateway
   tags:
     - dlock-gateway

@@ -9,18 +9,7 @@
     - superusers
     - role: dlock-gateway
       tags: dlock-gateway
-    - ssh-call-home-server
+    - role: ssh-call-home-server
+      tags: ssh-call-home-server
     - role: mqtt-server
       tags: mqtt-server
-
-#- hosts:
-#    - dlock-proxy
-#  roles:
-#    - lusers
-#    - superusers
-#    - role: dlock-base
-#      tags: dlock-base
-#      become: yes
-#    - role: dlock-proxy
-#      tags: dlock-proxy
-#      become: yes

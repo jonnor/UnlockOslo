@@ -19,8 +19,8 @@ server {
 
 {% if dlock_gateway__enable_https|bool %}
     listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/{{ ansible_host }}/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/{{ ansible_host }}/privkey.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/{{ certbot_host }}/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/{{ certbot_host }}/privkey.pem; # managed by Certbot
     ssl_session_cache shared:le_nginx_SSL:1m; # managed by Certbot
     ssl_session_timeout 1440m; # managed by Certbot
 
