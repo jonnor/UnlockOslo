@@ -1,0 +1,15 @@
+- vars:
+    files:
+      - ssh_host_ecdsa_key
+      - ssh_host_ecdsa_key.pub
+      - ssh_host_ed25519_key
+      - ssh_host_ed25519_key.pub
+      - ssh_host_rsa_key
+      - ssh_host_rsa_key.pub
+  copy:
+    dest: "/etc/ssh/{{ item }}"
+    src: "etc/ssh/{{ item }}"
+    mode: "{{ 'u=rw,go=r' if item.endswith('.pub') else 'u=rw' }}"
+    owner: root
+    group: root
+  with_items: "{{ files }}"

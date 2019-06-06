@@ -1,0 +1,8 @@
+- hosts:
+    - dlock-gcp
+  tasks:
+    - include_role:
+        name: ssh-call-home-server
+        apply:
+          become: yes
+        tasks_from: ssh-keys
