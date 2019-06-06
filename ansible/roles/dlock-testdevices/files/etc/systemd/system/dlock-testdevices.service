@@ -1,8 +1,8 @@
 [Service]
-ExecStart=/usr/bin/python3 ./gateway/testdevices.py
-WorkingDirectory=/home/dlock/dlock-oslo
+ExecStart=/opt/dlock/src/venv-testdevices/bin/python /opt/dlock/src/gateway/testdevices.py
+WorkingDirectory=/opt/dlock/testdevices
 Restart=always
-RestartSec=30
+RestartSec=3
 User=dlock
 Group=dlock
 EnvironmentFile=/etc/dlock/testdevices.env

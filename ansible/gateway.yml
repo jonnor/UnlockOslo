@@ -9,6 +9,8 @@
     - superusers
     - role: dlock-gateway
       tags: dlock-gateway
+    - role: dlock-testdevices
+      tags: dlock-testdevices
     - role: ssh-call-home-server
       tags: ssh-call-home-server
     - role: mqtt-server

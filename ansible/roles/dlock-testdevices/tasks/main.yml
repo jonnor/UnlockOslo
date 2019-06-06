@@ -1,0 +1,45 @@
+- name: Dlock testdevices
+  tags: dlock-testdevices
+  block:
+
+  # NOTE, assumes that git has been checked out by another role
+
+  - name: Editable workdir for virtual GPIO
+    file:
+      path: '/opt/dlock/testdevices'
+      owner: dlock
+      group: dlock
+      state: directory
+
+  - name: Install package dependencies
+    pip:
+      chdir: '/opt/dlock/src'
+      requirements: './firmware/requirements.txt'
+      virtualenv: /opt/dlock/src/venv-testdevices
+      virtualenv_python: 'python3.5'
+
+
+  - name: Copy dlock-testdevices service file
+    copy:
+      src: etc/systemd/system/dlock-testdevices.service
+      dest: /etc/systemd/system/dlock-testdevices.service
+    notify:
+    - systemd daemon-reload
+    - restart dlock-testdevices
+
+  - name: systemd enable dlock-testdevices
+    systemd:
+      name: dlock-testdevices
+      enabled: true
+
+  - name: dlock config dir
+    file:
+      path: /etc/dlock
+      state: directory
+
+  - name: Provide settings as environment vars 
+    copy:
+      content: |
+        MSGFLO_BROKER={{mqtt_broker_url}}
+        DLOCK_DISCOVERY_PERIOD=600
+      dest: /etc/dlock/testdevices.env

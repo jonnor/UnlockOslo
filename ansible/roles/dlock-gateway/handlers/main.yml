@@ -3,11 +3,6 @@
     name: dlock-gateway
     state: reloaded
 
-- name: restart dlock-testdevices
-  systemd:
-    name: dlock-testdevices
-    state: reloaded
-
 - name: reload nginx
   systemd:
     name: nginx

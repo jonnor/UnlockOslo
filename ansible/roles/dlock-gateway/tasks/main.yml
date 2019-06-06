@@ -46,12 +46,6 @@
       dest: /etc/systemd/system/dlock-gateway.service
     notify: restart dlock-gateway
 
-  - name: Copy dlock-testdevices service file
-    copy:
-      src: etc/systemd/system/dlock-testdevices.service
-      dest: /etc/systemd/system/dlock-testdevices.service
-    notify: restart dlock-testdevices
-
   - name: dlock config dir
     file:
       path: /etc/dlock
@@ -63,22 +57,11 @@
       dest: /etc/dlock/gateway.env
     notify: restart dlock-gateway
 
-  - name: dlock-testdevices settings 
-    copy:
-      content: |
-        MSGFLO_BROKER=TODO
-      dest: /etc/dlock/testdevices.env
-    notify: restart dlock-testdevices
-
   - name: systemd enable dlock-gateway
     systemd:
       name: dlock-gateway
       enabled: yes
 
-  - name: systemd enable dlock-testdevices
-    systemd:
-      name: dlock-testdevices
-      enabled: "{{ dlock_enable_testdevices }}"
 
 - name: Nginx
   tags: nginx

@@ -1,0 +1,8 @@
+- name: restart dlock-testdevices
+  systemd:
+    name: dlock-testdevices
+    state: restarted
+
+- name: systemd daemon-reload
+  service:
+    daemon_reload: yes

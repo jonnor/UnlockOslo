@@ -50,7 +50,7 @@
   - name: Provide settings as environment vars 
     copy:
       content: |
-        MSGFLO_BROKER={{broker_url}}
+        MSGFLO_BROKER={{mqtt_broker_url}}
         DLOCK_ROLE=doors/{{ansible_hostname}}
         DLOCK_DISCOVERY_PERIOD=600
       dest: /etc/dlock/firmware.env
