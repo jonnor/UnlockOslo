@@ -1,6 +1,11 @@
 - name: Server-side of SSH call home
   tags: ssh-call-home
   block:
+  - name: Install packages
+    apt:
+      install_recommends: no
+      name:
+        - netcat
   - name: Add unprivileged user
     user:
       name: "{{ ssh_user }}"
