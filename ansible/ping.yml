@@ -2,3 +2,4 @@
     all
   tasks:
     - debug: msg="I'm alive!"
+    - debug: var=ansible_distribution_release
