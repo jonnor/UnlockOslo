@@ -1,3 +1,3 @@
-web_hostname: dlock-gcp.trygvis.io
-mqtt_hostname: 127.0.0.1
+web_hostname: dlock.trygvis.io
+mqtt_hostname: '{{ web_hostname }}'
 certbot_host: dlock.trygvis.io
