@@ -226,7 +226,7 @@ not_running = [
     'deichman-majorstuen',
     'loren-1',
     'deichman-stovner',
-    'unused-10',
+    'unused-4',
     'unused-12',
     'unused-13',
 ]
