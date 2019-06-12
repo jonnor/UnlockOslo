@@ -25,3 +25,7 @@ users:
   matss:
     authorized_keys: |
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsaCwYBK+oKn4Hv8Piqw6ww6Cc/3ter1AtoRGtqq8tN4bqAoO07GEbzgXLlKtzcIhE9VvcKjdOQG33YjMVbDwl/R3RPMjQPfrCYawqEHJaOPxq5rK2NZtF++gffwOK6cdRHY95+8ivi00F5rL34NWjCCgde2T7u3IHHFmIzDN8d9eVHwGtAnvxRxz/PiXxAoBVTBxCFmNkN2TtbZ6RHzg2rp/f60NOkZWUz256oUe51TkkiG5xa+7fvmYZ7K05A42o5OxysUz4S1KnWmihxULv1PYqNnAK8qfX9dBdabES2hJhym2711oK9NgBZ0hfmaMRSlI7o2/YAKfxB13lPypn m@MSI
+  tingo:
+    authorized_keys: |
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKKM/xmF+qTf6Wc9zXbMA9Mx3qrq6YXHuFKQVStTQS1W tingo@bitraf
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAq/8+H4A29KrV8SqvF6V7vU8r5f6sXStVroqLZmAeRx tingo@bitraf (bsbox)
