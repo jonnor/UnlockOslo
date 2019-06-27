@@ -1,0 +1,6 @@
+is_rasbian: yes
+dlock_base__packages:
+  - git
+  - etckeeper
+  - vim
+  - aptitude

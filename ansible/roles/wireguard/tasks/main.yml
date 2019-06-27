@@ -1,0 +1,83 @@
+- set_fact:
+    local_key: "files/wireguard/{{ ansible_hostname }}-private.key"
+    key: "wireguard/{{ ansible_hostname }}-private.key"
+    local_pub: "files/wireguard/{{ ansible_hostname }}-public.key"
+    pub: "wireguard/{{ ansible_hostname }}-public.key"
+- become: no
+  local_action:
+    module: file
+    path: "files/wireguard"
+    state: directory
+
+- name: "wg genkey"
+  become: no
+  local_action:
+    module: shell wg genkey > "{{ local_key }}"
+  args:
+    creates: "{{ local_key }}"
+  register: wg_private_key
+
+- name: "wg pubkey"
+  when: wg_private_key.changed
+  local_action:
+    module: shell cat "{{ local_key }}" | wg pubkey > "{{ local_pub }}"
+  args:
+    creates: "{{ local_pub }}"
+
+- apt:
+    name:
+      - wireguard
+  tags: packages
+
+- systemd:
+    unit: systemd-networkd
+    enabled: yes
+
+- file:
+    path: /etc/wireguard/keys
+    state: directory
+
+#- copy:
+#    dest: /etc/wireguard/keys/{{ ansible_host }}-private.key
+#    src: "{{ key }}"
+#
+#- copy:
+#    dest: /etc/wireguard/keys/{{ item.key }}-public.key
+#    src: "wireguard/{{ item.key }}-public.key"
+#  with_items: "{{ wireguard__peers }}"
+#
+- notify: systemctl restart systemd-networkd
+  copy:
+    dest: /etc/systemd/network/50-wg0.netdev
+    content: |
+      [NetDev]
+      Name=wg0
+      Kind=wireguard
+      
+      [WireGuard]
+      PrivateKey={{ lookup('file', key) }}
+      {% if wireguard__listen_port is defined %}
+      ListenPort={{ wireguard__listen_port }}
+      {% endif %}
+      
+      {% for peer in wireguard__peers %}
+      [WireGuardPeer]
+      PublicKey={{ lookup('file', 'wireguard/' + peer.key + '-public.key') }}
+      Endpoint={{ peer.host }}:{{ peer.port }}
+      PersistentKeepalive=60
+      {% endfor %}
+
+# AllowedIPs={{ "0.0.0.0/0" }}
+# AllowedIPs={{ host.ipv4 }}
+# AllowedIPs={{ "::/0" }}
+# AllowedIPs={{ host.ipv6 }}
+
+- notify: systemctl restart systemd-networkd
+  copy:
+    dest: /etc/systemd/network/50-wg0.network
+    content: |
+      [Match]
+      Name=wg0
+      
+      [Network]
+      Address=1.2.3.4/24

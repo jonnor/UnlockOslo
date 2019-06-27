@@ -1,0 +1,4 @@
+wireguard__peers:
+  - host: dlock.trygvis.io
+    port: 12345
+    key: dlock-prod

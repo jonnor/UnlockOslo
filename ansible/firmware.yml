@@ -1,7 +1,9 @@
----
 - hosts: doors
   roles:
     - network
+    - role: dlock-base
+      tags: dlock-base
+      become: yes
     - ssh-call-home
     - dlock-firmware
     - lusers

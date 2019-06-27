@@ -16,7 +16,76 @@
     name: "{{ dlock_base__packages }}"
     install_recommends: no
 
-- lineinfile:
-    path: /etc/hosts
-    regexp: '.*\.trygvis.\io'
-    line: '127.0.0.1 {{ web_hostname }}'
+- name: configure debian repositories
+  notify: update apt cache
+  copy:
+    dest: /etc/apt/sources.list
+    content: "{{ versions[release] }}"
+  vars:
+    enabled: "{{ '' if dlock_base__enable_backports else '#' }}"
+    release: "{{ ansible_distribution_release + ('-rpi' if is_rasbian else '') }}"
+    versions:
+      stretch-rpi: |
+        deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi
+      stretch: |
+        deb     http://ftp.no.debian.org/debian/ stretch main contrib non-free
+        deb-src http://ftp.no.debian.org/debian/ stretch main contrib non-free
+
+        deb     http://security.debian.org/debian-security stretch/updates main contrib non-free
+        deb-src http://security.debian.org/debian-security stretch/updates main contrib non-free
+
+        deb     http://ftp.no.debian.org/debian/ stretch-updates main contrib non-free
+        deb-src http://ftp.no.debian.org/debian/ stretch-updates main contrib non-free
+
+        {{ enabled }}deb     http://ftp.no.debian.org/debian/ stretch-backports main contrib non-free
+        {{ enabled }}deb-src http://ftp.no.debian.org/debian/ stretch-backports main contrib non-free
+      jessie: |
+        deb     http://ftp.no.debian.org/debian/ jessie main contrib non-free
+        deb-src http://ftp.no.debian.org/debian/ jessie main contrib non-free
+
+        deb     http://security.debian.org/debian-security jessie/updates main contrib non-free
+        deb-src http://security.debian.org/debian-security jessie/updates main contrib non-free
+
+        deb     http://ftp.no.debian.org/debian/ jessie-updates main contrib non-free
+        deb-src http://ftp.no.debian.org/debian/ jessie-updates main contrib non-free
+
+        {{ enabled }}deb     http://ftp.no.debian.org/debian/ jessie-backports main contrib non-free
+        {{ enabled }}deb-src http://ftp.no.debian.org/debian/ jessie-backports main contrib non-free
+      unstable: |
+        deb     http://ftp.no.debian.org/debian/ unstable main contrib non-free
+        deb-src http://ftp.no.debian.org/debian/ unstable main contrib non-free
+      sid: |
+        deb     http://ftp.no.debian.org/debian/ sid main contrib non-free
+        deb-src http://ftp.no.debian.org/debian/ sid main contrib non-free
+
+- name: Enable backports repository by default
+  when: dlock_base__enable_backports
+  copy:
+    dest: /etc/apt/preferences.d/backports
+    content: |
+      Package: *
+      Pin: release a={{ ansible_distribution_release }}-backports
+      Pin-Priority: 500
+
+# For wireguard
+- block:
+    - apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: "{{ item }}"
+      with_items:
+        - 8B48AD6246925553
+        - 7638D0442B90D010
+        - EF0F382A1A7B6500
+
+    - notify: update apt cache
+      copy:
+        dest: /etc/apt/sources.list.d/debian.list
+        content: |
+          deb http://deb.debian.org/debian/ unstable main
+
+    - copy:
+        dest: /etc/apt/preferences.d/debian
+        content: |
+          Package: *
+          Pin: release a=unstable
+          Pin-Priority: 150

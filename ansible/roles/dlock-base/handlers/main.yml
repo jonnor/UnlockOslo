@@ -1,3 +1,6 @@
 - name: reconfigure tzdata
-  become: yes
   shell: dpkg-reconfigure -f noninteractive tzdata
+
+- name: update apt cache
+  apt:
+    update_cache: yes
