@@ -1,0 +1,10 @@
+stock,Item,Quantity,OrderNo,Notes
+,dlock board,1,self-fabricated PCB,
+,base-board,1,self-fabricated lasercut,
+,hex standoffs M2.5 10mm OD4.5,6,Mouser 534-24331,Wurth rack at Bitraf has 11mm long brass standoffs
+,hex nut M2.5,4,TORP Fasteners,stock in Wurth rack at Bitraf
+,machine screw M2.5x8,4,TORP Fasteners,stock in Wurth rack at Bitraf
+,woodscrew ??,4,clas ohlson,for baseboard
+,woodscrew 2.5x16mm,4,clas ohlson 40-9566-2,for screw terminal and box lid
+,screw terminal,1, kjell ???????,
+,relay 24V 1NONC,1,for equipment requiring potential free,
