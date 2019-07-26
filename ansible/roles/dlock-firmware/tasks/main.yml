@@ -3,9 +3,10 @@
   block:
   - name: Install system dependencies
     apt:
-      name: "{{ item }}"
+      name: "{{ items }}"
       install_recommends: no
-    with_items:
+    vars:
+      items:
       - python3-pip
       - python-setuptools
       - virtualenv
