@@ -1,0 +1,2 @@
+testing date | serial number | testscript | 	comment
+2019-07-26		100	ok		first dlock card produced with the automated PnP machine at Bitraf.
