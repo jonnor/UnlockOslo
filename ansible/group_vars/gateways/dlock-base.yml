@@ -3,3 +3,5 @@ dlock_base__packages:
   - vim-nox
   - aptitude
   - ansible
+  - htop
+  - ack
