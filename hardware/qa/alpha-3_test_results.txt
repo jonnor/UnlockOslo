@@ -1,2 +1,5 @@
 testing date | serial number | testscript | 	comment
 2019-07-26		100	ok		first dlock card produced with the automated PnP machine at Bitraf.
+2019-08-06		101	ok-		input 8 doesn't change. U2 (TMP102) missing - too little solder paste.
+2019-08-06		102	ok		
+2019-08-06		103	failed		had 5V when tested separately, after connecting to the Pi it doesn't have 5V anymore. U2 (TMP102) missing - too little solder paste.
