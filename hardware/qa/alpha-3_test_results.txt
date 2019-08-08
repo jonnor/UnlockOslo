@@ -3,3 +3,6 @@ testing date | serial number | testscript | 	comment
 2019-08-06		101	ok-		input 8 doesn't change. U2 (TMP102) missing - too little solder paste.
 2019-08-06		102	ok		
 2019-08-06		103	failed		had 5V when tested separately, after connecting to the Pi it doesn't have 5V anymore. U2 (TMP102) missing - too little solder paste.
+2019-08-08		104	ok--		led STATUS_2 doesn't work, output 5 (or the LED) doesn't work.
+2019-08-08		105	ok---		doesn't work: input 4, output 2 (or LED), STATUS_2. U2 (TMP102) missing - too little solder paste.
+2019-08-08		106	ok		U2 (TMP102) missing - too little solder paste.
