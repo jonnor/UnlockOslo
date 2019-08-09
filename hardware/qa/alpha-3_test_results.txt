@@ -6,3 +6,8 @@ testing date | serial number | testscript | 	comment
 2019-08-08		104	ok--		led STATUS_2 doesn't work, output 5 (or the LED) doesn't work.
 2019-08-08		105	ok---		doesn't work: input 4, output 2 (or LED), STATUS_2. U2 (TMP102) missing - too little solder paste.
 2019-08-08		106	ok		U2 (TMP102) missing - too little solder paste.
+2019-08-09		102	ok		(#102 failed when mounted yesterday). Rework: replaced U1 - TPS54202.
+2019-08-09		103	ok		Rework: replaced U1 - TPS54202.
+2019-08-09		107	ok		(initial fail on 5V after production). Rework: replaced U1 - TPS54202.
+2019-08-09		108	ok		(initial fail on 5V after production). Rework: replaced U1 - TPS54202.
+2019-08-09		109	ok		(initial fail on 5V after production). Rework: replaced U1 - TPS54202.
