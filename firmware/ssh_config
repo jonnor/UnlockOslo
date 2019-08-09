@@ -1,0 +1,24 @@
+# example ssh config file. 
+# Copy to ~/.ssh/config and edit necessary values.
+# Replace <user> with your username
+#
+# add new host sections as required. 
+# Note: port number is a function of the door number (port number is 2000 + door number).
+# Example: door98 is port 2098
+#
+Host dlock
+    HostName dlock.trygvis.io
+    User <user>
+
+Host door1.dlock.trygvis.io
+    User <user>
+    ProxyCommand=ssh dlock nc localhost 2001
+
+Host door2.dlock.trygvis.io
+    User <user>
+    ProxyCommand=ssh dlock nc localhost 2002
+
+Host door3.dlock.trygvis.io
+    User <user>
+    ProxyCommand=ssh dlock nc localhost 2003
+
