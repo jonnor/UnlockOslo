@@ -18,6 +18,8 @@ dlock-10 ansible_host=dlock10.dlock.trygvis.io
 dlock-11 ansible_host=stovner.dlock.trygvis.io
 dlock-12 ansible_host=door12.dlock.trygvis.io
 dlock-13 ansible_host=door13.dlock.trygvis.io
+dlock-14 ansible_host=door14.dlock.trygvis.io
+
 
 [gateways]
 dlock-prod
@@ -39,3 +41,4 @@ dlock-10
 dlock-11
 dlock-12
 dlock-13
+dlock-14
