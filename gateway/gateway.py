@@ -250,6 +250,7 @@ doors = {
     'deichman-stovner': DoorInfo('doors/dlock-11'),
     'unused-12': DoorInfo('doors/dlock-12'),
     'unused-13': DoorInfo('doors/dlock-13'),
+    'unused-14': DoorInfo('doors/dlock-14'),
 }
 api_users = {}
 
