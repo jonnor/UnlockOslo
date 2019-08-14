@@ -34,15 +34,38 @@ Check that one can connect directly
 
     ssh dlock-98.local
 
+After that SSH config is setup. An Example can be found in [./ssh_config](./ssh_config)
+
+    ..
+
 Check connecting via gateway
 
-    TODO: link to SSH config
     ssh door98.dlock.trygvis.io
 
-Update the firmware
+Update the firmware. See [../ansible/README.md]
 
-    TODO: link to Ansible
+    ..
 
 Add to gateway configuration 
 
     TODO: link to gateway doc
+
+## Debugging gateway connection
+
+If unable to connect to a powered device via the gateway using SSH,
+it might be due to a stale SSH tunnel.
+This often manifests by SSH client connection hanging forever on new connect.
+This can be fixed by doing the following:
+
+List existing SSH tunnel connections. Should be one line per connected device
+
+    netstat -lntp4 | grep :20
+
+Find `sshd` process with the port in question
+
+    sudo lsof -i :20$SERIALNUMBER
+
+Kill the offending SSH process
+
+    sudo kill -9 1111111111111
+
