@@ -29,3 +29,4 @@ users:
     authorized_keys: |
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKKM/xmF+qTf6Wc9zXbMA9Mx3qrq6YXHuFKQVStTQS1W tingo@bitraf
       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAq/8+H4A29KrV8SqvF6V7vU8r5f6sXStVroqLZmAeRx tingo@bitraf (bsbox)
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINL2e5n0kvZIJmZx6jIct4nzU5stsFu7QYhNcoSrliqA tingo@z30b
