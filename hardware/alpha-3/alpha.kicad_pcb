@@ -1,4 +1,4 @@
-(kicad_pcb (version 20171130) (host pcbnew 5.0.0-rc2+dfsg1-3)
+(kicad_pcb (version 20171130) (host pcbnew 5.1.4+dfsg1-1)
 
   (general
     (thickness 1.6)
@@ -44,8 +44,6 @@
     (zone_clearance 0.2)
     (zone_45_only yes)
     (trace_min 0.15)
-    (segment_width 0.1)
-    (edge_width 0.1)
     (via_size 0.6)
     (via_drill 0.3)
     (via_min_size 0.6)
@@ -55,6 +53,8 @@
     (uvias_allowed no)
     (uvia_min_size 0.5)
     (uvia_min_drill 0.1)
+    (edge_width 0.1)
+    (segment_width 0.1)
     (pcb_text_width 0.3)
     (pcb_text_size 1 1)
     (mod_edge_width 0.15)
@@ -79,7 +79,7 @@
       (useauxorigin false)
       (hpglpennumber 1)
       (hpglpenspeed 20)
-      (hpglpendiameter 15)
+      (hpglpendiameter 15.000000)
       (psnegative false)
       (psa4output false)
       (plotreference true)
@@ -957,7 +957,7 @@
     (tags "mounting hole 2.5mm no annular")
     (path /5834FB2E)
     (attr virtual)
-    (fp_text reference MK1 (at 0 -3.5 180) (layer F.SilkS) hide
+    (fp_text reference H1 (at 0 -3.5 180) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value M2.5 (at 0 3.5 180) (layer F.Fab)
@@ -977,7 +977,7 @@
     (tags "mounting hole 2.5mm no annular")
     (path /5834FBEF)
     (attr virtual)
-    (fp_text reference MK2 (at 0 -3.5 180) (layer F.SilkS) hide
+    (fp_text reference H2 (at 0 -3.5 180) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value M2.5 (at 0 3.5 180) (layer F.Fab)
@@ -997,7 +997,7 @@
     (tags "mounting hole 2.5mm no annular")
     (path /5834FC19)
     (attr virtual)
-    (fp_text reference MK3 (at 0 -3.5) (layer F.SilkS) hide
+    (fp_text reference H3 (at 0 -3.5) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value M2.5 (at 0 3.5) (layer F.Fab)
@@ -1017,7 +1017,7 @@
     (tags "mounting hole 2.5mm no annular")
     (path /5834FC4F)
     (attr virtual)
-    (fp_text reference MK4 (at 0 -3.5) (layer F.SilkS) hide
+    (fp_text reference H4 (at 0 -3.5) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text value M2.5 (at 0 3.5) (layer F.Fab)
@@ -1417,7 +1417,7 @@
     (fp_text reference R27 (at 0 0 90) (layer F.SilkS)
       (effects (font (size 0.8 0.8) (thickness 0.15)))
     )
-    (fp_text value 560 (at 0 0 90) (layer F.Fab)
+    (fp_text value 270 (at 0 0 90) (layer F.Fab)
       (effects (font (size 0.5 0.5) (thickness 0.1)))
     )
     (fp_line (start -1.025 -0.575) (end 1.025 -0.575) (layer F.CrtYd) (width 0.05))
@@ -1438,7 +1438,7 @@
     (fp_text reference R28 (at 0 0 90) (layer F.SilkS)
       (effects (font (size 0.8 0.8) (thickness 0.15)))
     )
-    (fp_text value 560 (at 0 0 90) (layer F.Fab)
+    (fp_text value 270 (at 0 0 90) (layer F.Fab)
       (effects (font (size 0.5 0.5) (thickness 0.1)))
     )
     (fp_line (start -1.025 -0.575) (end 1.025 -0.575) (layer F.CrtYd) (width 0.05))
@@ -1876,7 +1876,7 @@
     (fp_text reference R23 (at 0 0 90) (layer F.SilkS)
       (effects (font (size 0.8 0.8) (thickness 0.15)))
     )
-    (fp_text value 560 (at 0 0 90) (layer F.Fab)
+    (fp_text value 270 (at 0 0 90) (layer F.Fab)
       (effects (font (size 0.5 0.5) (thickness 0.1)))
     )
     (fp_line (start -1.025 -0.575) (end 1.025 -0.575) (layer F.CrtYd) (width 0.05))
