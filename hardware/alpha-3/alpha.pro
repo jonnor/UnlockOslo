@@ -1,4 +1,4 @@
-update=Mon 25 Jun 2018 11:35:28 PM CEST
+update=Tue 17 Sep 2019 12:25:45 PM CEST
 version=1
 last_client=kicad
 [cvpcb]
@@ -68,18 +68,18 @@ ShowMRa=1
 [pcbnew/libraries]
 LibDir=
 LibName1=sockets
+[general]
+version=1
+[eeschema]
+version=1
+LibDir=
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
 PlotDirectoryName=
 SubpartIdSeparator=0
 SubpartFirstId=65
-NetFmtName=
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
+NetFmtName=Pcbnew
+SpiceAjustPassiveValues=0
 LabSize=50
-[general]
-version=1
-[eeschema]
-version=1
-LibDir=
+ERC_TestSimilarLabels=1

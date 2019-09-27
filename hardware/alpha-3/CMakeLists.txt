@@ -3,15 +3,9 @@ cmake_minimum_required(VERSION 3.5)
 get_filename_component(tmp ${CMAKE_CURRENT_LIST_DIR} NAME)
 string(REGEX MATCH "([^-]*)-(.*)" tmp "${tmp}")
 set(PRJ ${CMAKE_MATCH_1})
+set(UUID 58221c70-feaf-45b6-8c14-df9ea3a18551)
 set(V ${CMAKE_MATCH_2})
 project(${PRJ})
-
-set(KicadUtilsDir ${CMAKE_CURRENT_LIST_DIR}/../thirdparty/kicad-utils)
-set(KicadUtilsPyDir ${KicadUtilsDir}/py)
-file(GLOB KICAD_UTILS_CMAKES ${KicadUtilsDir}/cmake/kicad_*.cmake)
-foreach(X ${KICAD_UTILS_CMAKES})
-  include(${X})
-endforeach()
 
 set(ENABLE_DIGIKEY TRUE)
 
@@ -47,23 +41,23 @@ add_custom_target("jupyter-notebook"
 # BOM XML file
 add_custom_command(OUTPUT "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.xml"
     COMMAND "${VENV}/bin/ee" "kicad-make-bom"
-        "--pretty"
         "--sch" "${PRJ}.sch"
         "--out" "${PRJ}.xml"
+        "--uuid" "${UUID}"
     MAIN_DEPENDENCY "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
     DEPENDS "${PIP_COOKIE}"
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
 
-file(GLOB CSVS RELATIVE ${CMAKE_CURRENT_LIST_DIR} py/*.csv)
-add_custom_command(OUTPUT "${CMAKE_CURRENT_LIST_DIR}/${PRJ}-checks.md"
-    COMMAND "${PY}" "${TOOLS}" --cmd run-checks
-        --sch "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
-        --digikey-repo "${CMAKE_CURRENT_LIST_DIR}/digikey"
-        > "${CMAKE_CURRENT_LIST_DIR}/${PRJ}-checks.md"
-    MAIN_DEPENDENCY "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
-    DEPENDS "${PIP_COOKIE}" "${PY}" "${TOOLS}"
-      "digikey-download-facts.cookie"
-      "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch" ${CSVS})
+#file(GLOB CSVS RELATIVE ${CMAKE_CURRENT_LIST_DIR} py/*.csv)
+#add_custom_command(OUTPUT "${CMAKE_CURRENT_LIST_DIR}/${PRJ}-checks.md"
+#    COMMAND "${PY}" "${TOOLS}" --cmd run-checks
+#        --sch "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
+#        --digikey-repo "${CMAKE_CURRENT_LIST_DIR}/digikey"
+#        > "${CMAKE_CURRENT_LIST_DIR}/${PRJ}-checks.md"
+#    MAIN_DEPENDENCY "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
+#    DEPENDS "${PIP_COOKIE}" "${PY}" "${TOOLS}"
+#      "digikey-download-facts.cookie"
+#      "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch" ${CSVS})
 
 add_custom_command(OUTPUT "digikey-download-facts.cookie"
     COMMENT "Downloading facts from Digi-Key"
@@ -77,6 +71,14 @@ add_custom_command(OUTPUT "digikey-download-facts.cookie"
 #
 # Files for production
 #
+
+set(KicadUtilsDir ${CMAKE_CURRENT_LIST_DIR}/../thirdparty/kicad-utils)
+set(KicadUtilsPyDir ${KicadUtilsDir}/py)
+set(KicadUtilsPython ${PY})
+file(GLOB KICAD_UTILS_CMAKES ${KicadUtilsDir}/cmake/kicad_*.cmake)
+foreach(X ${KICAD_UTILS_CMAKES})
+  include(${X})
+endforeach()
 
 # Gerber
 kicad_gerber(
@@ -126,26 +128,6 @@ add_custom_command(OUTPUT production/${PRJ}-digikey-bom.csv
     MAIN_DEPENDENCY "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
     DEPENDS "${PIP_COOKIE}" "${PY}" "${TOOLS}" "digikey-download-facts.cookie")
 
-add_custom_command(OUTPUT production/${PRJ}-digikey-bom-15.csv
-    COMMAND ${CMAKE_COMMAND} -E make_directory production
-    COMMAND "${PY}" "${TOOLS}" --cmd digikey-bom
-      --sch "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
-      --digikey-repo "${CMAKE_CURRENT_LIST_DIR}/digikey"
-      --quantity 5
-      > production/${PRJ}-digikey-bom-15.csv
-    MAIN_DEPENDENCY "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
-    DEPENDS "${PIP_COOKIE}" "${PY}" "${TOOLS}" "digikey-download-facts.cookie")
-
-add_custom_command(OUTPUT production/${PRJ}-digikey-bom-5.csv
-    COMMAND ${CMAKE_COMMAND} -E make_directory production
-    COMMAND "${PY}" "${TOOLS}" --cmd digikey-bom
-      --sch "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
-      --digikey-repo "${CMAKE_CURRENT_LIST_DIR}/digikey"
-      --quantity 5
-      > production/${PRJ}-digikey-bom-5.csv
-    MAIN_DEPENDENCY "${CMAKE_CURRENT_LIST_DIR}/${PRJ}.sch"
-    DEPENDS "${PIP_COOKIE}" "${PY}" "${TOOLS}" "digikey-download-facts.cookie")
-
 if (ENABLE_EUROCIRCUITS)
   list(APPEND extra_deps production/${PRJ}-eurocircuits-bom.csv)
   if (ENABLE_PNP)
@@ -154,7 +136,9 @@ if (ENABLE_EUROCIRCUITS)
 endif ()
 
 if (ENABLE_DIGIKEY)
-  list(APPEND extra_deps production/${PRJ}-digikey-bom.csv production/${PRJ}-digikey-bom-5.csv production/${PRJ}-digikey-bom-15.csv)
+  list(APPEND extra_deps production/${PRJ}-digikey-bom.csv)
+  # list(APPEND extra_deps production/${PRJ}-digikey-bom-5.csv)
+  # list(APPEND extra_deps production/${PRJ}-digikey-bom-15.csv)
 endif ()
 
 add_custom_target(${PRJ}-production ALL DEPENDS

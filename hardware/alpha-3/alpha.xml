@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="D">
   <design>
-    <source>/home/jon/work/trygvis/unlockoslo/hardware/alpha-3/alpha.sch</source>
-    <date>Fri 06 Jul 2018 05:50:48 PM CEST</date>
-    <tool>Eeschema (5.0.0-rc2-39-ga12b9db58)</tool>
+    <source>/home/trygvis/dev/com.github/jonnor/UnlockOslo/hardware/alpha-3/alpha.sch</source>
+    <date>Tue 17 Sep 2019 12:42:31 PM CEST</date>
+    <tool>Eeschema 5.1.4+dfsg1-1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title>Unlock Oslo</title>
@@ -19,43 +19,43 @@
     </sheet>
   </design>
   <components>
-    <comp ref="MK1">
+    <comp ref="H1">
       <value>M2.5</value>
       <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
       <fields>
         <field name="assembly">footprint only</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Mounting_Hole-Mechanical"/>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5834FB2E</tstamp>
     </comp>
-    <comp ref="MK2">
+    <comp ref="H2">
       <value>M2.5</value>
       <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
       <fields>
         <field name="assembly">footprint only</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Mounting_Hole-Mechanical"/>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5834FBEF</tstamp>
     </comp>
-    <comp ref="MK3">
+    <comp ref="H3">
       <value>M2.5</value>
       <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
       <fields>
         <field name="assembly">footprint only</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Mounting_Hole-Mechanical"/>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5834FC19</tstamp>
     </comp>
-    <comp ref="MK4">
+    <comp ref="H4">
       <value>M2.5</value>
       <footprint>Mounting_Holes:MountingHole_2.5mm</footprint>
       <fields>
         <field name="assembly">footprint only</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Mounting_Hole-Mechanical"/>
+      <libsource lib="Mechanical" part="MountingHole" description="Mounting Hole without connection"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5834FC4F</tstamp>
     </comp>
@@ -65,7 +65,7 @@
       <fields>
         <field name="mpn">DMN2041L-7</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Q_NMOS_GSD-Device"/>
+      <libsource lib="Device" part="Q_NMOS_GSD" description="N-MOSFET transistor, gate/source/drain"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A01616C</tstamp>
     </comp>
@@ -75,7 +75,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A016186</tstamp>
     </comp>
@@ -87,7 +87,7 @@
         <field name="digikey">1655-1506-1-ND</field>
         <field name="mpn">S1MTR</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D-Device"/>
+      <libsource lib="Device" part="D" description="Diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A01619F</tstamp>
     </comp>
@@ -97,7 +97,7 @@
       <fields>
         <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D_Zener-Device"/>
+      <libsource lib="Device" part="D_Zener" description="Zener diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A01D063</tstamp>
     </comp>
@@ -107,7 +107,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A01D14E</tstamp>
     </comp>
@@ -117,7 +117,7 @@
       <fields>
         <field name="mpn">14010813102000</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Conn_01x08-Connector_Generic"/>
+      <libsource lib="Connector_Generic" part="Conn_01x08" description="Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A01D793</tstamp>
     </comp>
@@ -127,7 +127,7 @@
       <fields>
         <field name="assembly">footprint only</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Conn_02x02_Odd_Even-Connector_Generic"/>
+      <libsource lib="Connector_Generic" part="Conn_02x02_Odd_Even" description="Generic connector, double row, 02x02, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A05952B</tstamp>
     </comp>
@@ -137,7 +137,7 @@
       <fields>
         <field name="assembly">footprint only</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Conn_01x05-Connector_Generic"/>
+      <libsource lib="Connector_Generic" part="Conn_01x05" description="Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A05A056</tstamp>
     </comp>
@@ -153,7 +153,7 @@
         <field name="req_Vin">5V</field>
         <field name="role">LED</field>
       </fields>
-      <libsource lib="alpha-rescue" part="LED-Device"/>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A05B1E4</tstamp>
     </comp>
@@ -161,9 +161,9 @@
       <value>270</value>
       <footprint>IPC7351-Nominal:RESC1005X38</footprint>
       <fields>
-        <field name="mpn">RC1005F561CS</field>
+        <field name="mpn">RC1005F271CS</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A05B9EF</tstamp>
     </comp>
@@ -179,7 +179,7 @@
         <field name="req_Vin">3.3 V</field>
         <field name="role">LED</field>
       </fields>
-      <libsource lib="alpha-rescue" part="LED-Device"/>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A05D008</tstamp>
     </comp>
@@ -189,7 +189,7 @@
       <fields>
         <field name="mpn">RC1005F271CS</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A05D00E</tstamp>
     </comp>
@@ -199,7 +199,7 @@
       <fields>
         <field name="mpn">DMN2041L-7</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Q_NMOS_GSD-Device"/>
+      <libsource lib="Device" part="Q_NMOS_GSD" description="N-MOSFET transistor, gate/source/drain"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06194D</tstamp>
     </comp>
@@ -209,7 +209,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A061965</tstamp>
     </comp>
@@ -221,7 +221,7 @@
         <field name="digikey">1655-1506-1-ND</field>
         <field name="mpn">S1MTR</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D-Device"/>
+      <libsource lib="Device" part="D" description="Diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A061983</tstamp>
     </comp>
@@ -237,7 +237,7 @@
         <field name="req_Vin">3.3 V</field>
         <field name="role">LED</field>
       </fields>
-      <libsource lib="alpha-rescue" part="LED-Device"/>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06198E</tstamp>
     </comp>
@@ -247,7 +247,7 @@
       <fields>
         <field name="mpn">RC1005F271CS</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A061994</tstamp>
     </comp>
@@ -263,7 +263,7 @@
         <field name="req_Vin">5V</field>
         <field name="role">LED</field>
       </fields>
-      <libsource lib="alpha-rescue" part="LED-Device"/>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A066DDB</tstamp>
     </comp>
@@ -271,9 +271,9 @@
       <value>270</value>
       <footprint>IPC7351-Nominal:RESC1005X38</footprint>
       <fields>
-        <field name="mpn">RC1005F561CS</field>
+        <field name="mpn">RC1005F271CS</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A066DE1</tstamp>
     </comp>
@@ -289,7 +289,7 @@
         <field name="req_Vin">5V</field>
         <field name="role">LED</field>
       </fields>
-      <libsource lib="alpha-rescue" part="LED-Device"/>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A067224</tstamp>
     </comp>
@@ -297,9 +297,9 @@
       <value>270</value>
       <footprint>IPC7351-Nominal:RESC1005X38</footprint>
       <fields>
-        <field name="mpn">RC1005F561CS</field>
+        <field name="mpn">RC1005F271CS</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06722A</tstamp>
     </comp>
@@ -309,7 +309,7 @@
       <fields>
         <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D_Zener-Device"/>
+      <libsource lib="Device" part="D_Zener" description="Zener diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A069DE5</tstamp>
     </comp>
@@ -319,7 +319,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A069DEB</tstamp>
     </comp>
@@ -329,7 +329,7 @@
       <fields>
         <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D_Zener-Device"/>
+      <libsource lib="Device" part="D_Zener" description="Zener diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06A029</tstamp>
     </comp>
@@ -339,7 +339,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06A02F</tstamp>
     </comp>
@@ -349,7 +349,7 @@
       <fields>
         <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D_Zener-Device"/>
+      <libsource lib="Device" part="D_Zener" description="Zener diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06A50A</tstamp>
     </comp>
@@ -359,7 +359,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06A510</tstamp>
     </comp>
@@ -369,7 +369,7 @@
       <fields>
         <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D_Zener-Device"/>
+      <libsource lib="Device" part="D_Zener" description="Zener diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06A522</tstamp>
     </comp>
@@ -379,7 +379,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06A528</tstamp>
     </comp>
@@ -389,7 +389,7 @@
       <fields>
         <field name="mpn">DMN2041L-7</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Q_NMOS_GSD-Device"/>
+      <libsource lib="Device" part="Q_NMOS_GSD" description="N-MOSFET transistor, gate/source/drain"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06B691</tstamp>
     </comp>
@@ -399,7 +399,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06B6A9</tstamp>
     </comp>
@@ -411,7 +411,7 @@
         <field name="digikey">1655-1506-1-ND</field>
         <field name="mpn">S1MTR</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D-Device"/>
+      <libsource lib="Device" part="D" description="Diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06B6C1</tstamp>
     </comp>
@@ -427,7 +427,7 @@
         <field name="req_Vin">3.3 V</field>
         <field name="role">LED</field>
       </fields>
-      <libsource lib="alpha-rescue" part="LED-Device"/>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06B6CE</tstamp>
     </comp>
@@ -437,7 +437,7 @@
       <fields>
         <field name="mpn">RC1005F271CS</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06B6D4</tstamp>
     </comp>
@@ -447,7 +447,7 @@
       <fields>
         <field name="mpn">DMN2041L-7</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Q_NMOS_GSD-Device"/>
+      <libsource lib="Device" part="Q_NMOS_GSD" description="N-MOSFET transistor, gate/source/drain"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06B8DF</tstamp>
     </comp>
@@ -457,7 +457,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06B8F7</tstamp>
     </comp>
@@ -469,7 +469,7 @@
         <field name="digikey">1655-1506-1-ND</field>
         <field name="mpn">S1MTR</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D-Device"/>
+      <libsource lib="Device" part="D" description="Diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06B90F</tstamp>
     </comp>
@@ -485,7 +485,7 @@
         <field name="req_Vin">3.3 V</field>
         <field name="role">LED</field>
       </fields>
-      <libsource lib="alpha-rescue" part="LED-Device"/>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06B91C</tstamp>
     </comp>
@@ -495,7 +495,7 @@
       <fields>
         <field name="mpn">RC1005F271CS</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06B922</tstamp>
     </comp>
@@ -506,7 +506,7 @@
         <field name="ds_Vin">1.4 - 3.6 V</field>
         <field name="mpn">TMP102AIDRLT</field>
       </fields>
-      <libsource lib="tmp102" part="TMP102"/>
+      <libsource lib="tmp102" part="TMP102" description="Low-Power Digital Temperature Sensor With SMBus and Two-Wire Serial"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06EA28</tstamp>
     </comp>
@@ -516,7 +516,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A0704C8</tstamp>
     </comp>
@@ -526,7 +526,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A07097D</tstamp>
     </comp>
@@ -536,7 +536,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A070B7E</tstamp>
     </comp>
@@ -546,7 +546,7 @@
       <fields>
         <field name="mpn">DMN2041L-7</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Q_NMOS_GSD-Device"/>
+      <libsource lib="Device" part="Q_NMOS_GSD" description="N-MOSFET transistor, gate/source/drain"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A0750FA</tstamp>
     </comp>
@@ -556,7 +556,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A075112</tstamp>
     </comp>
@@ -568,7 +568,7 @@
         <field name="digikey">1655-1506-1-ND</field>
         <field name="mpn">S1MTR</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D-Device"/>
+      <libsource lib="Device" part="D" description="Diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A075130</tstamp>
     </comp>
@@ -584,7 +584,7 @@
         <field name="req_Vin">3.3 V</field>
         <field name="role">LED</field>
       </fields>
-      <libsource lib="alpha-rescue" part="LED-Device"/>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A07513D</tstamp>
     </comp>
@@ -594,7 +594,7 @@
       <fields>
         <field name="mpn">RC1005F271CS</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A075143</tstamp>
     </comp>
@@ -604,7 +604,7 @@
       <fields>
         <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D_Zener-Device"/>
+      <libsource lib="Device" part="D_Zener" description="Zener diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A078559</tstamp>
     </comp>
@@ -614,7 +614,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A07855F</tstamp>
     </comp>
@@ -624,7 +624,7 @@
       <fields>
         <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D_Zener-Device"/>
+      <libsource lib="Device" part="D_Zener" description="Zener diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A078774</tstamp>
     </comp>
@@ -634,7 +634,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A07877A</tstamp>
     </comp>
@@ -644,7 +644,7 @@
       <fields>
         <field name="mpn">BZX384C3V3-E3-08</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D_Zener-Device"/>
+      <libsource lib="Device" part="D_Zener" description="Zener diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A0799D3</tstamp>
     </comp>
@@ -654,7 +654,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A0799D9</tstamp>
     </comp>
@@ -664,7 +664,7 @@
       <fields>
         <field name="mpn">DMN2041L-7</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Q_NMOS_GSD-Device"/>
+      <libsource lib="Device" part="Q_NMOS_GSD" description="N-MOSFET transistor, gate/source/drain"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A07A501</tstamp>
     </comp>
@@ -674,7 +674,7 @@
       <fields>
         <field name="mpn">RMCF0402FT10K0</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A07A519</tstamp>
     </comp>
@@ -686,7 +686,7 @@
         <field name="digikey">1655-1506-1-ND</field>
         <field name="mpn">S1MTR</field>
       </fields>
-      <libsource lib="alpha-rescue" part="D-Device"/>
+      <libsource lib="Device" part="D" description="Diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A07A531</tstamp>
     </comp>
@@ -702,7 +702,7 @@
         <field name="req_Vin">3.3 V</field>
         <field name="role">LED</field>
       </fields>
-      <libsource lib="alpha-rescue" part="LED-Device"/>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A07A53E</tstamp>
     </comp>
@@ -712,7 +712,7 @@
       <fields>
         <field name="mpn">RC1005F271CS</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A07A544</tstamp>
     </comp>
@@ -720,11 +720,11 @@
       <value>0.1u</value>
       <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
       <fields>
-        <field name="mpn">CL21B104MBCNNNC</field>
+        <field name="mpn">CL21B104KBFNNNG</field>
         <field name="req_voltage">35V</field>
         <field name="ta_value">0.1u</field>
       </fields>
-      <libsource lib="alpha-rescue" part="C-Device"/>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06012E</tstamp>
     </comp>
@@ -732,11 +732,11 @@
       <value>22u</value>
       <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
       <fields>
-        <field name="mpn">CL21A226MQCLQNC</field>
+        <field name="mpn">GRM21BR61A226ME51L</field>
         <field name="ta_ref">C4</field>
         <field name="voltage">10V</field>
       </fields>
-      <libsource lib="alpha-rescue" part="C-Device"/>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A060138</tstamp>
     </comp>
@@ -748,7 +748,7 @@
         <field name="req_voltage">35V</field>
         <field name="ta_ref">C1</field>
       </fields>
-      <libsource lib="alpha-rescue" part="C-Device"/>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A060142</tstamp>
     </comp>
@@ -756,11 +756,11 @@
       <value>22u</value>
       <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
       <fields>
-        <field name="mpn">CL21A226MQCLQNC</field>
+        <field name="mpn">GRM21BR61A226ME51L</field>
         <field name="ta_ref">C5</field>
         <field name="voltage">10V</field>
       </fields>
-      <libsource lib="alpha-rescue" part="C-Device"/>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06014C</tstamp>
     </comp>
@@ -770,7 +770,7 @@
       <fields>
         <field name="mpn">14010213102000</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Conn_01x02-Connector_Generic"/>
+      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A060154</tstamp>
     </comp>
@@ -784,7 +784,7 @@
         <field name="mpn">TPS54202DDCT</field>
         <field name="ta">Figure 16. 5-V, 2-A Reference Design</field>
       </fields>
-      <libsource lib="tps54202" part="TPS54202"/>
+      <libsource lib="tps54202" part="TPS54202" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06016B</tstamp>
     </comp>
@@ -792,10 +792,10 @@
       <value>100k</value>
       <footprint>IPC7351-Nominal:RESC1005X38</footprint>
       <fields>
-        <field name="mpn">RC0402FR-07100KL</field>
+        <field name="mpn">CRCW0402100KFKED</field>
         <field name="ta_ref">R2</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A060174</tstamp>
     </comp>
@@ -803,11 +803,11 @@
       <value>0.1u</value>
       <footprint>IPC7351-Nominal:CAPC2012X70</footprint>
       <fields>
-        <field name="mpn">CL21B104MBCNNNC</field>
+        <field name="mpn">CL21B104KBFNNNG</field>
         <field name="ta_ref">C3</field>
         <field name="voltage">10V</field>
       </fields>
-      <libsource lib="alpha-rescue" part="C-Device"/>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A06019C</tstamp>
     </comp>
@@ -818,7 +818,7 @@
         <field name="mpn">NRS8040T150MJGJ</field>
         <field name="ta_ref">L1</field>
       </fields>
-      <libsource lib="alpha-rescue" part="L_Core_Ferrite_Small-Device"/>
+      <libsource lib="Device" part="L_Core_Ferrite_Small" description="Inductor with ferrite core, small symbol"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A0601A5</tstamp>
     </comp>
@@ -829,7 +829,7 @@
         <field name="mpn">RC0402FR-0713K3L</field>
         <field name="ta_ref">R3</field>
       </fields>
-      <libsource lib="alpha-rescue" part="R-Device"/>
+      <libsource lib="Device" part="R" description="Resistor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A0601BB</tstamp>
     </comp>
@@ -841,7 +841,7 @@
         <field name="ta_ref">C6</field>
         <field name="voltage">10V</field>
       </fields>
-      <libsource lib="alpha-rescue" part="C-Device"/>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A0601C5</tstamp>
     </comp>
@@ -851,7 +851,7 @@
       <fields>
         <field name="assembly">footprint only</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Test_Point-Connector"/>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A0601CE</tstamp>
     </comp>
@@ -861,7 +861,7 @@
       <fields>
         <field name="mpn">14011213102000</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Conn_01x12-Connector_Generic"/>
+      <libsource lib="Connector_Generic" part="Conn_01x12" description="Generic connector, single row, 01x12, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A0A1C14</tstamp>
     </comp>
@@ -871,7 +871,7 @@
       <fields>
         <field name="mpn">PPTC202LFBN-RC</field>
       </fields>
-      <libsource lib="alpha-misc" part="RASPBERRY_PI"/>
+      <libsource lib="alpha-misc" part="RASPBERRY_PI" description=""/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5A0C8956</tstamp>
     </comp>
@@ -882,12 +882,261 @@
       <fields>
         <field name="mpn">DMP3056L-7</field>
       </fields>
-      <libsource lib="alpha-rescue" part="Q_PMOS_GSD-Device"/>
+      <libsource lib="Device" part="Q_PMOS_GSD" description="P-MOSFET transistor, gate/source/drain"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>5B414DC4</tstamp>
     </comp>
   </components>
   <libparts>
+    <libpart lib="Connector" part="TestPoint">
+      <description>test point</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Pin*</fp>
+        <fp>Test*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">TP</field>
+        <field name="Value">TestPoint</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic" part="Conn_01x02">
+      <description>Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x02</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic" part="Conn_01x05">
+      <description>Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x05</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic" part="Conn_01x08">
+      <description>Generic connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x08</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="8" name="Pin_8" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic" part="Conn_01x12">
+      <description>Generic connector, single row, 01x12, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x12</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="8" name="Pin_8" type="passive"/>
+        <pin num="9" name="Pin_9" type="passive"/>
+        <pin num="10" name="Pin_10" type="passive"/>
+        <pin num="11" name="Pin_11" type="passive"/>
+        <pin num="12" name="Pin_12" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic" part="Conn_02x02_Odd_Even">
+      <description>Generic connector, double row, 02x02, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_2x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_02x02_Odd_Even</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C">
+      <description>Unpolarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="D">
+      <description>Diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TO-???*</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="D_Zener">
+      <description>Zener diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TO-???*</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D_Zener</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="LED">
+      <description>Light emitting diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>LED*</fp>
+        <fp>LED_SMD:*</fp>
+        <fp>LED_THT:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="L_Core_Ferrite_Small">
+      <description>Inductor with ferrite core, small symbol</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Choke_*</fp>
+        <fp>*Coil*</fp>
+        <fp>Inductor_*</fp>
+        <fp>L_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">L</field>
+        <field name="Value">L_Core_Ferrite_Small</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Q_NMOS_GSD">
+      <description>N-MOSFET transistor, gate/source/drain</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_NMOS_GSD</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="input"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Q_PMOS_GSD">
+      <description>P-MOSFET transistor, gate/source/drain</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_PMOS_GSD</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="input"/>
+        <pin num="2" name="S" type="passive"/>
+        <pin num="3" name="D" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Mechanical" part="MountingHole">
+      <description>Mounting Hole without connection</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>MountingHole*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">H</field>
+        <field name="Value">MountingHole</field>
+      </fields>
+    </libpart>
     <libpart lib="alpha-misc" part="RASPBERRY_PI">
       <fields>
         <field name="Reference">U</field>
@@ -936,226 +1185,6 @@
         <pin num="40" name="GPIO21/SPI1_SCK" type="BiDi"/>
       </pins>
     </libpart>
-    <libpart lib="alpha-rescue" part="C-Device">
-      <footprints>
-        <fp>C_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">C</field>
-        <field name="Value">C-Device</field>
-      </fields>
-      <pins>
-        <pin num="1" name="~" type="passive"/>
-        <pin num="2" name="~" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="Conn_01x02-Connector_Generic">
-      <footprints>
-        <fp>Connector*:*_1x??_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">J</field>
-        <field name="Value">Conn_01x02-Connector_Generic</field>
-      </fields>
-      <pins>
-        <pin num="1" name="Pin_1" type="passive"/>
-        <pin num="2" name="Pin_2" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="Conn_01x05-Connector_Generic">
-      <footprints>
-        <fp>Connector*:*_1x??_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">J</field>
-        <field name="Value">Conn_01x05-Connector_Generic</field>
-      </fields>
-      <pins>
-        <pin num="1" name="Pin_1" type="passive"/>
-        <pin num="2" name="Pin_2" type="passive"/>
-        <pin num="3" name="Pin_3" type="passive"/>
-        <pin num="4" name="Pin_4" type="passive"/>
-        <pin num="5" name="Pin_5" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="Conn_01x08-Connector_Generic">
-      <footprints>
-        <fp>Connector*:*_1x??_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">J</field>
-        <field name="Value">Conn_01x08-Connector_Generic</field>
-      </fields>
-      <pins>
-        <pin num="1" name="Pin_1" type="passive"/>
-        <pin num="2" name="Pin_2" type="passive"/>
-        <pin num="3" name="Pin_3" type="passive"/>
-        <pin num="4" name="Pin_4" type="passive"/>
-        <pin num="5" name="Pin_5" type="passive"/>
-        <pin num="6" name="Pin_6" type="passive"/>
-        <pin num="7" name="Pin_7" type="passive"/>
-        <pin num="8" name="Pin_8" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="Conn_01x12-Connector_Generic">
-      <footprints>
-        <fp>Connector*:*_1x??_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">J</field>
-        <field name="Value">Conn_01x12-Connector_Generic</field>
-      </fields>
-      <pins>
-        <pin num="1" name="Pin_1" type="passive"/>
-        <pin num="2" name="Pin_2" type="passive"/>
-        <pin num="3" name="Pin_3" type="passive"/>
-        <pin num="4" name="Pin_4" type="passive"/>
-        <pin num="5" name="Pin_5" type="passive"/>
-        <pin num="6" name="Pin_6" type="passive"/>
-        <pin num="7" name="Pin_7" type="passive"/>
-        <pin num="8" name="Pin_8" type="passive"/>
-        <pin num="9" name="Pin_9" type="passive"/>
-        <pin num="10" name="Pin_10" type="passive"/>
-        <pin num="11" name="Pin_11" type="passive"/>
-        <pin num="12" name="Pin_12" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="Conn_02x02_Odd_Even-Connector_Generic">
-      <footprints>
-        <fp>Connector*:*_2x??_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">J</field>
-        <field name="Value">Conn_02x02_Odd_Even-Connector_Generic</field>
-      </fields>
-      <pins>
-        <pin num="1" name="Pin_1" type="passive"/>
-        <pin num="2" name="Pin_2" type="passive"/>
-        <pin num="3" name="Pin_3" type="passive"/>
-        <pin num="4" name="Pin_4" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="D-Device">
-      <footprints>
-        <fp>TO-???*</fp>
-        <fp>*_Diode_*</fp>
-        <fp>*SingleDiode*</fp>
-        <fp>D_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">D</field>
-        <field name="Value">D-Device</field>
-      </fields>
-      <pins>
-        <pin num="1" name="K" type="passive"/>
-        <pin num="2" name="A" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="D_Zener-Device">
-      <footprints>
-        <fp>TO-???*</fp>
-        <fp>*_Diode_*</fp>
-        <fp>*SingleDiode*</fp>
-        <fp>D_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">D</field>
-        <field name="Value">D_Zener-Device</field>
-      </fields>
-      <pins>
-        <pin num="1" name="K" type="passive"/>
-        <pin num="2" name="A" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="LED-Device">
-      <footprints>
-        <fp>LED*</fp>
-        <fp>LED_SMD:*</fp>
-        <fp>LED_THT:*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">D</field>
-        <field name="Value">LED-Device</field>
-      </fields>
-      <pins>
-        <pin num="1" name="K" type="passive"/>
-        <pin num="2" name="A" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="L_Core_Ferrite_Small-Device">
-      <footprints>
-        <fp>Choke_*</fp>
-        <fp>*Coil*</fp>
-        <fp>Inductor_*</fp>
-        <fp>L_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">L</field>
-        <field name="Value">L_Core_Ferrite_Small-Device</field>
-      </fields>
-      <pins>
-        <pin num="1" name="~" type="passive"/>
-        <pin num="2" name="~" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="Mounting_Hole-Mechanical">
-      <footprints>
-        <fp>Mounting?Hole*</fp>
-        <fp>Hole*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">MK</field>
-        <field name="Value">Mounting_Hole-Mechanical</field>
-      </fields>
-    </libpart>
-    <libpart lib="alpha-rescue" part="Q_NMOS_GSD-Device">
-      <fields>
-        <field name="Reference">Q</field>
-        <field name="Value">Q_NMOS_GSD-Device</field>
-      </fields>
-      <pins>
-        <pin num="1" name="G" type="input"/>
-        <pin num="2" name="S" type="passive"/>
-        <pin num="3" name="D" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="Q_PMOS_GSD-Device">
-      <fields>
-        <field name="Reference">Q</field>
-        <field name="Value">Q_PMOS_GSD-Device</field>
-      </fields>
-      <pins>
-        <pin num="1" name="G" type="input"/>
-        <pin num="2" name="S" type="passive"/>
-        <pin num="3" name="D" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="R-Device">
-      <footprints>
-        <fp>R_*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">R</field>
-        <field name="Value">R-Device</field>
-      </fields>
-      <pins>
-        <pin num="1" name="~" type="passive"/>
-        <pin num="2" name="~" type="passive"/>
-      </pins>
-    </libpart>
-    <libpart lib="alpha-rescue" part="Test_Point-Connector">
-      <footprints>
-        <fp>Pin*</fp>
-        <fp>Test*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">TP</field>
-        <field name="Value">Test_Point-Connector</field>
-      </fields>
-      <pins>
-        <pin num="1" name="1" type="passive"/>
-      </pins>
-    </libpart>
     <libpart lib="tmp102" part="TMP102">
       <description>Low-Power Digital Temperature Sensor With SMBus and Two-Wire Serial</description>
       <footprints>
@@ -1194,17 +1223,26 @@
     </libpart>
   </libparts>
   <libraries>
-    <library logical="alpha-misc">
-      <uri>/home/jon/work/trygvis/unlockoslo/hardware/alpha-3/symbols/alpha-misc.lib</uri>
+    <library logical="Connector">
+      <uri>/usr/share/kicad/library/Connector.lib</uri>
     </library>
-    <library logical="alpha-rescue">
-      <uri>/home/jon/work/trygvis/unlockoslo/hardware/alpha-3/alpha-rescue.lib</uri>
+    <library logical="Connector_Generic">
+      <uri>/usr/share/kicad/library/Connector_Generic.lib</uri>
+    </library>
+    <library logical="Device">
+      <uri>/usr/share/kicad/library/Device.lib</uri>
+    </library>
+    <library logical="Mechanical">
+      <uri>/usr/share/kicad/library/Mechanical.lib</uri>
+    </library>
+    <library logical="alpha-misc">
+      <uri>/home/trygvis/dev/com.github/jonnor/UnlockOslo/hardware/alpha-3/symbols/alpha-misc.lib</uri>
     </library>
     <library logical="tmp102">
-      <uri>/home/jon/work/trygvis/unlockoslo/hardware/alpha-3/symbols/tmp102.lib</uri>
+      <uri>/home/trygvis/dev/com.github/jonnor/UnlockOslo/hardware/alpha-3/symbols/tmp102.lib</uri>
     </library>
     <library logical="tps54202">
-      <uri>/home/jon/work/trygvis/unlockoslo/hardware/alpha-3/symbols/tps54202.lib</uri>
+      <uri>/home/trygvis/dev/com.github/jonnor/UnlockOslo/hardware/alpha-3/symbols/tps54202.lib</uri>
     </library>
   </libraries>
   <nets>
