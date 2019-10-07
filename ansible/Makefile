@@ -1,4 +1,4 @@
-MITOGEN_V=0.2.5
+MITOGEN_V=0.2.8
 
 all: mitogen
 
