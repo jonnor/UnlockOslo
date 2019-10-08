@@ -10,4 +10,7 @@
       src: wpa_supplicant.conf.j2
       dest: /etc/wpa_supplicant/wpa_supplicant.conf
       backup: yes
+  - name: make wpa_supplicant re-read it's configuration file
+    become: yes
+    command: "wpa_cli -i wlan0 reconfigure"
     notify: Restart Networking
