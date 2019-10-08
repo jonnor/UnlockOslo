@@ -1,0 +1,13 @@
+- name: configure wireless network
+  tags: wireless-network
+  block:
+  - name: Install system dependencies
+    apt:
+      name:
+      - wpasupplicant
+  - name: Configure wpa_supplicant
+    template:
+      src: wpa_supplicant.conf.j2
+      dest: /etc/wpa_supplicant/wpa_supplicant.conf
+      backup: yes
+    notify: Restart Networking
