@@ -15,3 +15,5 @@
       tags: ssh-call-home-server
     - role: mqtt-server
       tags: mqtt-server
+    - role: postgresql-server
+      tags: postgresql-server

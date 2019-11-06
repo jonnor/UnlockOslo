@@ -1,0 +1,15 @@
+postgresql_users:
+  - username: metricbeat
+    password: "{{ metricbeat_db_password }}"
+
+postgresql_databases:
+  - name: metricbeat
+    state: present
+
+#postgresql_privs: []
+postgresql_privs:
+  - database: metricbeat
+    roles: metricbeat
+    type: schema
+    privs: ALL
+    objs: public

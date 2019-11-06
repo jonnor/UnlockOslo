@@ -1,0 +1,48 @@
+- name: Install packages
+  tags: packages
+  apt:
+    name: python-psycopg2
+
+- name: Create users
+  become_user: postgres
+  no_log: yes
+  postgresql_user:
+    name: "{{ item.username }}"
+    password: "{{ item.password }}"
+    encrypted: "{{ item.encrypted | default('yes') }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ postgresql_users }}"
+
+- name: Create databases
+  become_user: postgres
+  postgresql_db:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ postgresql_databases }}"
+
+- name: Create privs
+  become_user: postgres
+  postgresql_privs:
+    database: "{{ item.database }}"
+    state: "{{ item.state | default('present') }}"
+    roles: "{{ item.roles }}"
+    type: "{{ item.type }}"
+    privs: "{{ item.privs }}"
+    objs: "{{ item.objs }}"
+  with_items: "{{ postgresql_privs }}"
+
+- name: Configure metricbeat's postgresql connection
+  notify: systemctl restart metricbeat
+  copy: 
+    dest: /etc/metricbeat/modules.d/postgresql.yml
+    content: |
+      - module: postgresql
+        #metricsets:
+        #  - database
+        #  - bgwriter
+        #  - activity
+        period: 10s
+        hosts: ["postgres://localhost:5432"]
+        username: metricbeat
+        password: {{ metricbeat_db_password }}
+
