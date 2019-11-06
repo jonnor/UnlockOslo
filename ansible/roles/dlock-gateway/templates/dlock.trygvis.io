@@ -6,6 +6,10 @@ server {
         proxy_pass http://localhost:5000;
     }
 
+    location /kibana {
+        proxy_pass http://localhost:5601;
+    }
+
 # deny everything except for whitelisted IPs
 {% for ip in vault_http_api_allow %}
     allow {{ ip }};

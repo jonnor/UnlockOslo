@@ -26,7 +26,6 @@ dlock-20 ansible_host=door20.dlock.trygvis.io
 
 
 [gateways]
-dlock-prod
 dlock-dev
 dlock-gcp
 
