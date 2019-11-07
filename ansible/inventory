@@ -20,7 +20,7 @@ dlock-14 ansible_host=door14.dlock.trygvis.io
 dlock-15 ansible_host=stovnerskogen-1.dlock.trygvis.io
 dlock-16 ansible_host=midtasen-1.dlock.trygvis.io
 dlock-17 ansible_host=deichman-bjerke.dlock.trygvis.io
-dlock-18 ansible_host=door18.dlock.trygvis.io
+dlock-18 ansible_host=stovnerskogen-2.dlock.trygvis.io
 dlock-19 ansible_host=door19.dlock.trygvis.io
 dlock-20 ansible_host=door20.dlock.trygvis.io
 
