@@ -14,3 +14,17 @@ testing date | serial number | testscript | 	comment
 2019-08-20		101	ok		Rework: fixed a few bad solder joints. That fixed input 8 too.
 2019-10-28		104	ok		Rework: status 2 is working, LED on output 5 is working (bad solder joints on 270 ohm resistor).
 2019-11-01		105	ok		Rework: fixed a few bad solder joints. Fixed: input 4, output 2, STATUS_2.
+
+2019-11-08 serial numbers from 200 - 250 are the first PCBA batch from PCBWay.
+testing date | serial number | testscript | 	comment
+2019-11-05		200	ok		no shorts, gives 5V out when connected to 24V input
+2019-11-05		201	failed		no shorts, tested with 24V input, after that 5V shorted to ground
+2019-11-08		200	failed		re-tested, suddenly there is a short between 5V and gnd
+2019-11-08		202	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2019-11-08		203	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2019-11-08		204	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2019-11-08		205	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2019-11-08		206	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2019-11-08		207	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2019-11-08		208	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2019-11-08		209	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
