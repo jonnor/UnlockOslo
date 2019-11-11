@@ -26,6 +26,7 @@ dlock-20 ansible_host=door20.dlock.trygvis.io
 dlock-21 ansible_host=door21.dlock.trygvis.io
 dlock-22 ansible_host=door22.dlock.trygvis.io
 dlock-23 ansible_host=door23.dlock.trygvis.io
+dlock-24 ansible_host=door24.dlock.trygvis.io
 
 
 [gateways]
@@ -57,3 +58,4 @@ dlock-20
 dlock-21
 dlock-22
 dlock-23
+dlock-24
