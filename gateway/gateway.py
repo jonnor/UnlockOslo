@@ -250,7 +250,7 @@ doors = {
     'deichman-stovner': DoorInfo('doors/dlock-11'),
     'unused-12': DoorInfo('doors/dlock-12'),
     'unused-13': DoorInfo('doors/dlock-13'),
-    'unused-14': DoorInfo('doors/dlock-14'),
+    'nordreaker-rachelgrepp-1': DoorInfo('doors/dlock-14'),
     'stovnerskogen-1': DoorInfo('doors/dlock-15'),
     'midtasen-1': DoorInfo('doors/dlock-16'),
     'deichman-bjerke': DoorInfo('doors/dlock-17'),
