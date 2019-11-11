@@ -24,6 +24,7 @@ dlock-18 ansible_host=stovnerskogen-2.dlock.trygvis.io
 dlock-19 ansible_host=door19.dlock.trygvis.io
 dlock-20 ansible_host=door20.dlock.trygvis.io
 dlock-21 ansible_host=door21.dlock.trygvis.io
+dlock-22 ansible_host=door22.dlock.trygvis.io
 
 
 [gateways]
@@ -53,3 +54,4 @@ dlock-18
 dlock-19
 dlock-20
 dlock-21
+dlock-22
