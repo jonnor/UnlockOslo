@@ -256,7 +256,12 @@ doors = {
     'deichman-bjerke': DoorInfo('doors/dlock-17'),
     'stovnerskogen-2': DoorInfo('doors/dlock-18'),
     'unused-19': DoorInfo('doors/dlock-19'),
-    'unused-20': DoorInfo('doors/dlock-20')
+    'unused-20': DoorInfo('doors/dlock-20'),
+    'unused-21': DoorInfo('doors/dlock-21'),
+    'unused-22': DoorInfo('doors/dlock-22'),
+    'unused-23': DoorInfo('doors/dlock-23'),
+    'unused-24': DoorInfo('doors/dlock-24'),
+    'unused-25': DoorInfo('doors/dlock-25')
 }
 api_users = {}
 
