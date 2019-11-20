@@ -264,7 +264,8 @@ doors = {
     'unused-25': DoorInfo('doors/dlock-25'),
     'unused-26': DoorInfo('doors/dlock-26'),
     'unused-27': DoorInfo('doors/dlock-27'),
-    'unused-28': DoorInfo('doors/dlock-28')
+    'unused-28': DoorInfo('doors/dlock-28'),
+    'unused-29': DoorInfo('doors/dlock-29')
 }
 api_users = {}
 
