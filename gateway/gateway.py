@@ -248,7 +248,7 @@ doors = {
     'loren-1': DoorInfo('doors/dlock-9', bolt_sensor=True),
     'deichman-toyen': DoorInfo('doors/dlock-10'),
     'deichman-stovner': DoorInfo('doors/dlock-11'),
-    'unused-12': DoorInfo('doors/dlock-12'),
+    'deichman-oppsal': DoorInfo('doors/dlock-12'),
     'unused-13': DoorInfo('doors/dlock-13'),
     'nordreaker-rachelgrepp-1': DoorInfo('doors/dlock-14'),
     'stovnerskogen-1': DoorInfo('doors/dlock-15'),
