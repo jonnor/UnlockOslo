@@ -2,69 +2,53 @@
 dlock-gcp ansible_host=dlock.trygvis.io
 dlock-dev ansible_host=dlock-dev.trygvis.io
 
-dlock-0 ansible_host=door0.dlock.trygvis.io
-dlock-1 ansible_host=sorenga.dlock.trygvis.io
-dlock-2 ansible_host=door2.dlock.trygvis.io
-dlock-3 ansible_host=fubiak.dlock.trygvis.io
-dlock-4 ansible_host=door4.dlock.trygvis.io
-dlock-5 ansible_host=origo1.dlock.trygvis.io
-dlock-6 ansible_host=origo2.dlock.trygvis.io
-dlock-7 ansible_host=lindeberg.dlock.trygvis.io
-dlock-8 ansible_host=majorstuen.dlock.trygvis.io
-dlock-9 ansible_host=loren.dlock.trygvis.io
-dlock-10 ansible_host=deichman-toyen.dlock.trygvis.io
-dlock-11 ansible_host=stovner.dlock.trygvis.io
-dlock-12 ansible_host=deichman-oppsal.dlock.trygvis.io
-dlock-13 ansible_host=deichman-nordtvet.dlock.trygvis.io
-dlock-14 ansible_host=nordreaker-rachelgrepp-1.dlock.trygvis.io
-dlock-15 ansible_host=stovnerskogen-1.dlock.trygvis.io
-dlock-16 ansible_host=midtasen-1.dlock.trygvis.io
-dlock-17 ansible_host=deichman-bjerke.dlock.trygvis.io
-dlock-18 ansible_host=stovnerskogen-2.dlock.trygvis.io
-dlock-19 ansible_host=midtasen-2.dlock.trygvis.io
-dlock-20 ansible_host=deichman-grunerlokka.dlock.trygvis.io
-dlock-21 ansible_host=door21.dlock.trygvis.io
-dlock-22 ansible_host=door22.dlock.trygvis.io
-dlock-23 ansible_host=door23.dlock.trygvis.io
-dlock-24 ansible_host=door24.dlock.trygvis.io
-dlock-25 ansible_host=door25.dlock.trygvis.io
-dlock-26 ansible_host=door26.dlock.trygvis.io
-dlock-27 ansible_host=door27.dlock.trygvis.io
-dlock-28 ansible_host=door28.dlock.trygvis.io
-dlock-29 ansible_host=door29.dlock.trygvis.io
-
 [gateways]
 dlock-dev
 dlock-gcp
 
+# Generert fra fane 3 i: https://docs.google.com/spreadsheets/d/1b0nk5nfVSesCKCGYtcFE0km2MoKEaWbOUn9ZAVFeRWo/edit#gid=1335904925
+
+dev-0 ansible_host=dev-0.dlock.trygvis.io
+sorenga-1 ansible_host=sorenga-1.dlock.trygvis.io
+hotspare-1 ansible_host=hotspare-1.dlock.trygvis.io
+fubiak-1 ansible_host=fubiak-1.dlock.trygvis.io
+unused-4 ansible_host=unused-4.dlock.trygvis.io
+origo-1 ansible_host=origo-1.dlock.trygvis.io
+origo-2 ansible_host=origo-2.dlock.trygvis.io
+lindeberg-1 ansible_host=lindeberg-1.dlock.trygvis.io
+deichman-majorstuen ansible_host=deichman-majorstuen.dlock.trygvis.io
+loren-1 ansible_host=loren-1.dlock.trygvis.io
+deichman-toyen ansible_host=deichman-toyen.dlock.trygvis.io
+deichman-stovner ansible_host=deichman-stovner.dlock.trygvis.io
+deichman-oppsal ansible_host=deichman-oppsal.dlock.trygvis.io
+deichman-nordtvet ansible_host=deichman-nordtvet.dlock.trygvis.io
+nordreaker-rachelgrepp-1 ansible_host=nordreaker-rachelgrepp-1.dlock.trygvis.io
+stovnerskogen-1 ansible_host=stovnerskogen-1.dlock.trygvis.io
+midtasen-1 ansible_host=midtasen-1.dlock.trygvis.io
+deichman-bjerke ansible_host=deichman-bjerke.dlock.trygvis.io
+stovnerskogen-2 ansible_host=stovnerskogen-2.dlock.trygvis.io
+midtasen-2 ansible_host=midtasen-2.dlock.trygvis.io
+deichman-grunerlokka ansible_host=deichman-grunerlokka.dlock.trygvis.io
+
 [doors]
-dlock-0
-dlock-1
-dlock-2
-dlock-3
-dlock-4
-dlock-5
-dlock-6
-dlock-7
-dlock-8
-dlock-9
-dlock-10
-dlock-11
-dlock-12
-dlock-13
-dlock-14
-dlock-15
-dlock-16
-dlock-17
-dlock-18
-dlock-19
-dlock-20
-dlock-21
-dlock-22
-dlock-23
-dlock-24
-dlock-25
-dlock-26
-dlock-27
-dlock-28
-dlock-29
+dev-0
+sorenga-1
+hotspare-1
+fubiak-1
+unused-4
+origo-1
+origo-2
+lindeberg-1
+deichman-majorstuen
+loren-1
+deichman-toyen
+deichman-stovner
+deichman-oppsal
+deichman-nordtvet
+nordreaker-rachelgrepp-1
+stovnerskogen-1
+midtasen-1
+deichman-bjerke
+stovnerskogen-2
+midtasen-2
+deichman-grunerlokka
