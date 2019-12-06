@@ -2,7 +2,8 @@
 - hosts: doors
   roles:
     - network
-    - ssh-call-home
+    - role: ssh-call-home
+      tags: ssh-call-home
     - dlock-firmware
     - lusers
     - superusers

@@ -26,6 +26,10 @@
     copy:
       dest: "/home/{{ ssh_user }}/.ssh/known_hosts"
       content: "{{ ssh_known_hosts }}"
+  - name: Remove old service file
+    file:
+      dest: /etc/systemd/system/call-home.service
+      state: absent
   - name: Copy service file
     copy:
       src: etc/systemd/system/dlock-call-home.service
