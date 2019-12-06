@@ -10,3 +10,5 @@ find /etc/mosquitto/certs -type f -print0 | xargs --no-run-if-empty -0 rm
 cp -Lr /etc/letsencrypt/live/{{ certbot_host }}/* /etc/mosquitto/certs
 chown -R mosquitto:mosquitto /etc/mosquitto/certs
 chmod u=r /etc/mosquitto/certs/*
+
+systemctl restart mosquitto
