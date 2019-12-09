@@ -30,7 +30,7 @@ stovnerskogen-2 ansible_host=stovnerskogen-2.dlock.trygvis.io
 midtasen-2 ansible_host=midtasen-2.dlock.trygvis.io
 deichman-grunerlokka ansible_host=deichman-grunerlokka.dlock.trygvis.io
 baerum-kommune-1 ansible_host=baerum-kommune-1.dlock.trygvis.io
-unused-29 ansible_host=door29.dlock.trygvis.io
+baerum-kommune-2 ansible_host=baerum-kommune-2.dlock.trygvis.io
 
 
 [doors]
@@ -56,4 +56,4 @@ stovnerskogen-2
 midtasen-2
 deichman-grunerlokka
 baerum-kommune-1
-unused-29
+baerum-kommune-2
