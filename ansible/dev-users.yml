@@ -1,0 +1,7 @@
+- hosts:
+    - dlock-dev20
+  remote_user: '{{ user }}'
+  become: True
+  roles:
+    - lusers
+    - superusers
