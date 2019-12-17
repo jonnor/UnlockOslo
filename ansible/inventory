@@ -2,6 +2,11 @@
 dlock-gcp ansible_host=dlock.trygvis.io
 dlock-dev ansible_host=dlock-dev.trygvis.io
 
+dlock-dev20 ansible_host=dlock-dev20.local
+
+[development]
+dlock-dev20
+
 [gateways]
 dlock-dev
 dlock-gcp
