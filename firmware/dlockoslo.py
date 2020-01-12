@@ -308,6 +308,7 @@ class LockParticipant(msgflo.Participant):
     d = copy.deepcopy(participant_definition)
     msgflo.Participant.__init__(self, d, role)
 
+    self.role = role
     self.discovery_period = float(os.environ.get("DLOCK_DISCOVERY_PERIOD", "60"))
     self.poll_interval = float(os.environ.get("DLOCK_POLL_INTERVAL", "0.2"))
 
@@ -379,7 +380,7 @@ class LockParticipant(msgflo.Participant):
 
     state_changed = is_state_change(self.state, next)
     if state_changed:
-        entry = { 'inputs': inputs, 'state': next.__dict__ }
+        entry = { 'role': self.role, 'inputs': inputs, 'state': next.__dict__ }
         log.info(entry)
 
         if connected:
