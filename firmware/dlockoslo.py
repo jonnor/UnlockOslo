@@ -85,11 +85,16 @@ Lock = typing.Union[Unlocked,Locked,TemporarilyUnlocked]
 
 class States:
     def __init__(self,
-                 lock : Lock = Locked(0),
-                 opener : Opener = Inactive(0),
+                 lock : Lock = None,
+                 opener : Opener = None,
                  bolt_present :  bool = False,
                  bolt_present_updated : float = 0.0,
                  connected_light : bool = False) -> None:
+
+        if lock is None:
+            lock = Locked(0)
+        if opener is None:
+            opener = Inactive(0)
 
         self.lock = lock
         self.opener = opener
