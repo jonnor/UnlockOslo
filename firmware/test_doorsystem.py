@@ -247,4 +247,25 @@ def test_bolt_present_periodic_update(bolt_present):
     assert states.bolt_present_updated > last_updated, 'should update'
     assert states.bolt_present_updated == 90.0
 
+def test_state_change_identity():
+    states = dlockoslo.States()
+    change = dlockoslo.is_state_change(states, states)
+    assert change == False
+
+def test_state_change_equivalence():
+    state1 = dlockoslo.States()
+    state2 = dlockoslo.States()
+    change = dlockoslo.is_state_change(state1, state2)
+    assert change == False
+
+
+def test_state_change_unlocking():
+    state1 = dlockoslo.States()
+    state1.lock = dlockoslo.Locked(since=10)
+    state2 = dlockoslo.States()
+    state2.lock = dlockoslo.Unlocked(since=20)
+
+    change = dlockoslo.is_state_change(state1, state2)
+    assert change == True, 'unlocking is state change'
+
 
