@@ -293,6 +293,22 @@ class AlwaysErroringParticipant(msgflo.Participant):
         self.send('error', 'Unknown port {}'.format(inport))
     self.ack(msg)
 
+def is_state_change(current, next):
+
+    # avoid modifying inputs
+    current = copy.deepcopy(current)
+    next = copy.deepcopy(next)
+
+    # ignore changes that are only
+    current.lock.since = None
+    next.lock.since = None
+    current.opener.since = None
+    next.opener.since = None
+
+    state_changed = next.__dict__ != current.__dict__
+    return state_changed
+
+
 class LockParticipant(msgflo.Participant):
   def __init__(self, role):
     d = copy.deepcopy(participant_definition)
@@ -366,7 +382,7 @@ class LockParticipant(msgflo.Participant):
     next = next_state(self.state, Inputs(**inputs))
     set_outputs(self.state, self.output_files)
 
-    state_changed = next.__dict__ != self.state.__dict__
+    state_changed = is_state_change(self.state, next)
     if state_changed:
         entry = { 'inputs': inputs, 'state': next.__dict__ }
         log.info(entry)
