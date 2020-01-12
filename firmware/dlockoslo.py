@@ -133,7 +133,7 @@ def next_state(current: States, inputs: Inputs) -> States:
             lock = TemporarilyUnlocked(since=i.current_time, until=i.current_time+temp_unlock_time)
 
     # unlock switch
-    if i.holdopen_button == True:
+    if i.holdopen_button == True and lock.state != 'Unlocked':
         lock = Unlocked(since=i.current_time, reason='switch')
     elif i.holdopen_button == False and lock.state == 'Unlocked' and lock.reason == 'switch':
         lock = Locked(since=i.current_time, reason='switch') 

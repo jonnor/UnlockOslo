@@ -167,6 +167,27 @@ def test_dooropener_after_unlock():
     assert states.opener.state == 'TemporarilyActive'
 
 
+def test_holdopen_since_updates():
+    states = dlockoslo.States()
+    assert states.lock.state == 'Locked'
+    assert states.opener.state == 'Inactive'
+    inputs = dict(
+        holdopen_button=True,
+        current_time=100,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Unlocked', 'unlocks'
+    assert states.lock.since == 100, 'update since on initial transition'
+
+    inputs = dict(
+        holdopen_button=True,
+        current_time=222,
+    )
+    states = dlockoslo.next_state(states, dlockoslo.Inputs(**inputs))
+    assert states.lock.state == 'Unlocked', 'still unlocked'
+    assert states.lock.since == 100, 'dont update since when no state transition'
+
+
 def test_bolt_present_reflects_input():
     states = dlockoslo.States()
     assert states.lock.state == 'Locked'
