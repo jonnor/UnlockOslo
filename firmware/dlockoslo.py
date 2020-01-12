@@ -304,6 +304,7 @@ class LockParticipant(msgflo.Participant):
     msgflo.Participant.__init__(self, d, role)
 
     self.discovery_period = float(os.environ.get("DLOCK_DISCOVERY_PERIOD", "60"))
+    self.poll_interval = float(os.environ.get("DLOCK_POLL_INTERVAL", "0.2"))
 
     pin_mapping = {
         # in
@@ -350,7 +351,7 @@ class LockParticipant(msgflo.Participant):
   def loop(self):
     while True:
         self.recalculate_state()
-        gevent.sleep(0.2)
+        gevent.sleep(self.poll_interval)
 
   def recalculate_state(self, mqtt_request=None):
     # Retrieve current inputs
