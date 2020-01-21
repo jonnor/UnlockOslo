@@ -36,7 +36,7 @@ midtasen-2 ansible_host=midtasen-2.dlock.trygvis.io
 deichman-grunerlokka ansible_host=deichman-grunerlokka.dlock.trygvis.io
 baerum-kommune-1 ansible_host=baerum-kommune-1.dlock.trygvis.io
 baerum-kommune-2 ansible_host=baerum-kommune-2.dlock.trygvis.io
-
+slurpen-1 ansible_host=slurpen-1.dlock.trygvis.io
 
 [doors]
 dev-0
@@ -62,3 +62,4 @@ midtasen-2
 deichman-grunerlokka
 baerum-kommune-1
 baerum-kommune-2
+slurpen-1
