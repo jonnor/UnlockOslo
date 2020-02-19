@@ -266,7 +266,7 @@ doors = {
     'unused-27': DoorInfo('doors/dlock-27'),
     'baerum-kommune-1': DoorInfo('doors/dlock-28'),
     'baerum-kommune-2': DoorInfo('doors/dlock-29'),
-    'unused-30': DoorInfo('doors/dlock-30'),
+    'deichman-boler': DoorInfo('doors/dlock-30'),
     'unused-31': DoorInfo('doors/dlock-31'),
     'unused-32': DoorInfo('doors/dlock-32'),
     'unused-33': DoorInfo('doors/dlock-33'),
