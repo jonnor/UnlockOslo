@@ -38,7 +38,7 @@ baerum-kommune-1 ansible_host=baerum-kommune-1.dlock.trygvis.io
 baerum-kommune-2 ansible_host=baerum-kommune-2.dlock.trygvis.io
 slurpen-1 ansible_host=slurpen-1.dlock.trygvis.io
 deichman-boler ansible_host=deichman-boler.dlock.trygvis.io
-deichman-nydalen ansible_ssh_common_args='-J dlock.trygvis.io' ansible_host=localhost ansible_ssh_port=2031
+deichman-nydalen ansible_host=deichman-nydalen.dlock.trygvis.io
 deichman-torshov ansible_ssh_common_args='-J dlock.trygvis.io' ansible_host=localhost ansible_ssh_port=2032
 
 [doors]
