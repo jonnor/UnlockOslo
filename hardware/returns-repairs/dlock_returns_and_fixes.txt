@@ -1,0 +1,3 @@
+repair date | 	dlock unit |  reason from customer |  board number and fault   | fix / repair
+2020-03-04	dlock-22	returned as DOA		#202 - 5V short to gnd	replaced with #223
+2020-03-04	dlock-25	died during install	#205 - 5V short to gnd	replaced with #224
