@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+
+date >> /tmp/renew-log
+
+echo "Restarting nginx after cert renewal"
+
+systemctl restart nginx
