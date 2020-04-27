@@ -85,3 +85,17 @@
       dest: /etc/nginx/sites-enabled/dlock.trygvis.io
       state: link
     notify: reload nginx
+
+
+- name: Letsencrypt deploy hook restart nginx
+  tags: letsencrypt-update-restart-nginx
+  become: yes
+  block:
+  - file:
+      path: /etc/letsencrypt/renewal-hooks/deploy
+      state: directory
+
+  - template:
+      src: etc/letsencrypt/renewal-hooks/deploy/96-nginx
+      dest: /etc/letsencrypt/renewal-hooks/deploy/96-nginx
+      mode: u=rx
