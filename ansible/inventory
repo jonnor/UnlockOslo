@@ -40,6 +40,7 @@ slurpen-1 ansible_host=slurpen-1.dlock.trygvis.io
 deichman-boler ansible_host=deichman-boler.dlock.trygvis.io
 deichman-nydalen ansible_host=deichman-nydalen.dlock.trygvis.io
 deichman-torshov ansible_host=deichman-torshov.dlock.trygvis.io
+deichman-bjorvika ansible_host=deichman-bjorvika.dlock.trygvis.io
 
 [doors]
 dev-0
@@ -69,3 +70,4 @@ slurpen-1
 deichman-boler
 deichman-nydalen
 deichman-torshov
+deichman-bjorvika
