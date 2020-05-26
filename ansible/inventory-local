@@ -1,0 +1,111 @@
+# dlock.trygvis.io
+dlock-gcp ansible_host=dlock.trygvis.io
+dlock-dev ansible_host=dlock-dev.trygvis.io
+
+dlock-dev20 ansible_host=dlock-dev20.local
+
+[development]
+dlock-dev20
+
+[gateways]
+dlock-dev
+dlock-gcp
+
+# Generert fra fane 3 i: https://docs.google.com/spreadsheets/d/1b0nk5nfVSesCKCGYtcFE0km2MoKEaWbOUn9ZAVFeRWo/edit#gid=1335904925
+
+dev-0 ansible_host=dev-0.dlock.trygvis.io
+sorenga-1 ansible_host=sorenga-1.dlock.trygvis.io
+hotspare-1 ansible_host=hotspare-1.dlock.trygvis.io
+fubiak-1 ansible_host=fubiak-1.dlock.trygvis.io
+unused-4 ansible_host=unused-4.dlock.trygvis.io
+origo-1 ansible_host=origo-1.dlock.trygvis.io
+origo-2 ansible_host=origo-2.dlock.trygvis.io
+lindeberg-1 ansible_host=lindeberg-1.dlock.trygvis.io
+deichman-majorstuen ansible_host=deichman-majorstuen.dlock.trygvis.io
+loren-1 ansible_host=loren-1.dlock.trygvis.io
+deichman-toyen ansible_host=deichman-toyen.dlock.trygvis.io
+deichman-stovner ansible_host=deichman-stovner.dlock.trygvis.io
+deichman-oppsal ansible_host=deichman-oppsal.dlock.trygvis.io
+deichman-nordtvet ansible_host=deichman-nordtvet.dlock.trygvis.io
+nordreaker-rachelgrepp-1 ansible_host=nordreaker-rachelgrepp-1.dlock.trygvis.io
+stovnerskogen-1 ansible_host=stovnerskogen-1.dlock.trygvis.io
+midtasen-1 ansible_host=midtasen-1.dlock.trygvis.io
+deichman-bjerke ansible_host=deichman-bjerke.dlock.trygvis.io
+stovnerskogen-2 ansible_host=stovnerskogen-2.dlock.trygvis.io
+midtasen-2 ansible_host=midtasen-2.dlock.trygvis.io
+deichman-grunerlokka ansible_host=deichman-grunerlokka.dlock.trygvis.io
+baerum-kommune-1 ansible_host=baerum-kommune-1.dlock.trygvis.io
+baerum-kommune-2 ansible_host=baerum-kommune-2.dlock.trygvis.io
+slurpen-1 ansible_host=slurpen-1.dlock.trygvis.io
+deichman-boler ansible_host=deichman-boler.dlock.trygvis.io
+deichman-nydalen ansible_host=deichman-nydalen.dlock.trygvis.io
+deichman-torshov ansible_host=deichman-torshov.dlock.trygvis.io
+deichman-bjorvika ansible_host=deichman-bjorvika.dlock.trygvis.io
+unused-22 ansible_host=door22.dlock.trygvis.io
+unused-23 ansible_host=door23.dlock.trygvis.io
+unused-24 ansible_host=door24.dlock.trygvis.io
+unused-25 ansible_host=door25.dlock.trygvis.io
+dlock-27 ansible_host=door27.dlock.trygvis.io
+unused-33 ansible_host=door33.dlock.trygvis.io
+unused-34 ansible_host=door34.dlock.trygvis.io
+unused-35 ansible_host=door35.dlock.trygvis.io
+unused-36 ansible_host=door36.dlock.trygvis.io
+unused-37 ansible_host=door37.dlock.trygvis.io
+unused-38 ansible_host=door38.dlock.trygvis.io
+unused-39 ansible_host=door39.dlock.trygvis.io
+unused-40 ansible_host=door40.dlock.trygvis.io
+unused-41 ansible_host=door41.dlock.trygvis.io
+unused-42 ansible_host=door42.dlock.trygvis.io
+unused-43 ansible_host=door43.dlock.trygvis.io
+unused-44 ansible_host=door44.dlock.trygvis.io
+unused-45 ansible_host=door45.dlock.trygvis.io
+
+
+[doors]
+dev-0
+sorenga-1
+hotspare-1
+fubiak-1
+unused-4
+origo-1
+origo-2
+lindeberg-1
+deichman-majorstuen
+loren-1
+deichman-toyen
+deichman-stovner
+deichman-oppsal
+deichman-nordtvet
+nordreaker-rachelgrepp-1
+stovnerskogen-1
+midtasen-1
+deichman-bjerke
+stovnerskogen-2
+midtasen-2
+deichman-grunerlokka
+baerum-kommune-1
+baerum-kommune-2
+slurpen-1
+deichman-boler
+deichman-nydalen
+deichman-torshov
+deichman-bjorvika
+unused-22
+unused-23
+unused-24
+unused-25
+dlock-27
+unused-33
+unused-34
+unused-35
+unused-36
+unused-37
+unused-38
+unused-39
+unused-40
+unused-41
+unused-42
+unused-43
+unused-44
+unused-45
+
