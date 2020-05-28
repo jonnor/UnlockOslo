@@ -1,5 +1,6 @@
 - name: configure name resolution
   tags: network
+  when: fix_resolv_conf
   copy:
     dest: /etc/resolv.conf
     content: |
