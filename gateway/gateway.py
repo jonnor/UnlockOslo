@@ -275,7 +275,7 @@ doors = {
     'unused-36': DoorInfo('doors/dlock-36'),
     'unused-37': DoorInfo('doors/dlock-37'),
     'unused-38': DoorInfo('doors/dlock-38'),
-    'unused-39': DoorInfo('doors/dlock-39'),
+    'rachel-grepp-2': DoorInfo('doors/dlock-39'),
     'unused-40': DoorInfo('doors/dlock-40'),
     'unused-41': DoorInfo('doors/dlock-41'),
     'unused-42': DoorInfo('doors/dlock-42'),
