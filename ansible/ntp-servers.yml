@@ -1,0 +1,4 @@
+---
+- hosts: doors
+  roles:
+    - ntp-servers
