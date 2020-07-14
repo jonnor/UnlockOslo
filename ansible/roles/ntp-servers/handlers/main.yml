@@ -1,0 +1,6 @@
+- name: Restart systemd-timesyncd
+  become: yes
+  service:
+    name: systemd-timesyncd.service
+    state: restarted
+  listen: systemd-timesyncd configuration changed
