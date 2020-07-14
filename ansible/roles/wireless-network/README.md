@@ -1,7 +1,7 @@
 You will need to define
 
- wifi_ssid: <ssid>
- wifi_psk: <psk>
+    wifi_ssid: <ssid>
+    wifi_psk: <psk>
 
 in a file ../../host_vars/<hostname>/wifi.yml
 
