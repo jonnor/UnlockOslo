@@ -54,7 +54,7 @@ unused-37 ansible_host=door37.dlock.trygvis.io
 unused-38 ansible_host=door38.dlock.trygvis.io
 unused-39 ansible_host=door39.dlock.trygvis.io
 unused-40 ansible_host=door40.dlock.trygvis.io
-unused-41 ansible_host=door41.dlock.trygvis.io
+nordreaker-n21-1 ansible_host=nordreaker-n21-1.dlock.trygvis.io
 unused-42 ansible_host=door42.dlock.trygvis.io
 unused-43 ansible_host=door43.dlock.trygvis.io
 unused-44 ansible_host=door44.dlock.trygvis.io
@@ -103,7 +103,7 @@ unused-37
 unused-38
 unused-39
 unused-40
-unused-41
+nordreaker-n21-1
 unused-42
 unused-43
 unused-44
