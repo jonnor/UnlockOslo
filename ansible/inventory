@@ -44,6 +44,7 @@ deichman-bjorvika ansible_host=deichman-bjorvika.dlock.trygvis.io
 rachel-grepp-1 ansible_host=rachel-grepp-1.dlock.trygvis.io
 rachel-grepp-2 ansible_host=rachel-grepp-2.dlock.trygvis.io
 rachel-grepp-3 ansible_host=rachel-grepp-3.dlock.trygvis.io
+nordreaker-n21-1 ansible_host=nordreaker-n21-1.dlock.trygvis.io
 
 [doors]
 dev-0
@@ -77,4 +78,4 @@ deichman-bjorvika
 rachel-grepp-1
 rachel-grepp-2
 rachel-grepp-3
-
+nordreaker-n21-1
