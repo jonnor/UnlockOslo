@@ -11,10 +11,12 @@ server {
     }
 
 # deny everything except for whitelisted IPs
-{% for ip in vault_http_api_allow %}
-    allow {{ ip }};
-{% endfor %}
-    deny all;
+#{% for ip in vault_http_api_allow %}
+#    allow {{ ip }};
+# {% endfor %}
+#    deny all;
+# 2020-08-28: customer wants unblocked access
+     allow all;
 
     location /.well-known/ {
         root /var/www/html;
