@@ -53,7 +53,7 @@ unused-36 ansible_host=door36.dlock.trygvis.io
 unused-37 ansible_host=door37.dlock.trygvis.io
 unused-38 ansible_host=door38.dlock.trygvis.io
 rachel-grepp-2 ansible_host=rachel-grepp-2.dlock.trygvis.io
-unused-40 ansible_host=door40.dlock.trygvis.io
+rachel-grepp-3 ansible_host=rachel-grepp-3.dlock.trygvis.io
 nordreaker-n21-1 ansible_host=nordreaker-n21-1.dlock.trygvis.io
 unused-42 ansible_host=door42.dlock.trygvis.io
 unused-43 ansible_host=door43.dlock.trygvis.io
@@ -102,7 +102,7 @@ unused-36
 unused-37
 unused-38
 rachel-grepp-2
-unused-40
+rachel-grepp-3
 nordreaker-n21-1
 unused-42
 unused-43
