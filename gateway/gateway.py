@@ -273,7 +273,7 @@ doors = {
     'unused-34': DoorInfo('doors/dlock-34'),
     'rachel-grepp-1': DoorInfo('doors/dlock-35'),
     'unused-36': DoorInfo('doors/dlock-36'),
-    'unused-37': DoorInfo('doors/dlock-37'),
+    'haugen-skole-1': DoorInfo('doors/dlock-37'),
     'unused-38': DoorInfo('doors/dlock-38'),
     'rachel-grepp-2': DoorInfo('doors/dlock-39'),
     'rachel-grepp-3': DoorInfo('doors/dlock-40'),
