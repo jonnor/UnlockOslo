@@ -1,0 +1,2 @@
+card no | reapir date | text
+#104	2021-07-14	replaced U1 (TPS54202DDCT)
