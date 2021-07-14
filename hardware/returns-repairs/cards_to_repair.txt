@@ -1,4 +1,3 @@
 card no | logged date | fault description
-#215	2021-07-13	5V short to gnd
 #216	2021-07-13	5V short to gnd
 #217	2021-07-13	5V short to gnd
