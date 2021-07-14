@@ -3,3 +3,4 @@ card no | reapir date | text
 #200	2021-07-14	replaced U1 (TPS54202DDCT)
 #201	2021-07-14	replaced U1 (TPS54202DDCT)
 #202	2021-07-14	replaced U1 (TPS54202DDCT)
+#203	2021-07-14	replaced U1 (TPS54202DDCT)
