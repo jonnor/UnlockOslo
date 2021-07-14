@@ -1,1 +1,2 @@
 card no | logged date | fault description
+#104	2021-07-14	no 5V output (only 58.6 mV)
