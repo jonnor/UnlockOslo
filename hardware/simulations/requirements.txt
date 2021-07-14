@@ -25,7 +25,7 @@ pexpect==4.6.0
 pickleshare==0.7.4
 prompt-toolkit==1.0.15
 ptyprocess==0.6.0
-Pygments==2.2.0
+Pygments==2.7.4
 python-dateutil==2.7.3
 pyzmq==17.0.0
 qtconsole==4.3.1
