@@ -52,3 +52,16 @@ testing date | serial number | testscript | 	comment
 2020-03-04		231	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
 2020-03-19		232	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
 2020-03-19		233	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+
+testing date | serial number | testscript | 	comment
+2021-07-14		200	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2021-07-14		201	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2021-07-14		202	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2021-07-14		203	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2021-07-14		205	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2021-07-14		212	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2021-07-14		215	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2021-07-14		216	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2021-07-14		217	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2021-07-14		014	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
+2021-07-14		015	ok		no shorts, 5V out when connected to 24V input. status, outputs, inputs ok.
