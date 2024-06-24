@@ -85,11 +85,16 @@ Lock = typing.Union[Unlocked,Locked,TemporarilyUnlocked]
 
 class States:
     def __init__(self,
-                 lock : Lock = Locked(0),
-                 opener : Opener = Inactive(0),
+                 lock : Lock = None,
+                 opener : Opener = None,
                  bolt_present :  bool = False,
                  bolt_present_updated : float = 0.0,
                  connected_light : bool = False) -> None:
+
+        if lock is None:
+            lock = Locked(0)
+        if opener is None:
+            opener = Inactive(0)
 
         self.lock = lock
         self.opener = opener
@@ -133,7 +138,7 @@ def next_state(current: States, inputs: Inputs) -> States:
             lock = TemporarilyUnlocked(since=i.current_time, until=i.current_time+temp_unlock_time)
 
     # unlock switch
-    if i.holdopen_button == True:
+    if i.holdopen_button == True and lock.state != 'Unlocked':
         lock = Unlocked(since=i.current_time, reason='switch')
     elif i.holdopen_button == False and lock.state == 'Unlocked' and lock.reason == 'switch':
         lock = Locked(since=i.current_time, reason='switch') 
@@ -293,12 +298,19 @@ class AlwaysErroringParticipant(msgflo.Participant):
         self.send('error', 'Unknown port {}'.format(inport))
     self.ack(msg)
 
+def is_state_change(current, next):
+    state_changed = repr(next.__dict__) != repr(current.__dict__)
+    return state_changed
+
+
 class LockParticipant(msgflo.Participant):
   def __init__(self, role):
     d = copy.deepcopy(participant_definition)
     msgflo.Participant.__init__(self, d, role)
 
+    self.role = role
     self.discovery_period = float(os.environ.get("DLOCK_DISCOVERY_PERIOD", "60"))
+    self.poll_interval = float(os.environ.get("DLOCK_POLL_INTERVAL", "0.2"))
 
     pin_mapping = {
         # in
@@ -345,7 +357,7 @@ class LockParticipant(msgflo.Participant):
   def loop(self):
     while True:
         self.recalculate_state()
-        gevent.sleep(0.2)
+        gevent.sleep(self.poll_interval)
 
   def recalculate_state(self, mqtt_request=None):
     # Retrieve current inputs
@@ -366,9 +378,9 @@ class LockParticipant(msgflo.Participant):
     next = next_state(self.state, Inputs(**inputs))
     set_outputs(self.state, self.output_files)
 
-    state_changed = next.__dict__ != self.state.__dict__
+    state_changed = is_state_change(self.state, next)
     if state_changed:
-        entry = { 'inputs': inputs, 'state': next.__dict__ }
+        entry = { 'role': self.role, 'inputs': inputs, 'state': next.__dict__ }
         log.info(entry)
 
         if connected:

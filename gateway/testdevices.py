@@ -28,6 +28,13 @@ def create_virtual_lock(name):
     return virtual
 
 
+devices = [
+    'virtual-1',
+    'virtual-2',
+    'erroring-1',
+    'dlock-2',
+]
+
 def get_participants():
     participants = [
         create_virtual_lock('doors/virtual-1'),

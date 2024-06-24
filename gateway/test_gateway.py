@@ -213,23 +213,7 @@ def test_status_bolt_sensor_changes(devices):
         assert bolt['last_updated'] > update_time
 
 
-# TODO: keep this info in database
-not_running = [
-    'notresponding-1',
-    'sorenga-1',
-    'fubiak-1',
-    'dev-0',
-    'origo-1',
-    'origo-2',
-    'deichman-toyen',
-    'lindeberg-1',
-    'deichman-majorstuen',
-    'loren-1',
-    'deichman-stovner',
-    'unused-4',
-    'unused-12',
-    'unused-13',
-]
+not_running = list(set(gateway.doors.keys()) - set(testdevices.devices))
 ignore = '&'.join('ignore={}'.format(d) for d in not_running)
 
 def test_status_all_devices_ok(devices):
